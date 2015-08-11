@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ui:BootstrapApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                         xmlns:config="touch4bitwig.app.config.*"
+                         xmlns:ui="touch4bitwig.app.ui.*"
+                         xmlns:view="touch4bitwig.view.*"
+                         theme="feathers.themes.MetalWorksMobileTheme">
+
+    <fx:Declarations>
+        <config:ApplicationContext contextView="{navigator}"/>
+    </fx:Declarations>
+
+    <view:MainNavigator id="navigator"/>
+
+</ui:BootstrapApplication>

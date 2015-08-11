@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ui:BootstrapNavigator xmlns:fx="http://ns.adobe.com/mxml/2009"
+                       xmlns:f="library://ns.feathersui.com/mxml"
+                       xmlns:ui="touch4bitwig.app.ui.*">
+
+
+    <!-- ApplicationScreens.SCREEN_ID_SOURCE_BROWSER -->
+    <f:StackScreenNavigatorItem id="TestScreen"
+                                screen="{testScreen}">
+    </f:StackScreenNavigatorItem>
+
+    <fx:Script><![CDATA[
+        import touch4bitwig.view.screen.TestScreen;
+
+        public static const testScreen:Class = TestScreen;
+        ]]></fx:Script>
+</ui:BootstrapNavigator>

@@ -1,0 +1,70 @@
+/**
+ * Created by Teoti on 4/13/2015.
+ */
+package touch4bitwig.model.state
+{
+
+import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.service.IOSCService;
+
+public class DeviceParam extends AbstractBitwigState
+{
+    private var _index:int;
+
+    private var _map:Object = {};
+
+    private var _paramName:String;
+    private var _paramValue:int;
+    private var _paramValueString:String;
+
+    public function get index():int
+    {
+        return _index;
+    }
+
+    public function DeviceParam(service:IOSCService, index:int)
+    {
+        super(service);
+        _index = index;
+
+        _map["param"] = {};
+        _map["common"] = {};
+        _map["envelope"] = {};
+        _map["macro"] = {};
+        _map["modulation"] = {};
+    }
+
+    public function getValueString(mode:String):String
+    {
+        return _map[mode]["valueString"];
+    }
+
+    public function getValue(mode:String):int
+    {
+        return _map[mode]["value"];
+    }
+
+    public function getName(mode:String):String
+    {
+        return _map[mode]["name"];
+    }
+
+    public function setName(mode:String, value:String):void
+    {
+        _map[mode]["name"] = value;
+        dispatch(DeviceModelEventType.PARAM_NAME_CHANGE, {index: _index, mode: mode, value: value});
+    }
+
+    public function setValue(mode:String, value:int):void
+    {
+        _map[mode]["value"] = value;
+        dispatch(DeviceModelEventType.PARAM_VALUE_CHANGE, {index: _index, mode: mode, value: value});
+    }
+
+    public function setValueString(mode:String, value:String):void
+    {
+        _map[mode]["valueString"] = value;
+        dispatch(DeviceModelEventType.PARAM_VALUE_STRING_CHANGE, {index: _index, mode: mode, value: value});
+    }
+}
+}

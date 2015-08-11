@@ -1,0 +1,102 @@
+/**
+ * Created by Teoti on 4/14/2015.
+ */
+package touch4bitwig.model.state
+{
+
+import touch4bitwig.event.FrameModelEventType;
+import touch4bitwig.service.IOSCService;
+
+public class Mixer extends AbstractBitwigState
+{
+    private var _clipLauncherVisible:Boolean;
+    private var _crossFadeVisible:Boolean;
+    private var _deviceVisible:Boolean;
+    private var _sendsVisible:Boolean;
+    private var _ioVisible:Boolean;
+    private var _meterVisible:Boolean;
+
+    public function get clipLauncherVisible():Boolean
+    {
+        return _clipLauncherVisible;
+    }
+
+    public function set clipLauncherVisible(value:Boolean):void
+    {
+        if (isSame(_clipLauncherVisible, value))
+            return;
+        _clipLauncherVisible = value;
+        dispatchValue(FrameModelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE, _clipLauncherVisible);
+    }
+
+    public function get crossFadeVisible():Boolean
+    {
+        return _crossFadeVisible;
+    }
+
+    public function set crossFadeVisible(value:Boolean):void
+    {
+        if (isSame(_crossFadeVisible, value))
+            return;
+        _crossFadeVisible = value;
+        dispatchValue(FrameModelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE, _crossFadeVisible);
+    }
+
+    public function get deviceVisible():Boolean
+    {
+        return _deviceVisible;
+    }
+
+    public function set deviceVisible(value:Boolean):void
+    {
+        if (isSame(_deviceVisible, value))
+            return;
+        _deviceVisible = value;
+        dispatchValue(FrameModelEventType.MIXER_DEVICE_VISIBLE_CHANGE, _deviceVisible);
+    }
+
+    public function get sendsVisible():Boolean
+    {
+        return _sendsVisible;
+    }
+
+    public function set sendsVisible(value:Boolean):void
+    {
+        if (isSame(_sendsVisible, value))
+            return;
+        _sendsVisible = value;
+        dispatchValue(FrameModelEventType.MIXER_SENDS_VISIBLE_CHANGE, _sendsVisible);
+    }
+
+    public function get ioVisible():Boolean
+    {
+        return _ioVisible;
+    }
+
+    public function set ioVisible(value:Boolean):void
+    {
+        if (isSame(_ioVisible, value))
+            return;
+        _ioVisible = value;
+        dispatchValue(FrameModelEventType.MIXER_IO_VISIBLE_CHANGE, _ioVisible);
+    }
+
+    public function get meterVisible():Boolean
+    {
+        return _meterVisible;
+    }
+
+    public function set meterVisible(value:Boolean):void
+    {
+        if (isSame(_meterVisible, value))
+            return;
+        _meterVisible = value;
+        dispatchValue(FrameModelEventType.MIXER_METER_VISIBLE_CHANGE, _meterVisible);
+    }
+
+    public function Mixer(service:IOSCService)
+    {
+        super(service);
+    }
+}
+}
