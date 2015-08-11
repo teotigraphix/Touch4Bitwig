@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="Touch4Bitwig">
+    <configurations>
+      <configuration name="Touch4Bitwig" target-platform="Mobile" main-class="MainEmulator" output-file="Touch4Bitwig.swf" output-folder="$MODULE_DIR$/out/production/Touch4Bitwig">
+        <dependencies target-player="18.0">
+          <entries>
+            <entry library-name="Feathers MXML" library-level="application">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="a638b708-b8f3-4af2-b01d-dd059b5923e9">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="a7c2a4a3-8557-41de-ae65-ddb0c860db10">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="FeathersSDK" />
+        </dependencies>
+        <compiler-options>
+          <option name="additionalOptions" value="-preloader=" />
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/MainEmulator-app.xml" package-file-name="Touch4Bitwig" />
+        <packaging-ios package-file-name="Touch4Bitwig" />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assets" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="FeathersSDK" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Feathers MXML" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="a638b708-b8f3-4af2-b01d-dd059b5923e9" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/robotlegs-framework-starling-v0.9.1.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="a7c2a4a3-8557-41de-ae65-ddb0c860db10" />
+        <CLASSES>
+          <root url="jar://C:/dev/FeathersSDK/frameworks/themes/MetalWorksMobileTheme/MetalWorksMobileTheme.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
