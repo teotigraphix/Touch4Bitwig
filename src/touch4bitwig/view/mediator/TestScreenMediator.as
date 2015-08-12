@@ -6,7 +6,7 @@ package touch4bitwig.view.mediator
 
 import starling.events.Event;
 
-import touch4bitwig.model.support.TransportModel;
+import touch4bitwig.service.IOSCService;
 import touch4bitwig.view.screen.TestScreen;
 
 public class TestScreenMediator extends AbstractMediator
@@ -15,7 +15,7 @@ public class TestScreenMediator extends AbstractMediator
     public var screen:TestScreen;
 
     [Inject]
-    public var transportModel:TransportModel;
+    public var oscService:IOSCService;
 
     public function TestScreenMediator()
     {
@@ -35,7 +35,12 @@ public class TestScreenMediator extends AbstractMediator
 
     private function view_changeHandler(event:Event, selected:Boolean):void
     {
-        transportModel.transport.isPlaying = selected;
+        //transportModel.transport.isPlaying = selected;
+
+        if (selected)
+            oscService.send("/play");
+        else
+            oscService.sendInt("/stop", 1);
     }
 }
 }
