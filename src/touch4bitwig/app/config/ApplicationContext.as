@@ -13,8 +13,10 @@ import touch4bitwig.model.support.DeviceModel;
 import touch4bitwig.model.support.FrameModel;
 import touch4bitwig.model.support.TrackModel;
 import touch4bitwig.model.support.TransportModel;
+import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.ILogger;
 import touch4bitwig.service.IOSCService;
+import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.Logger;
 import touch4bitwig.service.support.OSCService;
 import touch4bitwig.view.MainNavigator;
@@ -49,6 +51,7 @@ public class ApplicationContext extends Context
     {
         injector.mapSingletonOf(ILogger, Logger);
         injector.mapSingletonOf(IOSCService, OSCService);
+        injector.mapSingletonOf(IConfigurationService, ConfigurationService);
     }
 
     private function configureModel():void

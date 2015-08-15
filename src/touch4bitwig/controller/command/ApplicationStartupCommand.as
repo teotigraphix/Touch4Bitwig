@@ -4,8 +4,6 @@
 package touch4bitwig.controller.command
 {
 
-import touch4bitwig.controller.*;
-
 import flash.net.InterfaceAddress;
 import flash.net.NetworkInfo;
 import flash.net.NetworkInterface;
@@ -15,8 +13,9 @@ import org.robotlegs.starling.mvcs.Command;
 import starling.core.Starling;
 import starling.events.Event;
 
+import touch4bitwig.app.config.ApplicationConfiguration;
+import touch4bitwig.controller.*;
 import touch4bitwig.event.ApplicationEventType;
-
 import touch4bitwig.model.state.GlobalModel;
 import touch4bitwig.model.support.ConnectionInstance;
 import touch4bitwig.service.IOSCService;
@@ -39,8 +38,13 @@ public class ApplicationStartupCommand extends Command
     {
         trace("StartupCommand.execute()");
 
+        // TODO this will ne asnyc, right now it's reading from the file system which is sync
+        model.setup();
+
+        var config:ApplicationConfiguration = model.configuration;
+
         var connection:ConnectionInstance = model.connection;
-        connection.setup("192.168.1.3", 9000, "192.168.1.3", 8000);
+        connection.setup(config.serverIP, config.serverPort, config.clientIP, config.clientPort);
 
         printAddresses();
 
