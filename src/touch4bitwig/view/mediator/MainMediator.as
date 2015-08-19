@@ -7,6 +7,7 @@ import starling.core.Starling;
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
+import touch4bitwig.service.IOSCService;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.screen.ApplicationScreens;
 
@@ -39,6 +40,9 @@ public class MainMediator extends AbstractMediator
     [Inject]
     public var navigator:MainNavigator;
 
+    [Inject]
+    public var oscService:IOSCService;
+
     public function MainMediator()
     {
         trace("new MainMediator()");
@@ -63,6 +67,11 @@ public class MainMediator extends AbstractMediator
 
         //// var aspect:String = this.stage.stageWidth >= this.stage.stageHeight ? StageAspectRatio.LANDSCAPE :
         //// StageAspectRatio.PORTRAIT;
+
+        Starling.juggler.delayCall(function ():void
+                                   {
+                                       oscService.flush();
+                                   }, 0.2);
     }
 
     override public function onRemove():void
@@ -76,7 +85,7 @@ public class MainMediator extends AbstractMediator
         logger.log(TAG, "context_applicationCompleteHandler()");
         logger.log(TAG, "Show initial screen");
 
-        navigator.pushScreen(ApplicationScreens.SCREEN_TEST);
+        navigator.pushScreen(ApplicationScreens.SCREEN_MIXER);
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

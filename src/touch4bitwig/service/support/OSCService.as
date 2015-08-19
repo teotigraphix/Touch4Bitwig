@@ -4,6 +4,8 @@
 package touch4bitwig.service.support
 {
 
+import org.robotlegs.starling.mvcs.Actor;
+
 import starling.events.Event;
 
 import touch4bitwig.model.state.GlobalModel;
@@ -17,7 +19,7 @@ import touch4bitwig.service.support.osc.listeners.FrameListener;
 import touch4bitwig.service.support.osc.listeners.TrackListener;
 import touch4bitwig.service.support.osc.listeners.TransportListener;
 
-public class OSCService implements IOSCService, IOSCListener
+public class OSCService extends Actor implements IOSCService, IOSCListener
 {
     private var _model:GlobalModel;
 
@@ -146,12 +148,12 @@ public class OSCService implements IOSCService, IOSCListener
 
     public function dispatchEventWith(type:String, bubbles:Boolean = false, data:Object = null):void
     {
-        _model.eventDispatcher.dispatchEventWith(type, bubbles, data);
+        eventDispatcher.dispatchEventWith(type, bubbles, data);
     }
 
     public function dispatchEvent(event:Event):void
     {
-        _model.eventDispatcher.dispatchEvent(event);
+        eventDispatcher.dispatchEvent(event);
     }
 }
 }

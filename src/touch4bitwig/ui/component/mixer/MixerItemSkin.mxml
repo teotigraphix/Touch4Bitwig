@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!--
+  Created by Teoti on 8/19/2015.
+
+-->
+<mixer:MixerItemSkinBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+                         xmlns:f="library://ns.feathersui.com/mxml"
+                         xmlns:ui="com.teotigraphix.ui.component.*"
+                         xmlns:component="touch4bitwig.ui.component.*"
+                         xmlns:mixer="touch4bitwig.ui.component.mixer.*">
+
+    <mixer:layout>
+        <f:VerticalLayout gap="10" paddingTop="6" horizontalAlign="center"/>
+    </mixer:layout>
+
+    <ui:UIBorder color="{trackColor}" minHeight="20">
+        <ui:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </ui:layoutData>
+    </ui:UIBorder>
+
+    <!--=====================================================================-->
+    <!-- Icon, Name -->
+    <!--=====================================================================-->
+
+    <component:HGroup percentWidth="100" gap="5" paddingLeft="5" paddingRight="5">
+
+        <!-- Can hold notes stack -->
+        <f:LayoutGroup>
+            <f:ImageLoader id="noteIcon" visible="false" source="{AssetMap.getTexture('hold-notes-icon-skin')}"
+                           width="18" height="18"/>
+            <f:ImageLoader id="audioIcon" source="{AssetMap.getTexture('hold-audio-icon-skin')}"
+                           width="18" height="18"/>
+        </f:LayoutGroup>
+
+        <f:Label id="trackNameLabel" text="{trackName}" styleName="track-header-label">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100"/>
+            </f:layoutData>
+        </f:Label>
+
+    </component:HGroup>
+
+    <!--=====================================================================-->
+    <!-- Pan Label/Slider -->
+    <!--=====================================================================-->
+
+    <component:VGroup percentWidth="100" padding="5" gap="5" horizontalAlign="center">
+
+        <f:Label text="{panString}"/>
+
+        <ui:UISlider id="panSlider"
+                     value="{panValue}"
+                     direction="horizontal" minimum="0" maximum="127" step="1"
+                     change="pan_changeHandler(panSlider.value)">
+            <ui:layoutData>
+                <f:VerticalLayoutData percentWidth="100"/>
+            </ui:layoutData>
+        </ui:UISlider>
+
+    </component:VGroup>
+
+
+    <!--=====================================================================-->
+    <!-- Volume Label -->
+    <!--=====================================================================-->
+
+    <component:HGroup percentWidth="100" horizontalAlign="center">
+
+        <f:Label text="{volumeString}"/>
+
+    </component:HGroup>
+
+
+    <!--=====================================================================-->
+    <!-- RecArm, Solo, Mute | Volume -->
+    <!--=====================================================================-->
+
+    <component:HGroup percentWidth="100" percentHeight="100" padding="5" gap="5" verticalAlign="bottom">
+
+        <component:VGroup gap="4">
+            <ui:UIToggleButton id="recarmButton" label="O" isToggle="true" isSelected="{isRecArm}"
+                               styleName="recarm-button"
+                               change="recarm_changeHandler(recarmButton.isSelected)"/>
+
+            <ui:UIToggleButton id="soloButton" label="S" isToggle="true" isSelected="{isSolo}"
+                               change="solo_changeHandler(soloButton.isSelected)"
+                               styleName="solo-button"/>
+
+            <ui:UIToggleButton id="muteButton" label="M" isToggle="true" isSelected="{isMute}"
+                               styleName="mute-button"
+                               change="mute_changeHandler(muteButton.isSelected)"/>
+        </component:VGroup>
+
+        <component:HGroup backgroundSkin="{AssetMap.create9ScaleImage('background-skin', 5, 5, 22, 22)}"
+                          percentWidth="100" percentHeight="100" padding="5" gap="4">
+
+            <f:ProgressBar value="{vuValue}"
+                           styleName="mixer-item-vu-bar">
+                <f:layoutData>
+                    <f:HorizontalLayoutData percentHeight="100"/>
+                </f:layoutData>
+            </f:ProgressBar>
+
+            <ui:UISlider id="volumeSlider"
+                         value="{volumeValue}"
+                         styleName="track-strip-volume-slider"
+                         change="volume_changeHandler(volumeSlider.value)">
+                <ui:layoutData>
+                    <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+                </ui:layoutData>
+            </ui:UISlider>
+
+        </component:HGroup>
+
+
+    </component:HGroup>
+
+    <fx:Script><![CDATA[
+        import com.teotigraphix.ui.theme.AssetMap;
+
+        override public function set canHoldNotes(value:Boolean):void
+        {
+            super.canHoldNotes = value;
+            noteIcon.visible = value;
+            audioIcon.visible = !value;
+        }
+        ]]></fx:Script>
+
+</mixer:MixerItemSkinBase>

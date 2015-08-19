@@ -10,6 +10,7 @@ public final class TrackModelEventType
     public static const CAN_SCROLL_TRACKS_DOWN:String = "canScrollTracksDown";
 
     public static const EXISTS_CHANGE:String = "trackExistsChange";
+    public static const CAN_HOLD_NOTES_CHANGE:String = "canHoldNotesChange";
     public static const SELECTED_CHANGE:String = "trackSelectedChange";
     public static const NAME_CHANGE:String = "trackNameChange";
     public static const COLOR_CHANGE:String = "trackColorChange";

@@ -1,6 +1,22 @@
-/**
- * Created by Teoti on 4/5/2015.
- */
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+
 package touch4bitwig.model.state
 {
 
@@ -48,6 +64,7 @@ public class Track extends AbstractBitwigState
     public function set canHoldNotes(value:Boolean):void
     {
         _canHoldNotes = value;
+        dispatch(TrackModelEventType.CAN_HOLD_NOTES_CHANGE, {index: _index, value: _canHoldNotes});
     }
 
     public function get exists():Boolean
@@ -60,7 +77,7 @@ public class Track extends AbstractBitwigState
         //if (_exists == value)
         //    return;
         _exists = value;
-        dispatch(TrackModelEventType.EXISTS_CHANGE, {index: index, value: _exists});
+        dispatch(TrackModelEventType.EXISTS_CHANGE, {index: _index, value: _exists});
     }
 
     public function get isActivate():Boolean
@@ -103,7 +120,7 @@ public class Track extends AbstractBitwigState
     public function set volumeString(value:String):void
     {
         _volumeString = value;
-        dispatch(TrackModelEventType.VOLUME_STRING_CHANGE, {index: index, value: _volumeString});
+        dispatch(TrackModelEventType.VOLUME_STRING_CHANGE, {index: _index, value: _volumeString});
     }
 
     public function get volume():int
@@ -114,7 +131,7 @@ public class Track extends AbstractBitwigState
     public function set volume(value:int):void
     {
         _volume = value;
-        dispatch(TrackModelEventType.VOLUME_CHANGE, {index: index, value: _volume});
+        dispatch(TrackModelEventType.VOLUME_CHANGE, {index: _index, value: _volume});
     }
 
     public function get panString():String
@@ -125,7 +142,7 @@ public class Track extends AbstractBitwigState
     public function set panString(value:String):void
     {
         _panString = value;
-        dispatch(TrackModelEventType.PAN_STRING_CHANGE, {index: index, value: _panString});
+        dispatch(TrackModelEventType.PAN_STRING_CHANGE, {index: _index, value: _panString});
     }
 
     public function get pan():int
@@ -136,7 +153,7 @@ public class Track extends AbstractBitwigState
     public function set pan(value:int):void
     {
         _pan = value;
-        dispatch(TrackModelEventType.PAN_CHANGE, {index: index, value: _pan});
+        dispatch(TrackModelEventType.PAN_CHANGE, {index: _index, value: _pan});
     }
 
     public function get color():int
@@ -147,7 +164,7 @@ public class Track extends AbstractBitwigState
     public function set color(value:int):void
     {
         _color = value;
-        dispatch(TrackModelEventType.COLOR_CHANGE, {index: index, value: _color});
+        dispatch(TrackModelEventType.COLOR_CHANGE, {index: _index, value: _color});
     }
 
     public function get isMute():Boolean
@@ -158,7 +175,7 @@ public class Track extends AbstractBitwigState
     public function set isMute(value:Boolean):void
     {
         _isMute = value;
-        dispatch(TrackModelEventType.MUTE_CHANGE, {index: index, value: _isMute});
+        dispatch(TrackModelEventType.MUTE_CHANGE, {index: _index, value: _isMute});
     }
 
     public function get isSolo():Boolean
@@ -169,7 +186,7 @@ public class Track extends AbstractBitwigState
     public function set isSolo(value:Boolean):void
     {
         _isSolo = value;
-        dispatch(TrackModelEventType.SOLO_CHANGE, {index: index, value: _isSolo});
+        dispatch(TrackModelEventType.SOLO_CHANGE, {index: _index, value: _isSolo});
     }
 
     public function get isRecArm():Boolean
@@ -180,7 +197,7 @@ public class Track extends AbstractBitwigState
     public function set isRecArm(value:Boolean):void
     {
         _isRecArm = value;
-        dispatch(TrackModelEventType.RECORD_CHANGE, {index: index, value: _isRecArm});
+        dispatch(TrackModelEventType.RECORD_CHANGE, {index: _index, value: _isRecArm});
     }
 
     public function get isMonitor():Boolean

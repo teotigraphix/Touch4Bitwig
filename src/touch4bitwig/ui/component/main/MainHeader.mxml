@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+        _activeEngineButton = new UIToggleButton();
+        _activeEngineButton.defaultIcon = AssetMap.createImage("bitwig-icon-skin");
+        _activeEngineButton.defaultSelectedIcon = AssetMap.createImage("bitwig-icon-selected-skin");
+        _activeEngineButton.addEventListener(Event.CHANGE, settingsButton_changeHandler);
+
+        _clipsButton = new Button();
+        _clipsButton.label = "Clips";
+        _clipsButton.addEventListener(Event.TRIGGERED, navigationButton_triggeredHandler);
+
+        _deviceButton = new Button();
+        _deviceButton.label = "Device";
+        _deviceButton.addEventListener(Event.TRIGGERED, navigationButton_triggeredHandler);
+
+        _panelsButton = new Button();
+        _panelsButton.label = "Panels";
+        _panelsButton.addEventListener(Event.TRIGGERED, navigationButton_triggeredHandler);
+
+        _mixerButton = new Button();
+        _mixerButton.label = "Mixer";
+        _mixerButton.addEventListener(Event.TRIGGERED, navigationButton_triggeredHandler);
+-->
+<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:component="com.teotigraphix.ui.component.*">
+
+
+    <f:layout>
+        <f:HorizontalLayout/>
+    </f:layout>
+
+    <component:UIToggleButton styleName="active-engine-button"/>
+
+    <f:Button id="clipsButton" label="Clips"/>
+    <f:Button id="deviceButton" label="Device"/>
+    <f:Button id="panelsButton" label="Panels"/>
+    <f:Button id="mixerButton" label="Mixer"/>
+
+</f:LayoutGroup>

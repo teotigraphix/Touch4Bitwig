@@ -1,17 +1,42 @@
 <?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
 <ui:BootstrapNavigator xmlns:fx="http://ns.adobe.com/mxml/2009"
                        xmlns:f="library://ns.feathersui.com/mxml"
                        xmlns:ui="touch4bitwig.app.ui.*">
 
 
-    <!-- ApplicationScreens.SCREEN_ID_SOURCE_BROWSER -->
     <f:StackScreenNavigatorItem id="TestScreen"
                                 screen="{testScreen}">
     </f:StackScreenNavigatorItem>
 
+    <f:StackScreenNavigatorItem id="MixerScreen"
+                                screen="{mixerScreen}">
+    </f:StackScreenNavigatorItem>
+
     <fx:Script><![CDATA[
+        import touch4bitwig.view.screen.MixerScreen;
         import touch4bitwig.view.screen.TestScreen;
 
         public static const testScreen:Class = TestScreen;
+        public static const mixerScreen:Class = MixerScreen;
         ]]></fx:Script>
 </ui:BootstrapNavigator>
