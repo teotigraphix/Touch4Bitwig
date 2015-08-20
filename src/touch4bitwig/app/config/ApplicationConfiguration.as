@@ -26,14 +26,14 @@ package touch4bitwig.app.config
 
  <?xml version="1.0" encoding="utf-8"?>
  <configuration>
- <connection>
+ <connection deviceMode="emulator" />
  <serverDevice port="9000" ip="192.168.0.244" />
  <clientDevice port="8000" ip="192.168.0.122" />
 
  <serverEmulator port="9000" ip="127.0.0.1" />
  <clientEmulator port="8000" ip="127.0.0.1" />
 
- <deviceMode mode="emulator" />
+
  </connection>
  </configuration>
 
@@ -50,7 +50,7 @@ public class ApplicationConfiguration
     {
         var xml:XML = new XML(data);
 
-        if (xml.connection[0].deviceMode.@mode == "emulator") {
+        if (xml.connection[0].@deviceMode == "emulator") {
 
             serverPort = xml.connection[0].serverEmulator.@port;
             serverIP = xml.connection[0].serverEmulator.@ip;
