@@ -22,15 +22,20 @@ package touch4bitwig.app.config
 
 /*
 
-src/config.xml
+ src/config.xml
 
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-    <connection>
-        <server port="9000" ip="192.168.1.3"/>
-        <client port="8000" ip="192.168.1.3"/>
-    </connection>
-</configuration>
+ <?xml version="1.0" encoding="utf-8"?>
+ <configuration>
+ <connection>
+ <serverDevice port="9000" ip="192.168.0.244" />
+ <clientDevice port="8000" ip="192.168.0.122" />
+
+ <serverEmulator port="9000" ip="127.0.0.1" />
+ <clientEmulator port="8000" ip="127.0.0.1" />
+
+ <deviceMode mode="emulator" />
+ </connection>
+ </configuration>
 
  */
 
@@ -44,10 +49,25 @@ public class ApplicationConfiguration
     public function ApplicationConfiguration(data:String)
     {
         var xml:XML = new XML(data);
-        serverPort = xml.connection[0].server.@port;
-        serverIP = xml.connection[0].server.@ip;
-        clientPort = xml.connection[0].client.@port;
-        clientIP = xml.connection[0].client.@ip;
+
+        if (xml.connection[0].deviceMode.@mode == "emulator") {
+
+            serverPort = xml.connection[0].serverEmulator.@port;
+            serverIP = xml.connection[0].serverEmulator.@ip;
+            clientPort = xml.connection[0].serverEmulator.@port;
+            clientIP = xml.connection[0].serverEmulator.@ip;
+        }
+        else{
+
+            serverPort = xml.connection[0].serverDevice.@port;
+            serverIP = xml.connection[0].serverDevice.@ip;
+            clientPort = xml.connection[0].serverDevice.@port;
+            clientIP = xml.connection[0].serverDevice.@ip;
+        }
+
+
+
+
     }
 }
 }
