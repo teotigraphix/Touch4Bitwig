@@ -54,15 +54,15 @@ public class ApplicationConfiguration
 
             serverPort = xml.connection[0].serverEmulator.@port;
             serverIP = xml.connection[0].serverEmulator.@ip;
-            clientPort = xml.connection[0].serverEmulator.@port;
-            clientIP = xml.connection[0].serverEmulator.@ip;
+            clientPort = xml.connection[0].clientEmulator.@port;
+            clientIP = xml.connection[0].clientEmulator.@ip;
         }
         else{
 
             serverPort = xml.connection[0].serverDevice.@port;
             serverIP = xml.connection[0].serverDevice.@ip;
-            clientPort = xml.connection[0].serverDevice.@port;
-            clientIP = xml.connection[0].serverDevice.@ip;
+            clientPort = xml.connection[0].clientDevice.@port;
+            clientIP = xml.connection[0].clientDevice.@ip;
         }
 
 
