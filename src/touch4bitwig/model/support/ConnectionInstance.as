@@ -4,8 +4,8 @@
 package touch4bitwig.model.support
 {
 
-import touch4bitwig.service.support.osc.OSCManager;
-import touch4bitwig.service.support.osc.connectors.UDPConnector;
+import com.teotigraphix.frameworks.osc.OSCManager;
+import com.teotigraphix.frameworks.osc.connectors.UDPConnector;
 
 public class ConnectionInstance
 {

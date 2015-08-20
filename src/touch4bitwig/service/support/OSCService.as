@@ -20,15 +20,16 @@
 package touch4bitwig.service.support
 {
 
+import com.teotigraphix.frameworks.osc.IOSCListener;
+import com.teotigraphix.frameworks.osc.OSCManager;
+import com.teotigraphix.frameworks.osc.OSCMessage;
+
 import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
 import touch4bitwig.model.state.GlobalModel;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.service.support.osc.IOSCListener;
-import touch4bitwig.service.support.osc.OSCManager;
-import touch4bitwig.service.support.osc.OSCMessage;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
 import touch4bitwig.service.support.osc.listeners.FrameListener;
