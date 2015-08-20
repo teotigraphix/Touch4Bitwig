@@ -36,7 +36,10 @@ public interface IOSCService
 
     function start(model:GlobalModel):void;
 
-    function flush():void;
+    /**
+     * Refreshes all osc messages from the current Bitwig session model.
+     */
+    function refresh():void;
 
     function dispatchEventWith(type:String, bubbles:Boolean = false, data:Object = null):void;
 

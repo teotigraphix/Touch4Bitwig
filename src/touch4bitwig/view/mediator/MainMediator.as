@@ -79,7 +79,7 @@ public class MainMediator extends AbstractMediator
 
         Starling.juggler.delayCall(function ():void
                                    {
-                                       oscService.flush();
+                                       oscService.refresh();
                                    }, 0.2);
     }
 

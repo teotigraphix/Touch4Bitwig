@@ -156,7 +156,7 @@ public class OSCService extends Actor implements IOSCService, IOSCListener
             _applicationListener.handle(osc);
     }
 
-    public function flush():void
+    public function refresh():void
     {
         var osc:OSCMessage = new OSCMessage();
         osc.address = "/refresh";
