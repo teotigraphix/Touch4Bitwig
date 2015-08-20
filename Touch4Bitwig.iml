@@ -24,7 +24,11 @@
           <option name="additionalOptions" value="-preloader=" />
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/MainEmulator-app.xml" package-file-name="Touch4Bitwig" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/MainEmulator-app.xml" package-file-name="Touch4Bitwig">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/config.xml" path-in-package="config.xml" />
+          </files-to-package>
+        </packaging-android>
         <packaging-ios package-file-name="Touch4Bitwig" />
       </configuration>
     </configurations>
