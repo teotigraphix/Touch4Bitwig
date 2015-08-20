@@ -24,8 +24,8 @@
 -->
 <ui:BootstrapApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
                          xmlns:config="touch4bitwig.app.config.*"
-                         xmlns:ui="touch4bitwig.app.ui.*"
                          xmlns:view="touch4bitwig.view.*"
+                         xmlns:ui="com.teotigraphix.app.ui.*"
                          theme="touch4bitwig.theme.BitwigTouchMobileTheme">
 
     <fx:Declarations>
