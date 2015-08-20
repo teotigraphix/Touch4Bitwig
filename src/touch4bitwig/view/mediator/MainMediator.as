@@ -13,7 +13,7 @@ import touch4bitwig.view.screen.ApplicationScreens;
 
 /*
 
-[Starling] Mask support requires 'depthAndStencil' to be enabled in the application descriptor.
+Starling] Mask support requires 'depthAndStencil' to be enabled in the application descriptor.
 [Starling] Initialization complete.
 [Starling] Display Driver: DirectX9
 new ApplicationContext()
@@ -21,15 +21,24 @@ BootstrapApplication.INITIALIZE()
 BootstrapApplication.ADDED_TO_STAGE()
 BootstrapNavigator.INITIALIZE()
 BootstrapNavigator.ADDED_TO_STAGE()
+    FrameworkContext.configureDescriptor()
+    FrameworkContext.configureCore()
+    FrameworkContext.configureApplication()
     ApplicationContext.configureService()
     ApplicationContext.configureModel()
+    ApplicationContext.configureController()
     ApplicationContext.configureView()
 new MainMediator()
-    ApplicationContext.startupComplete()
+    FrameworkContext.startupComplete()
     FrameworkContext.dispatchEventWith(STARTUP)
+StartupCommand.execute()
+...
 BootstrapNavigator.CREATION_COMPLETE()
-{MainMediator} onRegister()
+    [Log] {MainMediator} , onRegister()
 BootstrapApplication.CREATION_COMPLETE()
+    [Log] {ApplicationController} , applicationCompleteHandler()
+    [Log] {MainMediator} , context_applicationCompleteHandler()
+    [Log] {MainMediator} , Show initial screen
 
 */
 

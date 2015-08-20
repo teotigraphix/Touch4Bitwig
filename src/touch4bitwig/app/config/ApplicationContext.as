@@ -1,11 +1,10 @@
 package touch4bitwig.app.config
 {
 
-import org.robotlegs.starling.base.ContextEventType;
-import org.robotlegs.starling.mvcs.Context;
+import com.teotigraphix.app.config.ApplicationDescriptor;
+import com.teotigraphix.app.config.FrameworkContext;
 
-import starling.animation.Juggler;
-import starling.core.Starling;
+import org.robotlegs.starling.base.ContextEventType;
 
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
@@ -18,10 +17,8 @@ import touch4bitwig.model.support.TrackModel;
 import touch4bitwig.model.support.TransportModel;
 import touch4bitwig.model.support.UIModel;
 import touch4bitwig.service.IConfigurationService;
-import touch4bitwig.service.ILogger;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
-import touch4bitwig.service.support.Logger;
 import touch4bitwig.service.support.OSCService;
 import touch4bitwig.ui.component.mixer.MixerBank;
 import touch4bitwig.ui.mediator.mixer.MixerBankMediator;
@@ -32,7 +29,7 @@ import touch4bitwig.view.mediator.TestScreenMediator;
 import touch4bitwig.view.screen.MixerScreen;
 import touch4bitwig.view.screen.TestScreen;
 
-public class ApplicationContext extends Context
+public class ApplicationContext extends FrameworkContext
 {
 
     public function ApplicationContext()
@@ -41,7 +38,12 @@ public class ApplicationContext extends Context
         trace("new ApplicationContext()");
     }
 
-    override public function startup():void
+    override protected function configureDescriptor():void
+    {
+        injector.mapSingletonOf(ApplicationDescriptor, ApplicationDescriptorImpl);
+    }
+
+    override protected function configureApplication():void
     {
         trace("    ApplicationContext.configureService()");
         configureService();
@@ -51,15 +53,10 @@ public class ApplicationContext extends Context
         configureController();
         trace("    ApplicationContext.configureView()");
         configureView();
-        trace("    ApplicationContext.startupComplete()");
-        startupComplete();
     }
 
     private function configureService():void
     {
-        injector.mapValue(Juggler, Starling.juggler);
-
-        injector.mapSingletonOf(ILogger, Logger);
         injector.mapSingletonOf(IOSCService, OSCService);
         injector.mapSingletonOf(IConfigurationService, ConfigurationService);
     }
@@ -94,13 +91,7 @@ public class ApplicationContext extends Context
         mediatorMap.mapView(MixerScreen, MixerScreenMediator);
         mediatorMap.mapView(MixerBank, MixerBankMediator);
 
-
     }
 
-    private function startupComplete():void
-    {
-        trace("    ApplicationContext.dispatchEventWith(STARTUP)");
-        dispatchEventWith(ContextEventType.STARTUP);
-    }
 }
 }
