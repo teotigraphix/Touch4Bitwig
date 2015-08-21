@@ -35,12 +35,20 @@ public class TransportListener extends AbstractOSCListener
     /autowrite/launcher
     /automationWriteMode/{latch,touch,write}
 
-     */
+
+
+    */
 
     override protected function config():void
     {
         super.config();
 
+        _methods["/position"] = positionHandler;
+        _methods["/numerator"] = numeratorHandler;
+        _methods["/denominator"] = denominatorHandler;
+        _methods["/automationOverride"] = automationOverrideHandler;
+
+        _methods["/tempo/raw"] = tempoRawHandler;
         _methods["/click"] = clickHandler;
         _methods["/play"] = playHandler;
         _methods["/record"] = recordHandler;
@@ -52,6 +60,31 @@ public class TransportListener extends AbstractOSCListener
         _methods["/autowrite"] = autoWriteHandler;
         _methods["/autowrite/launcher"] = autowriteLauncherHandler;
         _methods["/automationWriteMode"] = automationWriteModeHandler; // {latch,touch,write}
+    }
+
+    private function positionHandler(osc:OSCMessage):void
+    {
+        _transportModel.transport.positionString = osc.arguments[0];
+    }
+
+    private function numeratorHandler(osc:OSCMessage):void
+    {
+        _transportModel.transport.numerator = osc.arguments[0];
+    }
+
+    private function denominatorHandler(osc:OSCMessage):void
+    {
+        _transportModel.transport.denominator = osc.arguments[0];
+    }
+
+    private function automationOverrideHandler(osc:OSCMessage):void
+    {
+        _transportModel.transport.isAutomationOverride = osc.arguments[0];
+    }
+
+    private function tempoRawHandler(osc:OSCMessage):void
+    {
+        _transportModel.transport.tempoRaw = osc.arguments[0];
     }
 
     private function clickHandler(osc:OSCMessage):void

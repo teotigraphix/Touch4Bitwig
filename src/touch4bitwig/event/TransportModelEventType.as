@@ -6,7 +6,12 @@ package touch4bitwig.event
 
 public final class TransportModelEventType
 {
+    public static const POSITION_STRING_CHANGE:String = "positionStringChange";
+    public static const NUMERATOR_CHANGE:String = "numeratorChange";
+    public static const DENOMINATOR_CHANGE:String = "denominatorChange";
+    public static const IS_AUTOMATION_OVERRIDE_CHANGE:String = "automationOverrideChange";
 
+    public static const TEMPO_RAW_CHANGE:String = "tempoRawChange";
     public static const IS_CLICK_CHANGE:String = "isClickChange";
     public static const IS_PLAYING_CHANGE:String = "isPlayingChange";
     public static const IS_RECORDING_CHANGE:String = "isRecordingChange";

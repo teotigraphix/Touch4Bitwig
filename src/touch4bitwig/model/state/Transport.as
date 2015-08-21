@@ -9,6 +9,12 @@ import touch4bitwig.service.IOSCService;
 
 public class Transport extends AbstractBitwigState
 {
+    private var _positionString:String;
+    private var _numerator:int;
+    private var _denominator:int;
+    private var _isAutomationOverride:Boolean;
+
+    private var _tempoRaw:String;
     private var _isClick:Boolean;
     private var _isPlaying:Boolean;
     private var _isRecording:Boolean;
@@ -20,6 +26,71 @@ public class Transport extends AbstractBitwigState
     private var _isAutowriteLauncher:Boolean;
     private var _isAutowrite:Boolean;
     private var _automationWriteMode:String;
+
+    public function get positionString():String
+    {
+        return _positionString;
+    }
+
+    public function set positionString(value:String):void
+    {
+        if (isSame(_positionString, value))
+            return;
+        _positionString = value;
+        dispatchValue(TransportModelEventType.POSITION_STRING_CHANGE, _positionString);
+    }
+
+    public function get numerator():int
+    {
+        return _numerator;
+    }
+
+    public function set numerator(value:int):void
+    {
+        if (isSame(_numerator, value))
+            return;
+        _numerator = value;
+        dispatchValue(TransportModelEventType.NUMERATOR_CHANGE, _numerator);
+    }
+
+    public function get denominator():int
+    {
+        return _denominator;
+    }
+
+    public function set denominator(value:int):void
+    {
+        if (isSame(_denominator, value))
+            return;
+        _denominator = value;
+        dispatchValue(TransportModelEventType.DENOMINATOR_CHANGE, _denominator);
+    }
+
+    public function get isAutomationOverride():Boolean
+    {
+        return _isAutomationOverride;
+    }
+
+    public function set isAutomationOverride(value:Boolean):void
+    {
+        if (isSame(_isAutomationOverride, value))
+            return;
+        _isAutomationOverride = value;
+        dispatchValue(TransportModelEventType.IS_AUTOMATION_OVERRIDE_CHANGE, _isAutomationOverride);
+    }
+
+    public function get tempoRaw():String
+    {
+        return _tempoRaw;
+    }
+
+    public function set tempoRaw(value:String):void
+    {
+        if (isSame(_tempoRaw, value))
+            return;
+        _tempoRaw = value;
+        dispatchValue(TransportModelEventType.TEMPO_RAW_CHANGE, _tempoRaw);
+    }
 
     public function get isClick():Boolean
     {

@@ -53,6 +53,11 @@ public class TransportBarMediator extends AbstractUIMediator
     {
         super.preRegister();
 
+        addContextListener(TransportModelEventType.POSITION_STRING_CHANGE, context_positionChangeHandler);
+        addContextListener(TransportModelEventType.NUMERATOR_CHANGE, context_numeratorChangeHandler);
+        addContextListener(TransportModelEventType.DENOMINATOR_CHANGE, context_denominatorChangeHandler);
+        addContextListener(TransportModelEventType.TEMPO_RAW_CHANGE, context_tempoRawChangeHandler);
+
         addContextListener(TransportModelEventType.IS_PLAYING_CHANGE, context_transportPlayChangeHandler);
         addContextListener(TransportModelEventType.IS_RECORDING_CHANGE, context_transportRecordChangeHandler);
         addContextListener(TransportModelEventType.IS_AUTOWRITE_CHANGE, context_transportAutomationChangeHandler);
@@ -76,6 +81,26 @@ public class TransportBarMediator extends AbstractUIMediator
     override public function onRemove():void
     {
         super.onRemove();
+    }
+
+    private function context_positionChangeHandler(event:Event, data:Object):void
+    {
+        trace(data.value);
+    }
+
+    private function context_numeratorChangeHandler(event:Event, data:Object):void
+    {
+        trace(data.value);
+    }
+
+    private function context_denominatorChangeHandler(event:Event, data:Object):void
+    {
+        trace(data.value);
+    }
+
+    private function context_tempoRawChangeHandler(event:Event, data:Object):void
+    {
+        trace(data.value);
     }
 
     private function context_transportPlayChangeHandler(event:Event, data:Object):void
