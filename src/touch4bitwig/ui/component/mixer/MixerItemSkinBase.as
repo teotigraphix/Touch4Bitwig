@@ -102,7 +102,7 @@ public class MixerItemSkinBase extends LayoutGroup implements IMixerItem
         _panString = value;
     }
 
-    [Bindable]
+    //[Bindable]
     public function get panValue():Number
     {
         return _panValue;
@@ -113,7 +113,7 @@ public class MixerItemSkinBase extends LayoutGroup implements IMixerItem
         _panValue = value;
     }
 
-    [Bindable]
+    //[Bindable]
     public function get volumeValue():Number
     {
         return _volumeValue;

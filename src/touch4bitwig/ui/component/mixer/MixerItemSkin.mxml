@@ -50,7 +50,6 @@
         <f:Label text="{panString}"/>
 
         <ui:UISlider id="panSlider"
-                     value="{panValue}"
                      direction="horizontal" minimum="0" maximum="127" step="1"
                      change="pan_changeHandler(panSlider.value)">
             <ui:layoutData>
@@ -79,15 +78,15 @@
     <component:HGroup percentWidth="100" percentHeight="100" padding="5" gap="5" verticalAlign="bottom">
 
         <component:VGroup gap="4">
-            <ui:UIToggleButton id="recarmButton" label="O" isToggle="true" isSelected="{isRecArm}"
+            <ui:UIToggleButton id="recarmButton" label="O" isToggle="true"
                                styleName="recarm-button"
                                change="recarm_changeHandler(recarmButton.isSelected)"/>
 
-            <ui:UIToggleButton id="soloButton" label="S" isToggle="true" isSelected="{isSolo}"
+            <ui:UIToggleButton id="soloButton" label="S" isToggle="true"
                                change="solo_changeHandler(soloButton.isSelected)"
                                styleName="solo-button"/>
 
-            <ui:UIToggleButton id="muteButton" label="M" isToggle="true" isSelected="{isMute}"
+            <ui:UIToggleButton id="muteButton" label="M" isToggle="true"
                                styleName="mute-button"
                                change="mute_changeHandler(muteButton.isSelected)"/>
         </component:VGroup>
@@ -103,7 +102,6 @@
             </f:ProgressBar>
 
             <ui:UISlider id="volumeSlider"
-                         value="{volumeValue}"
                          styleName="track-strip-volume-slider"
                          change="volume_changeHandler(volumeSlider.value)">
                 <ui:layoutData>
@@ -124,6 +122,36 @@
             super.canHoldNotes = value;
             noteIcon.visible = value;
             audioIcon.visible = !value;
+        }
+
+        override public function set isRecArm(value:Boolean):void
+        {
+            super.isRecArm = value;
+            recarmButton.setIsSelected(value);
+        }
+
+        override public function set isSolo(value:Boolean):void
+        {
+            super.isSolo = value;
+            soloButton.setIsSelected(value);
+        }
+
+        override public function set isMute(value:Boolean):void
+        {
+            super.isMute = value;
+            muteButton.setIsSelected(value);
+        }
+
+        override public function set panValue(value:Number):void
+        {
+            super.panValue = value;
+            panSlider.setValue(value);
+        }
+
+        override public function set volumeValue(value:Number):void
+        {
+            super.volumeValue = value;
+            volumeSlider.setValue(value);
         }
         ]]></fx:Script>
 
