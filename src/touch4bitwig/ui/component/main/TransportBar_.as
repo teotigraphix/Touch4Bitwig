@@ -13,7 +13,7 @@ import feathers.layout.HorizontalLayoutData;
 
 import starling.events.Event;
 
-public class TransportBar extends LayoutGroup
+public class TransportBar_ extends LayoutGroup
 {
     public static const EVENT_STOP_TRIGGERED:String = "stopTriggered";
     public static const EVENT_PLAY_CHANGE:String = "playChange";
@@ -27,7 +27,7 @@ public class TransportBar extends LayoutGroup
     private var _automationButton:UIToggleButton;
     private var _popupButton:UIToggleButton;
 
-    public function TransportBar()
+    public function TransportBar_()
     {
     }
 

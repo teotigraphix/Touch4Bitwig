@@ -4,13 +4,6 @@
 package touch4bitwig.ui.mediator.main
 {
 
-import com.teotigraphix.bitwig.app.AppContext;
-import com.teotigraphix.bitwig.event.TransportModelEventType;
-import com.teotigraphix.bitwig.model.TransportModel;
-import com.teotigraphix.bitwig.service.IOSCService;
-import com.teotigraphix.bitwig.ui.component.main.TransportBar;
-import com.teotigraphix.bitwig.ui.component.transport.TransportPopUp;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
 import com.teotigraphix.ui.component.PopUpManagerTransitioner;
 
 import feathers.core.PopUpManager;
@@ -24,7 +17,15 @@ import starling.display.DisplayObject;
 import starling.display.Quad;
 import starling.events.Event;
 
-public class TransportBarMediator extends BitwigTouchMediator
+import touch4bitwig.app.config.ApplicationContext;
+import touch4bitwig.event.TransportModelEventType;
+import touch4bitwig.model.support.TransportModel;
+import touch4bitwig.service.IOSCService;
+import touch4bitwig.ui.component.main.TransportBar;
+import touch4bitwig.ui.component.transport.TransportPopUp;
+import touch4bitwig.ui.mediator.AbstractUIMediator;
+
+public class TransportBarMediator extends AbstractUIMediator
 {
     [Inject]
     public var juggler:Juggler;
@@ -38,7 +39,9 @@ public class TransportBarMediator extends BitwigTouchMediator
     [Inject]
     public var transportModel:TransportModel;
 
-    private var view:TransportBar;
+    [Inject]
+    public var view:TransportBar;
+
     private var _popUp:TransportPopUp;
     private var _instance:*;
 
@@ -65,9 +68,9 @@ public class TransportBarMediator extends BitwigTouchMediator
         addViewListener(TransportBar.EVENT_AUTOMATION_CHANGE, view_automationChangeHandler);
         addViewListener(TransportBar.EVENT_POPUP_TRIGGERED, view_popupTriggeredHandler);
 
-        view.setPlaySelected(transportModel.transport.isPlaying);
-        view.setRecordSelected(transportModel.transport.isRecording);
-        view.setAutomationSelected(transportModel.transport.isAutowrite);
+        //view.setPlaySelected(transportModel.transport.isPlaying);
+        //view.setRecordSelected(transportModel.transport.isRecording);
+        //view.setAutomationSelected(transportModel.transport.isAutowrite);
     }
 
     override public function onRemove():void
@@ -75,31 +78,19 @@ public class TransportBarMediator extends BitwigTouchMediator
         super.onRemove();
     }
 
-    override public function setViewComponent(viewComponent:Object):void
-    {
-        super.setViewComponent(viewComponent);
-        view = TransportBar(viewComponent);
-    }
-
-    override public function preRemove():void
-    {
-        super.preRemove();
-        view = null;
-    }
-
     private function context_transportPlayChangeHandler(event:Event, data:Object):void
     {
-        view.setPlaySelected(data.value);
+        view.isPlaying = data.value;
     }
 
     private function context_transportRecordChangeHandler(event:Event, data:Object):void
     {
-        view.setRecordSelected(data.value);
+        view.isRecording = data.value;
     }
 
     private function context_transportAutomationChangeHandler(event:Event, data:Object):void
     {
-        view.setAutomationSelected(data.value);
+        view.isAutomating = data.value;
     }
 
     private function view_playChangeHandler(event:Event, selected:Boolean):void
@@ -127,7 +118,7 @@ public class TransportBarMediator extends BitwigTouchMediator
         if (_popUp != null)
         {
             PopUpManagerTransitioner.removePopUp(_popUp, 1);
-            AppContext(eventDispatcher).getMediatorMap().removeMediator(_instance);
+            ApplicationContext(eventDispatcher).getMediatorMap().removeMediator(_instance);
             _instance = null;
             _popUp = null;
             return;
@@ -135,18 +126,21 @@ public class TransportBarMediator extends BitwigTouchMediator
         var p:Point = new Point(view.x, view.y);
         p = view.parent.localToGlobal(p);
         _popUp = new TransportPopUp();
+
+
         PopUpManager.addPopUp(_popUp, false, false, function ():DisplayObject
         {
             var quad:Quad = new Quad(100, 100, 0x000000);
             quad.alpha = 0.1;
             return quad;
         });
+
+        _popUp.validate();
+
         _popUp.x = p.x;
         _popUp.y = p.y + view.height + 1;
 
-        _instance = AppContext(eventDispatcher).getMediatorMap().createMediator(_popUp);
-        //_instance.setViewComponent(_popUp);
-        //_instance.onRegister();
+        _instance = ApplicationContext(eventDispatcher).getMediatorMap().createMediator(_popUp);
     }
 }
 }

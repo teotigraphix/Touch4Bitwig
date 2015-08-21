@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+
+<main:TransportBarSkinBase xmlns:f="library://ns.feathersui.com/mxml"
+                           xmlns:fx="http://ns.adobe.com/mxml/2009"
+                           xmlns:component="com.teotigraphix.ui.component.*"
+                           xmlns:main="touch4bitwig.ui.component.main.*">
+
+    <main:layout>
+        <f:HorizontalLayout/>
+    </main:layout>
+
+    <f:Button id="stopButton"
+              styleName="stop-button"
+              triggered="stop_triggeredHandler()">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:Button>
+
+    <component:UIToggleButton id="playButton" isToggle="true"
+                              styleName="play-button"
+                              triggered="play_changedHandler(playButton.isSelected)">
+        <component:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </component:layoutData>
+    </component:UIToggleButton>
+
+    <component:UIToggleButton id="recordButton" isToggle="true"
+                              styleName="record-button"
+                              change="record_changedHandler(recordButton.isSelected)">
+        <component:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </component:layoutData>
+    </component:UIToggleButton>
+
+    <component:UIToggleButton id="automationButton" isToggle="true"
+                              styleName="automation-button"
+                              change="automation_changedHandler(automationButton.isSelected)">
+        <component:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </component:layoutData>
+    </component:UIToggleButton>
+
+    <component:UIToggleButton id="popupButton" isToggle="true"
+                              styleName="transport-bar-popup-button"
+                              change="popupButton_changedHandler(popupButton.isSelected)">
+        <component:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </component:layoutData>
+    </component:UIToggleButton>
+
+
+    <fx:Script><![CDATA[
+        override public function set isPlaying(value:Boolean):void
+        {
+            super.isPlaying = value;
+            playButton.setIsSelected(value);
+        }
+
+        override public function set isRecording(value:Boolean):void
+        {
+            super.isRecording = value;
+            recordButton.setIsSelected(value);
+        }
+
+        override public function set isAutomating(value:Boolean):void
+        {
+            super.isAutomating = value;
+            automationButton.setIsSelected(value);
+        }
+
+        private function stop_triggeredHandler():void
+        {
+            dispatchEventWith(TransportBar.EVENT_STOP_TRIGGERED);
+        }
+
+        private function play_changedHandler(selected:Boolean):void
+        {
+            dispatchEventWith(TransportBar.EVENT_PLAY_CHANGE, false, selected);
+        }
+
+        private function record_changedHandler(selected:Boolean):void
+        {
+            dispatchEventWith(TransportBar.EVENT_RECORD_CHANGE, false, selected);
+        }
+
+        private function automation_changedHandler(selected:Boolean):void
+        {
+            dispatchEventWith(TransportBar.EVENT_AUTOMATION_CHANGE, false, selected);
+        }
+
+        private function popupButton_changedHandler(selected:Boolean):void
+        {
+            dispatchEventWith(TransportBar.EVENT_POPUP_TRIGGERED, false, selected);
+        }
+        ]]></fx:Script>
+
+</main:TransportBarSkinBase>

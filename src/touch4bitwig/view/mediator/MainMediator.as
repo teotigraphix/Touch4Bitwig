@@ -94,7 +94,7 @@ public class MainMediator extends AbstractMediator
         logger.log(TAG, "context_applicationCompleteHandler()");
         logger.log(TAG, "Show initial screen");
 
-        navigator.pushScreen(ApplicationScreens.SCREEN_MIXER);
+        navigator.pushScreen(ApplicationScreens.SCREEN_TRANSPORT);
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

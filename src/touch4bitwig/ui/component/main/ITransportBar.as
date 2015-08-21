@@ -17,15 +17,21 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.view.screen
+package touch4bitwig.ui.component.main
 {
 
-public final class ApplicationScreens
+public interface ITransportBar
 {
-    public static const SCREEN_TEST:String = "TestScreen";
+    function get isPlaying():Boolean;
 
-    public static const SCREEN_MIXER:String = "MixerScreen";
+    function set isPlaying(value:Boolean):void;
 
-    public static const SCREEN_TRANSPORT:String = "TransportScreen";
+    function get isRecording():Boolean;
+
+    function set isRecording(value:Boolean):void;
+
+    function get isAutomating():Boolean;
+
+    function set isAutomating(value:Boolean):void;
 }
 }
