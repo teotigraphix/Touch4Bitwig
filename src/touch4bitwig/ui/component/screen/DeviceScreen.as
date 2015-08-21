@@ -4,17 +4,7 @@
 package touch4bitwig.ui.component.screen
 {
 
-import com.teotigraphix.bitwig.model.DeviceModel;
-import com.teotigraphix.bitwig.ui.component.device.DeviceBankPager;
-import com.teotigraphix.bitwig.ui.component.device.DeviceNavigationControl;
-import com.teotigraphix.bitwig.ui.component.device.DeviceSelectBar;
-import com.teotigraphix.bitwig.ui.component.main.MainHeader;
-import com.teotigraphix.bitwig.ui.component.track.TrackChannelBank;
-import com.teotigraphix.bitwig.ui.component.track.TrackNavigationControl;
-import com.teotigraphix.bitwig.ui.component.track.channel.DeviceBankSelector;
-
 import feathers.controls.ButtonGroup;
-import feathers.controls.Header;
 import feathers.controls.LayoutGroup;
 import feathers.controls.Screen;
 import feathers.data.ListCollection;
@@ -24,6 +14,15 @@ import feathers.layout.VerticalLayout;
 import feathers.layout.VerticalLayoutData;
 
 import starling.events.Event;
+
+import touch4bitwig.model.support.DeviceModel;
+import touch4bitwig.ui.component.device.DeviceBankPager;
+import touch4bitwig.ui.component.device.DeviceNavigationControl;
+import touch4bitwig.ui.component.device.DeviceSelectBar;
+import touch4bitwig.ui.component.main.MainHeader;
+import touch4bitwig.ui.component.track.TrackChannelBank;
+import touch4bitwig.ui.component.track.TrackNavigationControl;
+import touch4bitwig.ui.component.track.channel.DeviceBankSelector;
 
 public class DeviceScreen extends Screen
 {
@@ -46,7 +45,7 @@ public class DeviceScreen extends Screen
 
         super.initialize();
 
-        var header:Header = new MainHeader();
+        var header:MainHeader = new MainHeader();
         header.layoutData = new VerticalLayoutData(100);
         addChild(header);
 

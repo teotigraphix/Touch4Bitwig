@@ -4,17 +4,17 @@
 package touch4bitwig.ui.component.screen
 {
 
-import com.teotigraphix.bitwig.ui.component.frame.PanelLayoutGroup;
-import com.teotigraphix.bitwig.ui.component.frame.PanelSubToggleGroup;
-import com.teotigraphix.bitwig.ui.component.frame.PanelToggleGroup;
-import com.teotigraphix.bitwig.ui.component.main.MainHeader;
 import com.teotigraphix.ui.component.UIKnob;
 
-import feathers.controls.Header;
 import feathers.controls.LayoutGroup;
 import feathers.controls.Screen;
 import feathers.layout.VerticalLayout;
 import feathers.layout.VerticalLayoutData;
+
+import touch4bitwig.ui.component.frame.PanelLayoutGroup;
+import touch4bitwig.ui.component.frame.PanelSubToggleGroup;
+import touch4bitwig.ui.component.frame.PanelToggleGroup;
+import touch4bitwig.ui.component.main.MainHeader;
 
 public class PanelsScreen extends Screen
 {
@@ -34,7 +34,8 @@ public class PanelsScreen extends Screen
 
         super.initialize();
 
-        var header:Header = new MainHeader();
+        var header:MainHeader = new MainHeader();
+        header.height = 100;
         header.layoutData = new VerticalLayoutData(100);
         addChild(header);
 

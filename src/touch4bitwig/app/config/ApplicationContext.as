@@ -20,6 +20,9 @@ import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.OSCService;
+import touch4bitwig.ui.component.frame.PanelLayoutGroup;
+import touch4bitwig.ui.component.frame.PanelSubToggleGroup;
+import touch4bitwig.ui.component.frame.PanelToggleGroup;
 import touch4bitwig.ui.component.main.MainHeader;
 import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
@@ -29,6 +32,9 @@ import touch4bitwig.ui.component.transport.TransportDisplay;
 import touch4bitwig.ui.component.transport.TransportDisplayMediator;
 import touch4bitwig.ui.component.transport.TransportPopUp;
 import touch4bitwig.ui.component.transport.TransportBarMediator;
+import touch4bitwig.ui.mediator.frame.PanelLayoutGroupMediator;
+import touch4bitwig.ui.mediator.frame.PanelSubToggleGroupMediator;
+import touch4bitwig.ui.mediator.frame.PanelToggleGroupMediator;
 import touch4bitwig.ui.mediator.transport.TransportPopUpMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.mediator.MainMediator;
@@ -104,6 +110,10 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(TransportBar, TransportBarMediator);
         mediatorMap.mapView(TransportPopUp, TransportPopUpMediator);
         mediatorMap.mapView(TransportDisplay, TransportDisplayMediator);
+
+        mediatorMap.mapView(PanelLayoutGroup, PanelLayoutGroupMediator);
+        mediatorMap.mapView(PanelSubToggleGroup, PanelSubToggleGroupMediator);
+        mediatorMap.mapView(PanelToggleGroup, PanelToggleGroupMediator);
 
     }
 

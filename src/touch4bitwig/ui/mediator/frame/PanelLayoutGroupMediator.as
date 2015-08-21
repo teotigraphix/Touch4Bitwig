@@ -4,13 +4,6 @@
 package touch4bitwig.ui.mediator.frame
 {
 
-import com.teotigraphix.bitwig.event.ApplicationModelEventType;
-import com.teotigraphix.bitwig.model.ApplicationModel;
-import com.teotigraphix.bitwig.model.FrameModel;
-import com.teotigraphix.bitwig.model.state.Application;
-import com.teotigraphix.bitwig.service.IOSCService;
-import com.teotigraphix.bitwig.ui.component.frame.PanelLayoutGroup;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
 import com.teotigraphix.ui.component.UIToggleButton;
 import com.teotigraphix.ui.theme.AssetMap;
 
@@ -18,7 +11,15 @@ import feathers.data.ListCollection;
 
 import starling.events.Event;
 
-public class PanelLayoutGroupMediator extends BitwigTouchMediator
+import touch4bitwig.event.ApplicationModelEventType;
+import touch4bitwig.model.state.Application;
+import touch4bitwig.model.support.ApplicationModel;
+import touch4bitwig.model.support.FrameModel;
+import touch4bitwig.service.IOSCService;
+import touch4bitwig.ui.component.frame.PanelLayoutGroup;
+import touch4bitwig.ui.mediator.AbstractUIMediator;
+
+public class PanelLayoutGroupMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;

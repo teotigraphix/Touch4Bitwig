@@ -36,7 +36,13 @@
                                 screen="{transportScreen}">
     </f:StackScreenNavigatorItem>
 
+    <f:StackScreenNavigatorItem id="PanelsScreen"
+                                screen="{panelsScreen}">
+    </f:StackScreenNavigatorItem>
+
+
     <fx:Script><![CDATA[
+        import touch4bitwig.ui.component.screen.PanelsScreen;
         import touch4bitwig.view.screen.TransportScreen;
         import touch4bitwig.view.screen.MixerScreen;
         import touch4bitwig.view.screen.TestScreen;
@@ -44,5 +50,7 @@
         public static const testScreen:Class = TestScreen;
         public static const mixerScreen:Class = MixerScreen;
         public static const transportScreen:Class = TransportScreen;
+        public static const panelsScreen:Class = PanelsScreen;
+
         ]]></fx:Script>
 </ui:BootstrapNavigator>

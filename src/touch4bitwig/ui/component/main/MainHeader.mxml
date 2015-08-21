@@ -73,6 +73,15 @@
         </f:layoutData>
     </f:Button>
 
+    <f:Button id="panelButton"
+              label="Panels"
+              maxWidth="100"
+              triggered="screenChange('PanelsScreen')">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:Button>
+
     <fx:Script><![CDATA[
         import com.teotigraphix.ui.theme.AssetMap;
 

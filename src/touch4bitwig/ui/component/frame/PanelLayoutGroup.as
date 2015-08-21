@@ -4,11 +4,11 @@
 package touch4bitwig.ui.component.frame
 {
 
-import com.teotigraphix.bitwig.model.state.Application;
-
 import feathers.controls.TabBar;
 
 import starling.events.Event;
+
+import touch4bitwig.model.state.Application;
 
 public class PanelLayoutGroup extends TabBar
 {
