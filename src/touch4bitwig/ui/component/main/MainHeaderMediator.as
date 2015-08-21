@@ -1,7 +1,7 @@
 /**
  * Created by Teoti on 4/5/2015.
  */
-package touch4bitwig.ui.mediator.main
+package touch4bitwig.ui.component.main
 {
 
 import starling.events.Event;
@@ -9,7 +9,6 @@ import starling.events.Event;
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.model.support.ApplicationModel;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.component.main.MainHeader_;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
 public class MainHeaderMediator extends AbstractUIMediator
@@ -20,7 +19,8 @@ public class MainHeaderMediator extends AbstractUIMediator
     [Inject]
     public var applicationModel:ApplicationModel;
 
-    private var view:MainHeader_;
+    [Inject]
+    public var view:MainHeader;
 
     public function MainHeaderMediator()
     {
@@ -32,21 +32,15 @@ public class MainHeaderMediator extends AbstractUIMediator
 
         addContextListener(ApplicationModelEventType.ACTIVE_CHANGE, context_activeEngineChange);
 
-        addViewListener(MainHeader_.EVENT_ACTIVE_ENGINE_CHANGE, view_activeEngineChange);
-        addViewListener(MainHeader_.EVENT_NAVIGATION_CHANGE, view_navigationChange);
+        addViewListener(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, view_activeEngineChange);
+        addViewListener(MainHeader.EVENT_SCREEN_CHANGE, view_screenChange);
     }
 
     override public function onRegister():void
     {
         super.onRegister();
-        // TODO make property
-        view.setActiveEngine(applicationModel.application.active);
-    }
 
-    override public function setViewComponent(viewComponent:Object):void
-    {
-        super.setViewComponent(viewComponent);
-        view = MainHeader_(viewComponent);
+        view.setActiveEngine(applicationModel.application.active);
     }
 
     override public function preRemove():void
@@ -59,9 +53,9 @@ public class MainHeaderMediator extends AbstractUIMediator
         view.setActiveEngine(data.value);
     }
 
-    private function view_navigationChange(event:Event, index:int):void
+    private function view_screenChange(event:Event, id:String):void
     {
-        uiModel.mainScreenIndex = index;
+        uiModel.screenID = id;
     }
 
     private function view_activeEngineChange(event:Event):void

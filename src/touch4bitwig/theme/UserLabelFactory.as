@@ -9,8 +9,11 @@ import com.teotigraphix.ui.theme.LabelFactory;
 
 import feathers.controls.Label;
 
+import flash.text.engine.ElementFormat;
+
 public class UserLabelFactory extends LabelFactory
 {
+    public var veryLargeUILightElementFormat:ElementFormat;
 
     public function UserLabelFactory(theme:AbstractTheme)
     {
@@ -22,6 +25,18 @@ public class UserLabelFactory extends LabelFactory
         super.initializeStyleProviders();
 
         setStyle(Label, setTrackHeaderLabelStyles, "track-header-label");
+
+        setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_POSITION);
+        setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_TEMPO);
+        setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_TIME);
+        setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_TIME_SIGNATURE);
+    }
+
+    override public function initializeFonts():void
+    {
+        super.initializeFonts();
+
+        veryLargeUILightElementFormat = new ElementFormat(theme.fonts.boldFontDescription, 75, 0x3BABCC);
     }
 
     private function setTrackHeaderLabelStyles(label:Label):void
@@ -29,5 +44,12 @@ public class UserLabelFactory extends LabelFactory
         label.textRendererProperties.elementFormat = theme.fonts.largeUILightElementFormat;
         label.textRendererProperties.disabledElementFormat = theme.fonts.largeUILightDisabledElementFormat;
     }
+
+    private function setTransportDisplayPositionLabelStyles(label:Label):void
+    {
+        label.textRendererProperties.elementFormat = veryLargeUILightElementFormat;
+        label.textRendererProperties.disabledElementFormat = veryLargeUILightElementFormat;
+    }
+
 }
 }

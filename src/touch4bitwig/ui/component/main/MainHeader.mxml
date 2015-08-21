@@ -22,18 +22,76 @@
         _mixerButton.addEventListener(Event.TRIGGERED, navigationButton_triggeredHandler);
 -->
 <f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
-               xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:component="com.teotigraphix.ui.component.*">
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:component="com.teotigraphix.ui.component.*"
+               xmlns:transport="touch4bitwig.ui.component.transport.*">
 
 
     <f:layout>
-        <f:HorizontalLayout/>
+        <f:HorizontalLayout gap="10"/>
     </f:layout>
 
-    <component:UIToggleButton styleName="active-engine-button"/>
+    <component:UIToggleButton id="activeEngineButton"
+                              isToggle="true"
+                              maxWidth="100"
+                              styleName="active-engine-button"
+                              defaultIcon="{AssetMap.createImage('bitwig-icon-skin')}"
+                              defaultSelectedIcon="{AssetMap.createImage('bitwig-icon-selected-skin')}"
+                              change="activeEngineButtonChange(activeEngineButton.isSelected)">
 
-    <f:Button id="clipsButton" label="Clips"/>
-    <f:Button id="deviceButton" label="Device"/>
-    <f:Button id="panelsButton" label="Panels"/>
-    <f:Button id="mixerButton" label="Mixer"/>
+        <component:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </component:layoutData>
 
+    </component:UIToggleButton>
+
+    <transport:TransportBar>
+        <transport:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </transport:layoutData>
+    </transport:TransportBar>
+
+    <!--<f:Button id="clipsButton" label="Clips"/>-->
+    <!--<f:Button id="deviceButton" label="Device"/>-->
+    <!--<f:Button id="panelsButton" label="Panels"/>-->
+
+    <f:Button id="transportButton"
+              label="Transport"
+              maxWidth="100"
+              triggered="screenChange('TransportScreen')">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:Button>
+
+    <f:Button id="mixerButton"
+              label="Mixer"
+              maxWidth="100"
+              triggered="screenChange('MixerScreen')">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:Button>
+
+    <fx:Script><![CDATA[
+        import com.teotigraphix.ui.theme.AssetMap;
+
+        public static const EVENT_ACTIVE_ENGINE_CHANGE:String = "activeEngineChange";
+        public static const EVENT_SCREEN_CHANGE:String = "screenChange";
+
+        private function screenChange(id:String):void
+        {
+            dispatchEventWith(MainHeader.EVENT_SCREEN_CHANGE, false, id);
+        }
+
+        private function activeEngineButtonChange(selected:Boolean):void
+        {
+            dispatchEventWith(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, false, selected);
+        }
+
+        function setActiveEngine(active:Boolean):void
+        {
+            activeEngineButton.setIsSelected(active);
+        }
+        ]]></fx:Script>
 </f:LayoutGroup>

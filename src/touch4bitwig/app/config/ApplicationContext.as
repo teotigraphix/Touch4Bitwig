@@ -20,11 +20,15 @@ import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.OSCService;
-import touch4bitwig.ui.component.main.TransportBar;
+import touch4bitwig.ui.component.main.MainHeader;
+import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
+import touch4bitwig.ui.component.mixer.MixerBankMediator;
+import touch4bitwig.ui.component.transport.TransportBar;
+import touch4bitwig.ui.component.transport.TransportDisplay;
+import touch4bitwig.ui.component.transport.TransportDisplayMediator;
 import touch4bitwig.ui.component.transport.TransportPopUp;
-import touch4bitwig.ui.mediator.main.TransportBarMediator;
-import touch4bitwig.ui.mediator.mixer.MixerBankMediator;
+import touch4bitwig.ui.component.transport.TransportBarMediator;
 import touch4bitwig.ui.mediator.transport.TransportPopUpMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.mediator.MainMediator;
@@ -88,6 +92,7 @@ public class ApplicationContext extends FrameworkContext
     private function configureView():void
     {
         mediatorMap.mapView(MainNavigator, MainMediator);
+        mediatorMap.mapView(MainHeader, MainHeaderMediator);
 
         mediatorMap.mapView(TestScreen, TestScreenMediator);
 
@@ -98,6 +103,7 @@ public class ApplicationContext extends FrameworkContext
         // TransportScreen
         mediatorMap.mapView(TransportBar, TransportBarMediator);
         mediatorMap.mapView(TransportPopUp, TransportPopUpMediator);
+        mediatorMap.mapView(TransportDisplay, TransportDisplayMediator);
 
     }
 

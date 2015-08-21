@@ -30,8 +30,8 @@ public interface ITransportBar
 
     function set isRecording(value:Boolean):void;
 
-    function get isAutomating():Boolean;
+    function get isAutowrite():Boolean;
 
-    function set isAutomating(value:Boolean):void;
+    function set isAutowrite(value:Boolean):void;
 }
 }

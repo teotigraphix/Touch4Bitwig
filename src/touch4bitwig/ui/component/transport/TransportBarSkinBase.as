@@ -1,8 +1,10 @@
 /**
  * Created by Teoti on 8/21/2015.
  */
-package touch4bitwig.ui.component.main
+package touch4bitwig.ui.component.transport
 {
+
+import touch4bitwig.ui.component.main.*;
 
 import feathers.controls.LayoutGroup;
 
@@ -12,7 +14,7 @@ public class TransportBarSkinBase extends LayoutGroup implements ITransportBar
 
     private var _isPlaying:Boolean;
     private var _isRecording:Boolean;
-    private var _isAutomating:Boolean;
+    private var _isAutowrite:Boolean;
 
     public function get isPlaying():Boolean
     {
@@ -34,14 +36,14 @@ public class TransportBarSkinBase extends LayoutGroup implements ITransportBar
         _isRecording = value;
     }
 
-    public function get isAutomating():Boolean
+    public function get isAutowrite():Boolean
     {
-        return _isAutomating;
+        return _isAutowrite;
     }
 
-    public function set isAutomating(value:Boolean):void
+    public function set isAutowrite(value:Boolean):void
     {
-        _isAutomating = value;
+        _isAutowrite = value;
     }
 
     public function TransportBarSkinBase()

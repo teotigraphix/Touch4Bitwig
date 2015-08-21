@@ -1,23 +1,31 @@
 <?xml version="1.0"?>
 <f:Screen xmlns:f="library://ns.feathersui.com/mxml"
           xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:transport="touch4bitwig.ui.component.transport.*"
           xmlns:main="touch4bitwig.ui.component.main.*">
 
     <f:layout>
         <f:VerticalLayout/>
     </f:layout>
 
-    <main:TransportBar>
-        <main:layoutData>
-            <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
-        </main:layoutData>
-    </main:TransportBar>
 
-    <f:LayoutGroup>
-        <f:layoutData>
+    <main:MainHeader height="100">
+        <main:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </main:layoutData>
+    </main:MainHeader>
+
+    <!--<transport:TransportBar>-->
+    <!--<transport:layoutData>-->
+    <!--<f:VerticalLayoutData percentWidth="100" percentHeight="100"/>-->
+    <!--</transport:layoutData>-->
+    <!--</transport:TransportBar>-->
+
+    <transport:TransportDisplay>
+        <transport:layoutData>
             <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
-        </f:layoutData>
-    </f:LayoutGroup>
+        </transport:layoutData>
+    </transport:TransportDisplay>
 
     <f:LayoutGroup>
         <f:layoutData>

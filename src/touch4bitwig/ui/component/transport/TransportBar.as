@@ -17,8 +17,10 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.main
+package touch4bitwig.ui.component.transport
 {
+
+import touch4bitwig.ui.component.main.*;
 
 import feathers.controls.LayoutGroup;
 
@@ -28,19 +30,19 @@ public class TransportBar extends LayoutGroup implements ITransportBar
 {
     private static const INVALIDATE_FLAG_PLAYING:String = "playing";
     private static const INVALIDATE_FLAG_RECORDING:String = "recording";
-    private static const INVALIDATE_FLAG_AUTOMATING:String = "automating";
+    private static const INVALIDATE_FLAG_AUTOWRITE:String = "autowrite";
 
     public static const EVENT_STOP_TRIGGERED:String = "stopTriggered";
     public static const EVENT_PLAY_CHANGE:String = "playChange";
     public static const EVENT_RECORD_CHANGE:String = "recordChange";
-    public static const EVENT_AUTOMATION_CHANGE:String = "automationChange";
+    public static const EVENT_AUTOWRITE_CHANGE:String = "automationChange";
     public static const EVENT_POPUP_TRIGGERED:String = "popupTriggered";
 
     private var _skin:TransportBarSkinBase;
 
     private var _isPlaying:Boolean;
     private var _isRecording:Boolean;
-    private var _isAutomating:Boolean;
+    private var _isAutowrite:Boolean;
 
     public function get isPlaying():Boolean
     {
@@ -65,17 +67,17 @@ public class TransportBar extends LayoutGroup implements ITransportBar
         invalidate(INVALIDATE_FLAG_RECORDING);
     }
 
-    public function get isAutomating():Boolean
+    public function get isAutowrite():Boolean
     {
-        return _isAutomating;
+        return _isAutowrite;
     }
 
-    public function set isAutomating(value:Boolean):void
+    public function set isAutowrite(value:Boolean):void
     {
-        if (_isAutomating == value)
+        if (_isAutowrite == value)
             return;
-        _isAutomating = value;
-        invalidate(INVALIDATE_FLAG_AUTOMATING);
+        _isAutowrite = value;
+        invalidate(INVALIDATE_FLAG_AUTOWRITE);
     }
 
     public function TransportBar()
@@ -93,7 +95,7 @@ public class TransportBar extends LayoutGroup implements ITransportBar
         _skin.addEventListener(EVENT_STOP_TRIGGERED, view_stopTriggeredHandler);
         _skin.addEventListener(EVENT_PLAY_CHANGE, view_playChangeHandler);
         _skin.addEventListener(EVENT_RECORD_CHANGE, view_recordChangeHandler);
-        _skin.addEventListener(EVENT_AUTOMATION_CHANGE, view_automationChangeHandler);
+        _skin.addEventListener(EVENT_AUTOWRITE_CHANGE, view_automationChangeHandler);
         _skin.addEventListener(EVENT_POPUP_TRIGGERED, view_popupTriggeredHandler);
     }
 
@@ -109,9 +111,9 @@ public class TransportBar extends LayoutGroup implements ITransportBar
             _skin.isRecording = _isRecording;
         }
 
-        if (isInvalid(INVALIDATE_FLAG_AUTOMATING))
+        if (isInvalid(INVALIDATE_FLAG_AUTOWRITE))
         {
-            _skin.isAutomating = _isAutomating;
+            _skin.isAutowrite = _isAutowrite;
         }
     }
 
@@ -127,7 +129,7 @@ public class TransportBar extends LayoutGroup implements ITransportBar
 
     private function view_automationChangeHandler(event:Event, selected:Boolean):void
     {
-        dispatchEventWith(EVENT_AUTOMATION_CHANGE, false, selected);
+        dispatchEventWith(EVENT_AUTOWRITE_CHANGE, false, selected);
     }
 
     private function view_stopTriggeredHandler(event:Event):void

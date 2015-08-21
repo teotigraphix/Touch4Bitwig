@@ -7,6 +7,7 @@ import starling.core.Starling;
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
+import touch4bitwig.event.UIModelEventType;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.screen.ApplicationScreens;
@@ -64,6 +65,7 @@ public class MainMediator extends AbstractMediator
         // Comes from the ApplicationStartupCommand when all loading is finished
         // and the first screen is ready to be shown
         addContextListener(ApplicationEventType.APPLICATION_COMPLETE, context_applicationCompleteHandler);
+        addContextListener(UIModelEventType.SCREEN_ID_CHANGE, context_screenIDChangeHandler);
 
         logger.log(TAG, "onRegister()");
 
@@ -95,6 +97,11 @@ public class MainMediator extends AbstractMediator
         logger.log(TAG, "Show initial screen");
 
         navigator.pushScreen(ApplicationScreens.SCREEN_TRANSPORT);
+    }
+
+    private function context_screenIDChangeHandler(event:starling.events.Event, id:String):void
+    {
+        navigator.pushScreen(id);
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

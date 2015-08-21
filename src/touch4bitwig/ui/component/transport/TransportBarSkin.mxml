@@ -20,14 +20,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 -->
 
-<main:TransportBarSkinBase xmlns:f="library://ns.feathersui.com/mxml"
-                           xmlns:fx="http://ns.adobe.com/mxml/2009"
-                           xmlns:component="com.teotigraphix.ui.component.*"
-                           xmlns:main="touch4bitwig.ui.component.main.*">
+<transport:TransportBarSkinBase xmlns:f="library://ns.feathersui.com/mxml"
+                                xmlns:fx="http://ns.adobe.com/mxml/2009"
+                                xmlns:component="com.teotigraphix.ui.component.*"
+                                xmlns:transport="touch4bitwig.ui.component.transport.*">
 
-    <main:layout>
+    <transport:layout>
         <f:HorizontalLayout/>
-    </main:layout>
+    </transport:layout>
 
     <f:Button id="stopButton"
               styleName="stop-button"
@@ -71,6 +71,8 @@
 
 
     <fx:Script><![CDATA[
+        import touch4bitwig.ui.component.main.*;
+
         override public function set isPlaying(value:Boolean):void
         {
             super.isPlaying = value;
@@ -83,9 +85,9 @@
             recordButton.setIsSelected(value);
         }
 
-        override public function set isAutomating(value:Boolean):void
+        override public function set isAutowrite(value:Boolean):void
         {
-            super.isAutomating = value;
+            super.isAutowrite = value;
             automationButton.setIsSelected(value);
         }
 
@@ -106,7 +108,7 @@
 
         private function automation_changedHandler(selected:Boolean):void
         {
-            dispatchEventWith(TransportBar.EVENT_AUTOMATION_CHANGE, false, selected);
+            dispatchEventWith(TransportBar.EVENT_AUTOWRITE_CHANGE, false, selected);
         }
 
         private function popupButton_changedHandler(selected:Boolean):void
@@ -115,4 +117,4 @@
         }
         ]]></fx:Script>
 
-</main:TransportBarSkinBase>
+</transport:TransportBarSkinBase>

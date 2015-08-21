@@ -37,7 +37,7 @@
     </f:StackScreenNavigatorItem>
 
     <fx:Script><![CDATA[
-        import touch4bitwig.ui.component.screen.TransportScreen;
+        import touch4bitwig.view.screen.TransportScreen;
         import touch4bitwig.view.screen.MixerScreen;
         import touch4bitwig.view.screen.TestScreen;
 

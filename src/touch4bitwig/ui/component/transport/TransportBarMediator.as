@@ -1,7 +1,7 @@
 /**
  * Created by Teoti on 4/5/2015.
  */
-package touch4bitwig.ui.mediator.main
+package touch4bitwig.ui.component.transport
 {
 
 import com.teotigraphix.ui.component.PopUpManagerTransitioner;
@@ -21,8 +21,6 @@ import touch4bitwig.app.config.ApplicationContext;
 import touch4bitwig.event.TransportModelEventType;
 import touch4bitwig.model.support.TransportModel;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.component.main.TransportBar;
-import touch4bitwig.ui.component.transport.TransportPopUp;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
 public class TransportBarMediator extends AbstractUIMediator
@@ -70,12 +68,12 @@ public class TransportBarMediator extends AbstractUIMediator
         addViewListener(TransportBar.EVENT_STOP_TRIGGERED, view_stopTriggeredHandler);
         addViewListener(TransportBar.EVENT_PLAY_CHANGE, view_playChangeHandler);
         addViewListener(TransportBar.EVENT_RECORD_CHANGE, view_recordChangeHandler);
-        addViewListener(TransportBar.EVENT_AUTOMATION_CHANGE, view_automationChangeHandler);
+        addViewListener(TransportBar.EVENT_AUTOWRITE_CHANGE, view_automationChangeHandler);
         addViewListener(TransportBar.EVENT_POPUP_TRIGGERED, view_popupTriggeredHandler);
 
-        //view.setPlaySelected(transportModel.transport.isPlaying);
-        //view.setRecordSelected(transportModel.transport.isRecording);
-        //view.setAutomationSelected(transportModel.transport.isAutowrite);
+        view.isPlaying = transportModel.transport.isPlaying;
+        view.isRecording = transportModel.transport.isRecording;
+        view.isAutowrite = transportModel.transport.isAutowrite;
     }
 
     override public function onRemove():void
@@ -115,7 +113,7 @@ public class TransportBarMediator extends AbstractUIMediator
 
     private function context_transportAutomationChangeHandler(event:Event, data:Object):void
     {
-        view.isAutomating = data.value;
+        view.isAutowrite = data.value;
     }
 
     private function view_playChangeHandler(event:Event, selected:Boolean):void
@@ -151,7 +149,6 @@ public class TransportBarMediator extends AbstractUIMediator
         var p:Point = new Point(view.x, view.y);
         p = view.parent.localToGlobal(p);
         _popUp = new TransportPopUp();
-
 
         PopUpManager.addPopUp(_popUp, false, false, function ():DisplayObject
         {

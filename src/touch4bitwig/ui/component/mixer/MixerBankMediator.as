@@ -17,10 +17,9 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.mediator.mixer
+package touch4bitwig.ui.component.mixer
 {
 
-import starling.animation.IAnimatable;
 import starling.animation.Juggler;
 import starling.events.Event;
 
@@ -28,11 +27,9 @@ import touch4bitwig.event.TrackModelEventType;
 import touch4bitwig.model.state.Track;
 import touch4bitwig.model.support.TrackModel;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.component.mixer.MixerBank;
-import touch4bitwig.ui.component.mixer.MixerItem;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
-public class MixerBankMediator extends AbstractUIMediator implements IAnimatable
+public class MixerBankMediator extends AbstractUIMediator
 {
     [Inject]
     public var juggler:Juggler;
@@ -68,26 +65,24 @@ public class MixerBankMediator extends AbstractUIMediator implements IAnimatable
         addContextListener(TrackModelEventType.MUTE_CHANGE, context_trackMuteHandler);
         addContextListener(TrackModelEventType.VU_CHANGE, context_trackVUHandler);
 
-        //juggler.add(this);
-
-        //for (var i:int = 0; i < 8; i++)
-        //{
-        //    var track:Track = trackModel.bank.tracks[i];
-        //    var index:int = track.index;
-        //    view.setCanHoldNotes(index, track.canHoldNotes);
-        //    view.setExists(index, track.exists);
-        //    view.setTrackSelected(index, track.isSelected);
-        //    view.setTrackName(index, track.name);
-        //    view.setTrackColor(index, track.color);
-        //    view.setVolume(index, track.volume);
-        //    view.setVolumeString(index, track.volumeString);
-        //    view.setPan(index, track.pan);
-        //    view.setPanString(index, track.panString);
-        //    view.setRecord(index, track.isRecArm);
-        //    view.setSolo(index, track.isSolo);
-        //    view.setMute(index, track.isMute);
-        //    view.setVU(index, track.vu);
-        //}
+        for (var i:int = 0; i < 8; i++)
+        {
+            var track:Track = trackModel.bank.tracks[i];
+            var index:int = track.index;
+            view.setCanHoldNotes(index, track.canHoldNotes);
+            view.setExists(index, track.exists);
+            view.setTrackSelected(index, track.isSelected);
+            view.setTrackName(index, track.name);
+            view.setTrackColor(index, track.color);
+            view.setVolume(index, track.volume);
+            view.setVolumeString(index, track.volumeString);
+            view.setPan(index, track.pan);
+            view.setPanString(index, track.panString);
+            view.setRecord(index, track.isRecArm);
+            view.setSolo(index, track.isSolo);
+            view.setMute(index, track.isMute);
+            view.setVU(index, track.vu);
+        }
 
         addViewListener(MixerItem.EVENT_DOUBLE_TAP, view_doubleTapHandler);
         addViewListener(MixerItem.EVENT_VOLUME_CHANGE, view_volumeChangeHandler);
@@ -100,30 +95,6 @@ public class MixerBankMediator extends AbstractUIMediator implements IAnimatable
     override public function onRemove():void
     {
         super.onRemove();
-
-        //juggler.remove(this);
-    }
-
-    public function advanceTime(time:Number):void
-    {
-        for (var i:int = 0; i < 8; i++)
-        {
-            var track:Track = trackModel.bank.tracks[i];
-            var index:int = track.index;
-            //view.setCanHoldNotes(index, track.canHoldNotes);
-            //view.setExists(index, track.exists);
-            //view.setTrackSelected(index, track.isSelected);
-            //view.setTrackName(index, track.name);
-            //view.setTrackColor(index, track.color);
-            //view.setVolume(index, track.volume);
-            //view.setVolumeString(index, track.volumeString);
-            //view.setPan(index, track.pan);
-            //view.setPanString(index, track.panString);
-            //view.setRecord(index, track.isRecArm);
-            //view.setSolo(index, track.isSolo);
-            //view.setMute(index, track.isMute);
-            //view.setVU(index, track.vu);
-        }
     }
 
     private function context_trackExistsHandler(event:Event, data:Object):void

@@ -8,25 +8,19 @@ import touch4bitwig.event.UIModelEventType;
 
 public class UIModel extends AbstractModel
 {
-    //public static const INDEX_MAIN:int = 0;
-    public static const INDEX_CLIPS:int = 0;
-    public static const INDEX_TRANSPORT:int = 1;
-    public static const INDEX_MIXER:int = 2;
-    public static const INDEX_PANELS:int = 3;
+    private var _screenID:String;
 
-    private var _mainScreenIndex:int = 0;
-
-    public function get mainScreenIndex():int
+    public function get screenID():String
     {
-        return _mainScreenIndex;
+        return _screenID;
     }
 
-    public function set mainScreenIndex(value:int):void
+    public function set screenID(value:String):void
     {
-        if (_mainScreenIndex == value)
+        if (_screenID == value)
             return;
-        _mainScreenIndex = value;
-        dispatchWith(UIModelEventType.MAIN_SCREEN_INDEX_CHANGE, false, _mainScreenIndex);
+        _screenID = value;
+        dispatchWith(UIModelEventType.SCREEN_ID_CHANGE, false, _screenID);
     }
 
     public function UIModel()

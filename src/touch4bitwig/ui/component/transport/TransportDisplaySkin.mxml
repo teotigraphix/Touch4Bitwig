@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:component="touch4bitwig.ui.component.*">
+
+    <f:layout>
+        <f:HorizontalLayout/>
+    </f:layout>
+
+    <component:VGroup percentWidth="100" percentHeight="100" horizontalAlign="center" verticalAlign="middle">
+
+        <f:Label id="tempoLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TEMPO}"/>
+
+        <f:Label id="timeSignatureLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TIME_SIGNATURE}"/>
+
+    </component:VGroup>
+
+
+    <component:VGroup percentWidth="100" percentHeight="100" horizontalAlign="center" verticalAlign="middle">
+
+        <f:Label id="positionLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_POSITION}"/>
+
+        <f:Label id="timeLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TIME}"/>
+
+    </component:VGroup>
+
+    <fx:Script><![CDATA[
+        import touch4bitwig.theme.StyleNames;
+
+        public var owner:TransportDisplay;
+
+        public function setTempo(value:String):void
+        {
+            tempoLabel.text = value;
+        }
+
+        public function setTimeSignature(value:String):void
+        {
+            timeSignatureLabel.text = value;
+        }
+
+        public function setPosition(value:String):void
+        {
+            positionLabel.text = value;
+        }
+
+        public function setTime(value:String):void
+        {
+            timeLabel.text = value;
+        }
+        ]]></fx:Script>
+
+
+</f:LayoutGroup>
