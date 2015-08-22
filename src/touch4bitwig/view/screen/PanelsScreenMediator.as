@@ -1,9 +1,10 @@
 /**
  * Created by Teoti on 8/22/2015.
  */
-package touch4bitwig.view.mediator
+package touch4bitwig.view.screen
 {
 
+import touch4bitwig.view.AbstractMediator;
 import touch4bitwig.view.screen.PanelsScreen;
 
 public class PanelsScreenMediator extends AbstractMediator

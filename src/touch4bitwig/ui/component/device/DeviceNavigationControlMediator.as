@@ -1,21 +1,16 @@
 /**
  * Created by Teoti on 4/17/2015.
  */
-package touch4bitwig.ui.mediator.device
+package touch4bitwig.ui.component.device
 {
-
-import com.teotigraphix.bitwig.event.DeviceModelEventType;
-import com.teotigraphix.bitwig.model.DeviceModel;
-import com.teotigraphix.bitwig.ui.component.device.DeviceNavigationControl;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
 
 import starling.events.Event;
 
-public class DeviceNavigationControlMediator extends BitwigTouchMediator
-{
-    [Inject]
-    public var deviceModel:DeviceModel;
+import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.ui.AbstractUIMediator;
 
+public class DeviceNavigationControlMediator extends AbstractUIMediator
+{
     private var view:DeviceNavigationControl;
 
     public function DeviceNavigationControlMediator()
@@ -33,10 +28,10 @@ public class DeviceNavigationControlMediator extends BitwigTouchMediator
         addViewListener(DeviceNavigationControl.EVENT_LEFT_TRIGGERED, view_leftTriggered);
         addViewListener(DeviceNavigationControl.EVENT_RIGHT_TRIGGERED, view_rightTriggered);
 
-        view.isEnabled = deviceModel.device.exists;
-        view.canSelectPrevious = deviceModel.cursorDevice.canSelectPrevious;
-        view.canSelectNext = deviceModel.cursorDevice.canSelectNext;
-        view.deviceName = deviceModel.cursorDevice.name;
+        view.isEnabled = oscModel.device.exists;
+        view.canSelectPrevious = oscModel.cursorDevice.canSelectPrevious;
+        view.canSelectNext = oscModel.cursorDevice.canSelectNext;
+        view.deviceName = oscModel.cursorDevice.name;
     }
 
     override public function setViewComponent(viewComponent:Object):void
@@ -67,12 +62,12 @@ public class DeviceNavigationControlMediator extends BitwigTouchMediator
 
     private function view_leftTriggered(event:Event):void
     {
-        deviceModel.device.previous();
+        oscModel.device.previous();
     }
 
     private function view_rightTriggered(event:Event):void
     {
-        deviceModel.device.next();
+        oscModel.device.next();
     }
 }
 }

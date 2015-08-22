@@ -19,8 +19,7 @@ import starling.events.Event;
 
 import touch4bitwig.app.config.ApplicationContext;
 import touch4bitwig.event.TransportModelEventType;
-import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.mediator.AbstractUIMediator;
+import touch4bitwig.ui.AbstractUIMediator;
 
 public class TransportBarMediator extends AbstractUIMediator
 {
@@ -29,9 +28,6 @@ public class TransportBarMediator extends AbstractUIMediator
 
     [Inject]
     public var injector:IInjector;
-
-    [Inject]
-    public var oscService:IOSCService;
 
     [Inject]
     public var view:TransportBar;

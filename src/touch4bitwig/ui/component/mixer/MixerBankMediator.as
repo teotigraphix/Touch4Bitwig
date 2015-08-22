@@ -25,16 +25,12 @@ import starling.events.Event;
 
 import touch4bitwig.event.TrackModelEventType;
 import touch4bitwig.model.state.Track;
-import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.mediator.AbstractUIMediator;
+import touch4bitwig.ui.AbstractUIMediator;
 
 public class MixerBankMediator extends AbstractUIMediator
 {
     [Inject]
     public var juggler:Juggler;
-
-    [Inject]
-    public var oscService:IOSCService;
 
     [Inject]
     public var view:MixerBank;

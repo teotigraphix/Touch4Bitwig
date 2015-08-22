@@ -1,7 +1,7 @@
 /**
  * Created by Teoti on 4/14/2015.
  */
-package touch4bitwig.ui.mediator.frame
+package touch4bitwig.ui.component.frame
 {
 
 import com.teotigraphix.ui.component.UIToggleButton;
@@ -13,15 +13,10 @@ import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.model.state.Application;
-import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.component.frame.PanelLayoutGroup;
-import touch4bitwig.ui.mediator.AbstractUIMediator;
+import touch4bitwig.ui.AbstractUIMediator;
 
 public class PanelLayoutGroupMediator extends AbstractUIMediator
 {
-    [Inject]
-    public var oscService:IOSCService;
-
     private var view:PanelLayoutGroup;
 
     public function PanelLayoutGroupMediator()

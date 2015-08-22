@@ -1,26 +1,21 @@
 /**
  * Created by Teoti on 4/17/2015.
  */
-package touch4bitwig.ui.mediator.device
+package touch4bitwig.ui.component.device
 {
-
-import com.teotigraphix.bitwig.event.DeviceModelEventType;
-import com.teotigraphix.bitwig.model.DeviceModel;
-import com.teotigraphix.bitwig.service.IOSCService;
-import com.teotigraphix.bitwig.ui.component.device.DeviceBankPager;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
 
 import feathers.data.ListCollection;
 
 import starling.events.Event;
 
-public class DeviceBankPagerMediator extends BitwigTouchMediator
+import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.service.IOSCService;
+import touch4bitwig.ui.AbstractUIMediator;
+
+public class DeviceBankPagerMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var deviceModel:DeviceModel;
 
     private var view:DeviceBankPager;
 
@@ -40,8 +35,8 @@ public class DeviceBankPagerMediator extends BitwigTouchMediator
         addViewListener(DeviceBankPager.EVENT_DEVICE_BANK_PAGE, view_deviceBankPageHandler);
         addViewListener(DeviceBankPager.EVENT_DEVICE_BANK_SELECT, view_deviceBankSelectHandler);
 
-        view.dataProvider = new ListCollection(deviceModel.device.pageNames);
-        view.selectedIndex = getParamPageIndex(deviceModel.device.selectedPageName);
+        view.dataProvider = new ListCollection(oscModel.device.pageNames);
+        view.selectedIndex = getParamPageIndex(oscModel.device.selectedPageName);
     }
 
     override public function setViewComponent(viewComponent:Object):void
@@ -72,7 +67,7 @@ public class DeviceBankPagerMediator extends BitwigTouchMediator
 
     private function getParamPageIndex(name:String):int
     {
-        var list:Array = deviceModel.device.pageNames;
+        var list:Array = oscModel.device.pageNames;
         if (list == null)
             return -1;
 

@@ -1,20 +1,15 @@
 /**
  * Created by Teoti on 4/15/2015.
  */
-package touch4bitwig.ui.mediator.transport
+package touch4bitwig.ui.component.transport
 {
 
 import starling.events.Event;
 
-import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.component.transport.TransportPopUp;
-import touch4bitwig.ui.mediator.AbstractUIMediator;
+import touch4bitwig.ui.AbstractUIMediator;
 
 public class TransportPopUpMediator extends AbstractUIMediator
 {
-    [Inject]
-    public var oscService:IOSCService;
-
     [Inject]
     public var view:TransportPopUp;
 

@@ -1,24 +1,19 @@
 /**
  * Created by Teoti on 4/15/2015.
  */
-package touch4bitwig.ui.mediator.device
+package touch4bitwig.ui.component.device
 {
-
-import com.teotigraphix.bitwig.event.DeviceModelEventType;
-import com.teotigraphix.bitwig.model.DeviceModel;
-import com.teotigraphix.bitwig.service.IOSCService;
-import com.teotigraphix.bitwig.ui.component.device.DeviceSelectBar;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
 
 import starling.events.Event;
 
-public class DeviceSelectBarMediator extends BitwigTouchMediator
+import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.service.IOSCService;
+import touch4bitwig.ui.AbstractUIMediator;
+
+public class DeviceSelectBarMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var deviceModel:DeviceModel;
 
     private var view:DeviceSelectBar;
 
@@ -44,12 +39,12 @@ public class DeviceSelectBarMediator extends BitwigTouchMediator
         addViewListener(DeviceSelectBar.EVENT_MACRO_PAGE_CHANGE, view_macroPageChange);
         addViewListener(DeviceSelectBar.EVENT_PARAM_PAGE_CHANGE, view_paramPageChange);
 
-        view.isEnabled = deviceModel.cursorDevice.exists;
-        view.isBypass = deviceModel.cursorDevice.bypass;
-        view.isWindowVisible = deviceModel.cursorDevice.windowVisible;
-        view.isMacroPageVisible = deviceModel.cursorDevice.macroPageVisible;
-        view.isParamPageVisible = deviceModel.cursorDevice.paramPageVisible;
-        view.isExpanded = deviceModel.cursorDevice.expanded;
+        view.isEnabled = oscModel.cursorDevice.exists;
+        view.isBypass = oscModel.cursorDevice.bypass;
+        view.isWindowVisible = oscModel.cursorDevice.windowVisible;
+        view.isMacroPageVisible = oscModel.cursorDevice.macroPageVisible;
+        view.isParamPageVisible = oscModel.cursorDevice.paramPageVisible;
+        view.isExpanded = oscModel.cursorDevice.expanded;
     }
 
     override public function setViewComponent(viewComponent:Object):void
@@ -65,32 +60,32 @@ public class DeviceSelectBarMediator extends BitwigTouchMediator
 
     private function context_nameChangeHandler(event:Event, data:Object):void
     {
-        view.isEnabled = deviceModel.device.exists;
+        view.isEnabled = oscModel.device.exists;
     }
 
     private function view_bypassChange(event:Event, selected:Boolean):void
     {
-        deviceModel.device.toggleBypass();
+        oscModel.device.toggleBypass();
     }
 
     private function view_expandChange(event:Event, selected:Boolean):void
     {
-        deviceModel.device.toggleExpand();
+        oscModel.device.toggleExpand();
     }
 
     private function view_windowChange(event:Event, selected:Boolean):void
     {
-        deviceModel.device.toggleWindow();
+        oscModel.device.toggleWindow();
     }
 
     private function view_macroPageChange(event:Event, selected:Boolean):void
     {
-        deviceModel.device.toggleMacroVisible();
+        oscModel.device.toggleMacroVisible();
     }
 
     private function view_paramPageChange(event:Event, selected:Boolean):void
     {
-        deviceModel.device.toggleParamVisible();
+        oscModel.device.toggleParamVisible();
     }
 
     private function context_bypassChange(event:Event, data:Object):void

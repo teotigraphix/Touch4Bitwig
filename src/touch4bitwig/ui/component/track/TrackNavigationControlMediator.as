@@ -1,22 +1,33 @@
-/**
- * Created by Teoti on 4/17/2015.
- */
-package touch4bitwig.ui.mediator.track
-{
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
 
-import com.teotigraphix.bitwig.event.TrackModelEventType;
-import com.teotigraphix.bitwig.model.TrackModel;
-import com.teotigraphix.bitwig.model.state.Track;
-import com.teotigraphix.bitwig.ui.component.track.TrackNavigationControl;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
+package touch4bitwig.ui.component.track
+{
 
 import starling.events.Event;
 
-public class TrackNavigationControlMediator extends BitwigTouchMediator
-{
-    [Inject]
-    public var trackModel:TrackModel;
+import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.model.state.Track;
+import touch4bitwig.ui.AbstractUIMediator;
 
+public class TrackNavigationControlMediator extends AbstractUIMediator
+{
     private var view:TrackNavigationControl;
 
     public function TrackNavigationControlMediator()
@@ -41,7 +52,7 @@ public class TrackNavigationControlMediator extends BitwigTouchMediator
         view.canScrollTracksUp = true;
         view.canScrollTracksDown = true;
 
-        var track:Track = trackModel.bank.selectedTrack;
+        var track:Track = oscModel.trackBank.selectedTrack;
         if (track != null)
         {
             view.trackName = track.name;
@@ -73,18 +84,18 @@ public class TrackNavigationControlMediator extends BitwigTouchMediator
     {
         if (data.value)
         {
-            view.trackName = trackModel.bank.selectedTrack.name;
+            view.trackName = oscModel.trackBank.selectedTrack.name;
         }
     }
 
     private function view_upHandler(event:Event):void
     {
-        trackModel.bank.previous();
+        oscModel.trackBank.previous();
     }
 
     private function view_downHandler(event:Event):void
     {
-        trackModel.bank.next();
+        oscModel.trackBank.next();
     }
 }
 }

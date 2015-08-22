@@ -1,4 +1,4 @@
-package touch4bitwig.view.mediator
+package touch4bitwig.view.screen
 {
 
 import flash.events.Event;
@@ -8,9 +8,9 @@ import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
 import touch4bitwig.event.UIModelEventType;
-import touch4bitwig.service.IOSCService;
+import touch4bitwig.view.AbstractMediator;
 import touch4bitwig.view.MainNavigator;
-import touch4bitwig.view.screen.ApplicationScreens;
+import touch4bitwig.view.ApplicationScreens;
 
 /*
 
@@ -50,9 +50,6 @@ public class MainMediator extends AbstractMediator
     [Inject]
     public var navigator:MainNavigator;
 
-    [Inject]
-    public var oscService:IOSCService;
-
     public function MainMediator()
     {
         trace("new MainMediator()");
@@ -91,17 +88,17 @@ public class MainMediator extends AbstractMediator
         logger.log(TAG, "onRemove()");
     }
 
+    private function context_screenIDChangeHandler(event:starling.events.Event, id:String):void
+    {
+        navigator.pushScreen(id);
+    }
+
     private function context_applicationCompleteHandler(event:starling.events.Event):void
     {
         logger.log(TAG, "context_applicationCompleteHandler()");
         logger.log(TAG, "Show initial screen");
 
         navigator.pushScreen(ApplicationScreens.SCREEN_TRANSPORT);
-    }
-
-    private function context_screenIDChangeHandler(event:starling.events.Event, id:String):void
-    {
-        navigator.pushScreen(id);
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

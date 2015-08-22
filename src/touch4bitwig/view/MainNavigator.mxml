@@ -42,7 +42,7 @@
 
 
     <fx:Script><![CDATA[
-        import touch4bitwig.view.screen.ApplicationScreens;
+        import touch4bitwig.view.ApplicationScreens;
         import touch4bitwig.view.screen.PanelsScreen;
         import touch4bitwig.view.screen.TransportScreen;
         import touch4bitwig.view.screen.MixerScreen;

@@ -1,22 +1,8 @@
 /**
  * Created by Teoti on 4/6/2015.
  */
-package touch4bitwig.ui.mediator.cliplauncher
+package touch4bitwig.ui.component.cliplauncher
 {
-
-import com.teotigraphix.bitwig.event.TrackModelEventType;
-import com.teotigraphix.bitwig.event.TransportModelEventType;
-import com.teotigraphix.bitwig.model.TrackModel;
-import com.teotigraphix.bitwig.model.TransportModel;
-import com.teotigraphix.bitwig.model.state.Clip;
-import com.teotigraphix.bitwig.model.state.Scene;
-import com.teotigraphix.bitwig.service.IOSCService;
-import com.teotigraphix.bitwig.ui.component.cliplauncher.ClipLauncher;
-import com.teotigraphix.bitwig.ui.component.cliplauncher.ClipLauncherFooterItem;
-import com.teotigraphix.bitwig.ui.component.cliplauncher.ClipLauncherGrid;
-import com.teotigraphix.bitwig.ui.component.cliplauncher.SceneList;
-import com.teotigraphix.bitwig.ui.component.main.TrackNameHeaderItem;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
 
 import feathers.data.ListCollection;
 
@@ -24,16 +10,18 @@ import starling.animation.IAnimatable;
 import starling.animation.Juggler;
 import starling.events.Event;
 
-public class ClipLauncherMediator extends BitwigTouchMediator implements IAnimatable
+import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.event.TransportModelEventType;
+import touch4bitwig.model.state.Clip;
+import touch4bitwig.model.state.Scene;
+import touch4bitwig.service.IOSCService;
+import touch4bitwig.ui.component.main.TrackNameHeaderItem;
+import touch4bitwig.ui.AbstractUIMediator;
+
+public class ClipLauncherMediator extends AbstractUIMediator implements IAnimatable
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var trackModel:TrackModel;
-
-    [Inject]
-    public var transportModel:TransportModel;
 
     [Inject]
     public var juggler:Juggler;
@@ -84,17 +72,17 @@ public class ClipLauncherMediator extends BitwigTouchMediator implements IAnimat
 
         for (var scene:int = 0; scene < 8; scene++)
         {
-            sceneCollection.addItem(trackModel.bank.scenes[scene]);
+            sceneCollection.addItem(oscModel.trackBank.scenes[scene]);
 
             for (var track:int = 0; track < 8; track++)
             {
-                clipCollection.addItem(trackModel.bank.tracks[track].clips[scene]);
+                clipCollection.addItem(oscModel.trackBank.tracks[track].clips[scene]);
             }
         }
 
         for (var i:int = 0; i < 8; i++)
         {
-            view.updateTrack(trackModel.bank.tracks[i]);
+            view.updateTrack(oscModel.trackBank.tracks[i]);
         }
 
         view.clipLauncherGrid.dataProvider = clipCollection;
@@ -122,7 +110,7 @@ public class ClipLauncherMediator extends BitwigTouchMediator implements IAnimat
 
     private function context_updateTrack(event:Event, data:Object):void
     {
-        view.updateTrack(trackModel.bank.tracks[data.index - 1]);
+        view.updateTrack(oscModel.trackBank.tracks[data.index - 1]);
     }
 
     private function context_clipSelectedChange(event:Event, data:Object):void
@@ -132,7 +120,7 @@ public class ClipLauncherMediator extends BitwigTouchMediator implements IAnimat
 
     private function context_isOverdubLauncherChangeHandler(event:Event, data:Object):void
     {
-        view.setLauncherOverdub(transportModel.transport.isOverdubLauncher);
+        view.setLauncherOverdub(oscModel.transport.isOverdubLauncher);
     }
 
     private function context_isAutowriteLaucherChangeHandler(event:Event, data:Object):void

@@ -17,17 +17,26 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.view.mediator
+package touch4bitwig.view
 {
 
 import com.teotigraphix.service.ILogger;
 
 import org.robotlegs.starling.mvcs.Mediator;
 
+import touch4bitwig.model.IOSCModel;
+import touch4bitwig.service.IOSCService;
+
 public class AbstractMediator extends Mediator
 {
     [Inject]
     public var logger:ILogger;
+
+    [Inject]
+    public var oscService:IOSCService;
+
+    [Inject]
+    public var oscModel:IOSCModel;
 
     public function AbstractMediator()
     {

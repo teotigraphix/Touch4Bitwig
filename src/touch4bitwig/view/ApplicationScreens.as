@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.view.screen
+package touch4bitwig.view
 {
 
 public final class ApplicationScreens

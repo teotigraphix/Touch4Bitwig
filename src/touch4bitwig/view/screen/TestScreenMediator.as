@@ -1,21 +1,19 @@
 /**
  * Created by Teoti on 8/11/2015.
  */
-package touch4bitwig.view.mediator
+package touch4bitwig.view.screen
 {
 
 import starling.events.Event;
 
-import touch4bitwig.service.IOSCService;
+import touch4bitwig.view.AbstractMediator;
+
 import touch4bitwig.view.screen.TestScreen;
 
 public class TestScreenMediator extends AbstractMediator
 {
     [Inject]
     public var screen:TestScreen;
-
-    [Inject]
-    public var oscService:IOSCService;
 
     public function TestScreenMediator()
     {

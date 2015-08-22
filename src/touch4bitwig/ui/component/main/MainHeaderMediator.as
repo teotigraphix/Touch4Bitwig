@@ -7,14 +7,10 @@ package touch4bitwig.ui.component.main
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.service.IOSCService;
-import touch4bitwig.ui.mediator.AbstractUIMediator;
+import touch4bitwig.ui.AbstractUIMediator;
 
 public class MainHeaderMediator extends AbstractUIMediator
 {
-    [Inject]
-    public var oscService:IOSCService;
-
     [Inject]
     public var view:MainHeader;
 

@@ -1,32 +1,39 @@
-/**
- * Created by Teoti on 4/13/2015.
- */
-package touch4bitwig.ui.mediator.track
-{
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
 
-import com.teotigraphix.bitwig.event.DeviceModelEventType;
-import com.teotigraphix.bitwig.event.TrackModelEventType;
-import com.teotigraphix.bitwig.model.DeviceModel;
-import com.teotigraphix.bitwig.model.TrackModel;
-import com.teotigraphix.bitwig.service.IOSCService;
-import com.teotigraphix.bitwig.ui.component.track.TrackChannelBank;
-import com.teotigraphix.bitwig.ui.component.track.channel.DeviceParamGroup;
-import com.teotigraphix.bitwig.ui.component.track.channel.TrackControlGroup;
-import com.teotigraphix.bitwig.ui.component.track.channel.TrackVolumeGroup;
-import com.teotigraphix.bitwig.ui.mediator.BitwigTouchMediator;
+package touch4bitwig.ui.component.track
+{
 
 import starling.events.Event;
 
-public class TrackChannelBankMediator extends BitwigTouchMediator
+import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.service.IOSCService;
+import touch4bitwig.ui.component.track.channel.DeviceParamGroup;
+import touch4bitwig.ui.component.track.channel.TrackControlGroup;
+import touch4bitwig.ui.component.track.channel.TrackVolumeGroup;
+import touch4bitwig.ui.AbstractUIMediator;
+
+public class TrackChannelBankMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var trackModel:TrackModel;
-
-    [Inject]
-    public var deviceModel:DeviceModel;
 
     private var view:TrackChannelBank;
     private var _interactionMap:Object = {};
@@ -90,18 +97,18 @@ public class TrackChannelBankMediator extends BitwigTouchMediator
     {
         for (var i:int = 1; i < 9; i++)
         {
-            view.setExists(i, trackModel.bank.tracks[i - 1].exists);
+            view.setExists(i, oscModel.trackBank.tracks[i - 1].exists);
 
-            view.setParamName(i, deviceModel.cursorDevice.bank.params[i - 1].getName(deviceModel.mode));
-            view.setParamValue(i, deviceModel.cursorDevice.bank.params[i - 1].getValue(deviceModel.mode));
-            view.setParamValueString(i, deviceModel.cursorDevice.bank.params[i - 1].getValueString(deviceModel.mode));
+            view.setParamName(i, oscModel.cursorDevice.bank.params[i - 1].getName(oscModel.deviceMode));
+            view.setParamValue(i, oscModel.cursorDevice.bank.params[i - 1].getValue(oscModel.deviceMode));
+            view.setParamValueString(i, oscModel.cursorDevice.bank.params[i - 1].getValueString(oscModel.deviceMode));
 
-            view.setIsRecarm(i, trackModel.bank.tracks[i - 1].isRecArm);
-            view.setIsSolo(i, trackModel.bank.tracks[i - 1].isSolo);
-            view.setIsMute(i, trackModel.bank.tracks[i - 1].isMute);
+            view.setIsRecarm(i, oscModel.trackBank.tracks[i - 1].isRecArm);
+            view.setIsSolo(i, oscModel.trackBank.tracks[i - 1].isSolo);
+            view.setIsMute(i, oscModel.trackBank.tracks[i - 1].isMute);
 
-            view.setVU(i, trackModel.bank.tracks[i - 1].vu);
-            view.setVolume(i, trackModel.bank.tracks[i - 1].volume);
+            view.setVU(i, oscModel.trackBank.tracks[i - 1].vu);
+            view.setVolume(i, oscModel.trackBank.tracks[i - 1].volume);
         }
     }
 
@@ -120,7 +127,7 @@ public class TrackChannelBankMediator extends BitwigTouchMediator
         //if (_interactionMap[data.index] == "down")
         //    return;
 
-        if (data.mode == deviceModel.mode)
+        if (data.mode == oscModel.deviceMode)
         {
             view.setParamName(data.index, data.value);
         }
@@ -131,7 +138,7 @@ public class TrackChannelBankMediator extends BitwigTouchMediator
         if (_interactionMap[data.index - 1] == "down")
             return;
 
-        if (data.mode == deviceModel.mode)
+        if (data.mode == oscModel.deviceMode)
         {
             view.setParamValue(data.index, data.value);
         }
@@ -142,7 +149,7 @@ public class TrackChannelBankMediator extends BitwigTouchMediator
         //if (_interactionMap[data.index] == "down")
         //    return;
 
-        if (data.mode == deviceModel.mode)
+        if (data.mode == oscModel.deviceMode)
         {
             view.setParamValueString(data.index, data.value);
         }
@@ -177,12 +184,12 @@ public class TrackChannelBankMediator extends BitwigTouchMediator
 
     private function view_deviceValueChangeHandler(event:Event, index:int):void
     {
-        oscService.sendInt("/device/" + deviceModel.mode + "/" + (index + 1) + "/value", view.getParamValue(index));
+        oscService.sendInt("/device/" + oscModel.deviceMode + "/" + (index + 1) + "/value", view.getParamValue(index));
     }
 
     private function view_deviceValueResetHandler(event:Event, index:int):void
     {
-        oscService.send("/device/reset/" + deviceModel.mode + "/" + index);
+        oscService.send("/device/reset/" + oscModel.deviceMode + "/" + index);
     }
 
     private function view_interactionChangeHandler(event:Event, data:Object):void

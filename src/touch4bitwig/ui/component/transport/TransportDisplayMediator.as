@@ -7,7 +7,7 @@ package touch4bitwig.ui.component.transport
 import starling.events.Event;
 
 import touch4bitwig.event.TransportModelEventType;
-import touch4bitwig.ui.mediator.AbstractUIMediator;
+import touch4bitwig.ui.AbstractUIMediator;
 
 public class TransportDisplayMediator extends AbstractUIMediator
 {
