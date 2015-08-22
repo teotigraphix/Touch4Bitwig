@@ -29,7 +29,7 @@
         <f:VerticalLayout/>
     </f:layout>
 
-    <main:MainHeader height="100">
+    <main:MainHeader>
         <main:layoutData>
             <f:VerticalLayoutData percentWidth="100"/>
         </main:layoutData>

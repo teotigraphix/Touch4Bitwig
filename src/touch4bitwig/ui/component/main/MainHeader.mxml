@@ -67,10 +67,19 @@
     <fx:Script><![CDATA[
         import com.teotigraphix.ui.theme.AssetMap;
 
+        import feathers.skins.IStyleProvider;
+
         import touch4bitwig.theme.StyleNames;
 
         public static const EVENT_ACTIVE_ENGINE_CHANGE:String = "activeEngineChange";
         public static const EVENT_SCREEN_CHANGE:String = "screenChange";
+
+        public static var globalStyleProvider:IStyleProvider;
+
+        override protected function get defaultStyleProvider():IStyleProvider
+        {
+            return MainHeader.globalStyleProvider;
+        }
 
         private function screenChange(id:String):void
         {

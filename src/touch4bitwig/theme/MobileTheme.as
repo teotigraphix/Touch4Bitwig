@@ -13,7 +13,7 @@ import starling.events.Event;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 
-public class BitwigTouchMobileTheme extends AbstractTheme
+public class MobileTheme extends AbstractTheme
 {
     [Embed(source="/fonts/SourceSansPro-Regular.ttf", fontFamily="SourceSansPro", fontWeight="normal", mimeType="application/x-font", embedAsCFF="true")]
     protected static const SOURCE_SANS_PRO_REGULAR:Class;
@@ -27,7 +27,7 @@ public class BitwigTouchMobileTheme extends AbstractTheme
     [Embed(source="/../assets/mobile.xml", mimeType="application/octet-stream")]
     private static const ATLAS_XML:Class;
 
-    public function BitwigTouchMobileTheme(scaleToDPI:Boolean = true)
+    public function MobileTheme(scaleToDPI:Boolean = true)
     {
         super(scaleToDPI);
         PRIMARY_BACKGROUND_COLOR = 0x171717;
@@ -51,6 +51,7 @@ public class BitwigTouchMobileTheme extends AbstractTheme
     override protected function addFactories():void
     {
         super.addFactories();
+        factories.push(new MainFactory(this));
         factories.push(new UserMixerItemFactory(this));
         factories.push(new TrackChannelFactory(this));
         factories.push(new DeviceSelectBarFactory(this));

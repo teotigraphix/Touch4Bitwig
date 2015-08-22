@@ -26,7 +26,7 @@
                          xmlns:config="touch4bitwig.app.config.*"
                          xmlns:view="touch4bitwig.view.*"
                          xmlns:ui="com.teotigraphix.app.ui.*"
-                         theme="touch4bitwig.theme.BitwigTouchMobileTheme">
+                         theme="touch4bitwig.theme.MobileTheme">
 
     <fx:Declarations>
         <!-- IOC container declaring all application view, model, service. -->

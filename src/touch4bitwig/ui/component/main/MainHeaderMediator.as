@@ -26,26 +26,21 @@ public class MainHeaderMediator extends AbstractUIMediator
     {
     }
 
-    override public function preRegister():void
+    override public function onRegister():void
     {
-        super.preRegister();
+        super.onRegister();
 
         addContextListener(ApplicationModelEventType.ACTIVE_CHANGE, context_activeEngineChange);
 
         addViewListener(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, view_activeEngineChange);
         addViewListener(MainHeader.EVENT_SCREEN_CHANGE, view_screenChange);
-    }
-
-    override public function onRegister():void
-    {
-        super.onRegister();
 
         view.setActiveEngine(applicationModel.application.active);
     }
 
-    override public function preRemove():void
+    override public function onRemove():void
     {
-        super.preRemove();
+        super.onRemove();
     }
 
     private function context_activeEngineChange(event:Event, data:Object):void
