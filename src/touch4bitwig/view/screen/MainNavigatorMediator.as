@@ -67,7 +67,7 @@ BootstrapApplication.CREATION_COMPLETE()
 
 */
 
-public class MainMediator extends AbstractMediator
+public class MainNavigatorMediator extends AbstractMediator
 {
     private static const TAG:String = "MainMediator";
 
@@ -77,7 +77,7 @@ public class MainMediator extends AbstractMediator
     [Inject]
     public var uiModel:IUIModel;
 
-    public function MainMediator()
+    public function MainNavigatorMediator()
     {
         trace("new MainMediator()");
     }

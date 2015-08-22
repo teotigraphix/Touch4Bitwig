@@ -20,12 +20,16 @@
 package touch4bitwig.model.support
 {
 
+import feathers.data.ListCollection;
+
 import touch4bitwig.event.UIModelEventType;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.view.ApplicationScreens;
 
 public class UIModel extends AbstractModel implements IUIModel
 {
     private var _screenID:String;
+    private var _screenDataProvider:ListCollection;
 
     public function get screenID():String
     {
@@ -40,6 +44,21 @@ public class UIModel extends AbstractModel implements IUIModel
         dispatchWith(UIModelEventType.SCREEN_ID_CHANGE, false, _screenID);
     }
 
+    public function get screenDataProvider():ListCollection
+    {
+        return _screenDataProvider;
+    }
+
+    public function get screenIndex():int
+    {
+        for each (var object:Object in screenDataProvider.data)
+        {
+            if (object.screen == _screenID)
+                return object.index;
+        }
+        return -1;
+    }
+
     public function UIModel()
     {
     }
@@ -47,6 +66,14 @@ public class UIModel extends AbstractModel implements IUIModel
     override protected function onRegister():void
     {
         super.onRegister();
+
+        var dp:Array = [
+            {index: 0, label: "Mixer", screen: ApplicationScreens.SCREEN_MIXER},
+            {index: 1, label: "Transport", screen: ApplicationScreens.SCREEN_TRANSPORT},
+            {index: 2, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
+        ];
+
+        _screenDataProvider = new ListCollection(dp);
     }
 }
 }

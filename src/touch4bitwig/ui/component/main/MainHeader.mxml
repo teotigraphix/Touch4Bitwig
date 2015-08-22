@@ -23,68 +23,62 @@
 <f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
                xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:component="com.teotigraphix.ui.component.*"
-               xmlns:transport="touch4bitwig.ui.component.transport.*"
+               xmlns:transport="touch4bitwig.ui.component.transport.*" xmlns:component2="touch4bitwig.ui.component.*"
                styleName="{StyleNames.MAIN_HEADER}">
 
 
     <f:layout>
-        <f:HorizontalLayout gap="10"/>
+        <f:VerticalLayout gap="5" padding="5"/>
     </f:layout>
 
-    <component:UIToggleButton id="activeEngineButton"
-                              isToggle="true"
-                              maxWidth="100"
-                              styleName="active-engine-button"
-                              defaultIcon="{AssetMap.createImage('bitwig-icon-skin')}"
-                              defaultSelectedIcon="{AssetMap.createImage('bitwig-icon-selected-skin')}"
-                              change="activeEngineButtonChange(activeEngineButton.isSelected)">
+    <!-- Main header bar -->
+    <component2:HGroup percentWidth="100">
 
-        <component:layoutData>
-            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
-        </component:layoutData>
+        <component:UIToggleButton id="activeEngineButton"
+                                  isToggle="true"
+                                  maxWidth="75"
+                                  styleName="active-engine-button"
+                                  defaultIcon="{AssetMap.createImage('bitwig-icon-skin')}"
+                                  defaultSelectedIcon="{AssetMap.createImage('bitwig-icon-selected-skin')}"
+                                  change="activeEngineButtonChange(activeEngineButton.isSelected)">
 
-    </component:UIToggleButton>
+            <component:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </component:layoutData>
 
-    <transport:TransportBar>
-        <transport:layoutData>
-            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
-        </transport:layoutData>
-    </transport:TransportBar>
+        </component:UIToggleButton>
 
-    <!--<f:Button id="clipsButton" label="Clips"/>-->
-    <!--<f:Button id="deviceButton" label="Device"/>-->
-    <!--<f:Button id="panelsButton" label="Panels"/>-->
+        <f:LayoutGroup id="spacer">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100"/>
+            </f:layoutData>
+        </f:LayoutGroup>
 
-    <f:Button id="transportButton"
-              label="Transport"
-              maxWidth="100"
-              triggered="screenChange('TransportScreen')">
-        <f:layoutData>
-            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
-        </f:layoutData>
-    </f:Button>
+        <f:TabBar id="tabBar"
+                  direction="horizontal" distributeTabSizes="true"
+                  change="tabBar_changeHandler()">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+        </f:TabBar>
 
-    <f:Button id="mixerButton"
-              label="Mixer"
-              maxWidth="100"
-              triggered="screenChange('MixerScreen')">
-        <f:layoutData>
-            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
-        </f:layoutData>
-    </f:Button>
+    </component2:HGroup>
 
-    <f:Button id="panelButton"
-              label="Panels"
-              maxWidth="100"
-              triggered="screenChange('PanelsScreen')">
-        <f:layoutData>
-            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
-        </f:layoutData>
-    </f:Button>
+    <component2:HGroup percentWidth="100">
+
+        <transport:TransportBar>
+            <transport:layoutData>
+                <f:HorizontalLayoutData percentWidth="30"/>
+            </transport:layoutData>
+        </transport:TransportBar>
+
+    </component2:HGroup>
+
 
     <fx:Script><![CDATA[
         import com.teotigraphix.ui.theme.AssetMap;
 
+        import feathers.data.ListCollection;
         import feathers.skins.IStyleProvider;
 
         import touch4bitwig.theme.StyleNames;
@@ -99,19 +93,25 @@
             return MainHeader.globalStyleProvider;
         }
 
-        private function screenChange(id:String):void
-        {
-            dispatchEventWith(MainHeader.EVENT_SCREEN_CHANGE, false, id);
-        }
-
         private function activeEngineButtonChange(selected:Boolean):void
         {
             dispatchEventWith(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, false, selected);
         }
 
-        function setActiveEngine(active:Boolean):void
+        public function setActiveEngine(active:Boolean):void
         {
             activeEngineButton.setIsSelected(active);
+        }
+
+        public function setScreenDataProvider(collection:ListCollection, screenIndex:int):void
+        {
+            tabBar.dataProvider = collection;
+            tabBar.selectedIndex = screenIndex;
+        }
+
+        private function tabBar_changeHandler():void
+        {
+            dispatchEventWith(MainHeader.EVENT_SCREEN_CHANGE, false, tabBar.selectedItem.screen);
         }
         ]]></fx:Script>
 </f:LayoutGroup>

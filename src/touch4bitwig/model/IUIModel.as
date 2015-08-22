@@ -20,10 +20,16 @@
 package touch4bitwig.model
 {
 
+import feathers.data.ListCollection;
+
 public interface IUIModel
 {
     function get screenID():String;
 
+    function get screenIndex():int;
+
     function set screenID(value:String):void;
+
+    function get screenDataProvider():ListCollection;
 }
 }

@@ -44,6 +44,7 @@ public class MainHeaderMediator extends AbstractUIMediator
         addViewListener(MainHeader.EVENT_SCREEN_CHANGE, view_screenChange);
 
         view.setActiveEngine(oscModel.application.active);
+        view.setScreenDataProvider(uiModel.screenDataProvider, uiModel.screenIndex);
     }
 
     override public function onRemove():void

@@ -24,12 +24,10 @@ public final class ApplicationScreens
 {
     public static const SCREEN_CONFIGURATION:String = "ConfigurationScreen";
 
-    public static const SCREEN_TEST:String = "TestScreen";
-
     public static const SCREEN_MIXER:String = "MixerScreen";
 
     public static const SCREEN_TRANSPORT:String = "TransportScreen";
 
-    public static const SCREEN_PANEL:String = "PanelScreen";
+    public static const SCREEN_PANEL:String = "PanelsScreen";
 }
 }

@@ -57,7 +57,7 @@ import touch4bitwig.ui.component.transport.TransportPopUpMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.screen.ConfigurationScreen;
 import touch4bitwig.view.screen.ConfigurationScreenMediator;
-import touch4bitwig.view.screen.MainMediator;
+import touch4bitwig.view.screen.MainNavigatorMediator;
 import touch4bitwig.view.screen.MixerScreen;
 import touch4bitwig.view.screen.MixerScreenMediator;
 import touch4bitwig.view.screen.PanelsScreen;
@@ -113,7 +113,7 @@ public class ApplicationContext extends FrameworkContext
 
     private function configureView():void
     {
-        mediatorMap.mapView(MainNavigator, MainMediator);
+        mediatorMap.mapView(MainNavigator, MainNavigatorMediator);
         mediatorMap.mapView(MainHeader, MainHeaderMediator);
 
         // ConfigurationScreen
