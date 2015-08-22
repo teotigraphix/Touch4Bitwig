@@ -35,7 +35,7 @@ public class ApplicationController extends AbstractController
 
     [Inject]
     public var oscService:IOSCService;
-
+    
     public function ApplicationController()
     {
     }

@@ -23,34 +23,21 @@ package touch4bitwig.service.support.osc.listeners
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
 import touch4bitwig.model.state.Device;
-import touch4bitwig.service.support.OSCService;
+import touch4bitwig.service.IOSCService;
 
-public class DeviceListener
+public class DeviceListener extends AbstractOSCListener
 {
-    private var _methods:Array = [];
-
-    private var _service:OSCService;
     private var _model:Device;
 
-    public function DeviceListener(service:OSCService, model:Device)
+    public function DeviceListener(service:IOSCService, model:Device)
     {
-        _service = service;
+        super(service);
         _model = model;
 
         config();
     }
 
-    public final function isHandled(osc:OSCMessage):Boolean
-    {
-        return _methods[osc.address] != null;
-    }
-
-    public final function handle(osc:OSCMessage):void
-    {
-        _methods[osc.address](osc);
-    }
-
-    private function config():void
+    override protected function config():void
     {
         _methods["/device/canSelectPrevious"] = canSelectPreviousHandler;
         _methods["/device/canSelectNext"] = canSelectNextHandler;

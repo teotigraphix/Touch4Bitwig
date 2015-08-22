@@ -23,34 +23,21 @@ package touch4bitwig.service.support.osc.listeners
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
 import touch4bitwig.model.state.TrackBank;
-import touch4bitwig.service.support.OSCService;
+import touch4bitwig.service.IOSCService;
 
-public class TrackListener
+public class TrackListener extends AbstractOSCListener
 {
-    private var _methods:Array = [];
-
-    private var _service:OSCService;
     private var _model:TrackBank;
 
-    public function TrackListener(service:OSCService, model:TrackBank)
+    public function TrackListener(service:IOSCService, model:TrackBank)
     {
-        _service = service;
+        super(service);
         _model = model;
 
         config();
     }
 
-    public final function isHandled(osc:OSCMessage):Boolean
-    {
-        return _methods[osc.address] != null;
-    }
-
-    public final function handle(osc:OSCMessage):void
-    {
-        _methods[osc.address](osc);
-    }
-
-    private function config():void
+    override protected function config():void
     {
         _methods["/track/canScrollTracksUp"] = canScrollTracksUp;
         _methods["/track/canScrollTracksDown"] = canScrollTracksDown;

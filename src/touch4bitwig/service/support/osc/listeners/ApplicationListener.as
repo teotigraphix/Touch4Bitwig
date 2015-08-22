@@ -23,13 +23,13 @@ package touch4bitwig.service.support.osc.listeners
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
 import touch4bitwig.model.state.Application;
-import touch4bitwig.service.support.OSCService;
+import touch4bitwig.service.IOSCService;
 
 public class ApplicationListener extends AbstractOSCListener
 {
     private var _model:Application;
 
-    public function ApplicationListener(service:OSCService, model:Application)
+    public function ApplicationListener(service:IOSCService, model:Application)
     {
         super(service);
         _model = model;

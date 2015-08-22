@@ -22,15 +22,15 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.service.support.OSCService;
+import touch4bitwig.service.IOSCService;
 
 public class AbstractOSCListener
 {
     protected var _methods:Array = [];
 
-    private var _service:OSCService;
+    private var _service:IOSCService;
 
-    public function AbstractOSCListener(service:OSCService)
+    public function AbstractOSCListener(service:IOSCService)
     {
         _service = service;
     }

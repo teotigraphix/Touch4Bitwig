@@ -44,6 +44,9 @@ public class ApplicationStartupCommand extends Command
     public var applicationController:ApplicationController;
 
     [Inject]
+    public var oscMessageController:OSCMessageController;
+
+    [Inject]
     public var event:Event;
 
     [Inject]
@@ -83,8 +86,7 @@ public class ApplicationStartupCommand extends Command
             var bound:Boolean = configurationModel.connection.connect();
             if (bound)
             {
-                oscService.start(oscModel);
-                oscService.refresh();
+                oscMessageController.start();
                 dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
                 return;
             }

@@ -24,14 +24,14 @@ import com.teotigraphix.frameworks.osc.OSCMessage;
 
 import touch4bitwig.model.state.Arranger;
 import touch4bitwig.model.state.Mixer;
-import touch4bitwig.service.support.OSCService;
+import touch4bitwig.service.IOSCService;
 
 public class FrameListener extends AbstractOSCListener
 {
     private var _arranger:Arranger;
     private var _mixer:Mixer;
 
-    public function FrameListener(service:OSCService, arranger:Arranger, mixer:Mixer)
+    public function FrameListener(service:IOSCService, arranger:Arranger, mixer:Mixer)
     {
         super(service);
         _arranger = arranger;

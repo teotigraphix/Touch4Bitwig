@@ -20,12 +20,16 @@
 package touch4bitwig.service
 {
 
-import starling.events.Event;
+import com.teotigraphix.frameworks.osc.OSCManager;
 
-import touch4bitwig.model.IOSCModel;
+import starling.events.Event;
 
 public interface IOSCService
 {
+    function get oscManager():OSCManager
+
+    function set oscManager(value:OSCManager):void;
+
     function send(message:String):void;
 
     function sendString(message:String, value:String):void;
@@ -33,8 +37,6 @@ public interface IOSCService
     function sendInt(message:String, value:int):void;
 
     function sendBoolean(message:String, value:Boolean):void;
-
-    function start(model:IOSCModel):void;
 
     /**
      * Refreshes all osc messages from the current Bitwig session model.

@@ -26,6 +26,7 @@ import com.teotigraphix.app.config.FrameworkContext;
 import org.robotlegs.starling.base.ContextEventType;
 
 import touch4bitwig.controller.ApplicationController;
+import touch4bitwig.controller.OSCMessageController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
@@ -108,6 +109,7 @@ public class ApplicationContext extends FrameworkContext
     private function configureController():void
     {
         injector.mapSingleton(ApplicationController);
+        injector.mapSingleton(OSCMessageController);
         commandMap.mapEvent(ContextEventType.STARTUP, ApplicationStartupCommand);
     }
 
