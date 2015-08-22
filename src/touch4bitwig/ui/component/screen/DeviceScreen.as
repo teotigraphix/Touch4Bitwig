@@ -1,6 +1,22 @@
-/**
- * Created by Teoti on 4/5/2015.
- */
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+
 package touch4bitwig.ui.component.screen
 {
 
@@ -15,7 +31,7 @@ import feathers.layout.VerticalLayoutData;
 
 import starling.events.Event;
 
-import touch4bitwig.model.support.DeviceModel;
+import touch4bitwig.model.support.OSCModel;
 import touch4bitwig.ui.component.device.DeviceBankPager;
 import touch4bitwig.ui.component.device.DeviceNavigationControl;
 import touch4bitwig.ui.component.device.DeviceSelectBar;
@@ -75,10 +91,10 @@ public class DeviceScreen extends Screen
 
         _deviceBankSelector.dataProvider = new ListCollection(
                 [
-                    {label: "Param", mode: DeviceModel.MODE_PARAM},
-                    {label: "Common", mode: DeviceModel.MODE_COMMON},
-                    {label: "Envelope", mode: DeviceModel.MODE_ENVELOPE},
-                    {label: "Macro", mode: DeviceModel.MODE_MACRO}
+                    {label: "Param", mode: OSCModel.DEVICE_MODE_PARAM},
+                    {label: "Common", mode: OSCModel.DEVICE_MODE_COMMON},
+                    {label: "Envelope", mode: OSCModel.DEVICE_MODE_ENVELOPE},
+                    {label: "Macro", mode: OSCModel.DEVICE_MODE_MACRO}
                 ]);
         _deviceBankSelector.addEventListener(Event.CHANGE, deviceBankSelector_changeHandler);
         _deviceBankSelector.layoutData = new VerticalLayoutData(NaN, NaN);

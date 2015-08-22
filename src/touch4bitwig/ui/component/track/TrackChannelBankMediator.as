@@ -32,9 +32,6 @@ import touch4bitwig.ui.AbstractUIMediator;
 
 public class TrackChannelBankMediator extends AbstractUIMediator
 {
-    [Inject]
-    public var oscService:IOSCService;
-
     private var view:TrackChannelBank;
     private var _interactionMap:Object = {};
 
