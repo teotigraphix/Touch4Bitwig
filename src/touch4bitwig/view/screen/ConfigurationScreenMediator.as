@@ -20,18 +20,18 @@
 package touch4bitwig.view.screen
 {
 
-import starling.events.Event;
-
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.view.AbstractMediator;
 
-import touch4bitwig.view.screen.TestScreen;
-
-public class TestScreenMediator extends AbstractMediator
+public class ConfigurationScreenMediator extends AbstractMediator
 {
     [Inject]
-    public var screen:TestScreen;
+    public var screen:ConfigurationScreen;
 
-    public function TestScreenMediator()
+    [Inject]
+    public var configurationModel:IConfigurationModel;
+
+    public function ConfigurationScreenMediator()
     {
     }
 
@@ -39,22 +39,12 @@ public class TestScreenMediator extends AbstractMediator
     {
         super.onRegister();
 
-        addViewListener("changed", view_changeHandler);
+        screen.ipList.dataProvider = configurationModel.ipDataProvider;
     }
 
     override public function onRemove():void
     {
         super.onRemove();
-    }
-
-    private function view_changeHandler(event:Event, selected:Boolean):void
-    {
-        //transportModel.transport.isPlaying = selected;
-
-        if (selected)
-            oscService.send("/play");
-        else
-            oscService.sendInt("/stop", 1);
     }
 }
 }

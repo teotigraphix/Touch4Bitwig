@@ -1,5 +1,3 @@
-<?xml version="1.0"?>
-<!--
 ////////////////////////////////////////////////////////////////////////////////
 // Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
 //
@@ -18,17 +16,25 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
--->
-<f:Screen xmlns:f="library://ns.feathersui.com/mxml" 
-          xmlns:fx="http://ns.adobe.com/mxml/2009">
-    
-    <f:ToggleButton id="button" label="Play/Stop Transport" isToggle="true" change="onTriggered(event)"/>
 
-    <fx:Script><![CDATA[
-        private function onTriggered(event:starling.events.Event):void
-        {
-            dispatchEventWith("changed", false, button.isSelected);
-        }
-        import starling.events.Event;
-        ]]></fx:Script>
-</f:Screen>
+package touch4bitwig.model
+{
+
+import feathers.data.HierarchicalCollection;
+
+import touch4bitwig.app.config.ApplicationConfiguration;
+import touch4bitwig.model.support.ConnectionInstance;
+
+public interface IConfigurationModel
+{
+    function get connection():ConnectionInstance;
+
+    function get ipDataProvider():HierarchicalCollection;
+
+    function set ipDataProvider(value:HierarchicalCollection):void;
+
+    function get configuration():ApplicationConfiguration;
+
+    function set configuration(configuration:ApplicationConfiguration):void;
+}
+}

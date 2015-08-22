@@ -27,13 +27,14 @@ import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
 import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.IUIModel;
 import touch4bitwig.view.AbstractMediator;
-import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.ApplicationScreens;
+import touch4bitwig.view.MainNavigator;
 
 /*
 
-Starling] Mask support requires 'depthAndStencil' to be enabled in the application descriptor.
+[Starling] Mask support requires 'depthAndStencil' to be enabled in the application descriptor.
 [Starling] Initialization complete.
 [Starling] Display Driver: DirectX9
 new ApplicationContext()
@@ -52,7 +53,11 @@ new MainMediator()
     FrameworkContext.startupComplete()
     FrameworkContext.dispatchEventWith(STARTUP)
 StartupCommand.execute()
-...
+
+
+... config, load ips, refresh osc
+
+
 BootstrapNavigator.CREATION_COMPLETE()
     [Log] {MainMediator} , onRegister()
 BootstrapApplication.CREATION_COMPLETE()
@@ -68,6 +73,9 @@ public class MainMediator extends AbstractMediator
 
     [Inject]
     public var navigator:MainNavigator;
+
+    [Inject]
+    public var uiModel:IUIModel;
 
     public function MainMediator()
     {
@@ -94,11 +102,6 @@ public class MainMediator extends AbstractMediator
 
         //// var aspect:String = this.stage.stageWidth >= this.stage.stageHeight ? StageAspectRatio.LANDSCAPE :
         //// StageAspectRatio.PORTRAIT;
-
-        Starling.juggler.delayCall(function ():void
-                                   {
-                                       oscService.refresh();
-                                   }, 0.2);
     }
 
     override public function onRemove():void
@@ -117,7 +120,7 @@ public class MainMediator extends AbstractMediator
         logger.log(TAG, "context_applicationCompleteHandler()");
         logger.log(TAG, "Show initial screen");
 
-        navigator.pushScreen(ApplicationScreens.SCREEN_TRANSPORT);
+        uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

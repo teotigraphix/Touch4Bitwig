@@ -22,6 +22,8 @@ package touch4bitwig.view
 
 public final class ApplicationScreens
 {
+    public static const SCREEN_CONFIGURATION:String = "ConfigurationScreen";
+
     public static const SCREEN_TEST:String = "TestScreen";
 
     public static const SCREEN_MIXER:String = "MixerScreen";

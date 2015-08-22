@@ -20,9 +20,6 @@
 package touch4bitwig.model.support
 {
 
-import flash.filesystem.File;
-
-import touch4bitwig.app.config.ApplicationConfiguration;
 import touch4bitwig.event.DeviceModelEventType;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.state.Application;
@@ -50,7 +47,6 @@ public class OSCModel extends AbstractModel implements IOSCModel
     public var configurationService:IConfigurationService;
 
     //
-    private var _connection:ConnectionInstance;
     private var _automationWriteModeMap:Object;
     private var _application:Application;
     private var _trackBank:TrackBank;
@@ -62,18 +58,6 @@ public class OSCModel extends AbstractModel implements IOSCModel
     private var _panes:Panes;
     private var _arranger:Arranger;
     private var _mixer:Mixer;
-    private var _configuration:ApplicationConfiguration;
-
-    [Inject]
-    public function get connection():ConnectionInstance
-    {
-        return _connection;
-    }
-
-    public function set connection(value:ConnectionInstance):void
-    {
-        _connection = value;
-    }
 
     public function get transport():Transport
     {
@@ -133,16 +117,6 @@ public class OSCModel extends AbstractModel implements IOSCModel
         return _mixer;
     }
 
-    public function get configuration():ApplicationConfiguration
-    {
-        return _configuration;
-    }
-
-    public function set configuration(value:ApplicationConfiguration):void
-    {
-        _configuration = value;
-    }
-
     public function OSCModel()
     {
     }
@@ -167,13 +141,6 @@ public class OSCModel extends AbstractModel implements IOSCModel
         _panes = new Panes(oscService);
         _arranger = new Arranger(oscService);
         _mixer = new Mixer(oscService);
-    }
-
-    public function setup():void
-    {
-        var file:File = File.applicationDirectory.resolvePath("config.xml");
-        // TODO this is going to need to be async
-        _configuration = configurationService.load(file);
     }
 
     public function getAutomationWriteModeValue(index:int):String

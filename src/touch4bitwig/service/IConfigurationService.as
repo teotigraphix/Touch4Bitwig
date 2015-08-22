@@ -20,12 +20,18 @@
 package touch4bitwig.service
 {
 
-import flash.filesystem.File;
+import com.teotigraphix.service.async.IStepCommand;
 
 import touch4bitwig.app.config.ApplicationConfiguration;
 
 public interface IConfigurationService
 {
-    function load(configFile:File):ApplicationConfiguration;
+    function loadIPsAsync():IStepCommand;
+
+    /**
+     * Loads the XML configuration file into the ApplicationConfiguration.
+     * @return Returns an ApplicationConfiguration if the config file exists.
+     */
+    function loadLastConfigurationFile():ApplicationConfiguration;
 }
 }

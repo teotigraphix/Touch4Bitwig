@@ -23,7 +23,7 @@ package touch4bitwig.controller
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
-import touch4bitwig.model.support.ConnectionInstance;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.service.IOSCService;
 
 public class ApplicationController extends AbstractController
@@ -31,7 +31,7 @@ public class ApplicationController extends AbstractController
     private static const TAG:String = "ApplicationController";
 
     [Inject]
-    public var connection:ConnectionInstance;
+    public var configurationModel:IConfigurationModel;
 
     [Inject]
     public var oscService:IOSCService;
@@ -65,7 +65,7 @@ public class ApplicationController extends AbstractController
 
     private function applicationExitHandler(event:Event):void
     {
-        connection.close();
+        configurationModel.connection.close();
     }
 }
 }

@@ -20,21 +20,23 @@
 package touch4bitwig.controller.command
 {
 
-import flash.net.InterfaceAddress;
-import flash.net.NetworkInfo;
-import flash.net.NetworkInterface;
+import com.teotigraphix.service.async.IStepCommand;
+import com.teotigraphix.ui.component.Toast;
 
+import org.as3commons.async.operation.event.OperationEvent;
 import org.robotlegs.starling.mvcs.Command;
 
-import starling.core.Starling;
 import starling.events.Event;
 
 import touch4bitwig.app.config.ApplicationConfiguration;
 import touch4bitwig.controller.*;
 import touch4bitwig.event.ApplicationEventType;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
-import touch4bitwig.model.support.ConnectionInstance;
+import touch4bitwig.model.IUIModel;
+import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
+import touch4bitwig.view.ApplicationScreens;
 
 public class ApplicationStartupCommand extends Command
 {
@@ -45,58 +47,56 @@ public class ApplicationStartupCommand extends Command
     public var event:Event;
 
     [Inject]
+    public var configurationModel:IConfigurationModel;
+
+    [Inject]
+    public var configurationService:IConfigurationService;
+
+    [Inject]
     public var oscModel:IOSCModel;
 
     [Inject]
     public var oscService:IOSCService;
 
+    [Inject]
+    public var uiModel:IUIModel;
+
     override public function execute():void
     {
         trace("StartupCommand.execute()");
 
-        // TODO this will ne asnyc, right now it's reading from the file system which is sync
-        oscModel.setup();
-
-        var config:ApplicationConfiguration = oscModel.configuration;
-
-        var connection:ConnectionInstance = oscModel.connection;
-        connection.setup(config.serverIP, config.serverPort, config.clientIP, config.clientPort);
-
-        printAddresses();
-
-        var bound:Boolean = connection.connect();
-        if (!bound)
-        {
-            printAddresses();
-            return;
-        }
-
-        oscService.start(oscModel);
-
-        Starling.juggler.delayCall(function ():void
-                                   {
-                                       dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
-                                   }, 0.2);
+        var command:IStepCommand = configurationService.loadIPsAsync();
+        command.addCompleteListener(loadIPsCompleteHandler);
+        command.addErrorListener(loadIPsErrorHandler);
+        command.execute();
     }
 
-    private function printAddresses():void
+    private function loadIPsCompleteHandler(event:OperationEvent):void
     {
-        var networkInterfaces:Vector.<NetworkInterface> = NetworkInfo.networkInfo.findInterfaces();
-        for each (var ni:NetworkInterface in networkInterfaces)
+        configurationModel.ipDataProvider = event.result;
+
+        var config:ApplicationConfiguration = configurationService.loadLastConfigurationFile();
+        if (config != null)
         {
-            trace("---------------------------------------------------");
-            trace(">>> Name : " + ni.name);
-            trace(">>> DisplayName : " + ni.displayName);
-            trace(">>> Active : " + ni.active);
-            trace(">>> MTU : " + ni.mtu);
-            for each (var address:InterfaceAddress in ni.addresses)
+            configurationModel.configuration = config;
+
+            var bound:Boolean = configurationModel.connection.connect();
+            if (bound)
             {
-                trace(">>> !!!! Address: " + address.address);
-                trace(">>> !!!! Broadcast: " + address.broadcast);
-                trace(">>> !!!! IP Version: " + address.ipVersion);
-                trace(">>> !!!! Prefix Length: " + address.prefixLength);
+                oscService.start(oscModel);
+                oscService.refresh();
+                dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
+                return;
             }
         }
+
+        // if the config file does not exist OR the connection is not bound (bad IP)
+        uiModel.screenID = ApplicationScreens.SCREEN_CONFIGURATION;
+    }
+
+    private function loadIPsErrorHandler(event:OperationEvent):void
+    {
+        Toast.show("Error in configuration.", 1);
     }
 }
 }

@@ -24,8 +24,8 @@
                        xmlns:ui="com.teotigraphix.app.ui.*">
 
 
-    <f:StackScreenNavigatorItem id="TestScreen"
-                                screen="{testScreen}">
+    <f:StackScreenNavigatorItem id="ConfigurationScreen"
+                                screen="{configurationScreen}">
     </f:StackScreenNavigatorItem>
 
     <f:StackScreenNavigatorItem id="MixerScreen"
@@ -42,15 +42,14 @@
 
 
     <fx:Script><![CDATA[
-        import touch4bitwig.view.ApplicationScreens;
+        import touch4bitwig.view.screen.ConfigurationScreen;
+        import touch4bitwig.view.screen.MixerScreen;
         import touch4bitwig.view.screen.PanelsScreen;
         import touch4bitwig.view.screen.TransportScreen;
-        import touch4bitwig.view.screen.MixerScreen;
-        import touch4bitwig.view.screen.TestScreen;
 
         private const a:ApplicationScreens;
 
-        public static const testScreen:Class = TestScreen;
+        public static const configurationScreen:Class = ConfigurationScreen;
         public static const mixerScreen:Class = MixerScreen;
         public static const transportScreen:Class = TransportScreen;
         public static const panelsScreen:Class = PanelsScreen;

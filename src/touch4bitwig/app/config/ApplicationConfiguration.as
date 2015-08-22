@@ -50,24 +50,20 @@ public class ApplicationConfiguration
     {
         var xml:XML = new XML(data);
 
-        if (xml.connection[0].@deviceMode == "emulator") {
-
+        if (xml.connection[0].@deviceMode == "emulator")
+        {
             serverPort = xml.connection[0].serverEmulator.@port;
             serverIP = xml.connection[0].serverEmulator.@ip;
             clientPort = xml.connection[0].clientEmulator.@port;
             clientIP = xml.connection[0].clientEmulator.@ip;
         }
-        else{
-
+        else
+        {
             serverPort = xml.connection[0].serverDevice.@port;
             serverIP = xml.connection[0].serverDevice.@ip;
             clientPort = xml.connection[0].clientDevice.@port;
             clientIP = xml.connection[0].clientDevice.@ip;
         }
-
-
-
-
     }
 }
 }

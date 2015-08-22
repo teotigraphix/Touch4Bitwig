@@ -27,8 +27,10 @@ import org.robotlegs.starling.base.ContextEventType;
 
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.model.support.ConfigurationModel;
 import touch4bitwig.model.support.ConnectionInstance;
 import touch4bitwig.model.support.OSCModel;
 import touch4bitwig.model.support.UIModel;
@@ -37,8 +39,11 @@ import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.OSCService;
 import touch4bitwig.ui.component.frame.PanelLayoutGroup;
+import touch4bitwig.ui.component.frame.PanelLayoutGroupMediator;
 import touch4bitwig.ui.component.frame.PanelSubToggleGroup;
+import touch4bitwig.ui.component.frame.PanelSubToggleGroupMediator;
 import touch4bitwig.ui.component.frame.PanelToggleGroup;
+import touch4bitwig.ui.component.frame.PanelToggleGroupMediator;
 import touch4bitwig.ui.component.main.MainHeader;
 import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
@@ -48,18 +53,15 @@ import touch4bitwig.ui.component.transport.TransportBarMediator;
 import touch4bitwig.ui.component.transport.TransportDisplay;
 import touch4bitwig.ui.component.transport.TransportDisplayMediator;
 import touch4bitwig.ui.component.transport.TransportPopUp;
-import touch4bitwig.ui.component.frame.PanelLayoutGroupMediator;
-import touch4bitwig.ui.component.frame.PanelSubToggleGroupMediator;
-import touch4bitwig.ui.component.frame.PanelToggleGroupMediator;
 import touch4bitwig.ui.component.transport.TransportPopUpMediator;
 import touch4bitwig.view.MainNavigator;
+import touch4bitwig.view.screen.ConfigurationScreen;
+import touch4bitwig.view.screen.ConfigurationScreenMediator;
 import touch4bitwig.view.screen.MainMediator;
-import touch4bitwig.view.screen.MixerScreenMediator;
-import touch4bitwig.view.screen.PanelsScreenMediator;
-import touch4bitwig.view.screen.TestScreenMediator;
 import touch4bitwig.view.screen.MixerScreen;
+import touch4bitwig.view.screen.MixerScreenMediator;
 import touch4bitwig.view.screen.PanelsScreen;
-import touch4bitwig.view.screen.TestScreen;
+import touch4bitwig.view.screen.PanelsScreenMediator;
 
 public class ApplicationContext extends FrameworkContext
 {
@@ -95,8 +97,9 @@ public class ApplicationContext extends FrameworkContext
 
     private function configureModel():void
     {
-        injector.mapSingleton(ConnectionInstance);
+        injector.mapSingletonOf(IConfigurationModel, ConfigurationModel);
 
+        injector.mapSingleton(ConnectionInstance);
         injector.mapSingletonOf(IOSCModel, OSCModel);
 
         injector.mapSingletonOf(IUIModel, UIModel);
@@ -113,7 +116,8 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(MainNavigator, MainMediator);
         mediatorMap.mapView(MainHeader, MainHeaderMediator);
 
-        mediatorMap.mapView(TestScreen, TestScreenMediator);
+        // ConfigurationScreen
+        mediatorMap.mapView(ConfigurationScreen, ConfigurationScreenMediator);
 
         // MixerScreen
         mediatorMap.mapView(MixerScreen, MixerScreenMediator);

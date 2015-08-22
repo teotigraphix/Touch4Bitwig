@@ -28,6 +28,7 @@ import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
@@ -38,7 +39,8 @@ import touch4bitwig.service.support.osc.listeners.TransportListener;
 
 public class OSCService extends Actor implements IOSCService, IOSCListener
 {
-    //private var _model:GlobalModel;
+    [Inject]
+    public var configurationModel:IConfigurationModel;
 
     private var _oscManager:OSCManager;
 
@@ -65,29 +67,11 @@ public class OSCService extends Actor implements IOSCService, IOSCListener
      */
     public function start(model:IOSCModel):void
     {
-        //_model = model;
-
-        ////var input:String = BitwigApplication.isEmulator ? "192.168.1.36" : "192.168.1.39"; // <- Android
-        //var input:String = "192.168.1.36";
-        //var platform:String = SystemUtil.platform;
-        //try
-        //{
-        //    _udpConnectorIn = new UDPConnector(input, 9000, true);
-        //}
-        //catch (e:Error)
-        //{
-        //    trace(e.getStackTrace());
-        //    return false;
-        //}
-        //
-        //_udpConnectorOut = new UDPConnector("192.168.1.36", 8000, false);
-        //
-        //_oscManager = new OSCManager(_udpConnectorIn, _udpConnectorOut);
-        ////_oscManager.usePatternMatching = true;
-
-        _oscManager = model.connection.oscManager;
+        _oscManager = configurationModel.connection.oscManager;
         _oscManager.addMsgListener(this);
 
+        // XXX This is totally wrong, a service shouldn't have references to a Model
+        // needs to be moved in a OSCMessageController class
         _trackListener = new TrackListener(this, model.trackBank);
         _transportListener = new TransportListener(this, model.transport);
         _deviceListener = new DeviceListener(this, model.cursorDevice); // XXX cursorDevice This needs attention
@@ -160,7 +144,9 @@ public class OSCService extends Actor implements IOSCService, IOSCListener
     {
         var osc:OSCMessage = new OSCMessage();
         osc.address = "/refresh";
-        _oscManager.sendOSCPacket(osc);
+        // XXX TEMP
+        if (_oscManager != null)
+            _oscManager.sendOSCPacket(osc);
     }
 
     public function dispatchEventWith(type:String, bubbles:Boolean = false, data:Object = null):void
