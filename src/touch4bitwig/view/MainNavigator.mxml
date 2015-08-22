@@ -42,15 +42,17 @@
 
 
     <fx:Script><![CDATA[
-        import touch4bitwig.ui.component.screen.PanelsScreen;
+        import touch4bitwig.view.screen.ApplicationScreens;
+        import touch4bitwig.view.screen.PanelsScreen;
         import touch4bitwig.view.screen.TransportScreen;
         import touch4bitwig.view.screen.MixerScreen;
         import touch4bitwig.view.screen.TestScreen;
+
+        private const a:ApplicationScreens;
 
         public static const testScreen:Class = TestScreen;
         public static const mixerScreen:Class = MixerScreen;
         public static const transportScreen:Class = TransportScreen;
         public static const panelsScreen:Class = PanelsScreen;
-
         ]]></fx:Script>
 </ui:BootstrapNavigator>

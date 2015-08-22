@@ -27,5 +27,7 @@ public final class ApplicationScreens
     public static const SCREEN_MIXER:String = "MixerScreen";
 
     public static const SCREEN_TRANSPORT:String = "TransportScreen";
+
+    public static const SCREEN_PANEL:String = "PanelScreen";
 }
 }

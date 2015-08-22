@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+        // Arrange; CueMarkers, PlaybackFollow
+
+        // Toggles;      NoteEditor, Automation, Device, Mixer, Browser, Inspector
+
+        // Arrange;      Notes, Automation, Device, Mixer
+        // Mix;          Notes, Automation, Device
+        // Edit;         Device, Mixer
+
+        // Arrange; ClipLauncher, Timeline, IO, , EffectTracks, TrackHeight, ActivateTracks
+        // Mix;     ClipLauncher, Meters, DeviceChain, Sends, IO, EffectTracks, ActivateTracks, Crossfade
+        // Edit;    N/A
+-->
+<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:frame="touch4bitwig.ui.component.frame.*"
+               xmlns:main="touch4bitwig.ui.component.main.*">
+
+    <f:layout>
+        <f:VerticalLayout/>
+    </f:layout>
+
+    <main:MainHeader>
+        <main:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </main:layoutData>
+    </main:MainHeader>
+
+    <frame:PanelLayoutGroup>
+        <frame:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </frame:layoutData>
+    </frame:PanelLayoutGroup>
+
+    <frame:PanelToggleGroup>
+        <frame:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </frame:layoutData>
+    </frame:PanelToggleGroup>
+
+    <frame:PanelSubToggleGroup>
+        <frame:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </frame:layoutData>
+    </frame:PanelSubToggleGroup>
+
+    <f:LayoutGroup>
+        <f:layoutData>
+            <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:LayoutGroup>
+
+</f:LayoutGroup>

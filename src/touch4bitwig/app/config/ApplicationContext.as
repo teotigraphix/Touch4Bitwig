@@ -27,6 +27,7 @@ import touch4bitwig.ui.component.main.MainHeader;
 import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
 import touch4bitwig.ui.component.mixer.MixerBankMediator;
+import touch4bitwig.view.screen.PanelsScreen;
 import touch4bitwig.ui.component.transport.TransportBar;
 import touch4bitwig.ui.component.transport.TransportDisplay;
 import touch4bitwig.ui.component.transport.TransportDisplayMediator;
@@ -39,6 +40,7 @@ import touch4bitwig.ui.mediator.transport.TransportPopUpMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.mediator.MainMediator;
 import touch4bitwig.view.mediator.MixerScreenMediator;
+import touch4bitwig.view.mediator.PanelsScreenMediator;
 import touch4bitwig.view.mediator.TestScreenMediator;
 import touch4bitwig.view.screen.MixerScreen;
 import touch4bitwig.view.screen.TestScreen;
@@ -111,10 +113,11 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(TransportPopUp, TransportPopUpMediator);
         mediatorMap.mapView(TransportDisplay, TransportDisplayMediator);
 
+        // PanelsScreen
+        mediatorMap.mapView(PanelsScreen, PanelsScreenMediator);
         mediatorMap.mapView(PanelLayoutGroup, PanelLayoutGroupMediator);
         mediatorMap.mapView(PanelSubToggleGroup, PanelSubToggleGroupMediator);
         mediatorMap.mapView(PanelToggleGroup, PanelToggleGroupMediator);
-
     }
 
 }

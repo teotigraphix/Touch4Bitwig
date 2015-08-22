@@ -6,6 +6,10 @@ package touch4bitwig.theme
 
 public final class StyleNames
 {
+    // Main
+    public static const MAIN_HEADER:String = "main-header";
+
+    // Transport
     public static const TRANSPORT_DISPLAY_TEMPO:String = "transport-display-tempo";
     public static const TRANSPORT_DISPLAY_TIME_SIGNATURE:String = "transport-display-time-signature";
     public static const TRANSPORT_DISPLAY_POSITION:String = "transport-display-position";
