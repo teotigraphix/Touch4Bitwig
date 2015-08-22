@@ -22,7 +22,7 @@ package touch4bitwig.service
 
 import starling.events.Event;
 
-import touch4bitwig.model.state.GlobalModel;
+import touch4bitwig.model.IOSCModel;
 
 public interface IOSCService
 {
@@ -34,7 +34,7 @@ public interface IOSCService
 
     function sendBoolean(message:String, value:Boolean):void;
 
-    function start(model:GlobalModel):void;
+    function start(model:IOSCModel):void;
 
     /**
      * Refreshes all osc messages from the current Bitwig session model.

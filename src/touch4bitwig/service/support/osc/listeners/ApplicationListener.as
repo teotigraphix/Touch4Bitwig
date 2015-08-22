@@ -6,14 +6,14 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.support.ApplicationModel;
+import touch4bitwig.model.state.Application;
 import touch4bitwig.service.support.OSCService;
 
 public class ApplicationListener extends AbstractOSCListener
 {
-    private var _model:ApplicationModel;
+    private var _model:Application;
 
-    public function ApplicationListener(service:OSCService, model:ApplicationModel)
+    public function ApplicationListener(service:OSCService, model:Application)
     {
         super(service);
         _model = model;
@@ -29,12 +29,12 @@ public class ApplicationListener extends AbstractOSCListener
 
     private function handleLayout(osc:OSCMessage):void
     {
-        _model.application.layout = osc.arguments[0];
+        _model.layout = osc.arguments[0];
     }
 
     private function handleActivate(osc:OSCMessage):void
     {
-        _model.application.active = osc.arguments[0];
+        _model.active = osc.arguments[0];
     }
 }
 }

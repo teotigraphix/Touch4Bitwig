@@ -5,8 +5,9 @@ package touch4bitwig.model.support
 {
 
 import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.IUIModel;
 
-public class UIModel extends AbstractModel
+public class UIModel extends AbstractModel implements IUIModel
 {
     private var _screenID:String;
 

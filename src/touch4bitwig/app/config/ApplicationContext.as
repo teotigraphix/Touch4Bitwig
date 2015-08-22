@@ -8,13 +8,10 @@ import org.robotlegs.starling.base.ContextEventType;
 
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
-import touch4bitwig.model.state.GlobalModel;
-import touch4bitwig.model.support.ApplicationModel;
+import touch4bitwig.model.IOSCModel;
+import touch4bitwig.model.IUIModel;
 import touch4bitwig.model.support.ConnectionInstance;
-import touch4bitwig.model.support.DeviceModel;
-import touch4bitwig.model.support.FrameModel;
-import touch4bitwig.model.support.TrackModel;
-import touch4bitwig.model.support.TransportModel;
+import touch4bitwig.model.support.OSCModel;
 import touch4bitwig.model.support.UIModel;
 import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
@@ -27,12 +24,11 @@ import touch4bitwig.ui.component.main.MainHeader;
 import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
 import touch4bitwig.ui.component.mixer.MixerBankMediator;
-import touch4bitwig.view.screen.PanelsScreen;
 import touch4bitwig.ui.component.transport.TransportBar;
+import touch4bitwig.ui.component.transport.TransportBarMediator;
 import touch4bitwig.ui.component.transport.TransportDisplay;
 import touch4bitwig.ui.component.transport.TransportDisplayMediator;
 import touch4bitwig.ui.component.transport.TransportPopUp;
-import touch4bitwig.ui.component.transport.TransportBarMediator;
 import touch4bitwig.ui.mediator.frame.PanelLayoutGroupMediator;
 import touch4bitwig.ui.mediator.frame.PanelSubToggleGroupMediator;
 import touch4bitwig.ui.mediator.frame.PanelToggleGroupMediator;
@@ -43,6 +39,7 @@ import touch4bitwig.view.mediator.MixerScreenMediator;
 import touch4bitwig.view.mediator.PanelsScreenMediator;
 import touch4bitwig.view.mediator.TestScreenMediator;
 import touch4bitwig.view.screen.MixerScreen;
+import touch4bitwig.view.screen.PanelsScreen;
 import touch4bitwig.view.screen.TestScreen;
 
 public class ApplicationContext extends FrameworkContext
@@ -79,16 +76,11 @@ public class ApplicationContext extends FrameworkContext
 
     private function configureModel():void
     {
-        injector.mapSingleton(TrackModel);
-        injector.mapSingleton(TransportModel);
-        injector.mapSingleton(DeviceModel);
-        injector.mapSingleton(FrameModel);
-
-        injector.mapSingleton(ApplicationModel);
         injector.mapSingleton(ConnectionInstance);
 
-        injector.mapSingleton(GlobalModel);
-        injector.mapSingleton(UIModel);
+        injector.mapSingletonOf(IOSCModel, OSCModel);
+
+        injector.mapSingletonOf(IUIModel, UIModel);
     }
 
     private function configureController():void

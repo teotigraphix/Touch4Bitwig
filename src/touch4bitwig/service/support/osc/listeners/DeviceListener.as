@@ -6,7 +6,7 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.support.DeviceModel;
+import touch4bitwig.model.state.Device;
 import touch4bitwig.service.support.OSCService;
 
 public class DeviceListener
@@ -14,9 +14,9 @@ public class DeviceListener
     private var _methods:Array = [];
 
     private var _service:OSCService;
-    private var _model:DeviceModel;
+    private var _model:Device;
 
-    public function DeviceListener(service:OSCService, model:DeviceModel)
+    public function DeviceListener(service:OSCService, model:Device)
     {
         _service = service;
         _model = model;
@@ -84,68 +84,68 @@ public class DeviceListener
 
     private function canSelectPreviousHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.canSelectPrevious = osc.arguments[0];
+        _model.canSelectPrevious = osc.arguments[0];
     }
 
     private function canSelectNextHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.canSelectNext = osc.arguments[0];
+        _model.canSelectNext = osc.arguments[0];
     }
 
     private function nameHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.name = osc.arguments[0];
+        _model.name = osc.arguments[0];
     }
 
     private function bypassHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.bypass = osc.arguments[0];
+        _model.bypass = osc.arguments[0];
     }
 
     private function expandHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.expanded = osc.arguments[0];
+        _model.expanded = osc.arguments[0];
     }
 
     private function windowHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.windowVisible = osc.arguments[0];
+        _model.windowVisible = osc.arguments[0];
     }
 
     private function macroVisibleHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.macroPageVisible = osc.arguments[0];
+        _model.macroPageVisible = osc.arguments[0];
     }
 
     private function paramVisibleHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.paramPageVisible = osc.arguments[0];
+        _model.paramPageVisible = osc.arguments[0];
     }
 
     private function selectedPageNameHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.selectedPageName = osc.arguments[0];
+        _model.selectedPageName = osc.arguments[0];
     }
 
     private function pageNamesHandler(osc:OSCMessage):void
     {
         var result:Array = osc.arguments[0].split(",");
-        _model.cursorDevice.pageNames = result;
+        _model.pageNames = result;
     }
 
     private function categoryHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.category = osc.arguments[0];
+        _model.category = osc.arguments[0];
     }
 
     private function creatorHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.creator = osc.arguments[0];
+        _model.creator = osc.arguments[0];
     }
 
     private function presetHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.preset = osc.arguments[0];
+        _model.preset = osc.arguments[0];
     }
 
     private function paramValuesHandler(osc:OSCMessage):void
@@ -155,24 +155,24 @@ public class DeviceListener
         var valuesSerialized:String = osc.arguments[0];
         var split:Array = valuesSerialized.split("|");
 
-        _model.cursorDevice.bank.params[index].setName(type, split[0]);
-        _model.cursorDevice.bank.params[index].setValueString(type, split[1]);
-        _model.cursorDevice.bank.params[index].setValue(type, split[2]);
+        _model.bank.params[index].setName(type, split[0]);
+        _model.bank.params[index].setValueString(type, split[1]);
+        _model.bank.params[index].setValue(type, split[2]);
     }
 
     private function paramNameHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.bank.params[toIndex(osc)].setName(toType(osc), osc.arguments[0]);
+        _model.bank.params[toIndex(osc)].setName(toType(osc), osc.arguments[0]);
     }
 
     private function paramValueHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.bank.params[toIndex(osc)].setValue(toType(osc), osc.arguments[0]);
+        _model.bank.params[toIndex(osc)].setValue(toType(osc), osc.arguments[0]);
     }
 
     private function paramValueStrHandler(osc:OSCMessage):void
     {
-        _model.cursorDevice.bank.params[toIndex(osc)].setValueString(toType(osc), osc.arguments[0]);
+        _model.bank.params[toIndex(osc)].setValueString(toType(osc), osc.arguments[0]);
     }
 
     private static function toType(osc:OSCMessage):String

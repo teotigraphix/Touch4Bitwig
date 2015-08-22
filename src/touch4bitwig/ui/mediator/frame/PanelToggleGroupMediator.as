@@ -13,26 +13,14 @@ import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.model.state.Application;
-
-import touch4bitwig.model.support.ApplicationModel;
-
-import touch4bitwig.model.support.FrameModel;
-
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.component.frame.PanelToggleGroup;
-
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
 public class PanelToggleGroupMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var frameModel:FrameModel;
-
-    [Inject]
-    public var applicationModel:ApplicationModel;
 
     private var view:PanelToggleGroup;
 
@@ -132,7 +120,7 @@ public class PanelToggleGroupMediator extends AbstractUIMediator
 
         view.buttonFactory = buttonFactory;
 
-        context_panelLayoutChange(null, {value: applicationModel.application.layout})
+        context_panelLayoutChange(null, {value: oscModel.application.layout})
     }
 
     override public function onRemove():void

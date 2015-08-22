@@ -6,18 +6,18 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.support.TransportModel;
+import touch4bitwig.model.state.Transport;
 import touch4bitwig.service.support.OSCService;
 
 public class TransportListener extends AbstractOSCListener
 {
-    private var _transportModel:TransportModel;
+    private var _model:Transport;
 
     public function TransportListener(service:OSCService,
-                                      transportModel:TransportModel)
+                                      model:Transport)
     {
         super(service);
-        _transportModel = transportModel;
+        _model = model;
         config();
     }
 
@@ -64,82 +64,82 @@ public class TransportListener extends AbstractOSCListener
 
     private function positionHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.positionString = osc.arguments[0];
+        _model.positionString = osc.arguments[0];
     }
 
     private function numeratorHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.numerator = osc.arguments[0];
+        _model.numerator = osc.arguments[0];
     }
 
     private function denominatorHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.denominator = osc.arguments[0];
+        _model.denominator = osc.arguments[0];
     }
 
     private function automationOverrideHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isAutomationOverride = osc.arguments[0];
+        _model.isAutomationOverride = osc.arguments[0];
     }
 
     private function tempoRawHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.tempoRaw = osc.arguments[0];
+        _model.tempoRaw = osc.arguments[0];
     }
 
     private function clickHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isClick = osc.arguments[0];
+        _model.isClick = osc.arguments[0];
     }
 
     private function playHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isPlaying = osc.arguments[0];
+        _model.isPlaying = osc.arguments[0];
     }
 
     private function recordHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isRecording = osc.arguments[0];
+        _model.isRecording = osc.arguments[0];
     }
 
     private function repeatHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isRepeat = osc.arguments[0];
+        _model.isRepeat = osc.arguments[0];
     }
 
     private function prerollHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isPreroll = osc.arguments[0];
+        _model.isPreroll = osc.arguments[0];
     }
 
     private function overdubLauncherHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isOverdubLauncher = osc.arguments[0];
+        _model.isOverdubLauncher = osc.arguments[0];
     }
 
     private function overdubHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isOverdub = osc.arguments[0];
+        _model.isOverdub = osc.arguments[0];
     }
 
     private function corssfadeHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isCrossfade = osc.arguments[0];
+        _model.isCrossfade = osc.arguments[0];
     }
 
     private function autoWriteHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isAutowrite = osc.arguments[0];
+        _model.isAutowrite = osc.arguments[0];
     }
 
     private function autowriteLauncherHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.isAutowriteLauncher = osc.arguments[0];
+        _model.isAutowriteLauncher = osc.arguments[0];
     }
 
     private function automationWriteModeHandler(osc:OSCMessage):void
     {
-        _transportModel.transport.automationWriteMode = osc.arguments[0];
+        _model.automationWriteMode = osc.arguments[0];
     }
 
 }

@@ -15,8 +15,6 @@ import starling.events.Event;
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.event.FrameModelEventType;
 import touch4bitwig.model.state.Application;
-import touch4bitwig.model.support.ApplicationModel;
-import touch4bitwig.model.support.FrameModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.component.frame.PanelSubToggleGroup;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
@@ -25,12 +23,6 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var frameModel:FrameModel;
-
-    [Inject]
-    public var applicationModel:ApplicationModel;
 
     private var view:PanelSubToggleGroup;
 
@@ -78,7 +70,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-clip-launcher-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-clip-launcher-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.arranger.clipLauncherVisible,
+                isSelected: oscModel.arranger.clipLauncherVisible,
                 address: "/arranger/clipLauncherSectionVisibility",
                 change: view_changeHandler
             },
@@ -88,7 +80,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-timeline-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-timeline-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.arranger.timelineVisible,
+                isSelected: oscModel.arranger.timelineVisible,
                 address: "/arranger/timeLineVisibility",
                 change: view_changeHandler
             },
@@ -98,7 +90,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-io-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-io-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.arranger.ioVisible,
+                isSelected: oscModel.arranger.ioVisible,
                 address: "/arranger/ioSectionVisibility",
                 change: view_changeHandler
             },
@@ -108,7 +100,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-effect-tracks-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-effect-tracks-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.arranger.effectTracksVisible,
+                isSelected: oscModel.arranger.effectTracksVisible,
                 address: "/arranger/effectTracksVisibility",
                 change: view_changeHandler
             },
@@ -118,7 +110,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-track-height-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-track-height-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.arranger.trackRowHeightVisible,
+                isSelected: oscModel.arranger.trackRowHeightVisible,
                 address: "/arranger/trackRowHeight",
                 change: view_changeHandler
             },
@@ -128,7 +120,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-track-activate-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-track-activate-selected-skin"),
                 isToggle: true,
-                //isSelected: frameModel.arranger.activeTracks,
+                //isSelected: oscModel.arranger.activeTracks,
                 address: null,
                 isEnabled: false,
                 change: view_changeHandler
@@ -142,7 +134,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-clip-launcher-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-clip-launcher-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.mixer.clipLauncherVisible,
+                isSelected: oscModel.mixer.clipLauncherVisible,
                 address: "/mixer/clipLauncherSectionVisibility",
                 change: view_changeHandler
             },
@@ -152,7 +144,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-meters-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-meters-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.mixer.meterVisible,
+                isSelected: oscModel.mixer.meterVisible,
                 address: "/mixer/meterSectionVisibility",
                 change: view_changeHandler
             },
@@ -162,7 +154,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-device-chain-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-device-chain-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.mixer.deviceVisible,
+                isSelected: oscModel.mixer.deviceVisible,
                 address: "/mixer/deviceSectionVisibility",
                 change: view_changeHandler
             },
@@ -172,7 +164,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-sends-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-sends-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.mixer.sendsVisible,
+                isSelected: oscModel.mixer.sendsVisible,
                 address: "/mixer/sendsSectionVisibility",
                 change: view_changeHandler
             },
@@ -182,7 +174,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-io-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-io-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.mixer.ioVisible,
+                isSelected: oscModel.mixer.ioVisible,
                 address: "/mixer/ioSectionVisibility",
                 change: view_changeHandler
             },
@@ -192,7 +184,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-effect-tracks-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-effect-tracks-selected-skin"),
                 isToggle: true,
-                //isSelected: frameModel.mixer.effectTracksVisible,
+                //isSelected: oscModel.mixer.effectTracksVisible,
                 address: "/mixer/clipLauncherSectionVisibility",
                 change: view_changeHandler,
                 isEnabled: false
@@ -203,7 +195,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-track-activate-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-track-activate-selected-skin"),
                 isToggle: true,
-                //isSelected: frameModel.mixer.activeTracks,
+                //isSelected: oscModel.mixer.activeTracks,
                 address: null,
                 change: view_changeHandler,
                 isEnabled: false
@@ -214,7 +206,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
                 defaultIcon: AssetMap.createImage("icon-crossfade-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-crossfade-selected-skin"),
                 isToggle: true,
-                isSelected: frameModel.mixer.crossFadeVisible,
+                isSelected: oscModel.mixer.crossFadeVisible,
                 address: "/mixer/crossFadeSectionVisibility",
                 change: view_changeHandler
             }
@@ -222,7 +214,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 
         _editDataProvider = new ListCollection([]);
 
-        context_panelLayoutChange(null, {value: applicationModel.application.layout});
+        context_panelLayoutChange(null, {value: oscModel.application.layout});
     }
 
     override public function onRegister():void
@@ -249,7 +241,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 
     private function context_mixerChangeHandler(event:Event, data:Object):void
     {
-        if (applicationModel.application.layout != Application.LAYOUT_MIX)
+        if (oscModel.application.layout != Application.LAYOUT_MIX)
             return;
 
         var item:Object = getMixerItem(event.type);
@@ -265,7 +257,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 
     private function context_arrangerChangeHandler(event:Event, data:Object):void
     {
-        if (applicationModel.application.layout != Application.LAYOUT_ARRANGE)
+        if (oscModel.application.layout != Application.LAYOUT_ARRANGE)
             return;
 
         var item:Object = getArrangerItem(event.type);

@@ -7,7 +7,6 @@ package touch4bitwig.ui.component.main
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.model.support.ApplicationModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
@@ -15,9 +14,6 @@ public class MainHeaderMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var applicationModel:ApplicationModel;
 
     [Inject]
     public var view:MainHeader;
@@ -35,7 +31,7 @@ public class MainHeaderMediator extends AbstractUIMediator
         addViewListener(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, view_activeEngineChange);
         addViewListener(MainHeader.EVENT_SCREEN_CHANGE, view_screenChange);
 
-        view.setActiveEngine(applicationModel.application.active);
+        view.setActiveEngine(oscModel.application.active);
     }
 
     override public function onRemove():void

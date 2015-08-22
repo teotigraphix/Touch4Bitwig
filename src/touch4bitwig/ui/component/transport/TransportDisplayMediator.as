@@ -7,16 +7,12 @@ package touch4bitwig.ui.component.transport
 import starling.events.Event;
 
 import touch4bitwig.event.TransportModelEventType;
-import touch4bitwig.model.support.TransportModel;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
 public class TransportDisplayMediator extends AbstractUIMediator
 {
     [Inject]
     public var view:TransportDisplay;
-
-    [Inject]
-    public var transportModel:TransportModel;
 
     public function TransportDisplayMediator()
     {
@@ -31,9 +27,9 @@ public class TransportDisplayMediator extends AbstractUIMediator
         addContextListener(TransportModelEventType.DENOMINATOR_CHANGE, context_denonminatorChangeHandler);
         addContextListener(TransportModelEventType.POSITION_STRING_CHANGE, context_positionChangeHandler);
 
-        view.setTempo(transportModel.transport.tempoRaw);
+        view.setTempo(oscModel.transport.tempoRaw);
         view.setTimeSignature(getTimeSignatureString());
-        view.setPosition(transportModel.transport.positionString);
+        view.setPosition(oscModel.transport.positionString);
     }
 
     override public function onRemove():void
@@ -63,7 +59,7 @@ public class TransportDisplayMediator extends AbstractUIMediator
 
     private function getTimeSignatureString():String
     {
-        return transportModel.transport.numerator + "/" + transportModel.transport.denominator;
+        return oscModel.transport.numerator + "/" + oscModel.transport.denominator;
     }
 }
 }

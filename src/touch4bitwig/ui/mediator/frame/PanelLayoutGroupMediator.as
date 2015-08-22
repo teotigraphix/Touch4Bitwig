@@ -13,8 +13,6 @@ import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.model.state.Application;
-import touch4bitwig.model.support.ApplicationModel;
-import touch4bitwig.model.support.FrameModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.component.frame.PanelLayoutGroup;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
@@ -23,12 +21,6 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
 {
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var frameModel:FrameModel;
-
-    [Inject]
-    public var applicationModel:ApplicationModel;
 
     private var view:PanelLayoutGroup;
 
@@ -53,7 +45,7 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
             {label: "EDIT"}
         ]);
         view.minHeight = AssetMap.getSize(150);
-        view.selectedIndex = getIndex(applicationModel.application.layout);
+        view.selectedIndex = getIndex(oscModel.application.layout);
         view.tabFactory = tabFactory;
     }
 

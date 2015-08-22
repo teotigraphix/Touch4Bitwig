@@ -16,7 +16,7 @@ import starling.events.Event;
 import touch4bitwig.app.config.ApplicationConfiguration;
 import touch4bitwig.controller.*;
 import touch4bitwig.event.ApplicationEventType;
-import touch4bitwig.model.state.GlobalModel;
+import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.support.ConnectionInstance;
 import touch4bitwig.service.IOSCService;
 
@@ -29,7 +29,7 @@ public class ApplicationStartupCommand extends Command
     public var event:Event;
 
     [Inject]
-    public var model:GlobalModel;
+    public var oscModel:IOSCModel;
 
     [Inject]
     public var oscService:IOSCService;
@@ -39,11 +39,11 @@ public class ApplicationStartupCommand extends Command
         trace("StartupCommand.execute()");
 
         // TODO this will ne asnyc, right now it's reading from the file system which is sync
-        model.setup();
+        oscModel.setup();
 
-        var config:ApplicationConfiguration = model.configuration;
+        var config:ApplicationConfiguration = oscModel.configuration;
 
-        var connection:ConnectionInstance = model.connection;
+        var connection:ConnectionInstance = oscModel.connection;
         connection.setup(config.serverIP, config.serverPort, config.clientIP, config.clientPort);
 
         printAddresses();
@@ -55,7 +55,7 @@ public class ApplicationStartupCommand extends Command
             return;
         }
 
-        oscService.start(model);
+        oscService.start(oscModel);
 
         Starling.juggler.delayCall(function ():void
                                    {

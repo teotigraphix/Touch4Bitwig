@@ -6,17 +6,21 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.support.FrameModel;
+import touch4bitwig.model.state.Arranger;
+import touch4bitwig.model.state.Mixer;
 import touch4bitwig.service.support.OSCService;
 
 public class FrameListener extends AbstractOSCListener
 {
-    private var _model:FrameModel;
+    private var _arranger:Arranger;
+    private var _mixer:Mixer;
 
-    public function FrameListener(service:OSCService, model:FrameModel)
+    public function FrameListener(service:OSCService, arranger:Arranger, mixer:Mixer)
     {
         super(service);
-        _model = model;
+        _arranger = arranger;
+        _mixer = mixer;
+
         config();
     }
 
@@ -48,25 +52,25 @@ public class FrameListener extends AbstractOSCListener
         switch (split[1])
         {
             case "cueMarkerVisibility":
-                _model.arranger.cueMarkerVisible = value;
+                _arranger.cueMarkerVisible = value;
                 break;
             case "playbackFollow":
-                _model.arranger.playbackFollowVisible = value;
+                _arranger.playbackFollowVisible = value;
                 break;
             case "trackRowHeight":
-                _model.arranger.trackRowHeightVisible = value;
+                _arranger.trackRowHeightVisible = value;
                 break;
             case "clipLauncherSectionVisibility":
-                _model.arranger.clipLauncherVisible = value;
+                _arranger.clipLauncherVisible = value;
                 break;
             case "timeLineVisibility":
-                _model.arranger.timelineVisible = value;
+                _arranger.timelineVisible = value;
                 break;
             case "ioSectionVisibility":
-                _model.arranger.ioVisible = value;
+                _arranger.ioVisible = value;
                 break;
             case "effectTracksVisibility":
-                _model.arranger.effectTracksVisible = value;
+                _arranger.effectTracksVisible = value;
                 break;
         }
     }
@@ -79,22 +83,22 @@ public class FrameListener extends AbstractOSCListener
         switch (split[1])
         {
             case "clipLauncherSectionVisibility":
-                _model.mixer.clipLauncherVisible = value;
+                _mixer.clipLauncherVisible = value;
                 break;
             case "crossFadeSectionVisibility":
-                _model.mixer.crossFadeVisible = value;
+                _mixer.crossFadeVisible = value;
                 break;
             case "deviceSectionVisibility":
-                _model.mixer.deviceVisible = value;
+                _mixer.deviceVisible = value;
                 break;
             case "sendsSectionVisibility":
-                _model.mixer.sendsVisible = value;
+                _mixer.sendsVisible = value;
                 break;
             case "ioSectionVisibility":
-                _model.mixer.ioVisible = value;
+                _mixer.ioVisible = value;
                 break;
             case "meterSectionVisibility":
-                _model.mixer.meterVisible = value;
+                _mixer.meterVisible = value;
                 break;
         }
     }

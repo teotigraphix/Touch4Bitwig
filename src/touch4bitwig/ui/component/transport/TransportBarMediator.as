@@ -19,7 +19,6 @@ import starling.events.Event;
 
 import touch4bitwig.app.config.ApplicationContext;
 import touch4bitwig.event.TransportModelEventType;
-import touch4bitwig.model.support.TransportModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
@@ -33,9 +32,6 @@ public class TransportBarMediator extends AbstractUIMediator
 
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var transportModel:TransportModel;
 
     [Inject]
     public var view:TransportBar;
@@ -71,9 +67,9 @@ public class TransportBarMediator extends AbstractUIMediator
         addViewListener(TransportBar.EVENT_AUTOWRITE_CHANGE, view_automationChangeHandler);
         addViewListener(TransportBar.EVENT_POPUP_TRIGGERED, view_popupTriggeredHandler);
 
-        view.isPlaying = transportModel.transport.isPlaying;
-        view.isRecording = transportModel.transport.isRecording;
-        view.isAutowrite = transportModel.transport.isAutowrite;
+        view.isPlaying = oscModel.transport.isPlaying;
+        view.isRecording = oscModel.transport.isRecording;
+        view.isAutowrite = oscModel.transport.isAutowrite;
     }
 
     override public function onRemove():void

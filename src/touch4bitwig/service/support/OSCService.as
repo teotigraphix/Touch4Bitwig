@@ -28,7 +28,7 @@ import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
-import touch4bitwig.model.state.GlobalModel;
+import touch4bitwig.model.IOSCModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
@@ -38,7 +38,7 @@ import touch4bitwig.service.support.osc.listeners.TransportListener;
 
 public class OSCService extends Actor implements IOSCService, IOSCListener
 {
-    private var _model:GlobalModel;
+    //private var _model:GlobalModel;
 
     private var _oscManager:OSCManager;
 
@@ -63,9 +63,9 @@ public class OSCService extends Actor implements IOSCService, IOSCListener
      * Host:192.168.1.36:8000
      * Host:192.168.1.39/40:9000 <- Send to Android's IP address
      */
-    public function start(model:GlobalModel):void
+    public function start(model:IOSCModel):void
     {
-        _model = model;
+        //_model = model;
 
         ////var input:String = BitwigApplication.isEmulator ? "192.168.1.36" : "192.168.1.39"; // <- Android
         //var input:String = "192.168.1.36";
@@ -85,14 +85,14 @@ public class OSCService extends Actor implements IOSCService, IOSCListener
         //_oscManager = new OSCManager(_udpConnectorIn, _udpConnectorOut);
         ////_oscManager.usePatternMatching = true;
 
-        _oscManager = _model.connection.oscManager;
+        _oscManager = model.connection.oscManager;
         _oscManager.addMsgListener(this);
 
-        _trackListener = new TrackListener(this, _model.trackModel);
-        _transportListener = new TransportListener(this, _model.transportModel);
-        _deviceListener = new DeviceListener(this, _model.deviceModel);
-        _frameListener = new FrameListener(this, _model.userInterfaceModel);
-        _applicationListener = new ApplicationListener(this, _model.applicationModel);
+        _trackListener = new TrackListener(this, model.trackBank);
+        _transportListener = new TransportListener(this, model.transport);
+        _deviceListener = new DeviceListener(this, model.cursorDevice); // XXX cursorDevice This needs attention
+        _frameListener = new FrameListener(this, model.arranger, model.mixer);
+        _applicationListener = new ApplicationListener(this, model.application);
     }
 
     public function send(message:String):void

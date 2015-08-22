@@ -6,7 +6,7 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.support.TrackModel;
+import touch4bitwig.model.state.TrackBank;
 import touch4bitwig.service.support.OSCService;
 
 public class TrackListener
@@ -14,12 +14,12 @@ public class TrackListener
     private var _methods:Array = [];
 
     private var _service:OSCService;
-    private var _trackModel:TrackModel;
+    private var _model:TrackBank;
 
-    public function TrackListener(service:OSCService, trackModel:TrackModel)
+    public function TrackListener(service:OSCService, model:TrackBank)
     {
         _service = service;
-        _trackModel = trackModel;
+        _model = model;
 
         config();
     }
@@ -70,77 +70,77 @@ public class TrackListener
 
     private function canScrollTracksUp(osc:OSCMessage):void
     {
-        _trackModel.bank.canScrollTracksUp = osc.arguments[0];
+        _model.canScrollTracksUp = osc.arguments[0];
     }
 
     private function canScrollTracksDown(osc:OSCMessage):void
     {
-        _trackModel.bank.canScrollTracksDown = osc.arguments[0];
+        _model.canScrollTracksDown = osc.arguments[0];
     }
 
     private function trackCanHoldNotesHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].canHoldNotes = osc.arguments[0];
+        _model.tracks[toIndex(osc)].canHoldNotes = osc.arguments[0];
     }
 
     private function trackExistsHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].exists = osc.arguments[0];
+        _model.tracks[toIndex(osc)].exists = osc.arguments[0];
     }
 
     private function trackSelectedHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].isSelected = osc.arguments[0];
+        _model.tracks[toIndex(osc)].isSelected = osc.arguments[0];
     }
 
     private function trackNameHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].name = osc.arguments[0];
+        _model.tracks[toIndex(osc)].name = osc.arguments[0];
     }
 
     private function trackColorHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].color = toColor(osc);
+        _model.tracks[toIndex(osc)].color = toColor(osc);
     }
 
     private function trackRecArmHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].isRecArm = osc.arguments[0];
+        _model.tracks[toIndex(osc)].isRecArm = osc.arguments[0];
     }
 
     private function trackSoloHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].isSolo = osc.arguments[0];
+        _model.tracks[toIndex(osc)].isSolo = osc.arguments[0];
     }
 
     private function trackMuteHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].isMute = osc.arguments[0];
+        _model.tracks[toIndex(osc)].isMute = osc.arguments[0];
     }
 
     private function trackVolumeHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].volume = osc.arguments[0];
+        _model.tracks[toIndex(osc)].volume = osc.arguments[0];
     }
 
     private function trackVolumeStrHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].volumeString = osc.arguments[0];
+        _model.tracks[toIndex(osc)].volumeString = osc.arguments[0];
     }
 
     private function trackPanHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].pan = osc.arguments[0];
+        _model.tracks[toIndex(osc)].pan = osc.arguments[0];
     }
 
     private function trackPanStrHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].panString = osc.arguments[0];
+        _model.tracks[toIndex(osc)].panString = osc.arguments[0];
     }
 
     private function trackVUHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].vu = osc.arguments[0];
+        _model.tracks[toIndex(osc)].vu = osc.arguments[0];
     }
 
     //----------------------------------
@@ -149,37 +149,37 @@ public class TrackListener
 
     private function clipNameHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].name = osc.arguments[0];
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].name = osc.arguments[0];
     }
 
     private function clipIsSelectedHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].isSelected = osc.arguments[0];
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].isSelected = osc.arguments[0];
     }
 
     private function clipHasContentHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].hasContent = osc.arguments[0];
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].hasContent = osc.arguments[0];
     }
 
     private function clipColorHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].color = toColor(osc);
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].color = toColor(osc);
     }
 
     private function clipIsPlayingHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].isPlaying = osc.arguments[0];
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].isPlaying = osc.arguments[0];
     }
 
     private function clipIsRecordingHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].isRecording = osc.arguments[0];
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].isRecording = osc.arguments[0];
     }
 
     private function clipIsQueuedHandler(osc:OSCMessage):void
     {
-        _trackModel.bank.tracks[toIndex(osc)].clips[toClipIndex(osc)].isQueued = osc.arguments[0];
+        _model.tracks[toIndex(osc)].clips[toClipIndex(osc)].isQueued = osc.arguments[0];
     }
 
     public static function toColor(osc:OSCMessage):uint

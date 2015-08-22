@@ -25,7 +25,6 @@ import starling.events.Event;
 
 import touch4bitwig.event.TrackModelEventType;
 import touch4bitwig.model.state.Track;
-import touch4bitwig.model.support.TrackModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.mediator.AbstractUIMediator;
 
@@ -36,9 +35,6 @@ public class MixerBankMediator extends AbstractUIMediator
 
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var trackModel:TrackModel;
 
     [Inject]
     public var view:MixerBank;
@@ -67,7 +63,7 @@ public class MixerBankMediator extends AbstractUIMediator
 
         for (var i:int = 0; i < 8; i++)
         {
-            var track:Track = trackModel.bank.tracks[i];
+            var track:Track = oscModel.trackBank.tracks[i];
             var index:int = track.index;
             view.setCanHoldNotes(index, track.canHoldNotes);
             view.setExists(index, track.exists);
