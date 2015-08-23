@@ -25,11 +25,33 @@ public final class StyleNames
     // Main
     public static const MAIN_HEADER:String = "main-header";
 
-    // Transport
+    // TransportDisplay
     public static const TRANSPORT_DISPLAY_TEMPO:String = "transport-display-tempo";
     public static const TRANSPORT_DISPLAY_TIME_SIGNATURE:String = "transport-display-time-signature";
     public static const TRANSPORT_DISPLAY_POSITION:String = "transport-display-position";
     public static const TRANSPORT_DISPLAY_TIME:String = "transport-display-time";
+
+    // TransportDisplay
+    public static const TRANSPORT_BAR_STOP_BUTTON = "transport-bar-stop-button";
+    public static const TRANSPORT_BAR_PLAY_BUTTON = "transport-bar-play-button";
+    public static const TRANSPORT_BAR_RECORD_BUTTON = "transport-bar-record-button";
+    public static const TRANSPORT_BAR_AUTOMATION_BUTTON = "transport-bar-automation-button";
+    public static const TRANSPORT_BAR_POPUP_BUTTON = "transport-bar-popup-button";
+
+    // MixerItem
+    public static const MIXER_ITEM_NAME_LABEL:String = "mixer-item-name-label";
+    public static const MIXER_ITEM_PAN_LABEL:String = "mixer-item-pan-label";
+    public static const MIXER_ITEM_PAN_SLIDER:String = "mixer-item-pan-slider";
+    public static const MIXER_ITEM_RECARM_BUTTON:String = "mixer-item-recarm-button";
+    public static const MIXER_ITEM_SOLO_BUTTON:String = "mixer-item-solo-button";
+    public static const MIXER_ITEM_MUTE_BUTTON:String = "mixer-item-mute-button";
+    public static const MIXER_ITEM_VU_BAR:String = "mixer-item-vu-bar";
+    public static const MIXER_ITEM_VOLUME_LABEL:String = "mixer-item-volume-label";
+    public static const MIXER_ITEM_VOLUME_SLIDER:String = "mixer-item-volume-slider";
+
+    // ClipLauncher
+    public static const CLIP_LAUNCHER_AUTOMATION_BUTTON:String = "clip-launcher-automation-button";
+    public static const CLIP_LAUNCHER_OVERDUB_BUTTON:String = "clip-launcher-overdub-button";
 
 }
 }

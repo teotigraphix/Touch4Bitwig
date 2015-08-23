@@ -49,7 +49,7 @@
                            width="18" height="18"/>
         </f:LayoutGroup>
 
-        <f:Label id="trackNameLabel" text="{trackName}" styleName="track-header-label">
+        <f:Label id="nameLabel" text="{trackName}" styleName="{StyleNames.MIXER_ITEM_NAME_LABEL}">
             <f:layoutData>
                 <f:HorizontalLayoutData percentWidth="100"/>
             </f:layoutData>
@@ -66,6 +66,7 @@
         <f:Label text="{panString}"/>
 
         <ui:UISlider id="panSlider"
+                     styleName="{StyleNames.MIXER_ITEM_PAN_SLIDER}"
                      direction="horizontal" minimum="0" maximum="127" step="1"
                      change="pan_changeHandler(panSlider.value)">
             <ui:layoutData>
@@ -82,7 +83,7 @@
 
     <component:HGroup percentWidth="100" horizontalAlign="center">
 
-        <f:Label text="{volumeString}"/>
+        <f:Label text="{volumeString}" styleName="{StyleNames.MIXER_ITEM_VOLUME_LABEL}"/>
 
     </component:HGroup>
 
@@ -95,15 +96,15 @@
 
         <component:VGroup gap="4">
             <ui:UIToggleButton id="recarmButton" label="O" isToggle="true"
-                               styleName="recarm-button"
+                               styleName="{StyleNames.MIXER_ITEM_RECARM_BUTTON}"
                                change="recarm_changeHandler(recarmButton.isSelected)"/>
 
             <ui:UIToggleButton id="soloButton" label="S" isToggle="true"
                                change="solo_changeHandler(soloButton.isSelected)"
-                               styleName="solo-button"/>
+                               styleName="{StyleNames.MIXER_ITEM_SOLO_BUTTON}"/>
 
             <ui:UIToggleButton id="muteButton" label="M" isToggle="true"
-                               styleName="mute-button"
+                               styleName="{StyleNames.MIXER_ITEM_MUTE_BUTTON}"
                                change="mute_changeHandler(muteButton.isSelected)"/>
         </component:VGroup>
 
@@ -111,14 +112,14 @@
                           percentWidth="100" percentHeight="100" padding="5" gap="4">
 
             <f:ProgressBar value="{vuValue}"
-                           styleName="mixer-item-vu-bar">
+                           styleName="{StyleNames.MIXER_ITEM_VU_BAR}">
                 <f:layoutData>
                     <f:HorizontalLayoutData percentHeight="100"/>
                 </f:layoutData>
             </f:ProgressBar>
 
             <ui:UISlider id="volumeSlider"
-                         styleName="track-strip-volume-slider"
+                         styleName="{StyleNames.MIXER_ITEM_VOLUME_SLIDER}"
                          change="volume_changeHandler(volumeSlider.value)">
                 <ui:layoutData>
                     <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
@@ -132,6 +133,8 @@
 
     <fx:Script><![CDATA[
         import com.teotigraphix.ui.theme.AssetMap;
+
+        import touch4bitwig.theme.StyleNames;
 
         override public function set canHoldNotes(value:Boolean):void
         {

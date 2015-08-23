@@ -33,6 +33,7 @@ import feathers.layout.VerticalLayoutData;
 import starling.events.Event;
 
 import touch4bitwig.model.state.Track;
+import touch4bitwig.theme.StyleNames;
 import touch4bitwig.ui.component.main.TrackNameHeaderItem;
 
 public class ClipLauncher extends LayoutGroup
@@ -153,20 +154,21 @@ public class ClipLauncher extends LayoutGroup
         }
 
         _automationButton = new UIToggleButton();
-        _automationButton.styleNameList.add("automation-button");
+        _automationButton.styleNameList.add(StyleNames.CLIP_LAUNCHER_AUTOMATION_BUTTON);
         _automationButton.width = 50;
         _automationButton.height = 50;
         _automationButton.addEventListener(Event.CHANGE, automation_changedHandler);
         header.addChild(_automationButton);
 
         _overdubButton = new UIToggleButton();
-        _overdubButton.styleNameList.add("overdub-button");
+        _overdubButton.styleNameList.add(StyleNames.CLIP_LAUNCHER_OVERDUB_BUTTON);
         _overdubButton.addEventListener(Event.CHANGE, overdub_changedHandler);
         header.addChild(_overdubButton);
 
         parent.addChild(header);
 
     }
+
 
     private function createContent(parent:LayoutGroup):void
     {

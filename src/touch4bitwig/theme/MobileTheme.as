@@ -71,7 +71,8 @@ public class MobileTheme extends AbstractTheme
     {
         super.addFactories();
         factories.push(new MainFactory(this));
-        factories.push(new UserMixerItemFactory(this));
+        factories.push(new TransportBarFactory(this));
+        factories.push(new MixerItemFactory(this));
         factories.push(new TrackChannelFactory(this));
         factories.push(new DeviceSelectBarFactory(this));
         factories.push(new ClipLauncherFactory(this));
