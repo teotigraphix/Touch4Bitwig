@@ -111,7 +111,7 @@
         <component:HGroup backgroundSkin="{AssetMap.create9ScaleImage('background-skin', 5, 5, 22, 22)}"
                           percentWidth="100" percentHeight="100" padding="5" gap="4">
 
-            <f:ProgressBar value="{vuValue}"
+            <f:ProgressBar value="{vu}"
                            styleName="{StyleNames.MIXER_ITEM_VU_BAR}">
                 <f:layoutData>
                     <f:HorizontalLayoutData percentHeight="100"/>
@@ -161,15 +161,15 @@
             muteButton.setIsSelected(value);
         }
 
-        override public function set panValue(value:Number):void
+        override public function set pan(value:Number):void
         {
-            super.panValue = value;
+            super.pan = value;
             panSlider.setValue(value);
         }
 
-        override public function set volumeValue(value:Number):void
+        override public function set volume(value:Number):void
         {
-            super.volumeValue = value;
+            super.volume = value;
             volumeSlider.setValue(value);
         }
         ]]></fx:Script>

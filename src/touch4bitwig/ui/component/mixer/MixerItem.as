@@ -154,12 +154,12 @@ public class MixerItem extends LayoutGroup implements IMixerItem
         invalidate(INVALIDATE_FLAG_TRACK_COLOR);
     }
 
-    public function get volumeValue():Number
+    public function get volume():Number
     {
         return _volumeValue;
     }
 
-    public function set volumeValue(value:Number):void
+    public function set volume(value:Number):void
     {
         if (_volumeValue == value)
             return;
@@ -180,12 +180,12 @@ public class MixerItem extends LayoutGroup implements IMixerItem
         invalidate(INVALIDATE_FLAG_VOLUME);
     }
 
-    public function get vuValue():Number
+    public function get vu():Number
     {
         return _vuValue;
     }
 
-    public function set vuValue(value:Number):void
+    public function set vu(value:Number):void
     {
         if (_vuValue == value)
             return;
@@ -193,12 +193,12 @@ public class MixerItem extends LayoutGroup implements IMixerItem
         invalidate(INVALIDATE_FLAG_VU);
     }
 
-    public function get panValue():Number
+    public function get pan():Number
     {
         return _panValue;
     }
 
-    public function set panValue(value:Number):void
+    public function set pan(value:Number):void
     {
         if (_panValue == value)
             return;
@@ -316,18 +316,18 @@ public class MixerItem extends LayoutGroup implements IMixerItem
 
         if (isInvalid(INVALIDATE_FLAG_VU))
         {
-            _skin.vuValue = _vuValue;
+            _skin.vu = _vuValue;
         }
 
         if (isInvalid(INVALIDATE_FLAG_VOLUME))
         {
-            _skin.volumeValue = _volumeValue;
+            _skin.volume = _volumeValue;
             _skin.volumeString = _volumeString;
         }
 
         if (isInvalid(INVALIDATE_FLAG_PAN))
         {
-            _skin.panValue = _panValue;
+            _skin.pan = _panValue;
             _skin.panString = _panString;
         }
 

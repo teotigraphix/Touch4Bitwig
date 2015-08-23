@@ -60,20 +60,21 @@ public class MixerBankMediator extends AbstractUIMediator
         for (var i:int = 0; i < 8; i++)
         {
             var track:Track = oscModel.trackBank.tracks[i];
-            var index:int = track.index;
-            view.setCanHoldNotes(index, track.canHoldNotes);
-            view.setExists(index, track.exists);
-            view.setTrackSelected(index, track.isSelected);
-            view.setTrackName(index, track.name);
-            view.setTrackColor(index, track.color);
-            view.setVolume(index, track.volume);
-            view.setVolumeString(index, track.volumeString);
-            view.setPan(index, track.pan);
-            view.setPanString(index, track.panString);
-            view.setRecord(index, track.isRecArm);
-            view.setSolo(index, track.isSolo);
-            view.setMute(index, track.isMute);
-            view.setVU(index, track.vu);
+            var item:IMixerItem = view.getMixerItem(track.index);
+
+            item.canHoldNotes = track.canHoldNotes;
+            item.exists = track.exists;
+            item.selected = track.isSelected;
+            item.trackName = track.name;
+            item.trackColor = track.color;
+            item.volume = track.volume;
+            item.volumeString = track.volumeString;
+            item.pan = track.pan;
+            item.panString = track.panString;
+            item.isRecArm = track.isRecArm;
+            item.isSolo = track.isSolo;
+            item.isMute = track.isMute;
+            item.vu = track.vu;
         }
 
         addViewListener(MixerItem.EVENT_DOUBLE_TAP, view_doubleTapHandler);
@@ -91,97 +92,97 @@ public class MixerBankMediator extends AbstractUIMediator
 
     private function context_trackExistsHandler(event:Event, data:Object):void
     {
-        view.setExists(data.index, data.value);
+        view.getMixerItem(data.index).exists = data.value;
     }
 
     private function context_canHoldNotesHandler(event:Event, data:Object):void
     {
-        view.setCanHoldNotes(data.index, data.value);
+        view.getMixerItem(data.index).canHoldNotes = data.value;
     }
 
     private function context_trackSelectedHandler(event:Event, data:Object):void
     {
-        view.setTrackSelected(data.index, data.value);
+        view.getMixerItem(data.index).selected = data.value;
     }
 
     private function context_trackNameHandler(event:Event, data:Object):void
     {
-        view.setTrackName(data.index, data.value);
+        view.getMixerItem(data.index).trackName = data.value;
     }
 
     private function context_trackColorHandler(event:Event, data:Object):void
     {
-        view.setTrackColor(data.index, data.value);
+        view.getMixerItem(data.index).trackColor = data.value;
     }
 
     private function context_trackVolumeHandler(event:Event, data:Object):void
     {
-        view.setVolume(data.index, data.value);
+        view.getMixerItem(data.index).volume = data.value;
     }
 
     private function context_trackVolumeStringHandler(event:Event, data:Object):void
     {
-        view.setVolumeString(data.index, data.value);
+        view.getMixerItem(data.index).volumeString = data.value;
     }
 
     private function context_trackPanHandler(event:Event, data:Object):void
     {
-        view.setPan(data.index, data.value);
+        view.getMixerItem(data.index).pan = data.value;
     }
 
     private function context_trackPanStringHandler(event:Event, data:Object):void
     {
-        view.setPanString(data.index, data.value);
+        view.getMixerItem(data.index).panString = data.value;
     }
 
     private function context_trackRecordHandler(event:Event, data:Object):void
     {
-        view.setRecord(data.index, data.value);
+        view.getMixerItem(data.index).isRecArm = data.value;
     }
 
     private function context_trackSoloHandler(event:Event, data:Object):void
     {
-        view.setSolo(data.index, data.value);
+        view.getMixerItem(data.index).isSolo = data.value;
     }
 
     private function context_trackMuteHandler(event:Event, data:Object):void
     {
-        view.setMute(data.index, data.value);
+        view.getMixerItem(data.index).isMute = data.value;
     }
 
     private function context_trackVUHandler(event:Event, data:Object):void
     {
-        view.setVU(data.index, data.value);
+        view.getMixerItem(data.index).vu = data.value;
     }
 
     private function view_doubleTapHandler(event:Event, index:int):void
     {
-        oscService.send("/track/" + (index + 1) + "/select");
+        oscService.send("/track/" + (index ) + "/select");
     }
 
     private function view_volumeChangeHandler(event:Event, index:int):void
     {
-        oscService.sendInt("/track/" + (index + 1) + "/volume", view.getVolume(index));
+        oscService.sendInt("/track/" + (index ) + "/volume", view.getMixerItem(index).volume);
     }
 
     private function view_panChangeHandler(event:Event, index:int):void
     {
-        oscService.sendInt("/track/" + (index + 1) + "/pan", view.getPan(index));
+        oscService.sendInt("/track/" + (index ) + "/pan", view.getMixerItem(index).pan);
     }
 
     private function view_recordChangeHandler(event:Event, index:int):void
     {
-        oscService.sendBoolean("/track/" + (index + 1) + "/recarm", view.getRecord(index));
+        oscService.sendBoolean("/track/" + (index ) + "/recarm", view.getMixerItem(index).isRecArm);
     }
 
     private function view_soloChangeHandler(event:Event, index:int):void
     {
-        oscService.sendBoolean("/track/" + (index + 1) + "/solo", view.getSolo(index));
+        oscService.sendBoolean("/track/" + (index ) + "/solo", view.getMixerItem(index).isSolo);
     }
 
     private function view_muteChangeHandler(event:Event, index:int):void
     {
-        oscService.sendBoolean("/track/" + (index + 1) + "/mute", view.getMute(index));
+        oscService.sendBoolean("/track/" + (index ) + "/mute", view.getMixerItem(index).isMute);
     }
 }
 }

@@ -22,6 +22,23 @@ package touch4bitwig.ui.component.mixer
 
 public interface IMixerItem
 {
+
+    function get index():int;
+
+    function set index(value:int):void;
+
+    function get exists():Boolean;
+
+    function set exists(value:Boolean):void;
+
+    function get canHoldNotes():Boolean;
+
+    function set canHoldNotes(value:Boolean):void;
+
+    function get selected():Boolean;
+
+    function set selected(value:Boolean):void;
+
     function get trackName():String;
 
     function set trackName(value:String):void;
@@ -30,25 +47,25 @@ public interface IMixerItem
 
     function set trackColor(value:uint):void;
 
-    function get panString():String;
+    function get volume():Number;
 
-    function set panString(value:String):void;
-
-    function get panValue():Number;
-
-    function set panValue(value:Number):void;
-
-    function get volumeValue():Number;
-
-    function set volumeValue(value:Number):void;
+    function set volume(value:Number):void;
 
     function get volumeString():String;
 
     function set volumeString(value:String):void;
 
-    function get vuValue():Number;
+    function get vu():Number;
 
-    function set vuValue(value:Number):void;
+    function set vu(value:Number):void;
+
+    function get pan():Number;
+
+    function set pan(value:Number):void;
+
+    function get panString():String;
+
+    function set panString(value:String):void;
 
     function get isRecArm():Boolean;
 

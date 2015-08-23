@@ -20,136 +20,40 @@
 package touch4bitwig.ui.component.mixer
 {
 
-import com.teotigraphix.ui.theme.AssetMap;
+import feathers.core.FeathersControl;
 
-import feathers.controls.LayoutGroup;
-import feathers.layout.HorizontalLayout;
-import feathers.layout.HorizontalLayoutData;
-
-public class MixerBank extends LayoutGroup
+public class MixerBank extends FeathersControl
 {
+    private var _skin:HMixerBankSkin;
+
     public function MixerBank()
     {
     }
 
     override protected function initialize():void
     {
-        var hl:HorizontalLayout = new HorizontalLayout();
-        hl.gap = AssetMap.getSize(8);
-        hl.padding = AssetMap.getSize(28);
-        layout = hl;
-
         super.initialize();
 
-        for (var i:int = 0; i < 8; i++)
-        {
-            var item:MixerItem = new MixerItem();
-            item.index = i;
-            item.layoutData = new HorizontalLayoutData(100, 100);
-            item.minHeight = 300;
-            item.backgroundSkin = AssetMap.createImage("mixer-item-background-skin");
-            addChild(item);
-        }
+        _skin = new HMixerBankSkin();
+        addChild(_skin);
     }
 
     override protected function draw():void
     {
         super.draw();
+
+        _skin.move(0, 0);
+        _skin.setSize(actualWidth, actualHeight);
     }
 
-    public function getSelected(index:int):Boolean
+    /**
+     * Returns the MixerItem at the specified index - 1.
+     * All track indexes start at 1 not 0.
+     * @param index The TrackBank index 1-8.
+     */
+    public function getMixerItem(index:int):IMixerItem
     {
-        return MixerItem(getChildAt(index)).selected;
-    }
-
-    public function getVolume(index:int):Number
-    {
-        return MixerItem(getChildAt(index)).volumeValue;
-    }
-
-    public function getPan(index:int):Number
-    {
-        return MixerItem(getChildAt(index)).panValue;
-    }
-
-    public function getRecord(index:int):Boolean
-    {
-        return MixerItem(getChildAt(index)).isRecArm;
-    }
-
-    public function getSolo(index:int):Boolean
-    {
-        return MixerItem(getChildAt(index)).isSolo;
-    }
-
-    public function getMute(index:int):Boolean
-    {
-        return MixerItem(getChildAt(index)).isMute;
-    }
-
-    public function setCanHoldNotes(index:int, value:Boolean):void
-    {
-        MixerItem(getChildAt(index - 1)).canHoldNotes = value;
-    }
-
-    public function setExists(index:int, value:Boolean):void
-    {
-        MixerItem(getChildAt(index - 1)).exists = value;
-    }
-
-    public function setTrackSelected(index:int, value:Boolean):void
-    {
-        MixerItem(getChildAt(index - 1)).selected = value;
-    }
-
-    public function setTrackName(index:int, value:String):void
-    {
-        MixerItem(getChildAt(index - 1)).trackName = value;
-    }
-
-    public function setTrackColor(index:int, value:int):void
-    {
-        MixerItem(getChildAt(index - 1)).trackColor = value;
-    }
-
-    public function setVolume(index:int, value:Number):void
-    {
-        MixerItem(getChildAt(index - 1)).volumeValue = value;
-    }
-
-    public function setVolumeString(index:int, value:String):void
-    {
-        MixerItem(getChildAt(index - 1)).volumeString = value;
-    }
-
-    public function setPan(index:int, value:Number):void
-    {
-        MixerItem(getChildAt(index - 1)).panValue = value;
-    }
-
-    public function setPanString(index:int, value:String):void
-    {
-        MixerItem(getChildAt(index - 1)).panString = value;
-    }
-
-    public function setRecord(index:int, value:Boolean):void
-    {
-        MixerItem(getChildAt(index - 1)).isRecArm = value;
-    }
-
-    public function setSolo(index:int, value:Boolean):void
-    {
-        MixerItem(getChildAt(index - 1)).isSolo = value;
-    }
-
-    public function setMute(index:int, value:Boolean):void
-    {
-        MixerItem(getChildAt(index - 1)).isMute = value;
-    }
-
-    public function setVU(index:int, value:int):void
-    {
-        MixerItem(getChildAt(index - 1)).vuValue = value;
+        return IMixerItem(_skin.getChildAt(index - 1));
     }
 }
 }
