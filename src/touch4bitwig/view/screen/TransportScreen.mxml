@@ -47,10 +47,10 @@
         </transport:layoutData>
     </transport:TransportDisplay>
 
-    <f:LayoutGroup>
-        <f:layoutData>
-            <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
-        </f:layoutData>
-    </f:LayoutGroup>
+    <!--<f:LayoutGroup>-->
+        <!--<f:layoutData>-->
+            <!--<f:VerticalLayoutData percentWidth="100" percentHeight="100"/>-->
+        <!--</f:layoutData>-->
+    <!--</f:LayoutGroup>-->
 
 </f:Screen>

@@ -58,7 +58,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.downSkin = AssetMap.create9ScaleImage("button-down-skin", 5, 5, 50, 50);
 
-        button.setSize(50, 50);
+        //button.setSize(50, 50);
     }
 
     private function setPlayStyles(button:UIToggleButton):void
@@ -74,7 +74,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("button-selected-up-skin", 5, 5, 50, 50);
 
-        button.setSize(50, 50);
+        //button.setSize(50, 50);
     }
 
     private function setRecordStyles(button:UIToggleButton):void
@@ -90,7 +90,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
 
-        button.setSize(50, 50);
+        //button.setSize(50, 50);
     }
 
     private function setAutomationStyles(button:UIToggleButton):void
@@ -106,7 +106,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
 
-        button.setSize(50, 50);
+        //button.setSize(50, 50);
     }
 
     private function setOverdubStyles(button:UIToggleButton):void
@@ -119,7 +119,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
 
-        button.setSize(50, 50);
+        //button.setSize(50, 50);
         button.padding = 0;
     }
 

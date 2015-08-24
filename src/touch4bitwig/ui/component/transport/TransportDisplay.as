@@ -24,6 +24,8 @@ import feathers.core.FeathersControl;
 
 public class TransportDisplay extends FeathersControl
 {
+    public static const EVENT_TAP:String = "TransportDisplay/tap";
+
     private var _skin:TransportDisplaySkin;
 
     public function setTempo(value:String):void

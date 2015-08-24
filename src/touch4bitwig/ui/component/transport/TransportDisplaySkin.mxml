@@ -24,34 +24,62 @@
                xmlns:component="touch4bitwig.ui.component.*">
 
     <f:layout>
-        <f:HorizontalLayout/>
+        <f:VerticalLayout padding="50"/>
     </f:layout>
 
-    <component:VGroup percentWidth="100" percentHeight="100" horizontalAlign="center" verticalAlign="middle">
+    <component:HGroup percentWidth="100" percentHeight="100"
+                      horizontalAlign="center" verticalAlign="middle" >
 
-        <f:Label id="tempoLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TEMPO}"/>
+        <f:Label id="tempoLabel"  styleName="{StyleNames.TRANSPORT_DISPLAY_TEMPO}">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+        </f:Label>
 
-        <f:Label id="timeSignatureLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TIME_SIGNATURE}"/>
+        <f:Label id="timeSignatureLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TIME_SIGNATURE}">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+        </f:Label>
 
-    </component:VGroup>
+        <f:Label id="timeLabel" text="00:00.00" styleName="{StyleNames.TRANSPORT_DISPLAY_TIME}">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+        </f:Label>
+
+    </component:HGroup>
 
 
-    <component:VGroup percentWidth="100" percentHeight="100" horizontalAlign="center" verticalAlign="middle">
+    <component:HGroup percentWidth="100" percentHeight="100"
+                      gap="50"
+                      horizontalAlign="center" verticalAlign="middle">
+
+        <f:Button id="tapButton" label="TAP"
+                touch="tapButtonTriggered(event)">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+        </f:Button>
 
         <f:Label id="positionLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_POSITION}"/>
 
-        <f:Label id="timeLabel" styleName="{StyleNames.TRANSPORT_DISPLAY_TIME}"/>
-
-    </component:VGroup>
+    </component:HGroup>
 
     <fx:Script><![CDATA[
+        import feathers.utils.math.roundToPrecision;
+
+        import starling.events.Touch;
+        import starling.events.TouchEvent;
+        import starling.events.TouchPhase;
+
         import touch4bitwig.theme.StyleNames;
 
         public var owner:TransportDisplay;
 
         public function setTempo(value:String):void
         {
-            tempoLabel.text = value;
+            tempoLabel.text = roundToPrecision(parseFloat(value), 2).toString();
         }
 
         public function setTimeSignature(value:String):void
@@ -67,6 +95,15 @@
         public function setTime(value:String):void
         {
             timeLabel.text = value;
+        }
+
+        private function tapButtonTriggered(event:starling.events.TouchEvent):void
+        {
+            var touch:Touch = event.getTouch(this, TouchPhase.BEGAN);
+            if (touch != null)
+            {
+                dispatchEventWith(TransportDisplay.EVENT_TAP, true);
+            }
         }
         ]]></fx:Script>
 

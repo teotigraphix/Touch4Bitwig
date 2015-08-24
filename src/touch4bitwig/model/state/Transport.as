@@ -270,5 +270,10 @@ public class Transport extends AbstractBitwigState
         super(service);
     }
 
+    public function tapTempo():void
+    {
+        service.send("/tempo/tap");
+    }
+
 }
 }
