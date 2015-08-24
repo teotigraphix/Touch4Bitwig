@@ -20,9 +20,9 @@
 package touch4bitwig.ui.component.mixer
 {
 
-import feathers.core.FeathersControl;
+import feathers.controls.LayoutGroup;
 
-public class MixerBank extends FeathersControl
+public class MixerBank extends LayoutGroup
 {
     private var _skin:HMixerBankSkin;
 
