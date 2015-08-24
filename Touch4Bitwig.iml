@@ -8,12 +8,6 @@
             <entry library-name="Feathers MXML" library-level="application">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="a638b708-b8f3-4af2-b01d-dd059b5923e9">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="a7c2a4a3-8557-41de-ae65-ddb0c860db10">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="FeathersExtensions" library-level="application">
               <dependency linkage="Merged" />
             </entry>
@@ -43,26 +37,6 @@
     <orderEntry type="jdk" jdkName="FeathersSDK" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Feathers MXML" level="application" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="a638b708-b8f3-4af2-b01d-dd059b5923e9" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/robotlegs-framework-starling-v0.9.1.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="a7c2a4a3-8557-41de-ae65-ddb0c860db10" />
-        <CLASSES>
-          <root url="jar://C:/SDKs/FeathersSDK/frameworks/themes/MetalWorksMobileTheme/MetalWorksMobileTheme.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" exported="" name="FeathersExtensions" level="application" />
   </component>
 </module>

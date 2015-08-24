@@ -23,8 +23,6 @@ package touch4bitwig.theme
 import com.teotigraphix.ui.theme.AbstractTheme;
 import com.teotigraphix.ui.theme.AssetMap;
 
-import feathers.themes.BaseMetalWorksMobileTheme;
-
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 
@@ -76,7 +74,6 @@ public class MobileTheme extends AbstractTheme
         factories.push(new TrackChannelFactory(this));
         factories.push(new DeviceSelectBarFactory(this));
         factories.push(new ClipLauncherFactory(this));
-        var f:BaseMetalWorksMobileTheme;
     }
 
     override protected function initializeTextures():void
