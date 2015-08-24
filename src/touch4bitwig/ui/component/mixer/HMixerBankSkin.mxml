@@ -23,7 +23,7 @@
                   xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:component="touch4bitwig.ui.component.*"
                   xmlns:mixer="touch4bitwig.ui.component.mixer.*"
-                  gap="8" padding="24">
+                  gap="8" padding="10">
 
     <mixer:MixerItem index="1">
         <mixer:layoutData>

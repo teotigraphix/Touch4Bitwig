@@ -26,7 +26,7 @@
                                 xmlns:transport="touch4bitwig.ui.component.transport.*">
 
     <transport:layout>
-        <f:HorizontalLayout/>
+        <f:HorizontalLayout gap="2"/>
     </transport:layout>
 
     <f:Button id="stopButton"

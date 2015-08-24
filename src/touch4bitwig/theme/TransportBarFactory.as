@@ -57,7 +57,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultIcon.height = 20;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.downSkin = AssetMap.create9ScaleImage("button-down-skin", 5, 5, 50, 50);
-
+        button.minWidth = 75;
         //button.setSize(50, 50);
     }
 
@@ -73,7 +73,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSelectedIcon.height = 20;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("button-selected-up-skin", 5, 5, 50, 50);
-
+        button.minWidth = 75;
         //button.setSize(50, 50);
     }
 
@@ -89,7 +89,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSelectedIcon.height = 20;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
-
+        button.minWidth = 75;
         //button.setSize(50, 50);
     }
 
@@ -105,7 +105,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSelectedIcon.height = 20;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
-
+        button.minWidth = 75;
         //button.setSize(50, 50);
     }
 
@@ -118,7 +118,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         //button.defaultSelectedIcon = AssetMap.createImage("automation-button-icon-selected-skin");
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
-
+        button.minWidth = 75;
         //button.setSize(50, 50);
         button.padding = 0;
     }
@@ -129,6 +129,7 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultIcon = AssetMap.createImage("transport-bar-popup-button-icon-skin");
         button.width = AssetMap.getSize(50);
         button.hasLabelTextRenderer = false;
+        button.minWidth = 75;
     }
 }
 }

@@ -35,12 +35,6 @@
         </main:layoutData>
     </main:MainHeader>
 
-    <f:LayoutGroup>
-        <f:layoutData>
-            <f:VerticalLayoutData percentWidth="100" />
-        </f:layoutData>
-    </f:LayoutGroup>
-
     <mixer:MixerBank>
         <mixer:layoutData>
             <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>

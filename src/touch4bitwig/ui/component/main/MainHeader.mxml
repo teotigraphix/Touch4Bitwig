@@ -32,7 +32,7 @@
     </f:layout>
 
     <!-- Main header bar -->
-    <component2:HGroup percentWidth="100">
+    <component2:HGroup percentWidth="100" gap="5">
 
         <component:UIToggleButton id="activeEngineButton"
                                   isToggle="true"
@@ -48,31 +48,13 @@
 
         </component:UIToggleButton>
 
-        <f:LayoutGroup id="spacer">
-            <f:layoutData>
-                <f:HorizontalLayoutData percentWidth="100"/>
-            </f:layoutData>
-        </f:LayoutGroup>
-
-        <f:TabBar id="tabBar"
-                  direction="horizontal" distributeTabSizes="true"
-                  change="tabBar_changeHandler()">
-            <f:layoutData>
-                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
-            </f:layoutData>
-        </f:TabBar>
-
-    </component2:HGroup>
-
-    <component2:HGroup percentWidth="100">
-
         <transport:TransportBar>
             <transport:layoutData>
-                <f:HorizontalLayoutData percentWidth="30"/>
+                <f:HorizontalLayoutData  percentHeight="100"/>
             </transport:layoutData>
         </transport:TransportBar>
 
-        <f:LayoutGroup id="spacer2">
+        <f:LayoutGroup id="spacer">
             <f:layoutData>
                 <f:HorizontalLayoutData percentWidth="100"/>
             </f:layoutData>
@@ -81,6 +63,18 @@
         <track:TrackNavigationControl>
 
         </track:TrackNavigationControl>
+
+    </component2:HGroup>
+
+    <component2:HGroup percentWidth="100" minHeight="50" horizontalAlign="center">
+
+        <f:TabBar id="tabBar"
+                  direction="horizontal" distributeTabSizes="true"
+                  change="tabBar_changeHandler()">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentHeight="100" percentWidth="40"/>
+            </f:layoutData>
+        </f:TabBar>
 
     </component2:HGroup>
 
