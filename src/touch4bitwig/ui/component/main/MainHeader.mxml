@@ -18,12 +18,12 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
-
 -->
 <f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
                xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:component="com.teotigraphix.ui.component.*"
                xmlns:transport="touch4bitwig.ui.component.transport.*" xmlns:component2="touch4bitwig.ui.component.*"
+               xmlns:track="touch4bitwig.ui.component.track.*"
                styleName="{StyleNames.MAIN_HEADER}">
 
 
@@ -71,6 +71,16 @@
                 <f:HorizontalLayoutData percentWidth="30"/>
             </transport:layoutData>
         </transport:TransportBar>
+
+        <f:LayoutGroup id="spacer2">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100"/>
+            </f:layoutData>
+        </f:LayoutGroup>
+
+        <track:TrackNavigationControl>
+
+        </track:TrackNavigationControl>
 
     </component2:HGroup>
 

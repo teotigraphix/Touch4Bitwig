@@ -61,22 +61,6 @@ public class TrackChannelFactory extends AbstractThemeFactory
         setStyle(Button, setVolumeSliderMaxStyles, "volume-slider-max");
 
         setStyle(DeviceKnob, setDeviceKnobStyles, "track-channel-device-knob");
-
-        setStyle(Button, setTrackNavigationUpButtonStyles, "track-navigation-up-button");
-        setStyle(Button, setTrackNavigationDownButtonStyles, "track-navigation-down-button");
-
-    }
-
-    private function setTrackNavigationUpButtonStyles(button:Button):void
-    {
-        theme.buttons.setButtonStyles(button);
-        button.defaultIcon = AssetMap.createImage("track-navigation-up-icon-skin");
-    }
-
-    private function setTrackNavigationDownButtonStyles(button:Button):void
-    {
-        theme.buttons.setButtonStyles(button);
-        button.defaultIcon = AssetMap.createImage("track-navigation-down-icon-skin");
     }
 
     //----------------------------------

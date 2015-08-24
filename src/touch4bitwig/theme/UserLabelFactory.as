@@ -52,7 +52,8 @@ public class UserLabelFactory extends LabelFactory
     {
         super.initializeFonts();
 
-        veryLargeUILightElementFormat = new ElementFormat(theme.fonts.boldFontDescription, 75, 0x3BABCC);
+        veryLargeUILightElementFormat = new ElementFormat(theme.fonts.boldFontDescription, 75,
+                                                          StyleNames.FONT_COLOR_BITWIG_BLUE);
     }
 
     private function setTrackHeaderLabelStyles(label:Label):void

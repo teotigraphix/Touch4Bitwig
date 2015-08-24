@@ -98,12 +98,22 @@ public class TrackBank extends AbstractBitwigState
         }
     }
 
-    public function previous():void
+    public function scrollTracksUp():void
+    {
+        service.send("/track/bank/-");
+    }
+
+    public function scrollTracksDown():void
+    {
+        service.send("/track/bank/+");
+    }
+
+    public function scrollTracksPageUp():void
     {
         service.send("/track/-");
     }
 
-    public function next():void
+    public function scrollTracksPageDown():void
     {
         service.send("/track/+");
     }

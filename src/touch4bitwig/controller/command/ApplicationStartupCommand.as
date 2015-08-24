@@ -26,6 +26,9 @@ import com.teotigraphix.ui.component.Toast;
 import org.as3commons.async.operation.event.OperationEvent;
 import org.robotlegs.starling.mvcs.Command;
 
+import starling.animation.Juggler;
+import starling.core.Starling;
+
 import starling.events.Event;
 
 import touch4bitwig.app.config.ApplicationConfiguration;
@@ -87,7 +90,10 @@ public class ApplicationStartupCommand extends Command
             if (bound)
             {
                 oscMessageController.start();
-                dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
+                Starling.juggler.delayCall(function ():void {
+                    dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
+                }, 1);
+
                 return;
             }
         }

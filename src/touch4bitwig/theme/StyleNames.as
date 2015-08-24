@@ -22,6 +22,7 @@ package touch4bitwig.theme
 
 public final class StyleNames
 {
+    public static const FONT_COLOR_BITWIG_BLUE:uint = 0x3BABCC;
     // Main
     public static const MAIN_HEADER:String = "main-header";
 
@@ -48,6 +49,11 @@ public final class StyleNames
     public static const MIXER_ITEM_VU_BAR:String = "mixer-item-vu-bar";
     public static const MIXER_ITEM_VOLUME_LABEL:String = "mixer-item-volume-label";
     public static const MIXER_ITEM_VOLUME_SLIDER:String = "mixer-item-volume-slider";
+
+    //
+    public static const TRACK_NAVIGATION_CONTROL_DOWN_BUTTON:String = "track-navigation-control-down-button";
+    public static const TRACK_NAVIGATION_CONTROL_NAME_LABEL:String = "track-navigation-control-name-label";
+    public static const TRACK_NAVIGATION_CONTROL_UP_BUTTON:String = "track-navigation-control-up-button";
 
     // ClipLauncher
     public static const CLIP_LAUNCHER_AUTOMATION_BUTTON:String = "clip-launcher-automation-button";

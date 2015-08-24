@@ -31,6 +31,7 @@
 
     <f:Button id="stopButton"
               styleName="{StyleNames.TRANSPORT_BAR_STOP_BUTTON}"
+              minWidth="50"
               triggered="stop_triggeredHandler()">
         <f:layoutData>
             <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
@@ -39,6 +40,7 @@
 
     <component:UIToggleButton id="playButton" isToggle="true"
                               styleName="{StyleNames.TRANSPORT_BAR_PLAY_BUTTON}"
+                              minWidth="50"
                               triggered="play_changedHandler(playButton.isSelected)">
         <component:layoutData>
             <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
@@ -47,6 +49,7 @@
 
     <component:UIToggleButton id="recordButton" isToggle="true"
                               styleName="{StyleNames.TRANSPORT_BAR_RECORD_BUTTON}"
+                              minWidth="50"
                               change="record_changedHandler(recordButton.isSelected)">
         <component:layoutData>
             <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
@@ -55,6 +58,7 @@
 
     <component:UIToggleButton id="automationButton" isToggle="true"
                               styleName="{StyleNames.TRANSPORT_BAR_AUTOMATION_BUTTON}"
+                              minWidth="50"
                               change="automation_changedHandler(automationButton.isSelected)">
         <component:layoutData>
             <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
@@ -63,6 +67,7 @@
 
     <component:UIToggleButton id="popupButton" isToggle="true"
                               styleName="{StyleNames.TRANSPORT_BAR_POPUP_BUTTON}"
+                              minWidth="50"
                               change="popupButton_changedHandler(popupButton.isSelected)">
         <component:layoutData>
             <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>

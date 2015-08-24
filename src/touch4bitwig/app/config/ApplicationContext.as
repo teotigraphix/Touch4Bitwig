@@ -49,6 +49,8 @@ import touch4bitwig.ui.component.main.MainHeader;
 import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
 import touch4bitwig.ui.component.mixer.MixerBankMediator;
+import touch4bitwig.ui.component.track.TrackNavigationControl;
+import touch4bitwig.ui.component.track.TrackNavigationControlMediator;
 import touch4bitwig.ui.component.transport.TransportBar;
 import touch4bitwig.ui.component.transport.TransportBarMediator;
 import touch4bitwig.ui.component.transport.TransportDisplay;
@@ -117,6 +119,8 @@ public class ApplicationContext extends FrameworkContext
     {
         mediatorMap.mapView(MainNavigator, MainNavigatorMediator);
         mediatorMap.mapView(MainHeader, MainHeaderMediator);
+
+        mediatorMap.mapView(TrackNavigationControl, TrackNavigationControlMediator);
 
         // ConfigurationScreen
         mediatorMap.mapView(ConfigurationScreen, ConfigurationScreenMediator);

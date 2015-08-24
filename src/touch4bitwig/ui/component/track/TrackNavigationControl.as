@@ -23,9 +23,6 @@ package touch4bitwig.ui.component.track
 import feathers.controls.Button;
 import feathers.controls.Label;
 import feathers.controls.LayoutGroup;
-import feathers.layout.HorizontalLayout;
-import feathers.layout.HorizontalLayoutData;
-import feathers.layout.VerticalLayout;
 import feathers.skins.IStyleProvider;
 
 import starling.events.Event;
@@ -43,6 +40,13 @@ public class TrackNavigationControl extends LayoutGroup
     private var _canScrollTracksUp:Boolean;
     private var _canScrollTracksDown:Boolean;
     private var _trackName:String;
+    private var _nameLabel:Label;
+    private var _skin:TrackNavigationControlSkin;
+
+    override protected function get defaultStyleProvider():IStyleProvider
+    {
+        return TrackNavigationControl.globalStyleProvider;
+    }
 
     public function get canScrollTracksUp():Boolean
     {
@@ -52,7 +56,7 @@ public class TrackNavigationControl extends LayoutGroup
     public function set canScrollTracksUp(value:Boolean):void
     {
         _canScrollTracksUp = value;
-        invalidate();
+        invalidate(INVALIDATION_FLAG_DATA);
     }
 
     public function get canScrollTracksDown():Boolean
@@ -63,7 +67,7 @@ public class TrackNavigationControl extends LayoutGroup
     public function set canScrollTracksDown(value:Boolean):void
     {
         _canScrollTracksDown = value;
-        invalidate();
+        invalidate(INVALIDATION_FLAG_DATA);
     }
 
     public function get trackName():String
@@ -74,52 +78,38 @@ public class TrackNavigationControl extends LayoutGroup
     public function set trackName(value:String):void
     {
         _trackName = value;
-        invalidate();
-    }
-
-    override protected function get defaultStyleProvider():IStyleProvider
-    {
-        return TrackNavigationControl.globalStyleProvider;
+        invalidate(INVALIDATION_FLAG_DATA);
     }
 
     public function TrackNavigationControl()
     {
     }
 
-    private var _nameLabel:Label;
-
     override protected function initialize():void
     {
-        var l:HorizontalLayout = new HorizontalLayout();
-        l.verticalAlign = VerticalLayout.VERTICAL_ALIGN_MIDDLE;
-        layout = l;
         super.initialize();
 
-        _upButton = new Button();
-        _upButton.addEventListener(Event.TRIGGERED, left_triggeredHandler);
+        _skin = new TrackNavigationControlSkin();
+        _skin.owner = this;
+        addChild(_skin);
 
-        _downButton = new Button();
-        _downButton.addEventListener(Event.TRIGGERED, right_triggeredHandler);
-
-        _nameLabel = new Label();
-        _nameLabel.layoutData = new HorizontalLayoutData(100);
-
-        _upButton.styleNameList.add("track-navigation-up-button");
-        _downButton.styleNameList.add("track-navigation-down-button");
-        _downButton.styleNameList.add("track-navigation-name-label");
-
-        addChild(_upButton);
-        addChild(_downButton);
-        addChild(_nameLabel);
+        _skin.addEventListener(EVENT_UP, left_triggeredHandler);
+        _skin.addEventListener(EVENT_DOWN, right_triggeredHandler);
     }
 
     override protected function draw():void
     {
         super.draw();
 
-        _upButton.isEnabled = _canScrollTracksUp;
-        _downButton.isEnabled = _canScrollTracksDown;
-        _nameLabel.text = _trackName;
+        _skin.move(0, 0);
+        _skin.setSize(width, height);
+
+        if (isInvalid(INVALIDATION_FLAG_DATA))
+        {
+            _skin.canScrollTracksDown = _canScrollTracksDown;
+            _skin.canScrollTracksUp = _canScrollTracksUp;
+            _skin.trackName = _trackName;
+        }
     }
 
     private function left_triggeredHandler(event:Event):void

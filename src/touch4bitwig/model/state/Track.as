@@ -98,7 +98,7 @@ public class Track extends AbstractBitwigState
     public function set isSelected(value:Boolean):void
     {
         _isSelected = value;
-        dispatch(TrackModelEventType.SELECTED_CHANGE, {index: _index, value: _isSelected});
+        dispatch(TrackModelEventType.SELECTED_CHANGE, {index: _index, value: _isSelected, track:this});
     }
 
     public function get name():String

@@ -74,6 +74,7 @@ public class MobileTheme extends AbstractTheme
         factories.push(new TrackChannelFactory(this));
         factories.push(new DeviceSelectBarFactory(this));
         factories.push(new ClipLauncherFactory(this));
+        factories.push(new TrackNavigationControlFactory(this));
     }
 
     override protected function initializeTextures():void

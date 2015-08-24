@@ -28,15 +28,16 @@ import touch4bitwig.ui.AbstractUIMediator;
 
 public class TrackNavigationControlMediator extends AbstractUIMediator
 {
-    private var view:TrackNavigationControl;
+    [Inject]
+    public var view:TrackNavigationControl;
 
     public function TrackNavigationControlMediator()
     {
     }
 
-    override public function preRegister():void
+    override public function onRegister():void
     {
-        super.preRegister();
+        super.onRegister();
 
         addContextListener(TrackModelEventType.SELECTED_CHANGE, context_selectedChangeHandler);
 
@@ -59,15 +60,9 @@ public class TrackNavigationControlMediator extends AbstractUIMediator
         }
     }
 
-    override public function setViewComponent(viewComponent:Object):void
+    override public function onRemove():void
     {
-        super.setViewComponent(viewComponent);
-        view = TrackNavigationControl(viewComponent);
-    }
-
-    override public function preRemove():void
-    {
-        super.preRemove();
+        super.onRemove();
     }
 
     private function context_canScrollTracksUpHandler(event:Event, data:Object):void
@@ -90,12 +85,12 @@ public class TrackNavigationControlMediator extends AbstractUIMediator
 
     private function view_upHandler(event:Event):void
     {
-        oscModel.trackBank.previous();
+        oscModel.trackBank.scrollTracksUp();
     }
 
     private function view_downHandler(event:Event):void
     {
-        oscModel.trackBank.next();
+        oscModel.trackBank.scrollTracksDown();
     }
 }
 }
