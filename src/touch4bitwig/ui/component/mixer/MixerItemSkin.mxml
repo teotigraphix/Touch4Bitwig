@@ -22,7 +22,7 @@
 <mixer:MixerItemSkinBase xmlns:fx="http://ns.adobe.com/mxml/2009"
                          xmlns:f="library://ns.feathersui.com/mxml"
                          xmlns:ui="com.teotigraphix.ui.component.*"
-                         xmlns:component="touch4bitwig.ui.component.*"
+                         xmlns:component="com.teotigraphix.ui.component.*"
                          xmlns:mixer="touch4bitwig.ui.component.mixer.*">
 
     <mixer:layout>

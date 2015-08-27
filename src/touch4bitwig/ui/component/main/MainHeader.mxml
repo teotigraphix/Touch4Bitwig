@@ -22,7 +22,7 @@
 <f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
                xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:component="com.teotigraphix.ui.component.*"
-               xmlns:transport="touch4bitwig.ui.component.transport.*" xmlns:component2="touch4bitwig.ui.component.*"
+               xmlns:transport="touch4bitwig.ui.component.transport.*"
                xmlns:track="touch4bitwig.ui.component.track.*"
                styleName="{StyleNames.MAIN_HEADER}">
 
@@ -32,7 +32,7 @@
     </f:layout>
 
     <!-- Main header bar -->
-    <component2:HGroup percentWidth="100" gap="5">
+    <component:HGroup percentWidth="100" gap="5">
 
         <component:UIToggleButton id="activeEngineButton"
                                   isToggle="true"
@@ -64,9 +64,9 @@
 
         </track:TrackNavigationControl>
 
-    </component2:HGroup>
+    </component:HGroup>
 
-    <component2:HGroup percentWidth="100" minHeight="50" horizontalAlign="center">
+    <component:HGroup percentWidth="100" minHeight="50" horizontalAlign="center">
 
         <f:TabBar id="tabBar"
                   direction="horizontal" distributeTabSizes="true"
@@ -76,7 +76,7 @@
             </f:layoutData>
         </f:TabBar>
 
-    </component2:HGroup>
+    </component:HGroup>
 
 
     <fx:Script><![CDATA[
