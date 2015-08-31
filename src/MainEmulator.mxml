@@ -30,7 +30,7 @@
 
     <fx:Declarations>
         <!-- IOC container declaring all application view, model, service. -->
-        <config:ApplicationContext contextView="{navigator}"/>
+        <config:ApplicationContext application="{this}" contextView="{navigator}"/>
     </fx:Declarations>
 
     <!-- The main application Drawer container. -->

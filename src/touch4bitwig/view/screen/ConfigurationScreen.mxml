@@ -20,13 +20,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 -->
 <f:Screen xmlns:f="library://ns.feathersui.com/mxml"
-          xmlns:fx="http://ns.adobe.com/mxml/2009">
+          xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:component="com.teotigraphix.ui.component.*">
 
     <f:layout>
         <f:VerticalLayout/>
     </f:layout>
 
-    <f:Label text="OSC Configuration"/>
+
+
+    <component:HGroup>
+        <f:Label text="OSC Configuration"/>
+        <f:Button id="backButton" triggered="backButton_triggeredHandler()"/>
+    </component:HGroup>
 
     <f:GroupedList id="ipList" headerField="header" >
         <f:layoutData>
@@ -40,4 +45,13 @@
         </f:itemRendererProperties>
     </f:GroupedList>
 
+    <fx:Script><![CDATA[
+
+        public static const EVENT_BACK:String = "back";
+
+        private function backButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_BACK);
+        }
+        ]]></fx:Script>
 </f:Screen>

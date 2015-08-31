@@ -23,7 +23,6 @@
                        xmlns:f="library://ns.feathersui.com/mxml"
                        xmlns:ui="com.teotigraphix.app.ui.*">
 
-
     <f:StackScreenNavigatorItem id="ConfigurationScreen"
                                 screen="{configurationScreen}">
     </f:StackScreenNavigatorItem>
@@ -40,7 +39,6 @@
                                 screen="{panelsScreen}">
     </f:StackScreenNavigatorItem>
 
-
     <fx:Script><![CDATA[
         import touch4bitwig.view.screen.ConfigurationScreen;
         import touch4bitwig.view.screen.MixerScreen;
@@ -54,4 +52,5 @@
         public static const transportScreen:Class = TransportScreen;
         public static const panelsScreen:Class = PanelsScreen;
         ]]></fx:Script>
+
 </ui:BootstrapNavigator>

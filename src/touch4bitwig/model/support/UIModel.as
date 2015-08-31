@@ -41,7 +41,7 @@ public class UIModel extends AbstractModel implements IUIModel
         if (_screenID == value)
             return;
         _screenID = value;
-        dispatchWith(UIModelEventType.SCREEN_ID_CHANGE, false, _screenID);
+        dispatchWith(UIModelEventType.SCREEN_ID, false, _screenID);
     }
 
     public function get screenDataProvider():ListCollection
@@ -74,6 +74,11 @@ public class UIModel extends AbstractModel implements IUIModel
         ];
 
         _screenDataProvider = new ListCollection(dp);
+    }
+
+    public function back():void
+    {
+        dispatchWith(UIModelEventType.BACK);
     }
 }
 }

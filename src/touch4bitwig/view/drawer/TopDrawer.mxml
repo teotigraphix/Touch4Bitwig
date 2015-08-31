@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<!--
 ////////////////////////////////////////////////////////////////////////////////
 // Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
 //
@@ -16,14 +18,24 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
+-->
+<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:fx="http://ns.adobe.com/mxml/2009">
 
-package touch4bitwig.event
-{
+    <f:layout>
+        <f:HorizontalLayout padding="8"/>
+    </f:layout>
 
-public class UIModelEventType
-{
-    public static const BACK:String = "UIModelEventType/back";
-    public static const SCREEN_ID:String = "UIModelEventType/screenId";
-    public static const MAIN_SCREEN_INDEX:String = "UIModelEventType/mainScreenIndex";
-}
-}
+    <f:Button id="configurationButton"
+              label="Config"
+              triggered="configurationButton_triggeredHandler()"/>
+
+    <fx:Script><![CDATA[
+        public static const EVENT_CONFIGURE:String = "configure";
+
+        private function configurationButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_CONFIGURE);
+        }
+        ]]></fx:Script>
+</f:LayoutGroup>

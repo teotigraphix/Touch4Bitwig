@@ -31,5 +31,10 @@ public interface IUIModel
     function set screenID(value:String):void;
 
     function get screenDataProvider():ListCollection;
+
+    /**
+     * Pops the last screen of the main navigator stack.
+     */
+    function back():void;
 }
 }

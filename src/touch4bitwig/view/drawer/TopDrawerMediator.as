@@ -17,20 +17,21 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.main
+package touch4bitwig.view.drawer
 {
+
+import com.teotigraphix.ui.mediator.AbstractMediator;
 
 import starling.events.Event;
 
-import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.ui.AbstractUIMediator;
+import touch4bitwig.controller.ApplicationCommands;
 
-public class MainHeaderMediator extends AbstractUIMediator
+public class TopDrawerMediator extends AbstractMediator
 {
     [Inject]
-    public var view:MainHeader;
+    public var view:TopDrawer;
 
-    public function MainHeaderMediator()
+    public function TopDrawerMediator()
     {
     }
 
@@ -38,14 +39,7 @@ public class MainHeaderMediator extends AbstractUIMediator
     {
         super.onRegister();
 
-        addContextListener(ApplicationModelEventType.ACTIVE_CHANGE, context_activeEngineChange);
-
-        addViewListener(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, view_activeEngineChange);
-        addViewListener(MainHeader.EVENT_SCREEN_CHANGE, view_screenChange);
-
-        view.setActiveEngine(oscModel.application.active);
-        view.setScreenDataProvider(uiModel.screenDataProvider);
-        view.setScreenIndex(uiModel.screenIndex);
+        addViewListener(TopDrawer.EVENT_CONFIGURE, view_configureHandler);
     }
 
     override public function onRemove():void
@@ -53,19 +47,9 @@ public class MainHeaderMediator extends AbstractUIMediator
         super.onRemove();
     }
 
-    private function context_activeEngineChange(event:Event, data:Object):void
+    private function view_configureHandler(event:Event):void
     {
-        view.setActiveEngine(data.value);
-    }
-
-    private function view_screenChange(event:Event, id:String):void
-    {
-        uiModel.screenID = id;
-    }
-
-    private function view_activeEngineChange(event:Event):void
-    {
-        oscService.send("/active");
+        dispatchWith(ApplicationCommands.SHOW_CONFIGURATION_SCREEN);
     }
 }
 }

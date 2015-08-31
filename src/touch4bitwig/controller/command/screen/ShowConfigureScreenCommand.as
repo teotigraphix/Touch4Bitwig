@@ -17,47 +17,29 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.view.screen
+package touch4bitwig.controller.command.screen
 {
 
-import starling.events.Event;
+import feathers.core.DrawersApplication;
 
-import touch4bitwig.model.IConfigurationModel;
-import touch4bitwig.model.IUIModel;
-import touch4bitwig.view.AbstractMediator;
+import org.robotlegs.starling.mvcs.Command;
 
-public class ConfigurationScreenMediator extends AbstractMediator
+import touch4bitwig.view.ApplicationScreens;
+import touch4bitwig.view.MainNavigator;
+
+public class ShowConfigureScreenCommand extends Command
 {
     [Inject]
-    public var screen:ConfigurationScreen;
+    public var application:DrawersApplication;
 
     [Inject]
-    public var configurationModel:IConfigurationModel;
+    public var navigator:MainNavigator;
 
-    [Inject]
-    public var uiModel:IUIModel;
-
-    public function ConfigurationScreenMediator()
+    override public function execute():void
     {
-    }
+        application.toggleTopDrawer();
 
-    override public function onRegister():void
-    {
-        super.onRegister();
-
-        screen.ipList.dataProvider = configurationModel.ipDataProvider;
-
-        addViewListener(ConfigurationScreen.EVENT_BACK, view_backHandler);
-    }
-
-    override public function onRemove():void
-    {
-        super.onRemove();
-    }
-
-    private function view_backHandler(event:Event):void
-    {
-        uiModel.back();
+        navigator.pushScreen(ApplicationScreens.SCREEN_CONFIGURATION);
     }
 }
 }

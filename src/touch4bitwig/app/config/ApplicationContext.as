@@ -23,11 +23,16 @@ package touch4bitwig.app.config
 import com.teotigraphix.app.config.ApplicationDescriptor;
 import com.teotigraphix.app.config.FrameworkContext;
 
+import feathers.core.DrawersApplication;
+
 import org.robotlegs.starling.base.ContextEventType;
+
+import touch4bitwig.controller.ApplicationCommands;
 
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.OSCMessageController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
+import touch4bitwig.controller.command.screen.ShowConfigureScreenCommand;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
@@ -58,9 +63,11 @@ import touch4bitwig.ui.component.transport.TransportDisplayMediator;
 import touch4bitwig.ui.component.transport.TransportPopUp;
 import touch4bitwig.ui.component.transport.TransportPopUpMediator;
 import touch4bitwig.view.MainNavigator;
+import touch4bitwig.view.drawer.TopDrawer;
+import touch4bitwig.view.drawer.TopDrawerMediator;
 import touch4bitwig.view.screen.ConfigurationScreen;
 import touch4bitwig.view.screen.ConfigurationScreenMediator;
-import touch4bitwig.view.screen.MainNavigatorMediator;
+import touch4bitwig.view.ApplicationMediator;
 import touch4bitwig.view.screen.MixerScreen;
 import touch4bitwig.view.screen.MixerScreenMediator;
 import touch4bitwig.view.screen.PanelsScreen;
@@ -68,6 +75,7 @@ import touch4bitwig.view.screen.PanelsScreenMediator;
 
 public class ApplicationContext extends FrameworkContext
 {
+    public var application:DrawersApplication;
 
     public function ApplicationContext()
     {
@@ -82,6 +90,9 @@ public class ApplicationContext extends FrameworkContext
 
     override protected function configureApplication():void
     {
+        injector.mapValue(DrawersApplication, application);
+        injector.mapValue(MainNavigator, contextView);
+
         trace("    ApplicationContext.configureService()");
         configureService();
         trace("    ApplicationContext.configureModel()");
@@ -112,15 +123,21 @@ public class ApplicationContext extends FrameworkContext
     {
         injector.mapSingleton(ApplicationController);
         injector.mapSingleton(OSCMessageController);
+
         commandMap.mapEvent(ContextEventType.STARTUP, ApplicationStartupCommand);
+
+        commandMap.mapEvent(ApplicationCommands.SHOW_CONFIGURATION_SCREEN, ShowConfigureScreenCommand);
     }
 
     private function configureView():void
     {
-        mediatorMap.mapView(MainNavigator, MainNavigatorMediator);
+        mediatorMap.mapView(MainNavigator, ApplicationMediator);
         mediatorMap.mapView(MainHeader, MainHeaderMediator);
 
         mediatorMap.mapView(TrackNavigationControl, TrackNavigationControlMediator);
+
+        // Drawers
+        mediatorMap.mapView(TopDrawer, TopDrawerMediator);
 
         // ConfigurationScreen
         mediatorMap.mapView(ConfigurationScreen, ConfigurationScreenMediator);
