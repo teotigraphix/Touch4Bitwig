@@ -31,3 +31,10 @@ Alpha 0.1
 Currently the UI and usability is still being designed. The application is built around components
 and screens so in the end, any number of views can be created reusing existing component
 building blocks.
+
+## Development
+
+The master branch is always in a working state, where tags and releases are merged from develop.
+The develop branch is the bleeding edge alpha code where there could be times it breaks.
+
+The master will hold the binary releases when at a non beta stage.
