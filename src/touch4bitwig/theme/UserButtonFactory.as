@@ -42,6 +42,7 @@ public class UserButtonFactory extends ButtonFactory
         setStyle(UIToggleButton, setPanelsLayoutStyles, "panels-layout-button");
         setStyle(UIToggleButton, setPanelsStyles, "panels-button");
 
+        setStyle(Button, setBackButtonStyles, StyleNames.BACK_BUTTON);
     }
 
     override public function setBaseButtonStyles(button:Button):void
@@ -64,5 +65,11 @@ public class UserButtonFactory extends ButtonFactory
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("panels-button-selected-skin", 5, 5, 50, 50);
     }
 
+    private function setBackButtonStyles(button:Button):void
+    {
+        theme.buttons.setButtonStyles(button);
+        button.defaultLabelProperties.elementFormat = theme.fonts.largeUILightElementFormat;
+        button.label = "Back";
+    }
 }
 }

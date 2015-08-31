@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+<component:VGroup xmlns:f="library://ns.feathersui.com/mxml"
+                  xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:component="com.teotigraphix.ui.component.*"
+                  gap="15"
+                  verticalAlign="middle" horizontalAlign="center">
+
+    <component:HGroup verticalAlign="middle">
+
+        <f:Label text="Server IP" width="{columnWidth}"/>
+        <f:TextInput id="serverIpInput" text="{serverIP}"/>
+
+    </component:HGroup>
+
+    <component:HGroup verticalAlign="middle">
+
+        <f:Label text="Server Port" width="{columnWidth}"/>
+        <f:TextInput id="serverPortInput" text="{serverPort}"/>
+
+    </component:HGroup>
+
+    <component:HGroup verticalAlign="middle">
+
+        <f:Label text="Client IP" width="{columnWidth}"/>
+        <f:TextInput id="clientIpInput" text="{clientIP}"/>
+
+    </component:HGroup>
+
+    <component:HGroup verticalAlign="middle">
+
+        <f:Label text="Client Port" width="{columnWidth}"/>
+        <f:TextInput id="clientPortInput" text="{clientPort}"/>
+
+    </component:HGroup>
+
+
+    <component:HGroup verticalAlign="middle">
+        <f:Button id="applyButton" label="Apply"
+                  isEnabled="false"
+                  triggered="applyButton_triggeredHandler()">
+        </f:Button>
+        <f:Button id="resetButton" label="Reset"
+                  isEnabled="false"
+                  triggered="resetButton_triggeredHandler()">
+        </f:Button>
+    </component:HGroup>
+
+    <fx:Script><![CDATA[
+        public static const EVENT_APPLY:String = "apply";
+        public static const EVENT_RESET:String = "reset";
+
+        [Bindable]
+        public var columnWidth:Number = 150;
+
+        [Bindable]
+        public var clientIP:String = "";
+
+        [Bindable]
+        public var clientPort:String = "";
+
+        [Bindable]
+        public var serverIP:String = "";
+
+        [Bindable]
+        public var serverPort:String = "";
+
+        private function applyButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_APPLY);
+        }
+
+        private function resetButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_RESET);
+        }
+        ]]></fx:Script>
+
+
+</component:VGroup>

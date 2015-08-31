@@ -28,7 +28,6 @@ import feathers.core.DrawersApplication;
 import org.robotlegs.starling.base.ContextEventType;
 
 import touch4bitwig.controller.ApplicationCommands;
-
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.OSCMessageController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
@@ -44,6 +43,8 @@ import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.OSCService;
+import touch4bitwig.ui.component.configuration.ConfigurationForm;
+import touch4bitwig.ui.component.configuration.ConfigurationFormMediator;
 import touch4bitwig.ui.component.frame.PanelLayoutGroup;
 import touch4bitwig.ui.component.frame.PanelLayoutGroupMediator;
 import touch4bitwig.ui.component.frame.PanelSubToggleGroup;
@@ -62,12 +63,12 @@ import touch4bitwig.ui.component.transport.TransportDisplay;
 import touch4bitwig.ui.component.transport.TransportDisplayMediator;
 import touch4bitwig.ui.component.transport.TransportPopUp;
 import touch4bitwig.ui.component.transport.TransportPopUpMediator;
+import touch4bitwig.view.ApplicationMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.drawer.TopDrawer;
 import touch4bitwig.view.drawer.TopDrawerMediator;
 import touch4bitwig.view.screen.ConfigurationScreen;
 import touch4bitwig.view.screen.ConfigurationScreenMediator;
-import touch4bitwig.view.ApplicationMediator;
 import touch4bitwig.view.screen.MixerScreen;
 import touch4bitwig.view.screen.MixerScreenMediator;
 import touch4bitwig.view.screen.PanelsScreen;
@@ -141,6 +142,7 @@ public class ApplicationContext extends FrameworkContext
 
         // ConfigurationScreen
         mediatorMap.mapView(ConfigurationScreen, ConfigurationScreenMediator);
+        mediatorMap.mapView(ConfigurationForm, ConfigurationFormMediator);
 
         // MixerScreen
         mediatorMap.mapView(MixerScreen, MixerScreenMediator);

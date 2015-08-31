@@ -25,6 +25,8 @@ public final class StyleNames
     public static const FONT_COLOR_BITWIG_BLUE:uint = 0x3BABCC;
     // Main
     public static const MAIN_HEADER:String = "main-header";
+    public static const BACK_BUTTON:String = "back-button";
+    public static const HEADER_TITLE_LABEL:String = "header-title-label";
 
     // TransportDisplay
     public static const TRANSPORT_DISPLAY_TEMPO:String = "transport-display-tempo";

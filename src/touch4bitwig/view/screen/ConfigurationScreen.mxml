@@ -20,32 +20,49 @@
 ////////////////////////////////////////////////////////////////////////////////
 -->
 <f:Screen xmlns:f="library://ns.feathersui.com/mxml"
-          xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:component="com.teotigraphix.ui.component.*">
+          xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:component="com.teotigraphix.ui.component.*"
+          xmlns:configuration="touch4bitwig.ui.component.configuration.*">
 
     <f:layout>
         <f:VerticalLayout/>
     </f:layout>
 
+    <component:HGroup padding="10" verticalAlign="middle" gap="15">
 
+        <f:Button id="backButton"
+                  styleName="{StyleNames.BACK_BUTTON}"
+                  triggered="backButton_triggeredHandler()"/>
 
-    <component:HGroup>
-        <f:Label text="OSC Configuration"/>
-        <f:Button id="backButton" triggered="backButton_triggeredHandler()"/>
+        <f:Label text="OSC Configuration"
+                 styleName="{StyleNames.HEADER_TITLE_LABEL}"/>
+
     </component:HGroup>
 
-    <f:GroupedList id="ipList" headerField="header" >
-        <f:layoutData>
-            <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
-        </f:layoutData>
-        <f:headerRendererProperties>
-            <fx:Object contentLabelField="text"/>
-        </f:headerRendererProperties>
-        <f:itemRendererProperties>
-            <fx:Object labelField="text"/>
-        </f:itemRendererProperties>
-    </f:GroupedList>
+
+    <component:HGroup percentWidth="100" percentHeight="100">
+
+        <f:GroupedList id="ipList" headerField="header">
+            <f:layoutData>
+                <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+            <f:headerRendererProperties>
+                <fx:Object contentLabelField="text"/>
+            </f:headerRendererProperties>
+            <f:itemRendererProperties>
+                <fx:Object labelField="text"/>
+            </f:itemRendererProperties>
+        </f:GroupedList>
+
+
+        <configuration:ConfigurationForm percentWidth="100" percentHeight="100">
+
+        </configuration:ConfigurationForm>
+
+    </component:HGroup>
+
 
     <fx:Script><![CDATA[
+        import touch4bitwig.theme.StyleNames;
 
         public static const EVENT_BACK:String = "back";
 

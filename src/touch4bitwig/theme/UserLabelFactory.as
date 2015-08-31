@@ -46,6 +46,8 @@ public class UserLabelFactory extends LabelFactory
         setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_TEMPO);
         setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_TIME);
         setStyle(Label, setTransportDisplayPositionLabelStyles, StyleNames.TRANSPORT_DISPLAY_TIME_SIGNATURE);
+
+        setStyle(Label, setHeaderTitleLabelStyles, StyleNames.HEADER_TITLE_LABEL);
     }
 
     override public function initializeFonts():void
@@ -68,5 +70,9 @@ public class UserLabelFactory extends LabelFactory
         label.textRendererProperties.disabledElementFormat = veryLargeUILightElementFormat;
     }
 
+    private function setHeaderTitleLabelStyles(label:Label):void
+    {
+        label.textRendererProperties.elementFormat = theme.fonts.headerElementFormat;
+    }
 }
 }
