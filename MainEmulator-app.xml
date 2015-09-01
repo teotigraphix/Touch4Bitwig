@@ -233,8 +233,8 @@
                 <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
                 <!--<uses-permission android:name="android.permission.CAMERA"/>-->
                 <!--<uses-permission android:name="android.permission.RECORD_AUDIO"/>-->
-                <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
-                <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+                <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
                 <!--<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>-->
                 <!--<application android:enabled="true">
