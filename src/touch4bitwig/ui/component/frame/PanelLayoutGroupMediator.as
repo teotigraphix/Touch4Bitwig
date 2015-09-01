@@ -20,10 +20,7 @@
 package touch4bitwig.ui.component.frame
 {
 
-import com.teotigraphix.ui.component.UIToggleButton;
 import com.teotigraphix.ui.theme.AssetMap;
-
-import feathers.data.ListCollection;
 
 import starling.events.Event;
 
@@ -33,31 +30,29 @@ import touch4bitwig.ui.AbstractUIMediator;
 
 public class PanelLayoutGroupMediator extends AbstractUIMediator
 {
-    private var view:PanelLayoutGroup;
+    [Inject]
+    public var view:PanelLayoutGroup;
 
     public function PanelLayoutGroupMediator()
     {
-    }
-
-    override public function preRegister():void
-    {
-        super.preRegister();
-        addContextListener(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
-        addViewListener(PanelLayoutGroup.EVENT_LAYOUT_CHANGE, view_layoutChangeHandler);
     }
 
     override public function onRegister():void
     {
         super.onRegister();
 
-        view.dataProvider = new ListCollection([
-            {label: "ARRANGE"},
-            {label: "MIX"},
-            {label: "EDIT"}
-        ]);
+        view.dataProvider = uiModel.panelsLayoutDataProvider;
+
+        // TODO put in theme
         view.minHeight = AssetMap.getSize(150);
+
         view.selectedIndex = getIndex(oscModel.application.layout);
-        view.tabFactory = tabFactory;
+
+        addContextListener(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
+
+        addViewListener(PanelLayoutGroup.EVENT_LAYOUT_CHANGE, view_layoutChangeHandler);
+        addViewListener(PanelLayoutGroup.EVENT_INSPECTOR_TRIGGERED, view_inspectorTriggeredHandler);
+        addViewListener(PanelLayoutGroup.EVENT_BROWSER_TRIGGERED, view_browserTriggeredHandler);
     }
 
     override public function onRemove():void
@@ -65,31 +60,18 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
         super.onRemove();
     }
 
-    override public function setViewComponent(viewComponent:Object):void
-    {
-        super.setViewComponent(viewComponent);
-        view = PanelLayoutGroup(viewComponent);
-    }
-
-    override public function preRemove():void
-    {
-        super.preRemove();
-        view = null;
-    }
-
-    private function tabFactory():UIToggleButton
-    {
-        var button:UIToggleButton = new UIToggleButton();
-        button.styleNameList.add("panels-layout-button");
-        return button;
-    }
-
     private function context_panelLayoutChange(event:Event, data:Object):void
     {
         view.selectedIndex = getIndex(data.value);
     }
 
-    private function getIndex(layout:String):int
+    private function view_layoutChangeHandler(event:Event, layout:String):void
+    {
+        oscService.send("/layout/" + layout);
+    }
+
+    // TODO either make this util or some type of getter with map on model
+    private static function getIndex(layout:String):int
     {
         switch (layout)
         {
@@ -105,9 +87,14 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
         return -1;
     }
 
-    private function view_layoutChangeHandler(event:Event, layout:String):void
+    private function view_inspectorTriggeredHandler(event:Event):void
     {
-        oscService.send("/layout/" + layout);
+        oscService.send("/panel/inspector");
+    }
+
+    private function view_browserTriggeredHandler(event:Event):void
+    {
+        oscService.send("/panel/browser");
     }
 }
 }

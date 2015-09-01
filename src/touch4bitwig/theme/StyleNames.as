@@ -61,5 +61,9 @@ public final class StyleNames
     public static const CLIP_LAUNCHER_AUTOMATION_BUTTON:String = "clip-launcher-automation-button";
     public static const CLIP_LAUNCHER_OVERDUB_BUTTON:String = "clip-launcher-overdub-button";
 
+    // Panels
+    public static const PANELS_LAYOUT_BUTTON:String = "panels-layout-button";
+    public static const PANELS_INSPECTOR_BUTTON:String = "panels-inspector-button";
+    public static const PANELS_BROWSER_BUTTON:String = "panels-browser-button";
 }
 }

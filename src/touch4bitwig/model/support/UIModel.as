@@ -30,6 +30,7 @@ public class UIModel extends AbstractModel implements IUIModel
 {
     private var _screenID:String;
     private var _screenDataProvider:ListCollection;
+    private var _panelsLayoutDataProvider:ListCollection;
 
     public function get screenID():String
     {
@@ -47,6 +48,13 @@ public class UIModel extends AbstractModel implements IUIModel
     public function get screenDataProvider():ListCollection
     {
         return _screenDataProvider;
+    }
+
+    // Panels
+
+    public function get panelsLayoutDataProvider():ListCollection
+    {
+        return _panelsLayoutDataProvider;
     }
 
     public function get screenIndex():int
@@ -67,13 +75,17 @@ public class UIModel extends AbstractModel implements IUIModel
     {
         super.onRegister();
 
-        var dp:Array = [
+        _screenDataProvider = new ListCollection([
             {index: 0, label: "Mixer", screen: ApplicationScreens.SCREEN_MIXER},
             {index: 1, label: "Transport", screen: ApplicationScreens.SCREEN_TRANSPORT},
             {index: 2, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
-        ];
+        ]);
 
-        _screenDataProvider = new ListCollection(dp);
+        _panelsLayoutDataProvider = new ListCollection([
+            {label: "ARRANGE"},
+            {label: "MIX"},
+            {label: "EDIT"}
+        ]);
     }
 
     public function back():void

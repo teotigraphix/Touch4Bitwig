@@ -39,7 +39,10 @@ public class UserButtonFactory extends ButtonFactory
     {
         super.initializeStyleProviders();
 
-        setStyle(UIToggleButton, setPanelsLayoutStyles, "panels-layout-button");
+        setStyle(UIToggleButton, setPanelsLayoutStyles, StyleNames.PANELS_LAYOUT_BUTTON);
+        // TODO StyleNames.PANELS_BROWSER_BUTTON
+        // TODO  StyleNames.PANELS_INSPECTOR_BUTTON
+
         setStyle(UIToggleButton, setPanelsStyles, "panels-button");
 
         setStyle(Button, setBackButtonStyles, StyleNames.BACK_BUTTON);

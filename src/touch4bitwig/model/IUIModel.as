@@ -32,6 +32,9 @@ public interface IUIModel
 
     function get screenDataProvider():ListCollection;
 
+    // Panels
+    function get panelsLayoutDataProvider():ListCollection;
+
     /**
      * Pops the last screen of the main navigator stack.
      */

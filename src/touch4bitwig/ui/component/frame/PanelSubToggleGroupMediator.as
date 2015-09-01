@@ -35,7 +35,8 @@ import touch4bitwig.ui.AbstractUIMediator;
 
 public class PanelSubToggleGroupMediator extends AbstractUIMediator
 {
-    private var view:PanelSubToggleGroup;
+    [Inject]
+    public var view:PanelSubToggleGroup;
 
     private var _arrangeDataProvider:ListCollection;
     private var _mixDataProvider:ListCollection;
@@ -43,12 +44,11 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 
     public function PanelSubToggleGroupMediator()
     {
-
     }
 
-    override public function preRegister():void
+    override public function onRegister():void
     {
-        super.preRegister();
+        super.onRegister();
 
         addContextListener(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
 
@@ -228,26 +228,9 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
         context_panelLayoutChange(null, {value: oscModel.application.layout});
     }
 
-    override public function onRegister():void
-    {
-        super.onRegister();
-    }
-
     override public function onRemove():void
     {
         super.onRemove();
-    }
-
-    override public function setViewComponent(viewComponent:Object):void
-    {
-        super.setViewComponent(viewComponent);
-        view = PanelSubToggleGroup(viewComponent);
-    }
-
-    override public function preRemove():void
-    {
-        super.preRemove();
-        view = null;
     }
 
     private function context_mixerChangeHandler(event:Event, data:Object):void
