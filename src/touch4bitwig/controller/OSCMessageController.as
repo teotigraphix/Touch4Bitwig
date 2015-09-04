@@ -74,12 +74,26 @@ public class OSCMessageController extends AbstractController implements IOSCList
      * Host:192.168.1.36:8000
      * Host:192.168.1.39/40:9000 <- Send to Android's IP address
      */
-    public function start():void
+    public function _start():void
     {
         configurationModel.connection.oscManager.addMsgListener(this);
 
         OSCService(oscService).oscManager = configurationModel.connection.oscManager;
         oscService.refresh();
+    }
+
+    public function reconnectAndStartup():Boolean
+    {
+        var bound:Boolean = configurationModel.connect();
+        if (!bound)
+            return false;
+
+        configurationModel.connection.oscManager.addMsgListener(this);
+
+        OSCService(oscService).oscManager = configurationModel.connection.oscManager;
+        oscService.refresh();
+
+        return true;
     }
 
     public function acceptOSCMessage(osc:OSCMessage):void

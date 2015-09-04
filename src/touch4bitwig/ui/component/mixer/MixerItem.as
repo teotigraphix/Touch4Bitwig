@@ -31,6 +31,8 @@ import starling.events.TouchPhase;
 
 public class MixerItem extends LayoutGroup implements IMixerItem
 {
+    public static const EVENT_SELECT:String = "select";
+
     public static const EVENT_DOUBLE_TAP:String = "doubleTap";
     public static const EVENT_VOLUME_CHANGE:String = "volumeChange";
     public static const EVENT_PAN_CHANGE:String = "panChange";
@@ -273,6 +275,8 @@ public class MixerItem extends LayoutGroup implements IMixerItem
         _skin.owner = this;
         addChild(_skin);
 
+        _skin.addEventListener(EVENT_SELECT, view_selectHandler);
+
         _skin.addEventListener(EVENT_VOLUME_CHANGE, volumeSlider_changeHandler);
         _skin.addEventListener(EVENT_PAN_CHANGE, panSlider_changeHandler);
 
@@ -288,7 +292,7 @@ public class MixerItem extends LayoutGroup implements IMixerItem
         _skin.move(0, 0);
         _skin.setSize(actualWidth, actualHeight);
 
-        if ( isInvalid(INVALIDATE_FLAG_SELECTED))
+        if (isInvalid(INVALIDATE_FLAG_SELECTED))
         {
             _skin.selected = _selected;
         }
@@ -381,6 +385,11 @@ public class MixerItem extends LayoutGroup implements IMixerItem
     {
         _panValue = pan;
         dispatchEventWith(EVENT_PAN_CHANGE, true, _index);
+    }
+
+    private function view_selectHandler(event:Event):void
+    {
+        dispatchEventWith(EVENT_DOUBLE_TAP, true, _index);
     }
 
     private function touchHandler(event:TouchEvent):void

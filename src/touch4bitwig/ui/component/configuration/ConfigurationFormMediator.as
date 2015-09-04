@@ -22,12 +22,12 @@ package touch4bitwig.ui.component.configuration
 
 import com.teotigraphix.ui.mediator.AbstractMediator;
 
-import starling.core.Starling;
 import starling.events.Event;
 
 import touch4bitwig.controller.OSCMessageController;
-import touch4bitwig.event.ApplicationEventType;
 import touch4bitwig.model.IConfigurationModel;
+import touch4bitwig.model.IUIModel;
+import touch4bitwig.view.ApplicationScreens;
 
 public class ConfigurationFormMediator extends AbstractMediator
 {
@@ -39,6 +39,9 @@ public class ConfigurationFormMediator extends AbstractMediator
 
     [Inject]
     public var oscMessageController:OSCMessageController;
+
+    [Inject]
+    public var uiModel:IUIModel;
 
     public function ConfigurationFormMediator()
     {
@@ -74,21 +77,14 @@ public class ConfigurationFormMediator extends AbstractMediator
         configurationModel.applicationPreferences.deviceIP = view.deviceIP;
         configurationModel.applicationPreferences.devicePort = int(view.devicePort);
 
-        var bound:Boolean = configurationModel.connect();
+        var bound:Boolean = oscMessageController.reconnectAndStartup();
         if (!bound)
         {
             // show status text
         }
         else
         {
-            if (bound)
-            {
-                oscMessageController.start();
-                Starling.juggler.delayCall(function ():void
-                                           {
-                                               dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
-                                           }, 1);
-            }
+            uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
         }
     }
 

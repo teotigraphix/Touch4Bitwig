@@ -123,6 +123,8 @@ public class ApplicationStartupCommand extends Command
 
     private function this_completeHandler(event:OperationEvent):void
     {
+        var startScreenID:String = ApplicationScreens.SCREEN_MIXER;
+
         var debugConfiguration:ApplicationDebugConfiguration = configurationModel.debugConfiguration;
         // if we have a config.xml and it's enabled
         if (debugConfiguration != null && debugConfiguration.isEnabled)
@@ -142,27 +144,21 @@ public class ApplicationStartupCommand extends Command
                 // defaults
                 configurationModel.applicationPreferences = new ApplicationPreferences();
                 // show screen
-                uiModel.screenID = ApplicationScreens.SCREEN_CONFIGURATION;
-                return;
+                startScreenID = ApplicationScreens.SCREEN_CONFIGURATION;
             }
         }
 
-        try
+        if (startScreenID == ApplicationScreens.SCREEN_MIXER)
         {
-            var bound:Boolean = configurationModel.connect();
-            if (bound)
-            {
-                oscMessageController.start();
-                Starling.juggler.delayCall(function ():void
-                                           {
-                                               dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
-                                           }, 1);
-            }
+            oscMessageController.reconnectAndStartup();
         }
-        catch (e:Error)
-        {
 
-        }
+        uiModel.screenID = startScreenID;
+
+        Starling.juggler.delayCall(function ():void
+                                   {
+                                       dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
+                                   }, 1);
     }
 
     private function loadIPs_completeHandler(event:OperationEvent):void

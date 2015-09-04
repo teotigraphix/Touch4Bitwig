@@ -137,7 +137,7 @@ public class ApplicationMediator extends AbstractMediator
         logger.log(TAG, "context_applicationCompleteHandler()");
         logger.log(TAG, "Show initial screen");
 
-        uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
+        //uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
     }
 
     private function context_backHandler(event:starling.events.Event):void
