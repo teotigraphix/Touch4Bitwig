@@ -46,6 +46,13 @@ public class ConnectionInstance
 
     public function setup(inputIp:String, inputPort:int, outputIp:String, outputPort:int):void
     {
+        if (_oscManager != null)
+        {
+            close();
+            _oscManager.stop();
+            _oscManager = null;
+
+        }
         _inputIp = inputIp;
         _inputPort = inputPort;
         _outputIp = outputIp;
@@ -76,8 +83,15 @@ public class ConnectionInstance
 
     public function close():void
     {
+        // TODO throw error
+        if (_udpConnectorIn == null)
+            return;
+
         _udpConnectorIn.close();
         _udpConnectorOut.close();
+
+        _oscManager.connectorIn = null;
+        _oscManager.connectorOut = null;
     }
 }
 }

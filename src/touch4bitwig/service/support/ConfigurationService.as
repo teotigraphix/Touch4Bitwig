@@ -20,37 +20,27 @@
 package touch4bitwig.service.support
 {
 
-import com.teotigraphix.service.IFileService;
 import com.teotigraphix.service.async.IStepCommand;
 
-import flash.filesystem.File;
+import flash.net.registerClassAlias;
 
 import org.robotlegs.starling.core.IInjector;
 
-import touch4bitwig.app.config.ApplicationConfiguration;
+import touch4bitwig.app.config.ApplicationPreferences;
 import touch4bitwig.service.IConfigurationService;
 
 public class ConfigurationService implements IConfigurationService
 {
+    registerClassAlias("$.ApplicationPreferences", ApplicationPreferences);
+
+    public static const CONFIG_XML:String = "config.xml";
+    public static const APPLICATION_PREFERENCES_BIN:String = "application_preferences.bin";
+
     [Inject]
     public var injector:IInjector;
 
-    [Inject]
-    public var fileService:IFileService;
-
     public function ConfigurationService()
     {
-    }
-
-    public function loadLastConfigurationFile():ApplicationConfiguration
-    {
-        var configuration:ApplicationConfiguration;
-        var file:File = File.applicationDirectory.resolvePath("config.xml");
-        if (file.exists)
-        {
-            configuration = load(file);
-        }
-        return configuration;
     }
 
     public function loadIPsAsync():IStepCommand
@@ -58,23 +48,31 @@ public class ConfigurationService implements IConfigurationService
         return injector.instantiate(LoadIPsStep);
     }
 
-    private function load(configFile:File):ApplicationConfiguration
+    public function loadLastConfigurationFileAsync():IStepCommand
     {
-        var data:String = fileService.readString(configFile);
-        var config:ApplicationConfiguration = new ApplicationConfiguration(data);
-        return config;
+        return injector.instantiate(LoadDebugConfigurationFileStep);
     }
 
+    public function loadApplicationPreferences():IStepCommand
+    {
+        return injector.instantiate(LoadApplicationPreferencesFileStep);
+    }
 }
 }
 
+import com.teotigraphix.service.IFileService;
 import com.teotigraphix.service.async.StepCommand;
 
 import feathers.data.HierarchicalCollection;
 
+import flash.filesystem.File;
 import flash.net.InterfaceAddress;
 import flash.net.NetworkInfo;
 import flash.net.NetworkInterface;
+
+import touch4bitwig.app.config.ApplicationDebugConfiguration;
+import touch4bitwig.app.config.ApplicationPreferences;
+import touch4bitwig.service.support.ConfigurationService;
 
 /*
 
@@ -153,8 +151,7 @@ list.dataProvider = groceryList;
 
 class LoadIPsStep extends StepCommand
 {
-
-    override public function commit():*
+    override public function execute():*
     {
         var result:Array = [];
 
@@ -182,15 +179,46 @@ class LoadIPsStep extends StepCommand
             result.push(obj);
         }
 
-        return new HierarchicalCollection(result);
+        var collection:HierarchicalCollection = new HierarchicalCollection(result);
+        complete(collection);
+        return collection;
     }
+}
+
+class LoadDebugConfigurationFileStep extends StepCommand
+{
+    [Inject]
+    public var fileService:IFileService;
 
     override public function execute():*
     {
-        var result:HierarchicalCollection = commit();
-
-        complete(result);
-
-        return result;
+        var configuration:ApplicationDebugConfiguration;
+        var file:File = File.applicationDirectory.resolvePath(ConfigurationService.CONFIG_XML);
+        if (file.exists)
+        {
+            var data:String = fileService.readString(file);
+            configuration = new ApplicationDebugConfiguration(data);
+        }
+        complete(configuration);
+        return configuration;
     }
 }
+
+class LoadApplicationPreferencesFileStep extends StepCommand
+{
+    [Inject]
+    public var fileService:IFileService;
+
+    override public function execute():*
+    {
+        var preferences:ApplicationPreferences;
+        var file:File = File.applicationStorageDirectory.resolvePath(ConfigurationService.APPLICATION_PREFERENCES_BIN);
+        if (file.exists)
+        {
+            preferences = fileService.deserialize(file);
+        }
+        complete(preferences);
+        return preferences;
+    }
+}
+

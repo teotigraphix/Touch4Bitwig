@@ -22,6 +22,11 @@ package touch4bitwig.ui.component.configuration
 
 import com.teotigraphix.ui.mediator.AbstractMediator;
 
+import starling.core.Starling;
+import starling.events.Event;
+
+import touch4bitwig.controller.OSCMessageController;
+import touch4bitwig.event.ApplicationEventType;
 import touch4bitwig.model.IConfigurationModel;
 
 public class ConfigurationFormMediator extends AbstractMediator
@@ -32,6 +37,9 @@ public class ConfigurationFormMediator extends AbstractMediator
     [Inject]
     public var configurationModel:IConfigurationModel;
 
+    [Inject]
+    public var oscMessageController:OSCMessageController;
+
     public function ConfigurationFormMediator()
     {
     }
@@ -40,15 +48,53 @@ public class ConfigurationFormMediator extends AbstractMediator
     {
         super.onRegister();
 
-        view.serverIP = configurationModel.configuration.serverIP;
-        view.serverPort = configurationModel.configuration.serverPort.toString();
-        view.clientIP = configurationModel.configuration.clientIP;
-        view.clientPort = configurationModel.configuration.clientPort.toString();
+        resetToPreferences();
+
+        addViewListener(ConfigurationForm.EVENT_APPLY, view_applyHandler);
+        addViewListener(ConfigurationForm.EVENT_RESET, view_resetHandler);
     }
 
     override public function onRemove():void
     {
         super.onRemove();
+    }
+
+    private function resetToPreferences():void
+    {
+        view.dawIP = configurationModel.applicationPreferences.dawIP;
+        view.dawPort = configurationModel.applicationPreferences.dawPort.toString();
+        view.deviceIP = configurationModel.applicationPreferences.deviceIP;
+        view.devicePort = configurationModel.applicationPreferences.devicePort.toString();
+    }
+
+    private function view_applyHandler(event:Event):void
+    {
+        configurationModel.applicationPreferences.dawIP = view.dawIP;
+        configurationModel.applicationPreferences.dawPort = int(view.dawPort);
+        configurationModel.applicationPreferences.deviceIP = view.deviceIP;
+        configurationModel.applicationPreferences.devicePort = int(view.devicePort);
+
+        var bound:Boolean = configurationModel.connect();
+        if (!bound)
+        {
+            // show status text
+        }
+        else
+        {
+            if (bound)
+            {
+                oscMessageController.start();
+                Starling.juggler.delayCall(function ():void
+                                           {
+                                               dispatchWith(ApplicationEventType.APPLICATION_COMPLETE);
+                                           }, 1);
+            }
+        }
+    }
+
+    private function view_resetHandler(event:Event):void
+    {
+        resetToPreferences();
     }
 }
 }

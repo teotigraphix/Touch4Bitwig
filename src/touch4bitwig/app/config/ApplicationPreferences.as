@@ -17,34 +17,27 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.service
+package touch4bitwig.app.config
 {
 
-import com.teotigraphix.frameworks.osc.OSCManager;
-
-import starling.events.Event;
-
-public interface IOSCService
+public class ApplicationPreferences
 {
-    //function get oscManager():OSCManager
-    //
-    //function set oscManager(value:OSCManager):void;
+    public var dawPort:int = 8000;
+    public var dawIP:String = "127.0.0.1";
 
-    function send(message:String):void;
+    public var devicePort:int = 9000;
+    public var deviceIP:String = "127.0.0.1";
 
-    function sendString(message:String, value:String):void;
+    public function ApplicationPreferences()
+    {
+    }
 
-    function sendInt(message:String, value:int):void;
-
-    function sendBoolean(message:String, value:Boolean):void;
-
-    /**
-     * Refreshes all osc messages from the current Bitwig session model.
-     */
-    function refresh():void;
-
-    function dispatchEventWith(type:String, bubbles:Boolean = false, data:Object = null):void;
-
-    function dispatchEvent(event:Event):void;
+    public function configure(configuration:ApplicationDebugConfiguration):void
+    {
+        dawPort = configuration.dawPort;
+        dawIP = configuration.dawIP;
+        devicePort = configuration.devicePort;
+        deviceIP = configuration.deviceIP;
+    }
 }
 }

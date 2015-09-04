@@ -26,6 +26,7 @@ import com.teotigraphix.frameworks.osc.OSCMessage;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.service.IOSCService;
+import touch4bitwig.service.support.OSCService;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
 import touch4bitwig.service.support.osc.listeners.FrameListener;
@@ -77,7 +78,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
     {
         configurationModel.connection.oscManager.addMsgListener(this);
 
-        oscService.oscManager = configurationModel.connection.oscManager;
+        OSCService(oscService).oscManager = configurationModel.connection.oscManager;
         oscService.refresh();
     }
 

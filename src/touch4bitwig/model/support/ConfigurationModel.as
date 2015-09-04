@@ -22,7 +22,8 @@ package touch4bitwig.model.support
 
 import feathers.data.HierarchicalCollection;
 
-import touch4bitwig.app.config.ApplicationConfiguration;
+import touch4bitwig.app.config.ApplicationDebugConfiguration;
+import touch4bitwig.app.config.ApplicationPreferences;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.service.IConfigurationService;
 
@@ -31,23 +32,19 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     [Inject]
     public var configurationService:IConfigurationService;
 
-    private var _configuration:ApplicationConfiguration;
-
+    private var _debugConfiguration:ApplicationDebugConfiguration;
     private var _connection:ConnectionInstance;
-
     private var _ipDataProvider:HierarchicalCollection;
+    private var _applicationPreferences:ApplicationPreferences;
 
-    public function get configuration():ApplicationConfiguration
+    public function get debugConfiguration():ApplicationDebugConfiguration
     {
-        return _configuration;
+        return _debugConfiguration;
     }
 
-    public function set configuration(value:ApplicationConfiguration):void
+    public function set debugConfiguration(value:ApplicationDebugConfiguration):void
     {
-        _configuration = value;
-
-        _connection.setup(_configuration.serverIP, _configuration.serverPort,
-                         _configuration.clientIP, _configuration.clientPort);
+        _debugConfiguration = value;
     }
 
     public function get connection():ConnectionInstance
@@ -63,6 +60,27 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     public function set ipDataProvider(value:HierarchicalCollection):void
     {
         _ipDataProvider = value;
+    }
+
+    public function get applicationPreferences():ApplicationPreferences
+    {
+        return _applicationPreferences;
+    }
+
+    public function set applicationPreferences(value:ApplicationPreferences):void
+    {
+        _applicationPreferences = value;
+    }
+
+    public function connect():Boolean
+    {
+        // calls _connection.close() if current connection exists
+        // recreates the OSCManager
+        _connection.setup(_applicationPreferences.deviceIP, _applicationPreferences.devicePort,
+                          _applicationPreferences.dawIP, _applicationPreferences.dawPort);
+
+        var bound:Boolean = _connection.connect();
+        return bound;
     }
 
     public function ConfigurationModel()

@@ -22,16 +22,30 @@ package touch4bitwig.service
 
 import com.teotigraphix.service.async.IStepCommand;
 
-import touch4bitwig.app.config.ApplicationConfiguration;
-
+/**
+ * The IConfigurationService manages ip/port connections and configuration files.
+ */
 public interface IConfigurationService
 {
+    /**
+     * Loads the NetworkInterface's network list and creates a collection from the results.
+     *
+     * @return Command with result as a HierarchicalCollection.
+     */
     function loadIPsAsync():IStepCommand;
 
     /**
      * Loads the XML configuration file into the ApplicationConfiguration.
-     * @return Returns an ApplicationConfiguration if the config file exists.
+     *
+     * @return Command with result as ApplicationConfiguration if the config file exists.
      */
-    function loadLastConfigurationFile():ApplicationConfiguration;
+    function loadLastConfigurationFileAsync():IStepCommand;
+
+    /**
+     * Loads the binary config preferences file.
+     *
+     * @return Command with result as ApplicationPreferences.
+     */
+    function loadApplicationPreferences():IStepCommand;
 }
 }

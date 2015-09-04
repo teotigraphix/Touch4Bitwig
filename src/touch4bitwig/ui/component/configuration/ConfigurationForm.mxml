@@ -27,32 +27,35 @@
 
     <component:HGroup verticalAlign="middle">
 
-        <f:Label text="Server IP" width="{columnWidth}"/>
-        <f:TextInput id="serverIpInput" text="{serverIP}"/>
+        <f:Label text="DAW IP" width="{columnWidth}"/>
+        <f:TextInput id="dawIpInput" restrict="0-9."
+                     change="input_changeHandler()"/>
 
     </component:HGroup>
 
     <component:HGroup verticalAlign="middle">
 
-        <f:Label text="Server Port" width="{columnWidth}"/>
-        <f:TextInput id="serverPortInput" text="{serverPort}"/>
+        <f:Label text="DAW Port" width="{columnWidth}"/>
+        <f:TextInput id="dawPortInput" restrict="0-9"
+                     change="input_changeHandler()"/>
 
     </component:HGroup>
 
     <component:HGroup verticalAlign="middle">
 
-        <f:Label text="Client IP" width="{columnWidth}"/>
-        <f:TextInput id="clientIpInput" text="{clientIP}"/>
+        <f:Label text="Device IP" width="{columnWidth}"/>
+        <f:TextInput id="deviceIpInput" restrict="0-9."
+                     change="input_changeHandler()"/>
 
     </component:HGroup>
 
     <component:HGroup verticalAlign="middle">
 
-        <f:Label text="Client Port" width="{columnWidth}"/>
-        <f:TextInput id="clientPortInput" text="{clientPort}"/>
+        <f:Label text="Device Port" width="{columnWidth}"/>
+        <f:TextInput id="devicePortInput" restrict="0-9"
+                     change="input_changeHandler()"/>
 
     </component:HGroup>
-
 
     <component:HGroup verticalAlign="middle">
         <f:Button id="applyButton" label="Apply"
@@ -60,7 +63,7 @@
                   triggered="applyButton_triggeredHandler()">
         </f:Button>
         <f:Button id="resetButton" label="Reset"
-                  isEnabled="false"
+                  isEnabled="true"
                   triggered="resetButton_triggeredHandler()">
         </f:Button>
     </component:HGroup>
@@ -69,20 +72,64 @@
         public static const EVENT_APPLY:String = "apply";
         public static const EVENT_RESET:String = "reset";
 
+        // XXX for some reason Bindable is only working at startup
+
         [Bindable]
         public var columnWidth:Number = 150;
 
-        [Bindable]
-        public var clientIP:String = "";
+        //[Bindable]
+        //public var deviceIP:String = "";
 
-        [Bindable]
-        public var clientPort:String = "";
+        //[Bindable]
+        //public var devicePort:String = "";
 
-        [Bindable]
-        public var serverIP:String = "";
+        //[Bindable]
+        //public var dawIP:String = "";
 
-        [Bindable]
-        public var serverPort:String = "";
+        //[Bindable]
+        //public var dawPort:String = "";
+
+        private var _foo:String;
+
+        public function set deviceIP(value:String):void
+        {
+            deviceIpInput.text = value;
+        }
+
+        public function get deviceIP():String
+        {
+            return deviceIpInput.text;
+        }
+
+        public function set devicePort(value:String):void
+        {
+            devicePortInput.text = value;
+        }
+
+        public function get devicePort():String
+        {
+            return devicePortInput.text;
+        }
+
+        public function set dawIP(value:String):void
+        {
+            dawIpInput.text = value;
+        }
+
+        public function get dawIP():String
+        {
+            return dawIpInput.text;
+        }
+
+        public function set dawPort(value:String):void
+        {
+            dawPortInput.text = value;
+        }
+
+        public function get dawPort():String
+        {
+            return dawPortInput.text;
+        }
 
         private function applyButton_triggeredHandler():void
         {
@@ -93,7 +140,18 @@
         {
             dispatchEventWith(EVENT_RESET);
         }
-        ]]></fx:Script>
 
+        private function input_changeHandler():void
+        {
+            var enabled:Boolean = false;
+            var dawip:Boolean = dawIpInput.text.length > 0;
+            var dawport:Boolean = dawPortInput.text.length > 0;
+            var devip:Boolean = deviceIpInput.text.length > 0;
+            var devport:Boolean = devicePortInput.text.length > 0;
+
+            applyButton.isEnabled = dawip > 0 && dawport > 0 && devip > 0 && devport > 0;
+
+        }
+        ]]></fx:Script>
 
 </component:VGroup>

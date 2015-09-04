@@ -22,7 +22,8 @@ package touch4bitwig.model
 
 import feathers.data.HierarchicalCollection;
 
-import touch4bitwig.app.config.ApplicationConfiguration;
+import touch4bitwig.app.config.ApplicationDebugConfiguration;
+import touch4bitwig.app.config.ApplicationPreferences;
 import touch4bitwig.model.support.ConnectionInstance;
 
 public interface IConfigurationModel
@@ -33,8 +34,14 @@ public interface IConfigurationModel
 
     function set ipDataProvider(value:HierarchicalCollection):void;
 
-    function get configuration():ApplicationConfiguration;
+    function get debugConfiguration():ApplicationDebugConfiguration;
 
-    function set configuration(configuration:ApplicationConfiguration):void;
+    function set debugConfiguration(configuration:ApplicationDebugConfiguration):void;
+
+    function get applicationPreferences():ApplicationPreferences;
+
+    function set applicationPreferences(value:ApplicationPreferences):void;
+
+    function connect():Boolean;
 }
 }
