@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.frame
+package touch4bitwig.ui.component.panel
 {
 
 import feathers.controls.Button;

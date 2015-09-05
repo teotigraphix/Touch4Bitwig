@@ -29,7 +29,7 @@ import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.OSCService;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
-import touch4bitwig.service.support.osc.listeners.FrameListener;
+import touch4bitwig.service.support.osc.listeners.PanelListener;
 import touch4bitwig.service.support.osc.listeners.TrackListener;
 import touch4bitwig.service.support.osc.listeners.TransportListener;
 
@@ -47,7 +47,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
     private var _trackListener:TrackListener;
     private var _transportListener:TransportListener;
     private var _deviceListener:DeviceListener;
-    private var _frameListener:FrameListener;
+    private var _frameListener:PanelListener;
     private var _applicationListener:ApplicationListener;
 
     public function OSCMessageController()
@@ -62,7 +62,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
         _transportListener = new TransportListener(oscService, oscModel.transport);
         _deviceListener = new DeviceListener(oscService, oscModel.cursorDevice); // XXX cursorDevice This needs
                                                                                  // attention
-        _frameListener = new FrameListener(oscService, oscModel.arranger, oscModel.mixer);
+        _frameListener = new PanelListener(oscService, oscModel.arranger, oscModel.mixer);
         _applicationListener = new ApplicationListener(oscService, oscModel.application);
 
         // eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);
