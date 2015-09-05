@@ -72,6 +72,15 @@ public class OSCService extends Actor implements IOSCService
         _oscManager.sendOSCPacket(osc);
     }
 
+    public function sendFloat(message:String, value:Number):void
+    {
+        var osc:OSCMessage = new OSCMessage();
+        osc.address = message;
+        osc.addArgument("f", value);
+
+        _oscManager.sendOSCPacket(osc);
+    }
+
     public function sendBoolean(message:String, value:Boolean):void
     {
         var osc:OSCMessage = new OSCMessage();

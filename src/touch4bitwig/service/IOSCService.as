@@ -36,6 +36,8 @@ public interface IOSCService
 
     function sendInt(message:String, value:int):void;
 
+    function sendFloat(message:String, value:Number):void
+
     function sendBoolean(message:String, value:Boolean):void;
 
     /**
