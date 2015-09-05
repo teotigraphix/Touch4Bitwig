@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:aa597ecda6a0e514640691d89911229e:59d66b3667fcfe47b8791f41a1fcc806:66200537b0cb3a82f6daf981ebd5c01c$ -->
+<!-- $TexturePacker:SmartUpdate:3950d00d60863f7210e827fdb9b9f0de:b1705f67d478db44386ea29e80a5445b:66200537b0cb3a82f6daf981ebd5c01c$ -->
 <TextureAtlas imagePath="mobile.png">
     <SubTexture name="automation-button-icon-selected-skin" x="2" y="2" width="32" height="32"/>
     <SubTexture name="automation-button-icon-skin" x="36" y="2" width="32" height="32"/>
@@ -112,16 +112,17 @@
     <SubTexture name="scene-button-play-skin" x="442" y="64" width="60" height="60"/>
     <SubTexture name="scene-button-queued-skin" x="36" y="126" width="60" height="60"/>
     <SubTexture name="solo-button-selected-up-skin" x="194" y="678" width="60" height="60"/>
-    <SubTexture name="step-button-led-off" x="256" y="678" width="15" height="15"/>
-    <SubTexture name="step-button-led-on" x="273" y="678" width="15" height="15"/>
-    <SubTexture name="step-button-selected-skin" x="290" y="678" width="60" height="60"/>
-    <SubTexture name="step-button-up-skin" x="352" y="678" width="60" height="60"/>
-    <SubTexture name="stop-button-icon-selected-skin" x="414" y="678" width="32" height="32"/>
-    <SubTexture name="stop-button-icon-skin" x="448" y="678" width="32" height="32"/>
-    <SubTexture name="track-navigation-down-icon-skin" x="2" y="740" width="80" height="40"/>
-    <SubTexture name="track-navigation-up-icon-skin" x="84" y="740" width="80" height="40"/>
-    <SubTexture name="transport-bar-popup-button-icon-skin" x="166" y="740" width="20" height="20"/>
-    <SubTexture name="volume-slider-min-skin" x="188" y="740" width="60" height="60"/>
-    <SubTexture name="volume-slider-thumb-skin" x="250" y="740" width="60" height="60"/>
-    <SubTexture name="vu-slider-min-skin" x="312" y="740" width="60" height="60"/>
+    <SubTexture name="spinner-list-selection-overlay-skin" x="256" y="678" width="7" height="88"/>
+    <SubTexture name="step-button-led-off" x="265" y="678" width="15" height="15"/>
+    <SubTexture name="step-button-led-on" x="282" y="678" width="15" height="15"/>
+    <SubTexture name="step-button-selected-skin" x="299" y="678" width="60" height="60"/>
+    <SubTexture name="step-button-up-skin" x="361" y="678" width="60" height="60"/>
+    <SubTexture name="stop-button-icon-selected-skin" x="423" y="678" width="32" height="32"/>
+    <SubTexture name="stop-button-icon-skin" x="457" y="678" width="32" height="32"/>
+    <SubTexture name="track-navigation-down-icon-skin" x="2" y="768" width="80" height="40"/>
+    <SubTexture name="track-navigation-up-icon-skin" x="84" y="768" width="80" height="40"/>
+    <SubTexture name="transport-bar-popup-button-icon-skin" x="166" y="768" width="20" height="20"/>
+    <SubTexture name="volume-slider-min-skin" x="188" y="768" width="60" height="60"/>
+    <SubTexture name="volume-slider-thumb-skin" x="250" y="768" width="60" height="60"/>
+    <SubTexture name="vu-slider-min-skin" x="312" y="768" width="60" height="60"/>
 </TextureAtlas>

@@ -21,31 +21,37 @@ package touch4bitwig.ui.component.transport
 {
 
 import feathers.core.FeathersControl;
+import feathers.data.ListCollection;
 
 public class TransportDisplay extends FeathersControl
 {
     public static const EVENT_TAP:String = "TransportDisplay/tap";
+    public static const EVENT_TEMPO:String = "TransportDisplay/tempo";
 
+    private var _wholeDataProvider:ListCollection;
+    private var _fractionDataProvider:ListCollection;
     private var _skin:TransportDisplaySkin;
 
-    public function setTempo(value:String):void
+    public function get wholeDataProvider():ListCollection
     {
-        _skin.setTempo(value);
+        return _wholeDataProvider;
     }
 
-    public function setTimeSignature(value:String):void
+    public function set wholeDataProvider(value:ListCollection):void
     {
-        _skin.setTimeSignature(value);
+        _wholeDataProvider = value;
+        _skin.wholeDataProvider = value;
     }
 
-    public function setPosition(value:String):void
+    public function get fractionDataProvider():ListCollection
     {
-        _skin.setPosition(value);
+        return _fractionDataProvider;
     }
 
-    public function setTime(value:String):void
+    public function set fractionDataProvider(value:ListCollection):void
     {
-        _skin.setTime(value);
+        _fractionDataProvider = value;
+        _skin.fractionDataProvider = value;
     }
 
     public function TransportDisplay()
@@ -67,6 +73,26 @@ public class TransportDisplay extends FeathersControl
 
         _skin.move(0, 0);
         _skin.setSize(actualWidth, actualHeight);
+    }
+
+    public function setTempo(value:String):void
+    {
+        _skin.setTempo(value);
+    }
+
+    public function setTimeSignature(value:String):void
+    {
+        _skin.setTimeSignature(value);
+    }
+
+    public function setPosition(value:String):void
+    {
+        _skin.setPosition(value);
+    }
+
+    public function setTime(value:String):void
+    {
+        _skin.setTime(value);
     }
 }
 }

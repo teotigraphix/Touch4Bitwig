@@ -35,6 +35,11 @@ public interface IUIModel
     // Panels
     function get panelsLayoutDataProvider():ListCollection;
 
+    // Transport
+    function get transportTempoWholeDataProvider():ListCollection;
+
+    function get transportTempoFractionDataProvider():ListCollection;
+
     /**
      * Pops the last screen of the main navigator stack.
      */

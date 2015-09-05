@@ -44,6 +44,10 @@ public class TransportDisplayMediator extends AbstractUIMediator
         addContextListener(TransportModelEventType.POSITION_STRING_CHANGE, context_positionChangeHandler);
 
         addViewListener(TransportDisplay.EVENT_TAP, view_tapHandler);
+        addViewListener(TransportDisplay.EVENT_TEMPO, view_tempoHandler);
+
+        view.wholeDataProvider = uiModel.transportTempoWholeDataProvider;
+        view.fractionDataProvider = uiModel.transportTempoFractionDataProvider;
 
         view.setTempo(oscModel.transport.tempoRaw);
         view.setTimeSignature(getTimeSignatureString());
@@ -78,6 +82,11 @@ public class TransportDisplayMediator extends AbstractUIMediator
     private function getTimeSignatureString():String
     {
         return oscModel.transport.numerator + "/" + oscModel.transport.denominator;
+    }
+
+    private function view_tempoHandler(event:Event, tempoRaw:Number):void
+    {
+        oscModel.transport.setTempoRaw(tempoRaw);
     }
 
     private function view_tapHandler(event:Event):void

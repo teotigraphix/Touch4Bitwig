@@ -31,6 +31,8 @@ public class UIModel extends AbstractModel implements IUIModel
     private var _screenID:String;
     private var _screenDataProvider:ListCollection;
     private var _panelsLayoutDataProvider:ListCollection;
+    private var _transportTempoWholeDataProvider:ListCollection;
+    private var _transportTempoFractionDataProvider:ListCollection;
 
     public function get screenID():String
     {
@@ -55,6 +57,20 @@ public class UIModel extends AbstractModel implements IUIModel
     public function get panelsLayoutDataProvider():ListCollection
     {
         return _panelsLayoutDataProvider;
+    }
+
+    //----------------------------------
+    // Transport
+    //----------------------------------
+
+    public function get transportTempoWholeDataProvider():ListCollection
+    {
+        return _transportTempoWholeDataProvider;
+    }
+
+    public function get transportTempoFractionDataProvider():ListCollection
+    {
+        return _transportTempoFractionDataProvider;
     }
 
     public function get screenIndex():int
@@ -86,6 +102,28 @@ public class UIModel extends AbstractModel implements IUIModel
             {label: "MIX"},
             {label: "EDIT"}
         ]);
+
+        // Transport
+
+        _transportTempoWholeDataProvider = new ListCollection();
+        _transportTempoFractionDataProvider = new ListCollection();
+
+        var i:int;
+        var value:int = 20;
+        for (i = 0; i < 667 - 20; i++)
+        {
+            _transportTempoWholeDataProvider.addItem({label: value, index: i, bpm: value});
+            value++;
+        }
+
+        value = 0;
+
+        for (i = 0; i < 100; i++)
+        {
+            _transportTempoFractionDataProvider.addItem({label: i, index: i, bpm: value});
+            value++;
+        }
+
     }
 
     public function back():void
