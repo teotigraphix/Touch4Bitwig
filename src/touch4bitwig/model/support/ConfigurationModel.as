@@ -20,6 +20,8 @@
 package touch4bitwig.model.support
 {
 
+import com.teotigraphix.model.AbstractModel;
+
 import feathers.data.HierarchicalCollection;
 
 import touch4bitwig.app.config.ApplicationDebugConfiguration;
@@ -72,17 +74,6 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
         _applicationPreferences = value;
     }
 
-    public function connect():Boolean
-    {
-        // calls _connection.close() if current connection exists
-        // recreates the OSCManager
-        _connection.setup(_applicationPreferences.deviceIP, _applicationPreferences.devicePort,
-                          _applicationPreferences.dawIP, _applicationPreferences.dawPort);
-
-        var bound:Boolean = _connection.connect();
-        return bound;
-    }
-
     public function ConfigurationModel()
     {
     }
@@ -92,6 +83,17 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
         super.onRegister();
 
         _connection = new ConnectionInstance();
+    }
+
+    public function connect():Boolean
+    {
+        // calls _connection.close() if current connection exists
+        // recreates the OSCManager
+        _connection.setup(_applicationPreferences.deviceIP, _applicationPreferences.devicePort,
+                          _applicationPreferences.dawIP, _applicationPreferences.dawPort);
+
+        var bound:Boolean = _connection.connect();
+        return bound;
     }
 }
 }

@@ -41,6 +41,7 @@ public class ApplicationListener extends AbstractOSCListener
         super.config();
         _methods["/layout"] = handleLayout;
         _methods["/active"] = handleActivate;
+        _methods["/flushComplete"] = handleFlushComplete;
     }
 
     private function handleLayout(osc:OSCMessage):void
@@ -52,5 +53,11 @@ public class ApplicationListener extends AbstractOSCListener
     {
         _model.active = osc.arguments[0];
     }
+
+    private function handleFlushComplete(osc:OSCMessage):void
+    {
+        _model.flushComplete();
+    }
+
 }
 }

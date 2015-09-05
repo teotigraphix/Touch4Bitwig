@@ -17,28 +17,47 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.model.support
+package touch4bitwig.controller
 {
 
-import org.robotlegs.starling.mvcs.Actor;
+import com.teotigraphix.controller.AbstractController;
 
-import starling.events.EventDispatcher;
+import starling.events.Event;
 
-public class AbstractModel extends Actor
+import touch4bitwig.event.ApplicationModelEventType;
+import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.IUIModel;
+import touch4bitwig.view.MainNavigator;
+
+public class UIController extends AbstractController
 {
     [Inject]
-    override public function set eventDispatcher(value:EventDispatcher):void
+    public var uiModel:IUIModel;
+
+    [Inject]
+    public var navigator:MainNavigator;
+
+    public function UIController()
     {
-        super.eventDispatcher = value;
-        onRegister();
     }
 
-    public function AbstractModel()
+    override protected function onRegister():void
     {
+        super.onRegister();
+
+        addContextListener(UIModelEventType.BACK, context_backHandler);
+        addContextListener(ApplicationModelEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
     }
 
-    protected function onRegister():void
+    private function context_flushCompleteHandler(event:Event):void
     {
+        uiModel.refresh();
     }
+
+    private function context_backHandler(event:Event):void
+    {
+        navigator.popScreen();
+    }
+
 }
 }

@@ -62,5 +62,15 @@ public class Application extends AbstractBitwigState
     {
         super(service);
     }
+
+    /**
+     * Signals a UI refresh.
+     *
+     * <p>Don not call.</p>
+     */
+    public function flushComplete():void
+    {
+        dispatchValue(ApplicationModelEventType.FLUSH_COMPLETE, null);
+    }
 }
 }

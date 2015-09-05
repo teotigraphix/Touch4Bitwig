@@ -26,14 +26,20 @@ public interface IUIModel
 {
     function get screenID():String;
 
-    function get screenIndex():int;
-
     function set screenID(value:String):void;
+
+    function get screenIndex():int;
 
     function get screenDataProvider():ListCollection;
 
     // Panels
     function get panelsLayoutDataProvider():ListCollection;
+
+    function get panelsArrangeDataProvider():ListCollection;
+
+    function get panelsMixDataProvider():ListCollection;
+
+    function get panelsEditDataProvider():ListCollection;
 
     // Transport
     function get transportTempoWholeDataProvider():ListCollection;
@@ -44,5 +50,10 @@ public interface IUIModel
      * Pops the last screen of the main navigator stack.
      */
     function back():void;
+
+    /**
+     * Refreshes the dataProviders when a refresh osc message arrives.
+     */
+    function refresh():void;
 }
 }

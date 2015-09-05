@@ -20,6 +20,7 @@
 package touch4bitwig.controller
 {
 
+import com.teotigraphix.controller.AbstractController;
 import com.teotigraphix.frameworks.osc.IOSCListener;
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
@@ -47,7 +48,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
     private var _trackListener:TrackListener;
     private var _transportListener:TransportListener;
     private var _deviceListener:DeviceListener;
-    private var _frameListener:PanelListener;
+    private var _panelListener:PanelListener;
     private var _applicationListener:ApplicationListener;
 
     public function OSCMessageController()
@@ -62,7 +63,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
         _transportListener = new TransportListener(oscService, oscModel.transport);
         _deviceListener = new DeviceListener(oscService, oscModel.cursorDevice); // XXX cursorDevice This needs
                                                                                  // attention
-        _frameListener = new PanelListener(oscService, oscModel.arranger, oscModel.mixer);
+        _panelListener = new PanelListener(oscService, oscModel.arranger, oscModel.mixer);
         _applicationListener = new ApplicationListener(oscService, oscModel.application);
 
         // eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);
@@ -118,8 +119,8 @@ public class OSCMessageController extends AbstractController implements IOSCList
             _trackListener.handle(osc);
         else if (_transportListener.isHandled(osc))
             _transportListener.handle(osc);
-        else if (_frameListener.isHandled(osc))
-            _frameListener.handle(osc);
+        else if (_panelListener.isHandled(osc))
+            _panelListener.handle(osc);
         else if (_applicationListener.isHandled(osc))
             _applicationListener.handle(osc);
     }

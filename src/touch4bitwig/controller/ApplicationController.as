@@ -20,6 +20,8 @@
 package touch4bitwig.controller
 {
 
+import com.teotigraphix.controller.AbstractController;
+
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
@@ -35,7 +37,10 @@ public class ApplicationController extends AbstractController
 
     [Inject]
     public var oscService:IOSCService;
-    
+
+    [Inject]
+    public var uiController:UIController;
+
     public function ApplicationController()
     {
     }

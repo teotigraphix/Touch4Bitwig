@@ -29,5 +29,7 @@ public class ApplicationModelEventType
     public static const PANEL_LAYOUT_CHANGE:String = "ApplicationEventType/layoutChange";
 
     public static const ACTIVE_CHANGE:String = "ApplicationEventType/activeChange";
+
+    public static const FLUSH_COMPLETE:String = "ApplicationEventType/flushComplete";
 }
 }

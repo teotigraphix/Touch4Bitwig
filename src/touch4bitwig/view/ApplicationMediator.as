@@ -24,21 +24,12 @@ import feathers.core.DrawersApplication;
 
 import flash.events.Event;
 
-import org.robotlegs.starling.core.IMediatorMap;
-
-import org.robotlegs.starling.mvcs.Context;
-
 import starling.core.Starling;
 import starling.events.Event;
-
-import touch4bitwig.app.config.ApplicationContext;
 
 import touch4bitwig.event.ApplicationEventType;
 import touch4bitwig.event.UIModelEventType;
 import touch4bitwig.model.IUIModel;
-import touch4bitwig.view.AbstractMediator;
-import touch4bitwig.view.ApplicationScreens;
-import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.drawer.TopDrawer;
 
 /*
@@ -102,7 +93,6 @@ public class ApplicationMediator extends AbstractMediator
         // and the first screen is ready to be shown
         addContextListener(ApplicationEventType.APPLICATION_COMPLETE, context_applicationCompleteHandler);
         addContextListener(UIModelEventType.SCREEN_ID, context_screenIDHandler);
-        addContextListener(UIModelEventType.BACK, context_backHandler);
 
         logger.log(TAG, "onRegister()");
 
@@ -118,7 +108,6 @@ public class ApplicationMediator extends AbstractMediator
 
         application.topDrawer = new TopDrawer();
         mediatorMap.createMediator(application.topDrawer);
-
     }
 
     override public function onRemove():void
@@ -138,11 +127,6 @@ public class ApplicationMediator extends AbstractMediator
         logger.log(TAG, "Show initial screen");
 
         //uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
-    }
-
-    private function context_backHandler(event:starling.events.Event):void
-    {
-        navigator.popScreen();
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

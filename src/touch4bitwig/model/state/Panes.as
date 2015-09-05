@@ -20,7 +20,7 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.FrameModelEventType;
+import touch4bitwig.event.PanelModelEventType;
 import touch4bitwig.service.IOSCService;
 
 public class Panes extends AbstractBitwigState
@@ -41,7 +41,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_noteEditorVisible, value))
             return;
         _noteEditorVisible = value;
-        dispatchValue(FrameModelEventType.PANEL_NOTE_EDITOR_VISIBLE_CHANGE, _noteEditorVisible);
+        dispatchValue(PanelModelEventType.PANEL_NOTE_EDITOR_VISIBLE_CHANGE, _noteEditorVisible);
     }
 
     public function get automationEditorVisible():Boolean
@@ -54,7 +54,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_automationEditorVisible, value))
             return;
         _automationEditorVisible = value;
-        dispatchValue(FrameModelEventType.PANEL_AUTOMATION_EDITOR_VISIBLE_CHANGE, _automationEditorVisible);
+        dispatchValue(PanelModelEventType.PANEL_AUTOMATION_EDITOR_VISIBLE_CHANGE, _automationEditorVisible);
     }
 
     public function get devicesVisible():Boolean
@@ -67,7 +67,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_devicesVisible, value))
             return;
         _devicesVisible = value;
-        dispatchValue(FrameModelEventType.PANEL_DEVICES_VISIBLE_CHANGE, _devicesVisible);
+        dispatchValue(PanelModelEventType.PANEL_DEVICES_VISIBLE_CHANGE, _devicesVisible);
     }
 
     public function get mixerVisible():Boolean
@@ -80,7 +80,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_mixerVisible, value))
             return;
         _mixerVisible = value;
-        dispatchValue(FrameModelEventType.PANEL_MIXER_VISIBLE_CHANGE, _mixerVisible);
+        dispatchValue(PanelModelEventType.PANEL_MIXER_VISIBLE_CHANGE, _mixerVisible);
     }
 
     public function get fullscreenVisible():Boolean
@@ -93,7 +93,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_fullscreenVisible, value))
             return;
         _fullscreenVisible = value;
-        dispatchValue(FrameModelEventType.PANEL_FULL_SCREEN_VISIBLE_CHANGE, _fullscreenVisible);
+        dispatchValue(PanelModelEventType.PANEL_FULL_SCREEN_VISIBLE_CHANGE, _fullscreenVisible);
     }
 
     public function Panes(service:IOSCService)

@@ -30,6 +30,7 @@ import org.robotlegs.starling.base.ContextEventType;
 import touch4bitwig.controller.ApplicationCommands;
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.OSCMessageController;
+import touch4bitwig.controller.UIController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
 import touch4bitwig.controller.command.screen.ShowConfigureScreenCommand;
 import touch4bitwig.model.IConfigurationModel;
@@ -123,6 +124,7 @@ public class ApplicationContext extends FrameworkContext
     private function configureController():void
     {
         injector.mapSingleton(ApplicationController);
+        injector.mapSingleton(UIController);
         injector.mapSingleton(OSCMessageController);
 
         commandMap.mapEvent(ContextEventType.STARTUP, ApplicationStartupCommand);

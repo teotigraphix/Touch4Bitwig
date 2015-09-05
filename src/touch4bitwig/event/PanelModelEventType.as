@@ -20,7 +20,7 @@
 package touch4bitwig.event
 {
 
-public final class FrameModelEventType
+public final class PanelModelEventType
 {
     public static const PANEL_NOTE_EDITOR_VISIBLE_CHANGE:String = "panelNoteEditorVisibleChange";
     public static const PANEL_AUTOMATION_EDITOR_VISIBLE_CHANGE:String = "panelAutomationEditorVisibleChange";

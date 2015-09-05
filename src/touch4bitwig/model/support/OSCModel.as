@@ -20,6 +20,8 @@
 package touch4bitwig.model.support
 {
 
+import com.teotigraphix.model.AbstractModel;
+
 import touch4bitwig.event.DeviceModelEventType;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.state.Application;
