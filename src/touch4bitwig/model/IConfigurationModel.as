@@ -24,12 +24,9 @@ import feathers.data.HierarchicalCollection;
 
 import touch4bitwig.app.config.ApplicationDebugConfiguration;
 import touch4bitwig.app.config.ApplicationPreferences;
-import touch4bitwig.model.support.ConnectionInstance;
 
 public interface IConfigurationModel
 {
-    function get connection():ConnectionInstance;
-
     function get ipDataProvider():HierarchicalCollection;
 
     function set ipDataProvider(value:HierarchicalCollection):void;
@@ -42,6 +39,5 @@ public interface IConfigurationModel
 
     function set applicationPreferences(value:ApplicationPreferences):void;
 
-    function connect():Boolean;
 }
 }

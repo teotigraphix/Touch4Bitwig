@@ -20,16 +20,12 @@
 package touch4bitwig.service
 {
 
-import com.teotigraphix.frameworks.osc.OSCManager;
+import com.teotigraphix.frameworks.osc.IOSCListener;
 
 import starling.events.Event;
 
 public interface IOSCService
 {
-    //function get oscManager():OSCManager
-    //
-    //function set oscManager(value:OSCManager):void;
-
     function send(message:String):void;
 
     function sendString(message:String, value:String):void;
@@ -46,6 +42,12 @@ public interface IOSCService
     function refresh():void;
 
     function dispatchEventWith(type:String, bubbles:Boolean = false, data:Object = null):void;
+
+    function addOSCListener(listener:IOSCListener):void;
+
+    function connect():Boolean;
+
+    function close():void;
 
     function dispatchEvent(event:Event):void;
 }

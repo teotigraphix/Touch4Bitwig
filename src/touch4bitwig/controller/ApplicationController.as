@@ -70,7 +70,7 @@ public class ApplicationController extends AbstractController
 
     private function applicationExitHandler(event:Event):void
     {
-        configurationModel.connection.close();
+        oscService.close();
     }
 }
 }

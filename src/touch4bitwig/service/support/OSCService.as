@@ -20,32 +20,108 @@
 package touch4bitwig.service.support
 {
 
+import com.teotigraphix.frameworks.osc.IOSCListener;
 import com.teotigraphix.frameworks.osc.OSCManager;
 import com.teotigraphix.frameworks.osc.OSCMessage;
+import com.teotigraphix.frameworks.osc.connectors.UDPConnector;
 
 import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
+import touch4bitwig.app.config.ApplicationPreferences;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.service.IOSCService;
 
 public class OSCService extends Actor implements IOSCService
 {
+    // XXX not right
+    [Inject]
+    public var configurationModel:IConfigurationModel;
+
     private var _oscManager:OSCManager;
 
-    public function get oscManager():OSCManager
-    {
-        return _oscManager;
-    }
+    private var _inputIp:String;
+    private var _inputPort:int;
+    private var _outputIp:String;
+    private var _outputPort:int;
 
-    public function set oscManager(value:OSCManager):void
-    {
-        _oscManager = value;
-    }
+    private var _udpConnectorIn:UDPConnector;
+    private var _udpConnectorOut:UDPConnector;
 
     public function OSCService()
     {
     }
+
+    public function addOSCListener(listener:IOSCListener):void
+    {
+        _oscManager.addOSCListener(listener);
+    }
+
+
+    public function setup(inputIp:String, inputPort:int, outputIp:String, outputPort:int):void
+    {
+        if (_oscManager != null)
+        {
+            close();
+            _oscManager.stop();
+            _oscManager = null;
+
+        }
+        _inputIp = inputIp;
+        _inputPort = inputPort;
+        _outputIp = outputIp;
+        _outputPort = outputPort;
+
+        _oscManager = new OSCManager();
+    }
+
+    public function connect():Boolean
+    {
+        var preferences:ApplicationPreferences = configurationModel.applicationPreferences;
+        // calls _connection.close() if current connection exists
+        // recreates the OSCManager
+        setup(preferences.deviceIP, preferences.devicePort,
+              preferences.dawIP, preferences.dawPort);
+
+        var bound:Boolean = _connect();
+        return bound;
+    }
+
+    public function _connect():Boolean
+    {
+        try
+        {
+            _udpConnectorIn = new UDPConnector(_inputIp, _inputPort, true);
+        }
+        catch (e:Error)
+        {
+            trace(e.getStackTrace());
+            return false;
+        }
+
+        _udpConnectorOut = new UDPConnector(_outputIp, _outputPort, false);
+
+        _oscManager.connectorIn = _udpConnectorIn;
+        _oscManager.connectorOut = _udpConnectorOut;
+
+        return true;
+    }
+
+    public function close():void
+    {
+        // TODO throw error
+        if (_udpConnectorIn == null)
+            return;
+
+        _udpConnectorIn.close();
+        _udpConnectorOut.close();
+
+        _oscManager.connectorIn = null;
+        _oscManager.connectorOut = null;
+    }
+
+    //
 
     public function send(message:String):void
     {

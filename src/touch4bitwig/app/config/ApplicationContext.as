@@ -37,7 +37,6 @@ import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.model.support.ConfigurationModel;
-import touch4bitwig.model.support.ConnectionInstance;
 import touch4bitwig.model.support.OSCModel;
 import touch4bitwig.model.support.UIModel;
 import touch4bitwig.service.IConfigurationService;
@@ -46,16 +45,16 @@ import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.OSCService;
 import touch4bitwig.ui.component.configuration.ConfigurationForm;
 import touch4bitwig.ui.component.configuration.ConfigurationFormMediator;
+import touch4bitwig.ui.component.main.MainHeader;
+import touch4bitwig.ui.component.main.MainHeaderMediator;
+import touch4bitwig.ui.component.mixer.MixerBank;
+import touch4bitwig.ui.component.mixer.MixerBankMediator;
 import touch4bitwig.ui.component.panel.PanelLayoutGroup;
 import touch4bitwig.ui.component.panel.PanelLayoutGroupMediator;
 import touch4bitwig.ui.component.panel.PanelSubToggleGroup;
 import touch4bitwig.ui.component.panel.PanelSubToggleGroupMediator;
 import touch4bitwig.ui.component.panel.PanelToggleGroup;
 import touch4bitwig.ui.component.panel.PanelToggleGroupMediator;
-import touch4bitwig.ui.component.main.MainHeader;
-import touch4bitwig.ui.component.main.MainHeaderMediator;
-import touch4bitwig.ui.component.mixer.MixerBank;
-import touch4bitwig.ui.component.mixer.MixerBankMediator;
 import touch4bitwig.ui.component.track.TrackNavigationControl;
 import touch4bitwig.ui.component.track.TrackNavigationControlMediator;
 import touch4bitwig.ui.component.transport.TransportBar;
@@ -115,7 +114,6 @@ public class ApplicationContext extends FrameworkContext
     {
         injector.mapSingletonOf(IConfigurationModel, ConfigurationModel);
 
-        injector.mapSingleton(ConnectionInstance);
         injector.mapSingletonOf(IOSCModel, OSCModel);
 
         injector.mapSingletonOf(IUIModel, UIModel);

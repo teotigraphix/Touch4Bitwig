@@ -24,10 +24,8 @@ import com.teotigraphix.controller.AbstractController;
 import com.teotigraphix.frameworks.osc.IOSCListener;
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.service.support.OSCService;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
 import touch4bitwig.service.support.osc.listeners.PanelListener;
@@ -42,8 +40,8 @@ public class OSCMessageController extends AbstractController implements IOSCList
     [Inject]
     public var oscService:IOSCService;
 
-    [Inject]
-    public var configurationModel:IConfigurationModel;
+    //[Inject]
+    // public var configurationModel:IConfigurationModel;
 
     private var _trackListener:TrackListener;
     private var _transportListener:TransportListener;
@@ -77,21 +75,18 @@ public class OSCMessageController extends AbstractController implements IOSCList
      */
     public function _start():void
     {
-        configurationModel.connection.oscManager.addMsgListener(this);
-
-        OSCService(oscService).oscManager = configurationModel.connection.oscManager;
+        oscService.addOSCListener(this);
         oscService.refresh();
     }
 
     public function reconnectAndStartup():Boolean
     {
-        var bound:Boolean = configurationModel.connect();
+        var bound:Boolean = oscService.connect();
         if (!bound)
             return false;
 
-        configurationModel.connection.oscManager.addMsgListener(this);
+        oscService.addOSCListener(this);
 
-        OSCService(oscService).oscManager = configurationModel.connection.oscManager;
         oscService.refresh();
 
         return true;

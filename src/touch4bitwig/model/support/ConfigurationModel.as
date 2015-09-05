@@ -35,7 +35,6 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     public var configurationService:IConfigurationService;
 
     private var _debugConfiguration:ApplicationDebugConfiguration;
-    private var _connection:ConnectionInstance;
     private var _ipDataProvider:HierarchicalCollection;
     private var _applicationPreferences:ApplicationPreferences;
 
@@ -47,11 +46,6 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     public function set debugConfiguration(value:ApplicationDebugConfiguration):void
     {
         _debugConfiguration = value;
-    }
-
-    public function get connection():ConnectionInstance
-    {
-        return _connection;
     }
 
     public function get ipDataProvider():HierarchicalCollection
@@ -81,19 +75,6 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     override protected function onRegister():void
     {
         super.onRegister();
-
-        _connection = new ConnectionInstance();
-    }
-
-    public function connect():Boolean
-    {
-        // calls _connection.close() if current connection exists
-        // recreates the OSCManager
-        _connection.setup(_applicationPreferences.deviceIP, _applicationPreferences.devicePort,
-                          _applicationPreferences.dawIP, _applicationPreferences.dawPort);
-
-        var bound:Boolean = _connection.connect();
-        return bound;
     }
 }
 }
