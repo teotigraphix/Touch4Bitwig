@@ -64,10 +64,10 @@
 
         <component:HGroup verticalAlign="middle" percentWidth="100" gap="10">
 
-            <f:Button id="applyButton" label="Apply"
+            <f:Button id="connectButton" label="Connect"
                       isEnabled="false"
                       width="{buttonWidth}"
-                      triggered="applyButton_triggeredHandler()">
+                      triggered="connectButton_triggeredHandler()">
             </f:Button>
 
             <f:Button id="resetButton" label="Reset"
@@ -91,7 +91,7 @@
     </component:VGroup>
 
     <fx:Script><![CDATA[
-        public static const EVENT_APPLY:String = "apply";
+        public static const EVENT_CONNECT:String = "apply";
         public static const EVENT_RESET:String = "reset";
         public static const EVENT_CLOSE:String = "close";
         // XXX for some reason Bindable is only working at startup
@@ -99,11 +99,12 @@
         [Bindable]
         public var columnWidth:Number = 150;
 
-        public var buttonWidth:Number = 75;
+        public var buttonWidth:Number = 100;
 
         public function set isBound(value:Boolean):void
         {
             closeButton.isEnabled = value;
+            connectButton.isEnabled = !value;
         }
 
         //[Bindable]
@@ -117,8 +118,6 @@
 
         //[Bindable]
         //public var dawPort:String = "";
-
-        private var _foo:String;
 
         public function set deviceIP(value:String):void
         {
@@ -160,9 +159,9 @@
             return dawPortInput.text;
         }
 
-        private function applyButton_triggeredHandler():void
+        private function connectButton_triggeredHandler():void
         {
-            dispatchEventWith(EVENT_APPLY);
+            dispatchEventWith(EVENT_CONNECT);
         }
 
         private function resetButton_triggeredHandler():void
@@ -178,7 +177,7 @@
             var devip:Boolean = deviceIpInput.text.length > 0;
             var devport:Boolean = devicePortInput.text.length > 0;
 
-            applyButton.isEnabled = dawip > 0 && dawport > 0 && devip > 0 && devport > 0;
+            connectButton.isEnabled = dawip > 0 && dawport > 0 && devip > 0 && devport > 0;
 
         }
 

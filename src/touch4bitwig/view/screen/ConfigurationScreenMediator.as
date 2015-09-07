@@ -25,6 +25,7 @@ import starling.events.Event;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.view.AbstractMediator;
+import touch4bitwig.view.MainNavigator;
 
 public class ConfigurationScreenMediator extends AbstractMediator
 {
@@ -37,6 +38,9 @@ public class ConfigurationScreenMediator extends AbstractMediator
     [Inject]
     public var uiModel:IUIModel;
 
+    [Inject]
+    public var navigator:MainNavigator;
+
     public function ConfigurationScreenMediator()
     {
     }
@@ -46,6 +50,7 @@ public class ConfigurationScreenMediator extends AbstractMediator
         super.onRegister();
 
         screen.ipList.dataProvider = configurationModel.ipDataProvider;
+        screen.isInConfig = navigator.activeScreen == null;
 
         addViewListener(ConfigurationScreen.EVENT_BACK, view_backHandler);
     }

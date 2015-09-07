@@ -62,7 +62,7 @@ public class ConfigurationFormMediator extends AbstractMediator
         addContextListener(ServiceCommandType.CLOSE_OSC_CONNECTION_COMPLETE,
                            context_closeOSCConnectionComplete);
 
-        addViewListener(ConfigurationForm.EVENT_APPLY, view_applyHandler);
+        addViewListener(ConfigurationForm.EVENT_CONNECT, view_connectHandler);
         addViewListener(ConfigurationForm.EVENT_RESET, view_resetHandler);
         addViewListener(ConfigurationForm.EVENT_CLOSE, view_closeHandler);
     }
@@ -85,7 +85,7 @@ public class ConfigurationFormMediator extends AbstractMediator
         view.isBound = oscService.isBound;
     }
 
-    private function view_applyHandler(event:Event):void
+    private function view_connectHandler(event:Event):void
     {
         var data:Object = {
             dawIP: view.dawIP,
