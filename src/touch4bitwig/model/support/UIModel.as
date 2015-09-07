@@ -144,8 +144,9 @@ public class UIModel extends AbstractModel implements IUIModel
 
         _screenDataProvider = new ListCollection([
             {index: 0, label: "Mixer", screen: ApplicationScreens.SCREEN_MIXER},
-            {index: 1, label: "Transport", screen: ApplicationScreens.SCREEN_TRANSPORT},
-            {index: 2, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
+            {index: 1, label: "Clips", screen: ApplicationScreens.SCREEN_CLIPS},
+            {index: 2, label: "Transport", screen: ApplicationScreens.SCREEN_TRANSPORT},
+            {index: 3, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
         ]);
 
         setupPanels();

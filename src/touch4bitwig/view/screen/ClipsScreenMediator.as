@@ -23,20 +23,15 @@ package touch4bitwig.view.screen
 import starling.events.Event;
 
 import touch4bitwig.ui.component.screen.ClipScreenFooter;
-import touch4bitwig.ui.component.screen.ClipsScreen;
 import touch4bitwig.view.AbstractMediator;
 
 public class ClipsScreenMediator extends AbstractMediator
 {
-    private var view:ClipsScreen;
+    [Inject]
+    public var view:ClipsScreen;
 
     public function ClipsScreenMediator()
     {
-    }
-
-    override public function preRegister():void
-    {
-        super.preRegister();
     }
 
     override public function onRegister():void
@@ -52,18 +47,6 @@ public class ClipsScreenMediator extends AbstractMediator
     override public function onRemove():void
     {
         super.onRemove();
-    }
-
-    override public function setViewComponent(viewComponent:Object):void
-    {
-        super.setViewComponent(viewComponent);
-        view = ClipsScreen(viewComponent);
-    }
-
-    override public function preRemove():void
-    {
-        super.preRemove();
-        view = null;
     }
 
     private function view_bankNavigationTapHandler(event:Event, direction:String):void

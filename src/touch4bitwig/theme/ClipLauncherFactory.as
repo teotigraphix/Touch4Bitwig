@@ -20,7 +20,7 @@
 package touch4bitwig.theme
 {
 
-
+import com.teotigraphix.ui.component.UIToggleButton;
 import com.teotigraphix.ui.theme.AbstractTheme;
 import com.teotigraphix.ui.theme.AbstractThemeFactory;
 import com.teotigraphix.ui.theme.AssetMap;
@@ -70,6 +70,39 @@ public class ClipLauncherFactory extends AbstractThemeFactory
 
         setStyle(ClipButton, setClipButtonStyles);
         setStyle(SceneButton, setSceneButtonStyles);
+
+        setStyle(UIToggleButton, setAutomationButtonStyles, StyleNames.CLIP_LAUNCHER_AUTOMATION_BUTTON);
+        setStyle(UIToggleButton, setOverdubButtonStyles, StyleNames.CLIP_LAUNCHER_OVERDUB_BUTTON);
+    }
+
+    private function setAutomationButtonStyles(button:UIToggleButton):void
+    {
+        theme.buttons.setButtonStyles(button);
+        button.stateToSkinFunction = null;
+        button.defaultIcon = AssetMap.createImage("automation-button-icon-skin");
+        button.defaultSelectedIcon = AssetMap.createImage("automation-button-icon-selected-skin");
+        button.defaultIcon.width = 20;
+        button.defaultIcon.height = 20;
+        button.defaultSelectedIcon.width = 20;
+        button.defaultSelectedIcon.height = 20;
+        button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
+        button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
+        button.minWidth = 75;
+        //button.setSize(50, 50);
+    }
+
+    private function setOverdubButtonStyles(button:UIToggleButton):void
+    {
+        theme.buttons.setButtonStyles(button);
+        button.stateToSkinFunction = null;
+        button.label = "OVR";
+        //button.defaultIcon = AssetMap.createImage("automation-button-icon-skin");
+        //button.defaultSelectedIcon = AssetMap.createImage("automation-button-icon-selected-skin");
+        button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
+        button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
+        button.minWidth = 75;
+        //button.setSize(50, 50);
+        button.padding = 0;
     }
 
     private function setClipButtonStyles(button:ClipButton):void

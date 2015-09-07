@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+<!--
+-->
+<f:Screen xmlns:f="library://ns.feathersui.com/mxml"
+          xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:screen="touch4bitwig.ui.component.screen.*"
+          xmlns:cliplauncher="touch4bitwig.ui.component.cliplauncher.*"
+          xmlns:main="touch4bitwig.ui.component.main.*">
+
+    <f:layout>
+        <f:VerticalLayout/>
+    </f:layout>
+
+    <main:MainHeader>
+        <main:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </main:layoutData>
+    </main:MainHeader>
+
+    <!--<screen:ClipsHeader id="header">-->
+
+        <!--<screen:layoutData>-->
+            <!--<f:VerticalLayoutData percentWidth="100"/>-->
+        <!--</screen:layoutData>-->
+
+    <!--</screen:ClipsHeader>-->
+
+    <cliplauncher:GridStack id="grid">
+
+        <cliplauncher:layoutData>
+            <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
+        </cliplauncher:layoutData>
+
+    </cliplauncher:GridStack>
+
+    <!--<cliplauncher:ClipLauncherFooter id="footer">-->
+
+        <!--<cliplauncher:layoutData>-->
+            <!--<f:VerticalLayoutData percentWidth="100"/>-->
+        <!--</cliplauncher:layoutData>-->
+
+    <!--</cliplauncher:ClipLauncherFooter>-->
+
+</f:Screen>

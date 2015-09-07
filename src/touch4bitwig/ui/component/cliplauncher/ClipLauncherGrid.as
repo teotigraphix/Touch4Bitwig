@@ -103,14 +103,6 @@ public class ClipLauncherGrid extends LayoutGroup
         }
     }
 
-    public function clipStateChange(clip:Clip):void
-    {
-        var index:int = toClipIndex(clip);
-        // XXX Have to calc the local scene index bases on the pattern page index
-        //var button:ClipButton = _map[clip.scene.index][index];
-        //button.stateChange();
-    }
-
     public function advanceTime():void
     {
         const len:int = numChildren;
@@ -134,14 +126,6 @@ public class ClipLauncherGrid extends LayoutGroup
                 index++;
             }
         }
-    }
-
-    private static function toClipIndex(clip:Clip):int
-    {
-        const index:int = clip.index;
-        if (index < 8)
-            return index;
-        return index - 6; // trackpageindex
     }
 
     private function button_triggeredHandler(event:Event):void

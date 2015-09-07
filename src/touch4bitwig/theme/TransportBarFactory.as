@@ -44,8 +44,6 @@ public class TransportBarFactory extends AbstractThemeFactory
         setStyle(UIToggleButton, setRecordStyles, StyleNames.TRANSPORT_BAR_RECORD_BUTTON);
         setStyle(UIToggleButton, setAutomationStyles, StyleNames.TRANSPORT_BAR_AUTOMATION_BUTTON);
         setStyle(UIToggleButton, setTransportBarPopUpButtonStyles, StyleNames.TRANSPORT_BAR_POPUP_BUTTON);
-
-        setStyle(UIToggleButton, setOverdubStyles, "overdub-button");
     }
 
     private function setStopStyles(button:Button):void
@@ -107,20 +105,6 @@ public class TransportBarFactory extends AbstractThemeFactory
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
         button.minWidth = 75;
         //button.setSize(50, 50);
-    }
-
-    private function setOverdubStyles(button:UIToggleButton):void
-    {
-        theme.buttons.setButtonStyles(button);
-        button.stateToSkinFunction = null;
-        button.label = "OVR";
-        //button.defaultIcon = AssetMap.createImage("automation-button-icon-skin");
-        //button.defaultSelectedIcon = AssetMap.createImage("automation-button-icon-selected-skin");
-        button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
-        button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
-        button.minWidth = 75;
-        //button.setSize(50, 50);
-        button.padding = 0;
     }
 
     private function setTransportBarPopUpButtonStyles(button:UIToggleButton):void

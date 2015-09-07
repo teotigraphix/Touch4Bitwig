@@ -117,34 +117,17 @@ public class ClipButton extends Button
     {
         super.draw();
 
+        if (_border == null)
+        {
+            _border = new UIBorder();
+            addChild(_border);
+            if (labelTextRenderer != null)
+                swapChildren(_border, DisplayObject(labelTextRenderer));
+        }
+
         if (isInvalid(INVALIDATION_FLAG_SKIN))
         {
-            selectedOverlaySkin.removeFromParent();
-            playIconSkin.removeFromParent();
-            idleIconSkin.removeFromParent();
-            stopIconSkin.removeFromParent();
-            queuedIconSkin.removeFromParent();
-            recordIdleIconSkin.removeFromParent();
-            recordQueuedIconSkin.removeFromParent();
-            recordPlayIconSkin.removeFromParent();
-
-            addChild(playIconSkin);
-            addChild(idleIconSkin);
-            addChild(stopIconSkin);
-            addChild(queuedIconSkin);
-            addChild(recordIdleIconSkin);
-            addChild(recordQueuedIconSkin);
-            addChild(recordPlayIconSkin);
-            addChild(selectedOverlaySkin);
-
-            selectedOverlaySkin.visible = false;
-            playIconSkin.visible = false;
-            idleIconSkin.visible = false;
-            stopIconSkin.visible = true;
-            queuedIconSkin.visible = false;
-            recordIdleIconSkin.visible = false;
-            recordQueuedIconSkin.visible = false;
-            recordPlayIconSkin.visible = false;
+            refreshIcons();
         }
 
         if (isInvalid(INVALIDATE_FLAG_CLIP))
@@ -152,10 +135,7 @@ public class ClipButton extends Button
             if (_clip != null)
             {
                 isEnabled = true;
-
                 label = clip.name;
-
-                _border.color = clip.color;
             }
             else
             {
@@ -168,14 +148,6 @@ public class ClipButton extends Button
         if (isInvalid(INVALIDATION_FLAG_CLIP_STATE))
         {
             commitClipState();
-        }
-
-        if (_border == null)
-        {
-            _border = new UIBorder();
-            addChild(_border);
-            if (labelTextRenderer != null)
-                swapChildren(_border, DisplayObject(labelTextRenderer));
         }
 
         var offset:int = 3;
@@ -310,7 +282,42 @@ public class ClipButton extends Button
                 recordQueuedIconSkin.visible = false;
                 recordPlayIconSkin.visible = false;
             }
+
+            if (!_clip.hasContent)
+            {
+                _border.color = 0x393939;
+            }
         }
+    }
+
+    private function refreshIcons():void
+    {
+        selectedOverlaySkin.removeFromParent();
+        playIconSkin.removeFromParent();
+        idleIconSkin.removeFromParent();
+        stopIconSkin.removeFromParent();
+        queuedIconSkin.removeFromParent();
+        recordIdleIconSkin.removeFromParent();
+        recordQueuedIconSkin.removeFromParent();
+        recordPlayIconSkin.removeFromParent();
+
+        addChild(playIconSkin);
+        addChild(idleIconSkin);
+        addChild(stopIconSkin);
+        addChild(queuedIconSkin);
+        addChild(recordIdleIconSkin);
+        addChild(recordQueuedIconSkin);
+        addChild(recordPlayIconSkin);
+        addChild(selectedOverlaySkin);
+
+        selectedOverlaySkin.visible = false;
+        playIconSkin.visible = false;
+        idleIconSkin.visible = false;
+        stopIconSkin.visible = true;
+        queuedIconSkin.visible = false;
+        recordIdleIconSkin.visible = false;
+        recordQueuedIconSkin.visible = false;
+        recordPlayIconSkin.visible = false;
     }
 }
 }

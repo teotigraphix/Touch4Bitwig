@@ -36,17 +36,18 @@ import touch4bitwig.ui.component.main.TrackNameHeaderItem;
 public class ClipLauncherMediator extends AbstractUIMediator implements IAnimatable
 {
     [Inject]
-    public var juggler:Juggler;
+    public var view:ClipLauncher;
 
-    private var view:ClipLauncher;
+    [Inject]
+    public var juggler:Juggler;
 
     public function ClipLauncherMediator()
     {
     }
 
-    override public function preRegister():void
+    override public function onRegister():void
     {
-        super.preRegister();
+        super.onRegister();
 
         addViewListener(SceneList.EVENT_SCENE_TAP, view_sceneTapHandler);
 
@@ -70,15 +71,6 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
 
         //addContextListener(TrackModelEventType.CLIP_SELECTED_CHANGE, context_clipSelectedChange;
 
-        juggler.add(this);
-
-    }
-
-    override public function onRegister():void
-    {
-        super.onRegister();
-        // XXX TEMP
-
         var clipCollection:ListCollection = new ListCollection();
         var sceneCollection:ListCollection = new ListCollection();
 
@@ -99,18 +91,14 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
 
         view.clipLauncherGrid.dataProvider = clipCollection;
         view.sceneList.dataProvider = sceneCollection;
+
+        juggler.add(this);
+
     }
 
-    override public function setViewComponent(viewComponent:Object):void
+    override public function onRemove():void
     {
-        super.setViewComponent(viewComponent);
-        view = ClipLauncher(viewComponent);
-    }
-
-    override public function preRemove():void
-    {
-        super.preRemove();
-
+        super.onRemove();
         juggler.remove(this);
     }
 

@@ -46,6 +46,8 @@ import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
 import touch4bitwig.service.support.OSCService;
+import touch4bitwig.ui.component.cliplauncher.ClipLauncher;
+import touch4bitwig.ui.component.cliplauncher.ClipLauncherMediator;
 import touch4bitwig.ui.component.configuration.ConfigurationForm;
 import touch4bitwig.ui.component.configuration.ConfigurationFormMediator;
 import touch4bitwig.ui.component.main.MainHeader;
@@ -70,6 +72,8 @@ import touch4bitwig.view.ApplicationMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.drawer.TopDrawer;
 import touch4bitwig.view.drawer.TopDrawerMediator;
+import touch4bitwig.view.screen.ClipsScreen;
+import touch4bitwig.view.screen.ClipsScreenMediator;
 import touch4bitwig.view.screen.ConfigurationScreen;
 import touch4bitwig.view.screen.ConfigurationScreenMediator;
 import touch4bitwig.view.screen.MixerScreen;
@@ -163,6 +167,14 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(PanelLayoutGroup, PanelLayoutGroupMediator);
         mediatorMap.mapView(PanelSubToggleGroup, PanelSubToggleGroupMediator);
         mediatorMap.mapView(PanelToggleGroup, PanelToggleGroupMediator);
+
+        // ClipsScreen
+        mediatorMap.mapView(ClipsScreen, ClipsScreenMediator);
+        mediatorMap.mapView(ClipLauncher, ClipLauncherMediator);
+
+
+
+
     }
 
 }

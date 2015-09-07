@@ -31,5 +31,7 @@ public final class ApplicationScreens
     public static const SCREEN_TRANSPORT:String = "TransportScreen";
 
     public static const SCREEN_PANEL:String = "PanelsScreen";
+
+    public static const SCREEN_CLIPS:String = "ClipsScreen";
 }
 }

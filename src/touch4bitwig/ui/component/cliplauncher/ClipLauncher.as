@@ -161,14 +161,14 @@ public class ClipLauncher extends LayoutGroup
         header.addChild(_automationButton);
 
         _overdubButton = new UIToggleButton();
+        _overdubButton.width = 50;
+        _overdubButton.height = 50;
         _overdubButton.styleNameList.add(StyleNames.CLIP_LAUNCHER_OVERDUB_BUTTON);
         _overdubButton.addEventListener(Event.CHANGE, overdub_changedHandler);
         header.addChild(_overdubButton);
 
         parent.addChild(header);
-
     }
-
 
     private function createContent(parent:LayoutGroup):void
     {

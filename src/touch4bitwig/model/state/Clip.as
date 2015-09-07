@@ -31,7 +31,7 @@ public class Clip extends AbstractBitwigState
     private var _name:String;
     private var _isSelected:Boolean;
     private var _hasContent:Boolean;
-    private var _color:uint = 0x393939;
+    private var _color:uint = 0; // 0x393939
     private var _isPlaying:Boolean;
     private var _isRecording:Boolean;
     private var _isQueued:Boolean;
@@ -80,15 +80,14 @@ public class Clip extends AbstractBitwigState
 
     public function get color():uint
     {
+        if (_color == 0)
+            return _track.color;
         return _color;
     }
 
     public function set color(value:uint):void
     {
-        if (value == 0)
-            _color = 0x393939;
-        else
-            _color = value;
+        _color = value;
     }
 
     public function get isPlaying():Boolean
