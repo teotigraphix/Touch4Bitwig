@@ -3,6 +3,10 @@ Mobile implementation of Bitwig Studio's controller API.
 
 Original thread on KVR; http://www.kvraudio.com/forum/viewtopic.php?f=259&t=435857&start=15
 
+Youtube Video showing the Windows debug functionality as of 0.1.
+
+https://www.youtube.com/watch?v=7DshblWnmUM
+
 This is an Adobe AIR, Feathers UI GPU mobile application. It's developed with ActionScript and
 uses an IOC(Inversion of Control) application framework to manage runtime dependency injection.
 
