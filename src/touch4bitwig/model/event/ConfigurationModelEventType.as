@@ -17,30 +17,12 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.controller.command.screen
+package touch4bitwig.model.event
 {
 
-import feathers.core.DrawersApplication;
-
-import org.robotlegs.starling.mvcs.Command;
-
-import touch4bitwig.view.ApplicationScreens;
-import touch4bitwig.view.MainNavigator;
-
-public class ShowConfigureScreenCommand extends Command
+public final class ConfigurationModelEventType
 {
-    [Inject]
-    public var application:DrawersApplication;
-
-    [Inject]
-    public var navigator:MainNavigator;
-
-    override public function execute():void
-    {
-        // closes the top drawer
-        application.isTopDrawerOpen = false;
-        // show the ConfigurationScreen
-        navigator.pushScreen(ApplicationScreens.SCREEN_CONFIGURATION);
-    }
+   public static const START_COMPLETE:String = "ConfigurationModelEventType/applyAndStartComplete";
+   public static const IS_IN_CONFIG:String = "ConfigurationModelEventType/isInConfig";
 }
 }

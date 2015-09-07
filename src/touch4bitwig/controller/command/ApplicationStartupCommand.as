@@ -123,7 +123,7 @@ public class ApplicationStartupCommand extends Command
 
     private function this_completeHandler(event:OperationEvent):void
     {
-        var startScreenID:String = ApplicationScreens.SCREEN_MIXER;
+        var needsConfig:Boolean = false;
 
         var debugConfiguration:ApplicationDebugConfiguration = configurationModel.debugConfiguration;
         // if we have a config.xml and it's enabled
@@ -138,18 +138,18 @@ public class ApplicationStartupCommand extends Command
             if (configurationModel.applicationPreferences != null)
             {
                 // XXX Temp until open/close works on osc connectors
-                startScreenID = ApplicationScreens.SCREEN_CONFIGURATION;
+                needsConfig = true;
             }
             else
             {
                 // defaults
                 configurationModel.applicationPreferences = new ApplicationPreferences();
                 // show screen
-                startScreenID = ApplicationScreens.SCREEN_CONFIGURATION;
+                needsConfig = true;
             }
         }
 
-        if (startScreenID == ApplicationScreens.SCREEN_MIXER)
+        if (!needsConfig)
         {
             var preferences:ApplicationPreferences = configurationModel.applicationPreferences;
             var bound:Boolean = oscMessageController.reconnectAndStartup(
@@ -158,11 +158,18 @@ public class ApplicationStartupCommand extends Command
 
             if (!bound)
             {
-                startScreenID = ApplicationScreens.SCREEN_CONFIGURATION;
+                needsConfig = true;
             }
         }
 
-        uiModel.screenID = startScreenID;
+        if (needsConfig)
+        {
+            configurationModel.isInConfig = true;
+        }
+        else
+        {
+            uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
+        }
 
         Starling.juggler.delayCall(function ():void
                                    {

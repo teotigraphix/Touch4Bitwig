@@ -26,17 +26,24 @@ import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.model.event.ConfigurationModelEventType;
 import touch4bitwig.view.ApplicationScreens;
 import touch4bitwig.view.MainNavigator;
 
 public class UIController extends AbstractController
 {
+
+    [Inject]
+    public var navigator:MainNavigator;
+
     [Inject]
     public var uiModel:IUIModel;
 
     [Inject]
-    public var navigator:MainNavigator;
+    public var configurationModel:IConfigurationModel;
+
 
     public function UIController()
     {
@@ -47,33 +54,46 @@ public class UIController extends AbstractController
         super.onRegister();
 
         addContextListener(UIModelEventType.BACK, context_backHandler);
+        addContextListener(ConfigurationModelEventType.START_COMPLETE, context_startCompleteHandler);
+        addContextListener(ConfigurationModelEventType.IS_IN_CONFIG, context_isInConfigHandler);
         addContextListener(ApplicationModelEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
+    }
+
+    private function context_isInConfigHandler(event:Event, isConfig:Boolean):void
+    {
+        if (isConfig)
+        {
+
+             // Config button TopDrawer trigger
+            dispatchWith(ApplicationCommands.SHOW_CONFIGURATION_SCREEN);
+        }
+        else
+        {
+            if (uiModel.screenID == null)
+            {
+                uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
+            }
+            else
+            {
+                navigator.popScreen();
+            }
+        }
+    }
+
+    private function context_startCompleteHandler(event:Event):void
+    {
+        //configurationModel.isInConfig = false;
     }
 
     private function context_flushCompleteHandler(event:Event):void
     {
         uiModel.refresh();
 
-        if (uiModel.pendingScreenID != null)
+        if (navigator.activeScreenID == ApplicationScreens.SCREEN_CONFIGURATION)
         {
-            var pending:String = uiModel.pendingScreenID;
-            uiModel.pendingScreenID = null;
-            if (pending == ApplicationScreens.SCREEN_POP)
-            {
-                if (uiModel.screenID == ApplicationScreens.SCREEN_CONFIGURATION)
-                {
-                    uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
-                }
-                else
-                {
-                    navigator.popScreen();
-                }
-            }
-            else
-            {
-                uiModel.screenID = pending;
-            }
+            configurationModel.isInConfig = false;
         }
+
     }
 
     private function context_backHandler(event:Event):void

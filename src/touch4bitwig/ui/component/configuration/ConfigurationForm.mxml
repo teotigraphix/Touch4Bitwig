@@ -25,51 +25,70 @@
                   gap="15"
                   verticalAlign="middle" horizontalAlign="center">
 
-    <f:Button id="closeButton" label="close"
-              triggered="closeButton_triggeredHandler()"/>
 
-    <component:HGroup verticalAlign="middle">
+    <component:VGroup gap="15">
 
-        <f:Label text="DAW IP" width="{columnWidth}"/>
-        <f:TextInput id="dawIpInput" restrict="0-9."
-                     change="input_changeHandler()"/>
+        <f:Label text="Bitwig to Device Port/IP configuration"/>
 
-    </component:HGroup>
+        <component:HGroup verticalAlign="middle">
 
-    <component:HGroup verticalAlign="middle">
+            <f:Label text="DAW IP" width="{columnWidth}"/>
+            <f:TextInput id="dawIpInput" restrict="0-9."
+                         change="input_changeHandler()"/>
 
-        <f:Label text="DAW Port" width="{columnWidth}"/>
-        <f:TextInput id="dawPortInput" restrict="0-9"
-                     change="input_changeHandler()"/>
+        </component:HGroup>
 
-    </component:HGroup>
+        <component:HGroup verticalAlign="middle">
 
-    <component:HGroup verticalAlign="middle">
+            <f:Label text="DAW Port" width="{columnWidth}"/>
+            <f:TextInput id="dawPortInput" restrict="0-9"
+                         change="input_changeHandler()"/>
 
-        <f:Label text="Device IP" width="{columnWidth}"/>
-        <f:TextInput id="deviceIpInput" restrict="0-9."
-                     change="input_changeHandler()"/>
+        </component:HGroup>
 
-    </component:HGroup>
+        <component:HGroup verticalAlign="middle">
 
-    <component:HGroup verticalAlign="middle">
+            <f:Label text="Device IP" width="{columnWidth}"/>
+            <f:TextInput id="deviceIpInput" restrict="0-9."
+                         change="input_changeHandler()"/>
 
-        <f:Label text="Device Port" width="{columnWidth}"/>
-        <f:TextInput id="devicePortInput" restrict="0-9"
-                     change="input_changeHandler()"/>
+        </component:HGroup>
 
-    </component:HGroup>
+        <component:HGroup verticalAlign="middle">
 
-    <component:HGroup verticalAlign="middle">
-        <f:Button id="applyButton" label="Apply"
-                  isEnabled="false"
-                  triggered="applyButton_triggeredHandler()">
-        </f:Button>
-        <f:Button id="resetButton" label="Reset"
-                  isEnabled="true"
-                  triggered="resetButton_triggeredHandler()">
-        </f:Button>
-    </component:HGroup>
+            <f:Label text="Device Port" width="{columnWidth}"/>
+            <f:TextInput id="devicePortInput" restrict="0-9"
+                         change="input_changeHandler()"/>
+
+        </component:HGroup>
+
+        <component:HGroup verticalAlign="middle" percentWidth="100" gap="10">
+
+            <f:Button id="applyButton" label="Apply"
+                      isEnabled="false"
+                      width="{buttonWidth}"
+                      triggered="applyButton_triggeredHandler()">
+            </f:Button>
+
+            <f:Button id="resetButton" label="Reset"
+                      isEnabled="true"
+                      width="{buttonWidth}"
+                      triggered="resetButton_triggeredHandler()">
+            </f:Button>
+
+            <f:LayoutGroup>
+                <f:layoutData>
+                    <f:HorizontalLayoutData percentWidth="100"/>
+                </f:layoutData>
+            </f:LayoutGroup>
+
+            <f:Button id="closeButton" label="Close"
+                      width="{buttonWidth}"
+                      triggered="closeButton_triggeredHandler()"/>
+
+        </component:HGroup>
+
+    </component:VGroup>
 
     <fx:Script><![CDATA[
         public static const EVENT_APPLY:String = "apply";
@@ -79,6 +98,8 @@
 
         [Bindable]
         public var columnWidth:Number = 150;
+
+        public var buttonWidth:Number = 75;
 
         //[Bindable]
         //public var deviceIP:String = "";

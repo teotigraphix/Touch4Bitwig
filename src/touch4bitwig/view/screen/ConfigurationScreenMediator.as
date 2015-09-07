@@ -57,7 +57,7 @@ public class ConfigurationScreenMediator extends AbstractMediator
 
     private function view_backHandler(event:Event):void
     {
-        uiModel.back();
+        configurationModel.isInConfig = false;
     }
 }
 }

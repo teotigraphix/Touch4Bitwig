@@ -20,7 +20,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 -->
 <f:Screen xmlns:f="library://ns.feathersui.com/mxml"
-          xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:component="com.teotigraphix.ui.component.*"
+          xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:component="com.teotigraphix.ui.component.*"
           xmlns:configuration="touch4bitwig.ui.component.configuration.*">
 
     <f:layout>
@@ -29,8 +30,8 @@
 
     <component:HGroup padding="10" verticalAlign="middle" gap="15">
 
-
         <f:Button id="backButton"
+                  visible="{isInConfig}" includeInLayout="{isInConfig}"
                   styleName="{StyleNames.BACK_BUTTON}"
                   triggered="backButton_triggeredHandler()"/>
 
@@ -54,7 +55,6 @@
             </f:itemRendererProperties>
         </f:GroupedList>
 
-
         <configuration:ConfigurationForm percentWidth="100" percentHeight="100">
 
         </configuration:ConfigurationForm>
@@ -66,6 +66,9 @@
         import touch4bitwig.theme.StyleNames;
 
         public static const EVENT_BACK:String = "back";
+
+        [Bindable]
+        public var isInConfig:Boolean = false;
 
         private function backButton_triggeredHandler():void
         {

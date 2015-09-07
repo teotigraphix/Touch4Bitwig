@@ -24,12 +24,15 @@ import com.teotigraphix.ui.mediator.AbstractMediator;
 
 import starling.events.Event;
 
-import touch4bitwig.controller.ApplicationCommands;
+import touch4bitwig.model.IConfigurationModel;
 
 public class TopDrawerMediator extends AbstractMediator
 {
     [Inject]
     public var view:TopDrawer;
+
+    [Inject]
+    public var configurationModel:IConfigurationModel;
 
     public function TopDrawerMediator()
     {
@@ -49,7 +52,7 @@ public class TopDrawerMediator extends AbstractMediator
 
     private function view_configureHandler(event:Event):void
     {
-        dispatchWith(ApplicationCommands.SHOW_CONFIGURATION_SCREEN);
+        configurationModel.isInConfig = true;
     }
 }
 }

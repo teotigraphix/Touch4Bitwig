@@ -24,7 +24,7 @@ public class UIModelEventType
 {
     public static const BACK:String = "UIModelEventType/back";
     public static const SCREEN_ID:String = "UIModelEventType/screenId";
-    public static const PENDING_SCREEN_ID:String = "UIModelEventType/pendingScreenId";
+    //public static const PENDING_SCREEN_ID:String = "UIModelEventType/pendingScreenId";
     public static const MAIN_SCREEN_INDEX:String = "UIModelEventType/mainScreenIndex";
 }
 }

@@ -28,9 +28,9 @@ public interface IUIModel
 
     function set screenID(value:String):void;
 
-    function get pendingScreenID():String;
-
-    function set pendingScreenID(value:String):void;
+    //function get pendingScreenID():String;
+    //
+    //function set pendingScreenID(value:String):void;
 
     function get screenIndex():int;
 

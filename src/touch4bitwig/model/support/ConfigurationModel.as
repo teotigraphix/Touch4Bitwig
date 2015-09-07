@@ -27,6 +27,7 @@ import feathers.data.HierarchicalCollection;
 import touch4bitwig.app.config.ApplicationDebugConfiguration;
 import touch4bitwig.app.config.ApplicationPreferences;
 import touch4bitwig.model.IConfigurationModel;
+import touch4bitwig.model.event.ConfigurationModelEventType;
 import touch4bitwig.service.IConfigurationService;
 
 public class ConfigurationModel extends AbstractModel implements IConfigurationModel
@@ -34,9 +35,23 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     [Inject]
     public var configurationService:IConfigurationService;
 
+    private var _isInConfig:Boolean = false;
     private var _debugConfiguration:ApplicationDebugConfiguration;
     private var _ipDataProvider:HierarchicalCollection;
     private var _applicationPreferences:ApplicationPreferences;
+
+    public function get isInConfig():Boolean
+    {
+        return _isInConfig;
+    }
+
+    public function set isInConfig(value:Boolean):void
+    {
+        if (_isInConfig == value)
+            return;
+        _isInConfig = value;
+        dispatchWith(ConfigurationModelEventType.IS_IN_CONFIG, false, _isInConfig);
+    }
 
     public function get debugConfiguration():ApplicationDebugConfiguration
     {

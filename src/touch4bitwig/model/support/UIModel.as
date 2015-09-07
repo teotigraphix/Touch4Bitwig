@@ -44,7 +44,7 @@ public class UIModel extends AbstractModel implements IUIModel
     public var oscService:IOSCService;
 
     private var _screenID:String;
-    private var _pendingScreenID:String;
+   // private var _pendingScreenID:String;
     private var _screenDataProvider:ListCollection;
 
     private var _transportTempoWholeDataProvider:ListCollection;
@@ -68,18 +68,18 @@ public class UIModel extends AbstractModel implements IUIModel
         dispatchWith(UIModelEventType.SCREEN_ID, false, _screenID);
     }
 
-    public function get pendingScreenID():String
-    {
-        return _pendingScreenID;
-    }
-
-    public function set pendingScreenID(value:String):void
-    {
-        if (_pendingScreenID == value)
-            return;
-        _pendingScreenID = value;
-        dispatchWith(UIModelEventType.PENDING_SCREEN_ID, false, _pendingScreenID);
-    }
+    //public function get pendingScreenID():String
+    //{
+    //    return _pendingScreenID;
+    //}
+    //
+    //public function set pendingScreenID(value:String):void
+    //{
+    //    if (_pendingScreenID == value)
+    //        return;
+    //    _pendingScreenID = value;
+    //    dispatchWith(UIModelEventType.PENDING_SCREEN_ID, false, _pendingScreenID);
+    //}
 
     public function get screenDataProvider():ListCollection
     {

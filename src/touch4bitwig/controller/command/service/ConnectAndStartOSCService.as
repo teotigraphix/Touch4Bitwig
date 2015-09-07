@@ -30,7 +30,9 @@ import starling.events.Event;
 import starling.events.EventDispatcher;
 
 import touch4bitwig.controller.OSCMessageController;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.model.event.ConfigurationModelEventType;
 import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.view.ApplicationScreens;
 
@@ -47,6 +49,9 @@ public class ConnectAndStartOSCService extends Command
 
     [Inject]
     public var uiModel:IUIModel;
+
+    [Inject]
+    public var configurationModel:IConfigurationModel;
 
     [Inject]
     public var configurationService:IConfigurationService;
@@ -69,10 +74,7 @@ public class ConnectAndStartOSCService extends Command
             var file:File = configurationService.saveApplicationPreferences().commit();
             Toast.show("Preferences saved to " + file.name, 3000);
 
-            uiModel.pendingScreenID = ApplicationScreens.SCREEN_POP;
-
-            // making the pending the same as the current will pop the top screen(config) off.
-            //uiModel.pendingScreenID = uiModel.screenID;
+            dispatchWith(ConfigurationModelEventType.START_COMPLETE);
         }
     }
 }

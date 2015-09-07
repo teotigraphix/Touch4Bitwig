@@ -27,6 +27,15 @@ import touch4bitwig.app.config.ApplicationPreferences;
 
 public interface IConfigurationModel
 {
+    /**
+     * Whether the app is in explicit configuration form.
+     *
+     * @event ConfigurationModelEventType IS_IN_CONFIG
+     */
+    function get isInConfig():Boolean;
+
+    function set isInConfig(value:Boolean):void;
+
     function get ipDataProvider():HierarchicalCollection;
 
     function set ipDataProvider(value:HierarchicalCollection):void;
