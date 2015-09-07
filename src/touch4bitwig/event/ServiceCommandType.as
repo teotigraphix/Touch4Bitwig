@@ -24,7 +24,15 @@ public class ServiceCommandType
 {
     /**
      * @data {dawIP, dawPort, deviceIP, devicePort}
+     * @see ConnectAndStartOSCService
      */
     public static const CONNECT_AND_START:String = "ConnectAndStartOSCService";
+
+    /**
+     * @data null
+     * @see CloseOSCConnectionCommand
+     */
+    public static const CLOSE_OSC_CONNECTION:String = "CloseOSCConnectionCommand";
+    public static const CLOSE_OSC_CONNECTION_COMPLETE:String = "CloseOSCConnectionCommandComplete";
 }
 }

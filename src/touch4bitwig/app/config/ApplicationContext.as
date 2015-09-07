@@ -33,6 +33,7 @@ import touch4bitwig.controller.OSCMessageController;
 import touch4bitwig.controller.UIController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
 import touch4bitwig.controller.command.screen.ShowConfigureScreenCommand;
+import touch4bitwig.controller.command.service.CloseOSCConnectionCommand;
 import touch4bitwig.controller.command.service.ConnectAndStartOSCService;
 import touch4bitwig.event.ServiceCommandType;
 import touch4bitwig.model.IConfigurationModel;
@@ -131,6 +132,7 @@ public class ApplicationContext extends FrameworkContext
 
         commandMap.mapEvent(ApplicationCommands.SHOW_CONFIGURATION_SCREEN, ShowConfigureScreenCommand);
         commandMap.mapEvent(ServiceCommandType.CONNECT_AND_START, ConnectAndStartOSCService);
+        commandMap.mapEvent(ServiceCommandType.CLOSE_OSC_CONNECTION, CloseOSCConnectionCommand);
     }
 
     private function configureView():void

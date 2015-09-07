@@ -26,6 +26,11 @@ import starling.events.Event;
 
 public interface IOSCService
 {
+    /**
+     * Whether there is an actively bound socket session.
+     */
+    function get isBound():Boolean;
+
     function get isRunning():Boolean;
 
     function send(message:String):void;
@@ -51,6 +56,9 @@ public interface IOSCService
 
     function connect(inputIp:String, inputPort:int, outputIp:String, outputPort:int):Boolean;
 
+    /**
+     * @event ServiceCommandType CLOSE_OSC_CONNECTION_COMPLETE
+     */
     function close():void;
 
     function dispatchEvent(event:Event):void;

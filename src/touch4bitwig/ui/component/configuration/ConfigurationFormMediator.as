@@ -28,6 +28,7 @@ import touch4bitwig.controller.OSCMessageController;
 import touch4bitwig.event.ServiceCommandType;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.service.IOSCService;
 
 public class ConfigurationFormMediator extends AbstractMediator
 {
@@ -41,6 +42,9 @@ public class ConfigurationFormMediator extends AbstractMediator
     public var oscMessageController:OSCMessageController;
 
     [Inject]
+    public var oscService:IOSCService;
+
+    [Inject]
     public var uiModel:IUIModel;
 
     public function ConfigurationFormMediator()
@@ -52,6 +56,11 @@ public class ConfigurationFormMediator extends AbstractMediator
         super.onRegister();
 
         resetToPreferences();
+
+        view.isBound = oscService.isBound;
+
+        addContextListener(ServiceCommandType.CLOSE_OSC_CONNECTION_COMPLETE,
+                           context_closeOSCConnectionComplete);
 
         addViewListener(ConfigurationForm.EVENT_APPLY, view_applyHandler);
         addViewListener(ConfigurationForm.EVENT_RESET, view_resetHandler);
@@ -69,6 +78,11 @@ public class ConfigurationFormMediator extends AbstractMediator
         view.dawPort = configurationModel.applicationPreferences.dawPort.toString();
         view.deviceIP = configurationModel.applicationPreferences.deviceIP;
         view.devicePort = configurationModel.applicationPreferences.devicePort.toString();
+    }
+
+    private function context_closeOSCConnectionComplete(event:Event):void
+    {
+        view.isBound = oscService.isBound;
     }
 
     private function view_applyHandler(event:Event):void
@@ -89,7 +103,7 @@ public class ConfigurationFormMediator extends AbstractMediator
 
     private function view_closeHandler(event:Event):void
     {
-        oscMessageController.close();
+        dispatchWith(ServiceCommandType.CLOSE_OSC_CONNECTION);
     }
 }
 }

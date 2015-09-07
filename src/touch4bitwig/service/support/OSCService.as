@@ -29,6 +29,8 @@ import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
+import touch4bitwig.event.ServiceCommandType;
+
 import touch4bitwig.service.IOSCService;
 
 public class OSCService extends Actor implements IOSCService
@@ -42,6 +44,12 @@ public class OSCService extends Actor implements IOSCService
 
     private var _udpConnectorIn:UDPConnector;
     private var _udpConnectorOut:UDPConnector;
+
+    public function get isBound():Boolean
+    {
+        return _udpConnectorIn != null && _udpConnectorOut != null &&
+                _udpConnectorIn.bound && _udpConnectorOut.bound;
+    }
 
     public function get isRunning():Boolean
     {
@@ -105,7 +113,7 @@ public class OSCService extends Actor implements IOSCService
         _oscManager.connectorIn = null;
         _oscManager.connectorOut = null;
 
-        trace("CLOSED 3");
+        dispatchEventWith(ServiceCommandType.CLOSE_OSC_CONNECTION_COMPLETE);
     }
 
     public function send(message:String):void

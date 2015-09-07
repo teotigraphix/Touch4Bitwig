@@ -112,10 +112,5 @@ public class OSCMessageController extends AbstractController implements IOSCList
         else if (_applicationListener.isHandled(osc))
             _applicationListener.handle(osc);
     }
-
-    public function close():void
-    {
-        oscService.close();
-    }
 }
 }

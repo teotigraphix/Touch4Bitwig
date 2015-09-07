@@ -101,6 +101,11 @@
 
         public var buttonWidth:Number = 75;
 
+        public function set isBound(value:Boolean):void
+        {
+            closeButton.isEnabled = value;
+        }
+
         //[Bindable]
         //public var deviceIP:String = "";
 
