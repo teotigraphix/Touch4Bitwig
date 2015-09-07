@@ -29,6 +29,7 @@
 
     <component:HGroup padding="10" verticalAlign="middle" gap="15">
 
+
         <f:Button id="backButton"
                   styleName="{StyleNames.BACK_BUTTON}"
                   triggered="backButton_triggeredHandler()"/>
@@ -43,7 +44,7 @@
 
         <f:GroupedList id="ipList" headerField="header">
             <f:layoutData>
-                <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
             </f:layoutData>
             <f:headerRendererProperties>
                 <fx:Object contentLabelField="text"/>
