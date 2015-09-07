@@ -32,6 +32,11 @@ public class ApplicationPreferences
     {
     }
 
+    /**
+     * Only used in debug startup.
+     *
+     * @param configuration The configuration XML file loaded values.
+     */
     public function configure(configuration:ApplicationDebugConfiguration):void
     {
         dawPort = configuration.dawPort;

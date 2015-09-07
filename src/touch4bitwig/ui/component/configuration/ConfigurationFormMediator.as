@@ -25,9 +25,9 @@ import com.teotigraphix.ui.mediator.AbstractMediator;
 import starling.events.Event;
 
 import touch4bitwig.controller.OSCMessageController;
+import touch4bitwig.event.ServiceCommandType;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
-import touch4bitwig.view.ApplicationScreens;
 
 public class ConfigurationFormMediator extends AbstractMediator
 {
@@ -55,6 +55,7 @@ public class ConfigurationFormMediator extends AbstractMediator
 
         addViewListener(ConfigurationForm.EVENT_APPLY, view_applyHandler);
         addViewListener(ConfigurationForm.EVENT_RESET, view_resetHandler);
+        addViewListener(ConfigurationForm.EVENT_CLOSE, view_closeHandler);
     }
 
     override public function onRemove():void
@@ -72,25 +73,23 @@ public class ConfigurationFormMediator extends AbstractMediator
 
     private function view_applyHandler(event:Event):void
     {
-        configurationModel.applicationPreferences.dawIP = view.dawIP;
-        configurationModel.applicationPreferences.dawPort = int(view.dawPort);
-        configurationModel.applicationPreferences.deviceIP = view.deviceIP;
-        configurationModel.applicationPreferences.devicePort = int(view.devicePort);
-
-        var bound:Boolean = oscMessageController.reconnectAndStartup();
-        if (!bound)
-        {
-            // show status text
-        }
-        else
-        {
-            uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
-        }
+        var data:Object = {
+            dawIP: view.dawIP,
+            dawPort: view.dawPort,
+            deviceIP: view.deviceIP,
+            devicePort: view.devicePort
+        };
+        dispatchWith(ServiceCommandType.CONNECT_AND_START, false, data);
     }
 
     private function view_resetHandler(event:Event):void
     {
         resetToPreferences();
+    }
+
+    private function view_closeHandler(event:Event):void
+    {
+        oscMessageController.close();
     }
 }
 }

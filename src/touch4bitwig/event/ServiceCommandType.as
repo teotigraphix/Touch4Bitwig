@@ -17,19 +17,14 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.view
+package touch4bitwig.event
 {
 
-public final class ApplicationScreens
+public class ServiceCommandType
 {
-    public static const SCREEN_POP:String = "PopScreen";
-
-    public static const SCREEN_CONFIGURATION:String = "ConfigurationScreen";
-
-    public static const SCREEN_MIXER:String = "MixerScreen";
-
-    public static const SCREEN_TRANSPORT:String = "TransportScreen";
-
-    public static const SCREEN_PANEL:String = "PanelsScreen";
+    /**
+     * @data {dawIP, dawPort, deviceIP, devicePort}
+     */
+    public static const CONNECT_AND_START:String = "ConnectAndStartOSCService";
 }
 }

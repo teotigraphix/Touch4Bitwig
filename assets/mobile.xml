@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:3950d00d60863f7210e827fdb9b9f0de:b1705f67d478db44386ea29e80a5445b:66200537b0cb3a82f6daf981ebd5c01c$ -->
+<!-- $TexturePacker:SmartUpdate:c1b7f164832485d2073c14c6286e4c2f:e4d6a89ef8de5560545e92967358b60d:66200537b0cb3a82f6daf981ebd5c01c$ -->
 <TextureAtlas imagePath="mobile.png">
     <SubTexture name="automation-button-icon-selected-skin" x="2" y="2" width="32" height="32"/>
     <SubTexture name="automation-button-icon-skin" x="36" y="2" width="32" height="32"/>
     <SubTexture name="background-debug-skin" x="70" y="2" width="32" height="32"/>
     <SubTexture name="background-disabled-skin" x="104" y="2" width="32" height="32"/>
     <SubTexture name="background-inset-skin" x="138" y="2" width="32" height="32"/>
-    <SubTexture name="background-popup-skin" x="172" y="2" width="32" height="32"/>
-    <SubTexture name="background-selected-skin" x="206" y="2" width="32" height="32"/>
-    <SubTexture name="background-skin" x="240" y="2" width="32" height="32"/>
-    <SubTexture name="bitwig-icon-selected-skin" x="274" y="2" width="32" height="32"/>
-    <SubTexture name="bitwig-icon-skin" x="308" y="2" width="32" height="32"/>
-    <SubTexture name="button-disabled-skin" x="342" y="2" width="60" height="60"/>
-    <SubTexture name="button-down-skin" x="404" y="2" width="60" height="60"/>
+    <SubTexture name="background-popup-shadow-skin" x="172" y="2" width="32" height="32"/>
+    <SubTexture name="background-popup-skin" x="206" y="2" width="32" height="32"/>
+    <SubTexture name="background-selected-skin" x="240" y="2" width="32" height="32"/>
+    <SubTexture name="background-skin" x="274" y="2" width="32" height="32"/>
+    <SubTexture name="bitwig-icon-selected-skin" x="308" y="2" width="32" height="32"/>
+    <SubTexture name="bitwig-icon-skin" x="342" y="2" width="32" height="32"/>
+    <SubTexture name="button-disabled-skin" x="376" y="2" width="60" height="60"/>
+    <SubTexture name="button-down-skin" x="438" y="2" width="60" height="60"/>
     <SubTexture name="button-selected-disabled-skin" x="2" y="64" width="60" height="60"/>
     <SubTexture name="button-selected-up-skin" x="64" y="64" width="60" height="60"/>
     <SubTexture name="button-up-skin" x="126" y="64" width="60" height="60"/>

@@ -26,6 +26,8 @@ import starling.events.Event;
 
 public interface IOSCService
 {
+    function get isRunning():Boolean;
+
     function send(message:String):void;
 
     function sendString(message:String, value:String):void;
@@ -45,7 +47,9 @@ public interface IOSCService
 
     function addOSCListener(listener:IOSCListener):void;
 
-    function connect():Boolean;
+    function removeOSCListener(listener:IOSCListener):void;
+
+    function connect(inputIp:String, inputPort:int, outputIp:String, outputPort:int):Boolean;
 
     function close():void;
 

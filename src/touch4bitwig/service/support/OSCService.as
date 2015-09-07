@@ -29,16 +29,10 @@ import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
-import touch4bitwig.app.config.ApplicationPreferences;
-import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.service.IOSCService;
 
 public class OSCService extends Actor implements IOSCService
 {
-    // XXX not right
-    [Inject]
-    public var configurationModel:IConfigurationModel;
-
     private var _oscManager:OSCManager;
 
     private var _inputIp:String;
@@ -49,8 +43,14 @@ public class OSCService extends Actor implements IOSCService
     private var _udpConnectorIn:UDPConnector;
     private var _udpConnectorOut:UDPConnector;
 
+    public function get isRunning():Boolean
+    {
+        return _oscManager.running;
+    }
+
     public function OSCService()
     {
+        _oscManager = new OSCManager();
     }
 
     public function addOSCListener(listener:IOSCListener):void
@@ -58,41 +58,23 @@ public class OSCService extends Actor implements IOSCService
         _oscManager.addOSCListener(listener);
     }
 
-
-    public function setup(inputIp:String, inputPort:int, outputIp:String, outputPort:int):void
+    public function removeOSCListener(listener:IOSCListener):void
     {
-        if (_oscManager != null)
-        {
-            close();
-            _oscManager.stop();
-            _oscManager = null;
+        _oscManager.removeOSCListener(listener);
+    }
 
-        }
-        _inputIp = inputIp;
+    public function connect(inputIp:String, inputPort:int, outputIp:String, outputPort:int):Boolean
+    {
+        _inputIp = inputIp; // device
         _inputPort = inputPort;
-        _outputIp = outputIp;
+        _outputIp = outputIp; // daw
         _outputPort = outputPort;
 
-        _oscManager = new OSCManager();
-    }
-
-    public function connect():Boolean
-    {
-        var preferences:ApplicationPreferences = configurationModel.applicationPreferences;
-        // calls _connection.close() if current connection exists
-        // recreates the OSCManager
-        setup(preferences.deviceIP, preferences.devicePort,
-              preferences.dawIP, preferences.dawPort);
-
-        var bound:Boolean = _connect();
-        return bound;
-    }
-
-    public function _connect():Boolean
-    {
         try
         {
-            _udpConnectorIn = new UDPConnector(_inputIp, _inputPort, true);
+            createConnections();
+
+            _oscManager.start();
         }
         catch (e:Error)
         {
@@ -100,28 +82,31 @@ public class OSCService extends Actor implements IOSCService
             return false;
         }
 
-        _udpConnectorOut = new UDPConnector(_outputIp, _outputPort, false);
-
-        _oscManager.connectorIn = _udpConnectorIn;
-        _oscManager.connectorOut = _udpConnectorOut;
-
         return true;
     }
 
     public function close():void
     {
-        // TODO throw error
-        if (_udpConnectorIn == null)
-            return;
+        if (_udpConnectorIn != null && _udpConnectorOut != null)
+            trace("CLOSED 1", _udpConnectorIn.bound, _udpConnectorOut.bound);
 
-        _udpConnectorIn.close();
-        _udpConnectorOut.close();
+        if (_udpConnectorIn != null)
+            _udpConnectorIn.close();
+        if (_udpConnectorOut != null)
+            _udpConnectorOut.close();
+
+        _oscManager.stop();
+
+        if (_udpConnectorIn != null && _udpConnectorOut != null)
+            trace("CLOSED 2", _udpConnectorIn.bound, _udpConnectorOut.bound);
+        else
+            trace("No CLOSE, not connected");
 
         _oscManager.connectorIn = null;
         _oscManager.connectorOut = null;
-    }
 
-    //
+        trace("CLOSED 3");
+    }
 
     public function send(message:String):void
     {
@@ -129,6 +114,8 @@ public class OSCService extends Actor implements IOSCService
         osc.address = message;
         _oscManager.sendOSCPacket(osc);
     }
+
+    //
 
     public function sendString(message:String, value:String):void
     {
@@ -176,6 +163,15 @@ public class OSCService extends Actor implements IOSCService
     public function dispatchEventWith(type:String, bubbles:Boolean = false, data:Object = null):void
     {
         eventDispatcher.dispatchEventWith(type, bubbles, data);
+    }
+
+    private function createConnections():void
+    {
+        _udpConnectorIn = new UDPConnector(_inputIp, _inputPort, true);
+        _udpConnectorOut = new UDPConnector(_outputIp, _outputPort, false);
+
+        _oscManager.connectorIn = _udpConnectorIn;
+        _oscManager.connectorOut = _udpConnectorOut;
     }
 
     public function dispatchEvent(event:Event):void

@@ -27,6 +27,7 @@ import starling.events.Event;
 import touch4bitwig.event.ApplicationModelEventType;
 import touch4bitwig.event.UIModelEventType;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.view.ApplicationScreens;
 import touch4bitwig.view.MainNavigator;
 
 public class UIController extends AbstractController
@@ -52,6 +53,27 @@ public class UIController extends AbstractController
     private function context_flushCompleteHandler(event:Event):void
     {
         uiModel.refresh();
+
+        if (uiModel.pendingScreenID != null)
+        {
+            var pending:String = uiModel.pendingScreenID;
+            uiModel.pendingScreenID = null;
+            if (pending == ApplicationScreens.SCREEN_POP)
+            {
+                if (uiModel.screenID == ApplicationScreens.SCREEN_CONFIGURATION)
+                {
+                    uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
+                }
+                else
+                {
+                    navigator.popScreen();
+                }
+            }
+            else
+            {
+                uiModel.screenID = pending;
+            }
+        }
     }
 
     private function context_backHandler(event:Event):void

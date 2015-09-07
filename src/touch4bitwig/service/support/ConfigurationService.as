@@ -57,6 +57,11 @@ public class ConfigurationService implements IConfigurationService
     {
         return injector.instantiate(LoadApplicationPreferencesFileStep);
     }
+
+    public function saveApplicationPreferences():IStepCommand
+    {
+        return injector.instantiate(SaveApplicationPreferencesFileStep);
+    }
 }
 }
 
@@ -72,6 +77,7 @@ import flash.net.NetworkInterface;
 
 import touch4bitwig.app.config.ApplicationDebugConfiguration;
 import touch4bitwig.app.config.ApplicationPreferences;
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.service.support.ConfigurationService;
 
 /*
@@ -212,13 +218,39 @@ class LoadApplicationPreferencesFileStep extends StepCommand
     override public function execute():*
     {
         var preferences:ApplicationPreferences;
-        var file:File = File.applicationStorageDirectory.resolvePath(ConfigurationService.APPLICATION_PREFERENCES_BIN);
+        var file:File = File.applicationStorageDirectory.resolvePath(
+                ConfigurationService.APPLICATION_PREFERENCES_BIN);
         if (file.exists)
         {
             preferences = fileService.deserialize(file);
         }
         complete(preferences);
         return preferences;
+    }
+}
+
+class SaveApplicationPreferencesFileStep extends StepCommand
+{
+    [Inject]
+    public var fileService:IFileService;
+
+    [Inject]
+    public var configurationModel:IConfigurationModel;
+
+    override public function commit():*
+    {
+        var preferences:ApplicationPreferences = configurationModel.applicationPreferences;
+        var file:File = File.applicationStorageDirectory.resolvePath(
+                ConfigurationService.APPLICATION_PREFERENCES_BIN);
+        fileService.serialize(file, preferences);
+        return file;
+    }
+
+    override public function execute():*
+    {
+        var file:File = commit();
+        complete(file);
+        return file;
     }
 }
 

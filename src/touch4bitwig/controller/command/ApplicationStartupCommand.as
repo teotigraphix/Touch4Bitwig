@@ -137,7 +137,8 @@ public class ApplicationStartupCommand extends Command
             // real app usage, need serialized prefs or show config screen
             if (configurationModel.applicationPreferences != null)
             {
-
+                // XXX Temp until open/close works on osc connectors
+                startScreenID = ApplicationScreens.SCREEN_CONFIGURATION;
             }
             else
             {
@@ -150,7 +151,15 @@ public class ApplicationStartupCommand extends Command
 
         if (startScreenID == ApplicationScreens.SCREEN_MIXER)
         {
-            oscMessageController.reconnectAndStartup();
+            var preferences:ApplicationPreferences = configurationModel.applicationPreferences;
+            var bound:Boolean = oscMessageController.reconnectAndStartup(
+                    preferences.dawIP, preferences.dawPort,
+                    preferences.deviceIP, preferences.devicePort);
+
+            if (!bound)
+            {
+                startScreenID = ApplicationScreens.SCREEN_CONFIGURATION;
+            }
         }
 
         uiModel.screenID = startScreenID;

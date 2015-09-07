@@ -47,5 +47,12 @@ public interface IConfigurationService
      * @return Command with result as ApplicationPreferences.
      */
     function loadApplicationPreferences():IStepCommand;
+
+    /**
+     * Saves the ApplicationPreferences to a binary file.
+     *
+     * @return Command with result as ApplicationPreferences's File location saved.
+     */
+    function saveApplicationPreferences():IStepCommand;
 }
 }

@@ -24,6 +24,7 @@ import com.teotigraphix.controller.AbstractController;
 import com.teotigraphix.frameworks.osc.IOSCListener;
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
+import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.osc.listeners.ApplicationListener;
@@ -40,8 +41,8 @@ public class OSCMessageController extends AbstractController implements IOSCList
     [Inject]
     public var oscService:IOSCService;
 
-    //[Inject]
-    // public var configurationModel:IConfigurationModel;
+    [Inject]
+    public var configurationModel:IConfigurationModel;
 
     private var _trackListener:TrackListener;
     private var _transportListener:TransportListener;
@@ -64,28 +65,20 @@ public class OSCMessageController extends AbstractController implements IOSCList
         _panelListener = new PanelListener(oscService, oscModel.arranger, oscModel.mixer);
         _applicationListener = new ApplicationListener(oscService, oscModel.application);
 
+        oscService.addOSCListener(this);
         // eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);
     }
 
-    /**
-     * Bitwig:
-     * Android setup
-     * Host:192.168.1.36:8000
-     * Host:192.168.1.39/40:9000 <- Send to Android's IP address
-     */
-    public function _start():void
+    public function reconnectAndStartup(dawIP:String, dawPort:int, deviceIP:String, devicePort:int):Boolean
     {
-        oscService.addOSCListener(this);
-        oscService.refresh();
-    }
-
-    public function reconnectAndStartup():Boolean
-    {
-        var bound:Boolean = oscService.connect();
+        var bound:Boolean = oscService.connect(deviceIP, devicePort, dawIP, dawPort);
         if (!bound)
             return false;
 
-        oscService.addOSCListener(this);
+        configurationModel.applicationPreferences.dawIP = dawIP;
+        configurationModel.applicationPreferences.dawPort = dawPort;
+        configurationModel.applicationPreferences.deviceIP = deviceIP;
+        configurationModel.applicationPreferences.devicePort = devicePort;
 
         oscService.refresh();
 
@@ -118,6 +111,11 @@ public class OSCMessageController extends AbstractController implements IOSCList
             _panelListener.handle(osc);
         else if (_applicationListener.isHandled(osc))
             _applicationListener.handle(osc);
+    }
+
+    public function close():void
+    {
+        oscService.close();
     }
 }
 }

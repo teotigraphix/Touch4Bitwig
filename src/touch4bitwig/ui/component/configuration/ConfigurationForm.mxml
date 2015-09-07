@@ -25,6 +25,9 @@
                   gap="15"
                   verticalAlign="middle" horizontalAlign="center">
 
+    <f:Button id="closeButton" label="close"
+              triggered="closeButton_triggeredHandler()"/>
+
     <component:HGroup verticalAlign="middle">
 
         <f:Label text="DAW IP" width="{columnWidth}"/>
@@ -71,7 +74,7 @@
     <fx:Script><![CDATA[
         public static const EVENT_APPLY:String = "apply";
         public static const EVENT_RESET:String = "reset";
-
+        public static const EVENT_CLOSE:String = "close";
         // XXX for some reason Bindable is only working at startup
 
         [Bindable]
@@ -151,6 +154,11 @@
 
             applyButton.isEnabled = dawip > 0 && dawport > 0 && devip > 0 && devport > 0;
 
+        }
+
+        private function closeButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_CLOSE);
         }
         ]]></fx:Script>
 
