@@ -23,7 +23,7 @@ package touch4bitwig.view.screen
 import starling.events.Event;
 
 import touch4bitwig.event.DeviceModelEventType;
-import touch4bitwig.ui.component.screen.DeviceScreen;
+import touch4bitwig.view.screen.DeviceScreen;
 import touch4bitwig.view.AbstractMediator;
 
 public class DeviceScreenMediator extends AbstractMediator

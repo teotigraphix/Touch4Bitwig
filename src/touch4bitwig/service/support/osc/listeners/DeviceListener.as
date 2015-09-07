@@ -57,31 +57,25 @@ public class DeviceListener extends AbstractOSCListener
 
         for (var i:int = 1; i < 9; i++)
         {
-            _methods["/device/param/" + i + "/values"] = paramValuesHandler;
-            _methods["/device/common/" + i + "/values"] = paramValuesHandler;
-            _methods["/device/envelope/" + i + "/values"] = paramValuesHandler;
-            _methods["/device/macro/" + i + "/values"] = paramValuesHandler;
-            _methods["/device/modulation/" + i + "/values"] = paramValuesHandler;
+            _methods["/device/param/" + i + "/name"] = paramNameHandler;
+            _methods["/device/param/" + i + "/value"] = paramValueHandler;
+            _methods["/device/param/" + i + "/valueStr"] = paramValueStrHandler;
 
-            //_methods["/device/param/" + i + "/name"] = paramNameHandler;
-            //_methods["/device/param/" + i + "/value"] = paramValueHandler;
-            //_methods["/device/param/" + i + "/valueStr"] = paramValueStrHandler;
+            _methods["/device/common/" + i + "/name"] = paramNameHandler;
+            _methods["/device/common/" + i + "/value"] = paramValueHandler;
+            _methods["/device/common/" + i + "/valueStr"] = paramValueStrHandler;
 
-            //_methods["/device/common/" + i + "/name"] = paramNameHandler;
-            //_methods["/device/common/" + i + "/value"] = paramValueHandler;
-            //_methods["/device/common/" + i + "/valueStr"] = paramValueStrHandler;
-            //
-            //_methods["/device/envelope/" + i + "/name"] = paramNameHandler;
-            //_methods["/device/envelope/" + i + "/value"] = paramValueHandler;
-            //_methods["/device/envelope/" + i + "/valueStr"] = paramValueStrHandler;
-            //
-            //_methods["/device/macro/" + i + "/name"] = paramNameHandler;
-            //_methods["/device/macro/" + i + "/value"] = paramValueHandler;
-            //_methods["/device/macro/" + i + "/valueStr"] = paramValueStrHandler;
-            //
-            //_methods["/device/modulation/" + i + "/name"] = paramNameHandler;
-            //_methods["/device/modulation/" + i + "/value"] = paramValueHandler;
-            //_methods["/device/modulation/" + i + "/valueStr"] = paramValueStrHandler;
+            _methods["/device/envelope/" + i + "/name"] = paramNameHandler;
+            _methods["/device/envelope/" + i + "/value"] = paramValueHandler;
+            _methods["/device/envelope/" + i + "/valueStr"] = paramValueStrHandler;
+
+            _methods["/device/macro/" + i + "/name"] = paramNameHandler;
+            _methods["/device/macro/" + i + "/value"] = paramValueHandler;
+            _methods["/device/macro/" + i + "/valueStr"] = paramValueStrHandler;
+
+            _methods["/device/modulation/" + i + "/name"] = paramNameHandler;
+            _methods["/device/modulation/" + i + "/value"] = paramValueHandler;
+            _methods["/device/modulation/" + i + "/valueStr"] = paramValueStrHandler;
         }
     }
 
@@ -149,18 +143,6 @@ public class DeviceListener extends AbstractOSCListener
     private function presetHandler(osc:OSCMessage):void
     {
         _model.preset = osc.arguments[0];
-    }
-
-    private function paramValuesHandler(osc:OSCMessage):void
-    {
-        var index:int = toIndex(osc);
-        var type:String = toType(osc);
-        var valuesSerialized:String = osc.arguments[0];
-        var split:Array = valuesSerialized.split("|");
-
-        _model.bank.params[index].setName(type, split[0]);
-        _model.bank.params[index].setValueString(type, split[1]);
-        _model.bank.params[index].setValue(type, split[2]);
     }
 
     private function paramNameHandler(osc:OSCMessage):void

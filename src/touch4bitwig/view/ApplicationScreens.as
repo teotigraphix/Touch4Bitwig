@@ -33,5 +33,7 @@ public final class ApplicationScreens
     public static const SCREEN_PANEL:String = "PanelsScreen";
 
     public static const SCREEN_CLIPS:String = "ClipsScreen";
+
+    public static const SCREEN_DEVICE:String = "DeviceScreen";
 }
 }

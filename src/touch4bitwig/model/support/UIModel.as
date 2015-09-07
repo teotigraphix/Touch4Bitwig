@@ -146,7 +146,8 @@ public class UIModel extends AbstractModel implements IUIModel
             {index: 0, label: "Mixer", screen: ApplicationScreens.SCREEN_MIXER},
             {index: 1, label: "Clips", screen: ApplicationScreens.SCREEN_CLIPS},
             {index: 2, label: "Transport", screen: ApplicationScreens.SCREEN_TRANSPORT},
-            {index: 3, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
+            {index: 3, label: "Device", screen: ApplicationScreens.SCREEN_DEVICE},
+            {index: 4, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
         ]);
 
         setupPanels();

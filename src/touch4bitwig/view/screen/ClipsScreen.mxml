@@ -23,7 +23,6 @@
 -->
 <f:Screen xmlns:f="library://ns.feathersui.com/mxml"
           xmlns:fx="http://ns.adobe.com/mxml/2009"
-          xmlns:screen="touch4bitwig.ui.component.screen.*"
           xmlns:cliplauncher="touch4bitwig.ui.component.cliplauncher.*"
           xmlns:main="touch4bitwig.ui.component.main.*">
 
@@ -45,10 +44,10 @@
 
     </cliplauncher:GridStack>
 
-    <screen:ClipScreenFooter>
-        <screen:layoutData>
+    <cliplauncher:ClipScreenFooter>
+        <cliplauncher:layoutData>
             <f:VerticalLayoutData percentWidth="100"/>
-        </screen:layoutData>
-    </screen:ClipScreenFooter>
+        </cliplauncher:layoutData>
+    </cliplauncher:ClipScreenFooter>
 
 </f:Screen>

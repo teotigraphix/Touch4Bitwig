@@ -50,6 +50,12 @@ import touch4bitwig.ui.component.cliplauncher.ClipLauncher;
 import touch4bitwig.ui.component.cliplauncher.ClipLauncherMediator;
 import touch4bitwig.ui.component.configuration.ConfigurationForm;
 import touch4bitwig.ui.component.configuration.ConfigurationFormMediator;
+import touch4bitwig.ui.component.device.DeviceBankPager;
+import touch4bitwig.ui.component.device.DeviceBankPagerMediator;
+import touch4bitwig.ui.component.device.DeviceNavigationControl;
+import touch4bitwig.ui.component.device.DeviceNavigationControlMediator;
+import touch4bitwig.ui.component.device.DeviceSelectBar;
+import touch4bitwig.ui.component.device.DeviceSelectBarMediator;
 import touch4bitwig.ui.component.main.MainHeader;
 import touch4bitwig.ui.component.main.MainHeaderMediator;
 import touch4bitwig.ui.component.mixer.MixerBank;
@@ -60,6 +66,8 @@ import touch4bitwig.ui.component.panel.PanelSubToggleGroup;
 import touch4bitwig.ui.component.panel.PanelSubToggleGroupMediator;
 import touch4bitwig.ui.component.panel.PanelToggleGroup;
 import touch4bitwig.ui.component.panel.PanelToggleGroupMediator;
+import touch4bitwig.ui.component.track.TrackChannelBank;
+import touch4bitwig.ui.component.track.TrackChannelBankMediator;
 import touch4bitwig.ui.component.track.TrackNavigationControl;
 import touch4bitwig.ui.component.track.TrackNavigationControlMediator;
 import touch4bitwig.ui.component.transport.TransportBar;
@@ -76,6 +84,8 @@ import touch4bitwig.view.screen.ClipsScreen;
 import touch4bitwig.view.screen.ClipsScreenMediator;
 import touch4bitwig.view.screen.ConfigurationScreen;
 import touch4bitwig.view.screen.ConfigurationScreenMediator;
+import touch4bitwig.view.screen.DeviceScreen;
+import touch4bitwig.view.screen.DeviceScreenMediator;
 import touch4bitwig.view.screen.MixerScreen;
 import touch4bitwig.view.screen.MixerScreenMediator;
 import touch4bitwig.view.screen.PanelsScreen;
@@ -172,8 +182,12 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(ClipsScreen, ClipsScreenMediator);
         mediatorMap.mapView(ClipLauncher, ClipLauncherMediator);
 
-
-
+        // DeviceScreen
+        mediatorMap.mapView(DeviceScreen, DeviceScreenMediator);
+        mediatorMap.mapView(DeviceBankPager, DeviceBankPagerMediator);
+        mediatorMap.mapView(DeviceNavigationControl, DeviceNavigationControlMediator);
+        mediatorMap.mapView(DeviceSelectBar, DeviceSelectBarMediator);
+        mediatorMap.mapView(TrackChannelBank, TrackChannelBankMediator);
 
     }
 

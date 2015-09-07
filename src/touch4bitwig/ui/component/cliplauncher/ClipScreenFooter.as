@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.screen
+package touch4bitwig.ui.component.cliplauncher
 {
 
 import feathers.controls.Button;

@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.screen
+package touch4bitwig.view.screen
 {
 
 import feathers.controls.ButtonGroup;

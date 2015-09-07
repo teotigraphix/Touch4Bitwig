@@ -22,7 +22,7 @@ package touch4bitwig.view.screen
 
 import starling.events.Event;
 
-import touch4bitwig.ui.component.screen.ClipScreenFooter;
+import touch4bitwig.ui.component.cliplauncher.ClipScreenFooter;
 import touch4bitwig.view.AbstractMediator;
 
 public class ClipsScreenMediator extends AbstractMediator
