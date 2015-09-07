@@ -20,7 +20,9 @@
 package touch4bitwig.controller
 {
 
+import com.teotigraphix.app.event.ApplicationEventType;
 import com.teotigraphix.controller.AbstractController;
+import com.teotigraphix.ui.component.Toast;
 
 import starling.events.Event;
 
@@ -57,6 +59,9 @@ public class UIController extends AbstractController
         addContextListener(ConfigurationModelEventType.START_COMPLETE, context_startCompleteHandler);
         addContextListener(ConfigurationModelEventType.IS_IN_CONFIG, context_isInConfigHandler);
         addContextListener(ApplicationModelEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
+
+        // TEMP
+        addContextListener(ApplicationModelEventType.PROJECT_NAME, context_projectNameHandler);
     }
 
     private function context_isInConfigHandler(event:Event, isConfig:Boolean):void
@@ -99,6 +104,11 @@ public class UIController extends AbstractController
     private function context_backHandler(event:Event):void
     {
         navigator.popScreen();
+    }
+
+    private function context_projectNameHandler(event:Event, data:Object):void
+    {
+        Toast.show("Project change to " + data.value, 2000);
     }
 
 }

@@ -31,5 +31,7 @@ public class ApplicationModelEventType
     public static const ACTIVE_CHANGE:String = "ApplicationEventType/activeChange";
 
     public static const FLUSH_COMPLETE:String = "ApplicationEventType/flushComplete";
+
+    public static const PROJECT_NAME:String = "ApplicationEventType/projectName";
 }
 }

@@ -31,6 +31,7 @@ public class Application extends AbstractBitwigState
 
     private var _layout:String = null;
     private var _active:Boolean;
+    private var _projectName:String = "";
 
     public function get layout():String
     {
@@ -56,6 +57,19 @@ public class Application extends AbstractBitwigState
             return;
         _active = value;
         dispatchValue(ApplicationModelEventType.ACTIVE_CHANGE, _active);
+    }
+
+    public function get projectName():String
+    {
+        return _projectName;
+    }
+
+    public function set projectName(value:String):void
+    {
+        if (isSame(_projectName, value))
+            return;
+        _projectName = value;
+        dispatchValue(ApplicationModelEventType.PROJECT_NAME, _projectName);
     }
 
     public function Application(service:IOSCService)
