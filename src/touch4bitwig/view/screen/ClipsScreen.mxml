@@ -37,14 +37,6 @@
         </main:layoutData>
     </main:MainHeader>
 
-    <!--<screen:ClipsHeader id="header">-->
-
-        <!--<screen:layoutData>-->
-            <!--<f:VerticalLayoutData percentWidth="100"/>-->
-        <!--</screen:layoutData>-->
-
-    <!--</screen:ClipsHeader>-->
-
     <cliplauncher:GridStack id="grid">
 
         <cliplauncher:layoutData>
@@ -53,12 +45,10 @@
 
     </cliplauncher:GridStack>
 
-    <!--<cliplauncher:ClipLauncherFooter id="footer">-->
-
-        <!--<cliplauncher:layoutData>-->
-            <!--<f:VerticalLayoutData percentWidth="100"/>-->
-        <!--</cliplauncher:layoutData>-->
-
-    <!--</cliplauncher:ClipLauncherFooter>-->
+    <screen:ClipScreenFooter>
+        <screen:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </screen:layoutData>
+    </screen:ClipScreenFooter>
 
 </f:Screen>

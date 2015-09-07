@@ -117,5 +117,15 @@ public class TrackBank extends AbstractBitwigState
     {
         service.send("/track/+");
     }
+
+    public function scrollScenesUp():void
+    {
+        service.send("/scene/-");
+    }
+
+    public function scrollScenesDown():void
+    {
+        service.send("/scene/+");
+    }
 }
 }

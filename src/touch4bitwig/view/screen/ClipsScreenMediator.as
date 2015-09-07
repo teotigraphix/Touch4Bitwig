@@ -54,19 +54,19 @@ public class ClipsScreenMediator extends AbstractMediator
         switch (direction)
         {
             case ClipScreenFooter.DIRECTION_UP:
-                oscService.send("/scene/-");
+                oscModel.trackBank.scrollScenesUp();
                 break;
 
             case ClipScreenFooter.DIRECTION_DOWN:
-                oscService.send("/scene/+");
+                oscModel.trackBank.scrollScenesDown();
                 break;
 
             case ClipScreenFooter.DIRECTION_LEFT:
-                oscService.send("/track/-");
+                oscModel.trackBank.scrollTracksUp();
                 break;
 
             case ClipScreenFooter.DIRECTION_RIGHT:
-                oscService.send("/track/+");
+                oscModel.trackBank.scrollTracksDown();
                 break;
         }
     }
