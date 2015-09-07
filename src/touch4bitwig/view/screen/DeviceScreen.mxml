@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+<!--
+-->
+<f:Screen xmlns:f="library://ns.feathersui.com/mxml"
+          xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:main="touch4bitwig.ui.component.main.*"
+          xmlns:device="touch4bitwig.ui.component.device.*"
+          xmlns:track="touch4bitwig.ui.component.track.*"
+          xmlns:channel="touch4bitwig.ui.component.track.channel.*"
+          xmlns:component="com.teotigraphix.ui.component.*"
+          creationComplete="this_creationCompleteHandler()">
+
+    <f:layout>
+        <f:VerticalLayout/>
+    </f:layout>
+
+    <!--=====================================================================-->
+    <!-- MainHeader -->
+    <!--=====================================================================-->
+
+    <main:MainHeader>
+        <main:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </main:layoutData>
+    </main:MainHeader>
+
+    <!--=====================================================================-->
+    <!-- MainContainer -->
+    <!--=====================================================================-->
+
+    <component:HGroup percentWidth="100" percentHeight="100">
+
+        <!--=================================================================-->
+        <!-- Left DeviceSelectBar -->
+        <!--=================================================================-->
+
+        <device:DeviceSelectBar>
+            <device:layoutData>
+                <f:HorizontalLayoutData percentHeight="100"/>
+            </device:layoutData>
+        </device:DeviceSelectBar>
+
+        <!--=================================================================-->
+        <!-- Center Container -->
+        <!--=================================================================-->
+
+        <component:VGroup percentWidth="100" percentHeight="100">
+
+            <!--=============================================================-->
+            <!-- DeviceBankSelector -->
+            <!--=============================================================-->
+
+            <channel:DeviceBankSelector id="deviceBankSelector"
+                                        direction="horizontal"
+                                        change="deviceBankSelector_changeHandler()">
+                <channel:layoutData>
+                    <f:VerticalLayoutData percentWidth="100"/>
+                </channel:layoutData>
+            </channel:DeviceBankSelector>
+
+            <!--=============================================================-->
+            <!-- DeviceBankPager -->
+            <!--=============================================================-->
+
+            <device:DeviceBankPager>
+                <device:layoutData>
+                    <f:VerticalLayoutData percentWidth="100"/>
+                </device:layoutData>
+            </device:DeviceBankPager>
+
+            <!--=============================================================-->
+            <!-- TrackChannelBank -->
+            <!--=============================================================-->
+
+            <track:TrackChannelBank>
+                <track:layoutData>
+                    <f:VerticalLayoutData percentWidth="100" percentHeight="100"/>
+                </track:layoutData>
+            </track:TrackChannelBank>
+
+            <component:HGroup percentWidth="100">
+
+                <!--=========================================================-->
+                <!-- TrackNavigationControl -->
+                <!--=========================================================-->
+
+                <track:TrackNavigationControl>
+                    <track:layoutData>
+                        <f:VerticalLayoutData percentWidth="100"/>
+                    </track:layoutData>
+                </track:TrackNavigationControl>
+
+                <!--=========================================================-->
+                <!-- DeviceNavigationControl -->
+                <!--=========================================================-->
+
+                <device:DeviceNavigationControl>
+                    <device:layoutData>
+                        <f:VerticalLayoutData percentWidth="100"/>
+                    </device:layoutData>
+                </device:DeviceNavigationControl>
+
+            </component:HGroup>
+
+        </component:VGroup>
+
+    </component:HGroup>
+
+    <fx:Script><![CDATA[
+        import feathers.data.ListCollection;
+
+        import touch4bitwig.model.support.OSCModel;
+
+        public static const EVENT_DEVICE_BANK_SELECTOR_CHANGE:String = "deviceBankSelectorChange";
+
+        private function this_creationCompleteHandler():void
+        {
+            deviceBankSelector.dataProvider = new ListCollection(
+                    [
+                        {label: "Param", mode: OSCModel.DEVICE_MODE_PARAM},
+                        {label: "Common", mode: OSCModel.DEVICE_MODE_COMMON},
+                        {label: "Envelope", mode: OSCModel.DEVICE_MODE_ENVELOPE},
+                        {label: "Macro", mode: OSCModel.DEVICE_MODE_MACRO}
+                    ]);
+        }
+
+        private function deviceBankSelector_changeHandler():void
+        {
+            dispatchEventWith(EVENT_DEVICE_BANK_SELECTOR_CHANGE, false, deviceBankSelector.selectedItem.mode);
+        }
+        ]]></fx:Script>
+
+
+</f:Screen>

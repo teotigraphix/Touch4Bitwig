@@ -103,6 +103,7 @@ public class DeviceParamGroup extends LayoutGroup
         var l:VerticalLayout = new VerticalLayout();
         l.padding = AssetMap.getSize(4);
         l.gap = AssetMap.getSize(4);
+        l.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_CENTER;
         layout = l;
         super.initialize();
 

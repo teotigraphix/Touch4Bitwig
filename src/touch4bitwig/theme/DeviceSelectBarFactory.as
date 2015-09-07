@@ -29,6 +29,7 @@ import feathers.controls.Button;
 import feathers.controls.Label;
 import feathers.layout.HorizontalLayout;
 import feathers.layout.HorizontalLayoutData;
+import feathers.layout.VerticalLayout;
 
 import touch4bitwig.ui.component.device.DeviceSelectBar;
 
@@ -69,7 +70,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
     private function setDeviceSelectBarStyles(bar:DeviceSelectBar):void
     {
-        var l:HorizontalLayout = bar.layout as HorizontalLayout;
+        var l:VerticalLayout = bar.layout as VerticalLayout;
         l.gap = AssetMap.getSize(4);
         l.padding = AssetMap.getSize(6);
     }

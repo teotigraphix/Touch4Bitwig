@@ -118,8 +118,8 @@ public class DeviceSelectBar extends LayoutGroup
 
     override protected function initialize():void
     {
-        var l:HorizontalLayout = new HorizontalLayout();
-        l.verticalAlign = VerticalLayout.VERTICAL_ALIGN_MIDDLE;
+        var l:VerticalLayout = new VerticalLayout();
+        l.verticalAlign = VerticalLayout.HORIZONTAL_ALIGN_CENTER;
         layout = l;
         super.initialize();
 

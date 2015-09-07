@@ -49,6 +49,7 @@ public class DeviceKnob extends UIKnob
 
     public function DeviceKnob()
     {
+        maxWidth = maxHeight = 75;
     }
 
     override protected function draw():void

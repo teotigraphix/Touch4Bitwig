@@ -26,6 +26,7 @@ import feathers.controls.LayoutGroup;
 import feathers.layout.HorizontalLayout;
 import feathers.layout.HorizontalLayoutData;
 import feathers.layout.VerticalLayout;
+import feathers.layout.VerticalLayoutData;
 import feathers.skins.IStyleProvider;
 
 import starling.events.Event;
@@ -97,7 +98,7 @@ public class DeviceNavigationControl extends LayoutGroup
         _leftButton = new Button();
         _rightButton = new Button();
         _nameLabel = new Label();
-        _nameLabel.layoutData = new HorizontalLayoutData(100);
+        _nameLabel.layoutData = new VerticalLayoutData(NaN, 100);
 
         _leftButton.addEventListener(Event.TRIGGERED, leftButton_triggeredHandler);
         _rightButton.addEventListener(Event.TRIGGERED, rightButton_triggeredHandler);

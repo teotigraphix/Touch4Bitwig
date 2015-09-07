@@ -72,7 +72,7 @@
                   direction="horizontal" distributeTabSizes="true"
                   change="tabBar_changeHandler()">
             <f:layoutData>
-                <f:HorizontalLayoutData percentHeight="100" percentWidth="40"/>
+                <f:HorizontalLayoutData percentHeight="100" />
             </f:layoutData>
         </f:TabBar>
 
