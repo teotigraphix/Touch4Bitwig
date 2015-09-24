@@ -70,7 +70,7 @@ public class MixerItemFactory extends AbstractThemeFactory
 
     private function setRecArmStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
@@ -79,7 +79,7 @@ public class MixerItemFactory extends AbstractThemeFactory
 
     private function setSoloStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("solo-button-selected-up-skin", 5, 5, 50, 50);
@@ -88,7 +88,7 @@ public class MixerItemFactory extends AbstractThemeFactory
 
     private function setMuteStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("mute-button-selected-up-skin", 5, 5, 50, 50);

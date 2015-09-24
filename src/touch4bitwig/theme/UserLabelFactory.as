@@ -21,7 +21,7 @@ package touch4bitwig.theme
 {
 
 import com.teotigraphix.ui.theme.AbstractTheme;
-import com.teotigraphix.ui.theme.LabelFactory;
+import com.teotigraphix.ui.theme.feathers.LabelFactory;
 
 import feathers.controls.Label;
 

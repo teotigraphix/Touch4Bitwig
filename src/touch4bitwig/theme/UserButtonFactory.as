@@ -23,7 +23,7 @@ package touch4bitwig.theme
 import com.teotigraphix.ui.component.UIToggleButton;
 import com.teotigraphix.ui.theme.AbstractTheme;
 import com.teotigraphix.ui.theme.AssetMap;
-import com.teotigraphix.ui.theme.ButtonFactory;
+import com.teotigraphix.ui.theme.feathers.ButtonFactory;
 
 import feathers.controls.Button;
 
@@ -56,13 +56,13 @@ public class UserButtonFactory extends ButtonFactory
 
     private function setPanelsLayoutStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.defaultLabelProperties.elementFormat = theme.fonts.largeUILightElementFormat;
     }
 
     private function setPanelsStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("panels-button-selected-skin", 5, 5, 50, 50);
@@ -70,7 +70,7 @@ public class UserButtonFactory extends ButtonFactory
 
     private function setBackButtonStyles(button:Button):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.defaultLabelProperties.elementFormat = theme.fonts.largeUILightElementFormat;
         button.label = "Back";
     }

@@ -42,13 +42,13 @@ public class TrackNavigationControlFactory extends AbstractThemeFactory
 
     private function setUpButtonStyles(button:Button):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.defaultIcon = AssetMap.createImage("track-navigation-up-icon-skin");
     }
 
     private function setDownButtonStyles(button:Button):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.defaultIcon = AssetMap.createImage("track-navigation-down-icon-skin");
     }
 

@@ -77,7 +77,7 @@ public class ClipLauncherFactory extends AbstractThemeFactory
 
     private function setAutomationButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultIcon = AssetMap.createImage("automation-button-icon-skin");
         button.defaultSelectedIcon = AssetMap.createImage("automation-button-icon-selected-skin");
@@ -93,7 +93,7 @@ public class ClipLauncherFactory extends AbstractThemeFactory
 
     private function setOverdubButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.label = "OVR";
         //button.defaultIcon = AssetMap.createImage("automation-button-icon-skin");
@@ -107,7 +107,7 @@ public class ClipLauncherFactory extends AbstractThemeFactory
 
     private function setClipButtonStyles(button:ClipButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
 
         button.stateToSkinFunction = null;
 
@@ -159,7 +159,7 @@ public class ClipLauncherFactory extends AbstractThemeFactory
 
     private function setSceneButtonStyles(button:SceneButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
 
         button.stateToSkinFunction = null;
 

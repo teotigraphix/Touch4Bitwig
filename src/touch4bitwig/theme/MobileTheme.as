@@ -22,6 +22,7 @@ package touch4bitwig.theme
 
 import com.teotigraphix.ui.theme.AbstractTheme;
 import com.teotigraphix.ui.theme.AssetMap;
+import com.teotigraphix.ui.theme.SharedFactory;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
@@ -47,7 +48,7 @@ public class MobileTheme extends AbstractTheme
     public function MobileTheme(scaleToDPI:Boolean = true)
     {
         super(scaleToDPI);
-        PRIMARY_BACKGROUND_COLOR = 0x171717;
+        SharedFactory.PRIMARY_BACKGROUND_COLOR = 0x171717;
         AssetMap.theme = this;
         this.initialize();
         this.dispatchEventWith(Event.COMPLETE);
@@ -92,9 +93,9 @@ public class MobileTheme extends AbstractTheme
     {
         super.createFactories();
 
-        labels = new UserLabelFactory(this);
-        sliders = new UserSliderFactory(this);
-        buttons = new UserButtonFactory(this);
+        label = new UserLabelFactory(this);
+        slider = new UserSliderFactory(this);
+        button = new UserButtonFactory(this);
     }
 
     protected function atlasTexture_onRestore():void

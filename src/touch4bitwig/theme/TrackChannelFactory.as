@@ -81,7 +81,7 @@ public class TrackChannelFactory extends AbstractThemeFactory
 
     private function setRecArmStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.label = "O";
         button.isQuickHitAreaEnabled = true;
         button.maxHeight = AssetMap.getSize(40);
@@ -94,7 +94,7 @@ public class TrackChannelFactory extends AbstractThemeFactory
 
     private function setSoloStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.label = "S";
         button.isQuickHitAreaEnabled = true;
         button.maxHeight = AssetMap.getSize(40);
@@ -107,7 +107,7 @@ public class TrackChannelFactory extends AbstractThemeFactory
 
     private function setMuteStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.label = "M";
         button.isQuickHitAreaEnabled = true;
         button.maxHeight = AssetMap.getSize(40);

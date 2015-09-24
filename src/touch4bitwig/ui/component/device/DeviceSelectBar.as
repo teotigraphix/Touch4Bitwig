@@ -23,7 +23,6 @@ package touch4bitwig.ui.component.device
 import com.teotigraphix.ui.component.UIToggleButton;
 
 import feathers.controls.LayoutGroup;
-import feathers.layout.HorizontalLayout;
 import feathers.layout.VerticalLayout;
 import feathers.skins.IStyleProvider;
 
@@ -35,7 +34,7 @@ public class DeviceSelectBar extends LayoutGroup
     public static const EVENT_EXPAND_CHANGE:String = "expandChange";
     public static const EVENT_WINDOW_CHANGE:String = "windowChange";
     public static const EVENT_MACRO_PAGE_CHANGE:String = "macroPageChange";
-    public static const EVENT_PARAM_PAGE_CHANGE:String = "paramPageChange";
+    public static const EVENT_BROWSER_CHANGE:String = "paramPageChange";
 
     public static var globalStyleProvider:IStyleProvider;
 
@@ -44,7 +43,7 @@ public class DeviceSelectBar extends LayoutGroup
 
     private var _windowButton:UIToggleButton;
     private var _macroPageButton:UIToggleButton;
-    private var _paramPageButton:UIToggleButton;
+    private var _browserButton:UIToggleButton;
 
     private var _isWindowVisible:Boolean;
     private var _isBypass:Boolean;
@@ -127,26 +126,26 @@ public class DeviceSelectBar extends LayoutGroup
         _expandButton = new UIToggleButton();
         _windowButton = new UIToggleButton();
         _macroPageButton = new UIToggleButton();
-        _paramPageButton = new UIToggleButton();
+        _browserButton = new UIToggleButton();
 
         _bypassButton.styleNameList.add("device-select-bar-bypass-button");
         _expandButton.styleNameList.add("device-select-bar-expand-button");
         _windowButton.styleNameList.add("device-select-bar-window-button");
         _macroPageButton.styleNameList.add("device-select-bar-macro-page-button");
-        _paramPageButton.styleNameList.add("device-select-bar-param-page-button");
+        _browserButton.styleNameList.add("device-select-bar-browser-button");
 
         _bypassButton.addEventListener(Event.CHANGE, bypassButton_triggeredHandler);
         _expandButton.addEventListener(Event.CHANGE, expandButton_triggeredHandler);
         _windowButton.addEventListener(Event.CHANGE, windowButton_triggeredHandler);
         _macroPageButton.addEventListener(Event.CHANGE, macroPageButton_triggeredHandler);
-        _paramPageButton.addEventListener(Event.CHANGE, paramPageButton_triggeredHandler);
+        _browserButton.addEventListener(Event.CHANGE, browserButton_triggeredHandler);
 
         addChild(_bypassButton);
         addChild(_expandButton);
 
         addChild(_windowButton);
+        addChild(_browserButton);
         addChild(_macroPageButton);
-        addChild(_paramPageButton);
     }
 
     override protected function draw():void
@@ -157,7 +156,7 @@ public class DeviceSelectBar extends LayoutGroup
         _windowButton.isEnabled = _isEnabled;
         _bypassButton.isEnabled = _isEnabled;
         _macroPageButton.isEnabled = _isEnabled;
-        _paramPageButton.isEnabled = _isEnabled;
+        _browserButton.isEnabled = _isEnabled;
 
         if (_isEnabled)
         {
@@ -165,7 +164,7 @@ public class DeviceSelectBar extends LayoutGroup
             _windowButton.setIsSelected(_isWindowVisible);
             _bypassButton.setIsSelected(!_isBypass);
             _macroPageButton.setIsSelected(_isMacroPageVisible);
-            _paramPageButton.setIsSelected(_isParamPageVisible);
+            _browserButton.setIsSelected(_isParamPageVisible);
         }
         else
         {
@@ -173,7 +172,7 @@ public class DeviceSelectBar extends LayoutGroup
             _windowButton.setIsSelected(false);
             _bypassButton.setIsSelected(false);
             _macroPageButton.setIsSelected(false);
-            _paramPageButton.setIsSelected(false);
+            _browserButton.setIsSelected(false);
         }
 
     }
@@ -193,9 +192,9 @@ public class DeviceSelectBar extends LayoutGroup
         dispatchEventWith(EVENT_MACRO_PAGE_CHANGE, false, _macroPageButton.isSelected);
     }
 
-    private function paramPageButton_triggeredHandler(event:Event):void
+    private function browserButton_triggeredHandler(event:Event):void
     {
-        dispatchEventWith(EVENT_PARAM_PAGE_CHANGE, false, _paramPageButton.isSelected);
+        dispatchEventWith(EVENT_BROWSER_CHANGE, false, _browserButton.isSelected);
     }
 
     private function bypassButton_triggeredHandler(event:Event):void

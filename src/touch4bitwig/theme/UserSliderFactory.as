@@ -21,11 +21,9 @@ package touch4bitwig.theme
 {
 
 import com.teotigraphix.ui.theme.AbstractTheme;
-import com.teotigraphix.ui.theme.AssetMap;
-import com.teotigraphix.ui.theme.SliderFactory;
+import com.teotigraphix.ui.theme.feathers.SliderFactory;
 
 import feathers.controls.Button;
-import feathers.controls.Slider;
 import feathers.skins.SmartDisplayObjectStateValueSelector;
 
 public class UserSliderFactory extends SliderFactory

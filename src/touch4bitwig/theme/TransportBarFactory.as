@@ -48,7 +48,7 @@ public class TransportBarFactory extends AbstractThemeFactory
 
     private function setStopStyles(button:Button):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultIcon = AssetMap.createImage("stop-button-icon-skin");
         button.defaultIcon.width = 20;
@@ -61,7 +61,7 @@ public class TransportBarFactory extends AbstractThemeFactory
 
     private function setPlayStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultIcon = AssetMap.createImage("play-button-icon-skin");
         button.defaultSelectedIcon = AssetMap.createImage("play-button-icon-selected-skin");
@@ -77,7 +77,7 @@ public class TransportBarFactory extends AbstractThemeFactory
 
     private function setRecordStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultIcon = AssetMap.createImage("record-button-icon-skin");
         button.defaultSelectedIcon = AssetMap.createImage("record-button-icon-selected-skin");
@@ -93,7 +93,7 @@ public class TransportBarFactory extends AbstractThemeFactory
 
     private function setAutomationStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.stateToSkinFunction = null;
         button.defaultIcon = AssetMap.createImage("automation-button-icon-skin");
         button.defaultSelectedIcon = AssetMap.createImage("automation-button-icon-selected-skin");
@@ -109,7 +109,7 @@ public class TransportBarFactory extends AbstractThemeFactory
 
     private function setTransportBarPopUpButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.defaultIcon = AssetMap.createImage("transport-bar-popup-button-icon-skin");
         button.width = AssetMap.getSize(50);
         button.hasLabelTextRenderer = false;

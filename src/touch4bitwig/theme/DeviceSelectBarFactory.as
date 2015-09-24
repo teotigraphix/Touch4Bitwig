@@ -64,7 +64,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
         setStyle(UIToggleButton, setWindowButtonStyles, "device-select-bar-window-button");
 
-        setStyle(UIToggleButton, setParamPageButtonStyles, "device-select-bar-param-page-button");
+        setStyle(UIToggleButton, setBrowserButtonStyles, "device-select-bar-browser-button");
         setStyle(UIToggleButton, setMacroPageButtonStyles, "device-select-bar-macro-page-button");
     }
 
@@ -77,7 +77,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
     private function setRightButtonStyles(button:Button):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.layoutData = new HorizontalLayoutData(NaN, 100);
         button.minWidth = AssetMap.getSize(75);
         button.defaultIcon = AssetMap.createImage("device-select-bar-right-button-icon-skin");
@@ -85,7 +85,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
     private function setLeftButtonStyles(button:Button):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.layoutData = new HorizontalLayoutData(NaN, 100);
         button.minWidth = AssetMap.getSize(75);
         button.defaultIcon = AssetMap.createImage("device-select-bar-left-button-icon-skin");
@@ -97,9 +97,9 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         label.textRendererProperties.disabledElementFormat = theme.fonts.largeUILightDisabledElementFormat;
     }
 
-    private function setParamPageButtonStyles(button:UIToggleButton):void
+    private function setBrowserButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
 
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
@@ -109,13 +109,13 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.disabledSkin = AssetMap.create9ScaleImage("button-disabled-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("panels-button-selected-skin", 5, 5, 50, 50);
-        button.defaultIcon = AssetMap.createImage("device-param-page-icon-up-skin");
-        button.defaultSelectedIcon = AssetMap.createImage("device-param-page-icon-selected-skin");
+        button.defaultIcon = AssetMap.createImage("device-browser-icon-up-skin");
+        button.defaultSelectedIcon = AssetMap.createImage("device-browser-icon-selected-skin");
     }
 
     private function setMacroPageButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
         button.minTouchHeight = AssetMap.getSize(40);
@@ -129,7 +129,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
     private function setExpandButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
         //button.maxHeight = AssetMap.getSize(40);
@@ -144,7 +144,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
     private function setBypassButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
         //button.maxHeight = AssetMap.getSize(40);
@@ -159,7 +159,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
 
     private function setWindowButtonStyles(button:UIToggleButton):void
     {
-        theme.buttons.setButtonStyles(button);
+        theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
         //button.maxHeight = AssetMap.getSize(40);

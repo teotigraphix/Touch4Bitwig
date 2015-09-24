@@ -22,6 +22,8 @@ package touch4bitwig.app.config
 
 import com.teotigraphix.app.config.ApplicationDescriptor;
 import com.teotigraphix.app.config.FrameworkContext;
+import com.teotigraphix.model.IDeviceModel;
+import com.teotigraphix.model.support.DeviceModel;
 
 import feathers.core.DrawersApplication;
 
@@ -129,10 +131,11 @@ public class ApplicationContext extends FrameworkContext
 
     private function configureModel():void
     {
+        // Framework, TODO move this
+        injector.mapSingletonOf(IDeviceModel, DeviceModel);
+
         injector.mapSingletonOf(IConfigurationModel, ConfigurationModel);
-
         injector.mapSingletonOf(IOSCModel, OSCModel);
-
         injector.mapSingletonOf(IUIModel, UIModel);
     }
 

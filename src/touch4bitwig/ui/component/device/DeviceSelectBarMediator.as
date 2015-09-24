@@ -49,7 +49,7 @@ public class DeviceSelectBarMediator extends AbstractUIMediator
         addViewListener(DeviceSelectBar.EVENT_EXPAND_CHANGE, view_expandChange);
         addViewListener(DeviceSelectBar.EVENT_WINDOW_CHANGE, view_windowChange);
         addViewListener(DeviceSelectBar.EVENT_MACRO_PAGE_CHANGE, view_macroPageChange);
-        addViewListener(DeviceSelectBar.EVENT_PARAM_PAGE_CHANGE, view_paramPageChange);
+        addViewListener(DeviceSelectBar.EVENT_BROWSER_CHANGE, view_browserChange);
 
         view.isEnabled = oscModel.cursorDevice.exists;
         view.isBypass = oscModel.cursorDevice.bypass;
@@ -95,9 +95,9 @@ public class DeviceSelectBarMediator extends AbstractUIMediator
         oscModel.device.toggleMacroVisible();
     }
 
-    private function view_paramPageChange(event:Event, selected:Boolean):void
+    private function view_browserChange(event:Event, selected:Boolean):void
     {
-        oscModel.device.toggleParamVisible();
+        oscModel.device.toggleBrowser();
     }
 
     private function context_bypassChange(event:Event, data:Object):void

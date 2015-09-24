@@ -259,10 +259,14 @@ public class Device extends AbstractBitwigState
         service.send("/" + _id + "/macroVisible");
     }
 
-    public function toggleParamVisible():void
-    {
-        service.send("/" + _id + "/paramVisible");
-    }
+    //public function toggleParamVisible():void
+    //{
+    //    service.send("/" + _id + "/paramVisible");
+    //}
 
+    public function toggleBrowser():void
+    {
+        service.send("/" + _id + "/browser");
+    }
 }
 }
