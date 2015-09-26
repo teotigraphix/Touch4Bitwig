@@ -19,6 +19,9 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 -->
+<!---
+ Describes the application properties and version.
+-->
 <config:ApplicationDescriptor xmlns:fx="http://ns.adobe.com/mxml/2009"
                               xmlns:config="com.teotigraphix.app.config.*"
                               appID="touch4bitwig"

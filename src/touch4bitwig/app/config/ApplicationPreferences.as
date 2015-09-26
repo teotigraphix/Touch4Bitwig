@@ -20,6 +20,9 @@
 package touch4bitwig.app.config
 {
 
+/**
+ * @see touch4bitwig.controller.command.ApplicationStartupCommand
+ */
 public class ApplicationPreferences
 {
     public var dawPort:int = 8000;
@@ -36,6 +39,7 @@ public class ApplicationPreferences
      * Only used in debug startup.
      *
      * @param configuration The configuration XML file loaded values.
+     * @see touch4bitwig.controller.command.ApplicationStartupCommand
      */
     public function configure(configuration:ApplicationDebugConfiguration):void
     {

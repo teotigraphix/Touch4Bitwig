@@ -93,15 +93,30 @@ import touch4bitwig.view.screen.MixerScreenMediator;
 import touch4bitwig.view.screen.PanelsScreen;
 import touch4bitwig.view.screen.PanelsScreenMediator;
 
+/**
+ * The main application model context for the IOC container.
+ */
 public class ApplicationContext extends FrameworkContext
 {
+    //--------------------------------------------------------------------------
+    // Public :: Variables
+    //--------------------------------------------------------------------------
+
     public var application:DrawersApplication;
+
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
 
     public function ApplicationContext()
     {
         super(null, true);
         trace("new ApplicationContext()");
     }
+
+    //--------------------------------------------------------------------------
+    // Overridden : Methods
+    //--------------------------------------------------------------------------
 
     override protected function configureDescriptor():void
     {
@@ -122,6 +137,10 @@ public class ApplicationContext extends FrameworkContext
         trace("    ApplicationContext.configureView()");
         configureView();
     }
+
+    //--------------------------------------------------------------------------
+    // Private : Methods
+    //--------------------------------------------------------------------------
 
     private function configureService():void
     {
@@ -191,8 +210,6 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(DeviceNavigationControl, DeviceNavigationControlMediator);
         mediatorMap.mapView(DeviceSelectBar, DeviceSelectBarMediator);
         mediatorMap.mapView(TrackChannelBank, TrackChannelBankMediator);
-
     }
-
 }
 }
