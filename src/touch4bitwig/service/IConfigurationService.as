@@ -35,7 +35,7 @@ public interface IConfigurationService
     function loadIPsAsync():IStepCommand;
 
     /**
-     * Loads the XML configuration file into the ApplicationConfiguration.
+     * Loads the debug XML configuration file into the ApplicationConfiguration.
      *
      * @return Command with result as ApplicationConfiguration if the config file exists.
      */
@@ -46,13 +46,13 @@ public interface IConfigurationService
      *
      * @return Command with result as ApplicationPreferences.
      */
-    function loadApplicationPreferences():IStepCommand;
+    function loadApplicationPreferencesAsync():IStepCommand;
 
     /**
      * Saves the ApplicationPreferences to a binary file.
      *
      * @return Command with result as ApplicationPreferences's File location saved.
      */
-    function saveApplicationPreferences():IStepCommand;
+    function saveApplicationPreferencesAsync():IStepCommand;
 }
 }

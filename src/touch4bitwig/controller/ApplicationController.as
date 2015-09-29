@@ -28,9 +28,20 @@ import touch4bitwig.event.ApplicationEventType;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.service.IOSCService;
 
+/**
+ * Mediates application level context events.
+ */
 public class ApplicationController extends AbstractController
 {
+    //--------------------------------------------------------------------------
+    // Constants
+    //--------------------------------------------------------------------------
+
     private static const TAG:String = "ApplicationController";
+
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
 
     [Inject]
     public var configurationModel:IConfigurationModel;
@@ -41,9 +52,17 @@ public class ApplicationController extends AbstractController
     [Inject]
     public var uiController:UIController;
 
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
+
     public function ApplicationController()
     {
     }
+
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
 
     override protected function onRegister():void
     {
@@ -52,6 +71,10 @@ public class ApplicationController extends AbstractController
         eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_DEACTIVATE, applicationDeactivateHandler);
         eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_EXIT, applicationExitHandler);
     }
+
+    //--------------------------------------------------------------------------
+    // Private :: Handlers
+    //--------------------------------------------------------------------------
 
     private function applicationCompleteHandler(event:Event):void
     {

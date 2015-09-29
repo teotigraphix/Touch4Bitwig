@@ -35,14 +35,29 @@ import touch4bitwig.service.IOSCService;
 
 public class CloseOSCConnectionCommand extends Command
 {
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
+
     [Inject]
     public var event:Event;
 
     [Inject]
     public var oscService:IOSCService;
 
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
     private var _alert:Alert;
 
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
     override public function execute():void
     {
         // we clean up our own mess
@@ -54,12 +69,20 @@ public class CloseOSCConnectionCommand extends Command
         Starling.juggler.delayCall(doClose, 0.5);
     }
 
+    //--------------------------------------------------------------------------
+    // Private :: Methods
+    //--------------------------------------------------------------------------
+
     private function doClose():void
     {
         // needs to be delayed because the call instantly freezes all UI until it returns
         // onComplete ServiceCommandType.CLOSE_OSC_CONNECTION_COMPLETE
         oscService.close();
     }
+
+    //--------------------------------------------------------------------------
+    // Overridden :: Handlers
+    //--------------------------------------------------------------------------
 
     private function this_closeOSCConnectionComplete(event:Event):void
     {

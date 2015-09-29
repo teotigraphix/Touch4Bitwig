@@ -20,7 +20,6 @@
 package touch4bitwig.controller
 {
 
-import com.teotigraphix.app.event.ApplicationEventType;
 import com.teotigraphix.controller.AbstractController;
 import com.teotigraphix.ui.component.Toast;
 
@@ -34,8 +33,14 @@ import touch4bitwig.model.event.ConfigurationModelEventType;
 import touch4bitwig.view.ApplicationScreens;
 import touch4bitwig.view.MainNavigator;
 
+/**
+ * Mediates application level context events for the user interface.
+ */
 public class UIController extends AbstractController
 {
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
 
     [Inject]
     public var navigator:MainNavigator;
@@ -46,10 +51,17 @@ public class UIController extends AbstractController
     [Inject]
     public var configurationModel:IConfigurationModel;
 
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
 
     public function UIController()
     {
     }
+
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
 
     override protected function onRegister():void
     {
@@ -64,12 +76,16 @@ public class UIController extends AbstractController
         addContextListener(ApplicationModelEventType.PROJECT_NAME, context_projectNameHandler);
     }
 
+    //--------------------------------------------------------------------------
+    // Private :: Handlers
+    //--------------------------------------------------------------------------
+
     private function context_isInConfigHandler(event:Event, isConfig:Boolean):void
     {
         if (isConfig)
         {
 
-             // Config button TopDrawer trigger
+            // Config button TopDrawer trigger
             dispatchWith(ApplicationCommands.SHOW_CONFIGURATION_SCREEN);
         }
         else
@@ -83,6 +99,11 @@ public class UIController extends AbstractController
                 navigator.popScreen();
             }
         }
+    }
+
+    private function context_projectNameHandler(event:Event, data:Object):void
+    {
+        Toast.show("Project change to " + data.value, 2000);
     }
 
     private function context_startCompleteHandler(event:Event):void
@@ -104,11 +125,6 @@ public class UIController extends AbstractController
     private function context_backHandler(event:Event):void
     {
         navigator.popScreen();
-    }
-
-    private function context_projectNameHandler(event:Event, data:Object):void
-    {
-        Toast.show("Project change to " + data.value, 2000);
     }
 
 }

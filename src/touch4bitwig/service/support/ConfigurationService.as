@@ -29,36 +29,68 @@ import org.robotlegs.starling.core.IInjector;
 import touch4bitwig.app.config.ApplicationPreferences;
 import touch4bitwig.service.IConfigurationService;
 
+/**
+ * The IConfigurationService implementation loads/saves ip/port and application preference
+ * configurations.
+ */
 public class ConfigurationService implements IConfigurationService
 {
     registerClassAlias("$.ApplicationPreferences", ApplicationPreferences);
 
+    //--------------------------------------------------------------------------
+    // Constants
+    //--------------------------------------------------------------------------
+
     public static const CONFIG_XML:String = "config.xml";
     public static const APPLICATION_PREFERENCES_BIN:String = "application_preferences.bin";
 
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
+
     [Inject]
     public var injector:IInjector;
+
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
 
     public function ConfigurationService()
     {
     }
 
+    //--------------------------------------------------------------------------
+    // API :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function loadIPsAsync():IStepCommand
     {
         return injector.instantiate(LoadIPsStep);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function loadLastConfigurationFileAsync():IStepCommand
     {
         return injector.instantiate(LoadDebugConfigurationFileStep);
     }
 
-    public function loadApplicationPreferences():IStepCommand
+    /**
+     * @inheritDoc
+     */
+    public function loadApplicationPreferencesAsync():IStepCommand
     {
         return injector.instantiate(LoadApplicationPreferencesFileStep);
     }
 
-    public function saveApplicationPreferences():IStepCommand
+    /**
+     * @inheritDoc
+     */
+    public function saveApplicationPreferencesAsync():IStepCommand
     {
         return injector.instantiate(SaveApplicationPreferencesFileStep);
     }

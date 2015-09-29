@@ -35,6 +35,10 @@ import touch4bitwig.service.support.osc.listeners.TransportListener;
 
 public class OSCMessageController extends AbstractController implements IOSCListener
 {
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
+
     [Inject]
     public var oscModel:IOSCModel;
 
@@ -44,15 +48,27 @@ public class OSCMessageController extends AbstractController implements IOSCList
     [Inject]
     public var configurationModel:IConfigurationModel;
 
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
     private var _trackListener:TrackListener;
     private var _transportListener:TransportListener;
     private var _deviceListener:DeviceListener;
     private var _panelListener:PanelListener;
     private var _applicationListener:ApplicationListener;
 
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
+
     public function OSCMessageController()
     {
     }
+
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
 
     override protected function onRegister():void
     {
@@ -69,6 +85,19 @@ public class OSCMessageController extends AbstractController implements IOSCList
         // eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);
     }
 
+    //--------------------------------------------------------------------------
+    // Public :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * Reconnects the DAW to Device OSC connection.
+     *
+     * @param dawIP Bitwig IP address.
+     * @param dawPort Bitwig port.
+     * @param deviceIP Device IP address.
+     * @param devicePort Device port.
+     * @return Returns if the OSC connection was able to bind to the IP and port of Bitwig and the device.
+     */
     public function reconnectAndStartup(dawIP:String, dawPort:int, deviceIP:String, devicePort:int):Boolean
     {
         var bound:Boolean = oscService.connect(deviceIP, devicePort, dawIP, dawPort);
@@ -85,6 +114,9 @@ public class OSCMessageController extends AbstractController implements IOSCList
         return true;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function acceptOSCMessage(osc:OSCMessage):void
     {
         //trace(osc.address);

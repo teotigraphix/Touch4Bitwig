@@ -71,7 +71,7 @@ public class ConnectAndStartOSCService extends Command
         }
         else
         {
-            var file:File = configurationService.saveApplicationPreferences().commit();
+            var file:File = configurationService.saveApplicationPreferencesAsync().commit();
             Toast.show("Connected to Bitwig", 3000);
 
             dispatchWith(ConfigurationModelEventType.START_COMPLETE);

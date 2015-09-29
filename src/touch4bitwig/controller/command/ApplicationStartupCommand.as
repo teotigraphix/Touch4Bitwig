@@ -44,6 +44,10 @@ import touch4bitwig.view.ApplicationScreens;
 
 public class ApplicationStartupCommand extends Command
 {
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
+
     [Inject]
     public var applicationController:ApplicationController;
 
@@ -68,6 +72,10 @@ public class ApplicationStartupCommand extends Command
     [Inject]
     public var uiModel:IUIModel;
 
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
+
     override public function execute():void
     {
         trace("StartupCommand.execute()");
@@ -91,7 +99,7 @@ public class ApplicationStartupCommand extends Command
 
         var command1:IStepCommand = configurationService.loadIPsAsync();
         var command2:IStepCommand = configurationService.loadLastConfigurationFileAsync();
-        var command3:IStepCommand = configurationService.loadApplicationPreferences();
+        var command3:IStepCommand = configurationService.loadApplicationPreferencesAsync();
 
         command1.addCompleteListener(loadIPs_completeHandler);
         command1.addErrorListener(loadIPs_errorHandler);
@@ -110,6 +118,10 @@ public class ApplicationStartupCommand extends Command
 
         sequence.execute();
     }
+
+    //--------------------------------------------------------------------------
+    // Private :: Handlers
+    //--------------------------------------------------------------------------
 
     private function appPrefs_completeHandler(event:OperationEvent):void
     {

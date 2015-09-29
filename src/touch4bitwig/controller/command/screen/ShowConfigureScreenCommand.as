@@ -29,12 +29,23 @@ import touch4bitwig.view.MainNavigator;
 
 public class ShowConfigureScreenCommand extends Command
 {
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
+
     [Inject]
     public var application:DrawersApplication;
 
     [Inject]
     public var navigator:MainNavigator;
 
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
     override public function execute():void
     {
         // closes the top drawer
