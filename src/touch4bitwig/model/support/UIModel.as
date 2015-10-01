@@ -29,7 +29,7 @@ import feathers.data.ListCollection;
 import starling.events.Event;
 
 import touch4bitwig.event.PanelModelEventType;
-import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.service.IOSCService;

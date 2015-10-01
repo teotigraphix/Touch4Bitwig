@@ -20,6 +20,9 @@
 package touch4bitwig.model.event
 {
 
+/**
+ *
+ */
 public class UIModelEventType
 {
     public static const BACK:String = "UIModelEventType/back";

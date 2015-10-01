@@ -26,7 +26,7 @@ import com.teotigraphix.ui.component.Toast;
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.model.event.ConfigurationModelEventType;

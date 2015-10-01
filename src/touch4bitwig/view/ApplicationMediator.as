@@ -28,7 +28,7 @@ import starling.core.Starling;
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
-import touch4bitwig.event.UIModelEventType;
+import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.view.drawer.TopDrawer;
 
