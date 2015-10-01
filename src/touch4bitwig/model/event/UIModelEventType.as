@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.event
+package touch4bitwig.model.event
 {
 
 public class UIModelEventType
