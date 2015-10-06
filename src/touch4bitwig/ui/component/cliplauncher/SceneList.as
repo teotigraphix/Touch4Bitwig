@@ -27,7 +27,7 @@ import feathers.layout.VerticalLayoutData;
 
 import starling.events.Event;
 
-import touch4bitwig.model.state.Scene;
+import touch4bitwig.model.state.BitwigScene;
 
 public class SceneList extends LayoutGroup
 {
@@ -82,7 +82,7 @@ public class SceneList extends LayoutGroup
         }
     }
 
-    public function sceneStateChange(scene:Scene):void
+    public function sceneStateChange(scene:BitwigScene):void
     {
         var button:SceneButton = getButton(scene);
         // XXX when you only create scenes that have clips, remove this
@@ -100,7 +100,7 @@ public class SceneList extends LayoutGroup
         }
     }
 
-    private function getButton(scene:Scene):SceneButton
+    private function getButton(scene:BitwigScene):SceneButton
     {
         for (var i:int = 0; i < 8; i++)
         {
@@ -119,7 +119,7 @@ public class SceneList extends LayoutGroup
         for (var i:int = 0; i < 8; i++)
         {
             var button:SceneButton = getChildAt(i) as SceneButton;
-            button.scene = _dataProvider.getItemAt(i) as Scene;
+            button.scene = _dataProvider.getItemAt(i) as BitwigScene;
         }
     }
 

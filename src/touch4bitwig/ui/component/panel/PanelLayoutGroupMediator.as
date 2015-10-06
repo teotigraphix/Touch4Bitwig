@@ -24,8 +24,8 @@ import com.teotigraphix.ui.theme.AssetMap;
 
 import starling.events.Event;
 
-import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.model.state.Application;
+import touch4bitwig.model.event.BitwigApplicationEventType;
+import touch4bitwig.model.state.BitwigApplication;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class PanelLayoutGroupMediator extends AbstractUIMediator
@@ -48,7 +48,7 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
 
         view.selectedIndex = getIndex(oscModel.application.layout);
 
-        addContextListener(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
+        addContextListener(BitwigApplicationEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
 
         addViewListener(PanelLayoutGroup.EVENT_LAYOUT_CHANGE, view_layoutChangeHandler);
         addViewListener(PanelLayoutGroup.EVENT_INSPECTOR_TRIGGERED, view_inspectorTriggeredHandler);
@@ -75,13 +75,13 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
     {
         switch (layout)
         {
-            case Application.LAYOUT_ARRANGE :
+            case BitwigApplication.LAYOUT_ARRANGE :
                 return 0;
 
-            case Application.LAYOUT_MIX :
+            case BitwigApplication.LAYOUT_MIX :
                 return 1;
 
-            case Application.LAYOUT_EDIT :
+            case BitwigApplication.LAYOUT_EDIT :
                 return 2;
         }
         return -1;

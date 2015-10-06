@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.ApplicationModelEventType;
+import touch4bitwig.model.event.BitwigApplicationEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Application extends AbstractBitwigState
+public class BitwigApplication extends AbstractBitwigState
 {
     public static const LAYOUT_ARRANGE:String = "arrange";
     public static const LAYOUT_MIX:String = "mix";
@@ -43,7 +43,7 @@ public class Application extends AbstractBitwigState
         if (isSame(_layout, value))
             return;
         _layout = value;
-        dispatchValue(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, _layout);
+        dispatchValue(BitwigApplicationEventType.PANEL_LAYOUT_CHANGE, _layout);
     }
 
     public function get active():Boolean
@@ -56,7 +56,7 @@ public class Application extends AbstractBitwigState
         if (isSame(_active, value))
             return;
         _active = value;
-        dispatchValue(ApplicationModelEventType.ACTIVE_CHANGE, _active);
+        dispatchValue(BitwigApplicationEventType.ACTIVE_CHANGE, _active);
     }
 
     public function get projectName():String
@@ -69,10 +69,10 @@ public class Application extends AbstractBitwigState
         if (isSame(_projectName, value))
             return;
         _projectName = value;
-        dispatchValue(ApplicationModelEventType.PROJECT_NAME, _projectName);
+        dispatchValue(BitwigApplicationEventType.PROJECT_NAME, _projectName);
     }
 
-    public function Application(service:IOSCService)
+    public function BitwigApplication(service:IOSCService)
     {
         super(service);
     }
@@ -84,7 +84,7 @@ public class Application extends AbstractBitwigState
      */
     public function flushComplete():void
     {
-        dispatchValue(ApplicationModelEventType.FLUSH_COMPLETE, null);
+        dispatchValue(BitwigApplicationEventType.FLUSH_COMPLETE, null);
     }
 }
 }

@@ -53,7 +53,7 @@
 
         import feathers.data.ListCollection;
 
-        import touch4bitwig.model.state.Application;
+        import touch4bitwig.model.state.BitwigApplication;
         import touch4bitwig.theme.StyleNames;
 
         public static const EVENT_LAYOUT_CHANGE:String = "layoutChange";
@@ -78,15 +78,15 @@
             switch (tabBar.selectedIndex)
             {
                 case 0 :
-                    dispatchEventWith(EVENT_LAYOUT_CHANGE, false, Application.LAYOUT_ARRANGE);
+                    dispatchEventWith(EVENT_LAYOUT_CHANGE, false, BitwigApplication.LAYOUT_ARRANGE);
                     break;
 
                 case 1 :
-                    dispatchEventWith(EVENT_LAYOUT_CHANGE, false, Application.LAYOUT_MIX);
+                    dispatchEventWith(EVENT_LAYOUT_CHANGE, false, BitwigApplication.LAYOUT_MIX);
                     break;
 
                 case 2 :
-                    dispatchEventWith(EVENT_LAYOUT_CHANGE, false, Application.LAYOUT_EDIT);
+                    dispatchEventWith(EVENT_LAYOUT_CHANGE, false, BitwigApplication.LAYOUT_EDIT);
                     break;
             }
         }

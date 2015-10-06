@@ -22,7 +22,7 @@ package touch4bitwig.ui.component.device
 
 import starling.events.Event;
 
-import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class DeviceSelectBarMediator extends AbstractUIMediator
@@ -37,13 +37,13 @@ public class DeviceSelectBarMediator extends AbstractUIMediator
     {
         super.preRegister();
 
-        addContextListener(DeviceModelEventType.NAME_CHANGE, context_nameChangeHandler);
+        addContextListener(BitwigDeviceEventType.NAME_CHANGE, context_nameChangeHandler);
 
-        addContextListener(DeviceModelEventType.BYPASS_CHANGE, context_bypassChange);
-        addContextListener(DeviceModelEventType.EXPAND_CHANGE, context_expandChange);
-        addContextListener(DeviceModelEventType.WINDOW_CHANGE, context_windowChange);
-        addContextListener(DeviceModelEventType.MACRO_PAGE_CHANGE, context_macroPageChange);
-        addContextListener(DeviceModelEventType.PARAM_PAGE_CHANGE, context_paramPageChange);
+        addContextListener(BitwigDeviceEventType.BYPASS_CHANGE, context_bypassChange);
+        addContextListener(BitwigDeviceEventType.EXPAND_CHANGE, context_expandChange);
+        addContextListener(BitwigDeviceEventType.WINDOW_CHANGE, context_windowChange);
+        addContextListener(BitwigDeviceEventType.MACRO_PAGE_CHANGE, context_macroPageChange);
+        addContextListener(BitwigDeviceEventType.PARAM_PAGE_CHANGE, context_paramPageChange);
 
         addViewListener(DeviceSelectBar.EVENT_BYPASS_CHANGE, view_bypassChange);
         addViewListener(DeviceSelectBar.EVENT_EXPAND_CHANGE, view_expandChange);

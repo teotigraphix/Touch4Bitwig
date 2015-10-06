@@ -22,7 +22,7 @@ package touch4bitwig.view.screen
 
 import starling.events.Event;
 
-import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.view.screen.DeviceScreen;
 import touch4bitwig.view.AbstractMediator;
 
@@ -38,7 +38,7 @@ public class DeviceScreenMediator extends AbstractMediator
     override public function preRegister():void
     {
         super.preRegister();
-        addContextListener(DeviceModelEventType.MODE_CHANGE, context_modeChangeHandler);
+        addContextListener(BitwigDeviceEventType.MODE_CHANGE, context_modeChangeHandler);
         addViewListener(DeviceScreen.EVENT_DEVICE_BANK_SELECTOR_CHANGE, ssdsd);
 
     }

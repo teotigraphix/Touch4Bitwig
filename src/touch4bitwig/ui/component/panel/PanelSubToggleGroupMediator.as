@@ -26,9 +26,9 @@ import feathers.controls.Button;
 
 import starling.events.Event;
 
-import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.event.PanelModelEventType;
-import touch4bitwig.model.state.Application;
+import touch4bitwig.model.event.BitwigApplicationEventType;
+import touch4bitwig.model.event.BitwigPanelEventType;
+import touch4bitwig.model.state.BitwigApplication;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class PanelSubToggleGroupMediator extends AbstractUIMediator
@@ -44,22 +44,22 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
     {
         super.onRegister();
 
-        addContextListener(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
+        addContextListener(BitwigApplicationEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
 
-        addContextListener(PanelModelEventType.ARRANGER_CLIP_LAUNCHER_VISIBLE_CHANGE, context_arrangerChangeHandler);
-        addContextListener(PanelModelEventType.ARRANGER_CUE_MARKER_VISIBLE_CHANGE, context_arrangerChangeHandler);
-        addContextListener(PanelModelEventType.ARRANGER_EFFECTS_TRACKS_VISIBLE_CHANGE, context_arrangerChangeHandler);
-        addContextListener(PanelModelEventType.ARRANGER_IO_VISIBLE_CHANGE, context_arrangerChangeHandler);
-        addContextListener(PanelModelEventType.ARRANGER_PLAYBACK_FOLLOW_VISIBLE_CHANGE, context_arrangerChangeHandler);
-        addContextListener(PanelModelEventType.ARRANGER_TIME_LINE_VISIBLE_CHANGE, context_arrangerChangeHandler);
-        addContextListener(PanelModelEventType.ARRANGER_TRACK_ROW_HEIGHT_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_CLIP_LAUNCHER_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_CUE_MARKER_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_EFFECTS_TRACKS_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_IO_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_PLAYBACK_FOLLOW_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_TIME_LINE_VISIBLE_CHANGE, context_arrangerChangeHandler);
+        addContextListener(BitwigPanelEventType.ARRANGER_TRACK_ROW_HEIGHT_VISIBLE_CHANGE, context_arrangerChangeHandler);
 
-        addContextListener(PanelModelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE, context_mixerChangeHandler);
-        addContextListener(PanelModelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE, context_mixerChangeHandler);
-        addContextListener(PanelModelEventType.MIXER_DEVICE_VISIBLE_CHANGE, context_mixerChangeHandler);
-        addContextListener(PanelModelEventType.MIXER_IO_VISIBLE_CHANGE, context_mixerChangeHandler);
-        addContextListener(PanelModelEventType.MIXER_METER_VISIBLE_CHANGE, context_mixerChangeHandler);
-        addContextListener(PanelModelEventType.MIXER_SENDS_VISIBLE_CHANGE, context_mixerChangeHandler);
+        addContextListener(BitwigPanelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE, context_mixerChangeHandler);
+        addContextListener(BitwigPanelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE, context_mixerChangeHandler);
+        addContextListener(BitwigPanelEventType.MIXER_DEVICE_VISIBLE_CHANGE, context_mixerChangeHandler);
+        addContextListener(BitwigPanelEventType.MIXER_IO_VISIBLE_CHANGE, context_mixerChangeHandler);
+        addContextListener(BitwigPanelEventType.MIXER_METER_VISIBLE_CHANGE, context_mixerChangeHandler);
+        addContextListener(BitwigPanelEventType.MIXER_SENDS_VISIBLE_CHANGE, context_mixerChangeHandler);
 
         // XXX addViewListener(Event.CHANGE, view_changeHandler);
         // Arrange; ClipLauncher, Timeline, IO, , EffectTracks, TrackHeight, ActivateTracks
@@ -78,7 +78,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 
     private function context_mixerChangeHandler(event:Event, data:Object):void
     {
-        if (oscModel.application.layout != Application.LAYOUT_MIX)
+        if (oscModel.application.layout != BitwigApplication.LAYOUT_MIX)
             return;
 
         var item:Object = getMixerItem(event.type);
@@ -94,7 +94,7 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
 
     private function context_arrangerChangeHandler(event:Event, data:Object):void
     {
-        if (oscModel.application.layout != Application.LAYOUT_ARRANGE)
+        if (oscModel.application.layout != BitwigApplication.LAYOUT_ARRANGE)
             return;
 
         var item:Object = getArrangerItem(event.type);
@@ -142,17 +142,17 @@ public class PanelSubToggleGroupMediator extends AbstractUIMediator
     {
         switch (data.value)
         {
-            case Application.LAYOUT_ARRANGE :
+            case BitwigApplication.LAYOUT_ARRANGE :
                 view.dataProvider = null;
                 view.dataProvider = uiModel.panelsArrangeDataProvider;
                 break;
 
-            case Application.LAYOUT_MIX :
+            case BitwigApplication.LAYOUT_MIX :
                 view.dataProvider = null;
                 view.dataProvider = uiModel.panelsMixDataProvider;
                 break;
 
-            case Application.LAYOUT_EDIT :
+            case BitwigApplication.LAYOUT_EDIT :
                 view.dataProvider = null;//_editDataProvider;
                 break;
         }

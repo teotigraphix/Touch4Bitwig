@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.TransportModelEventType;
+import touch4bitwig.model.event.BitwigTransportEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Transport extends AbstractBitwigState
+public class BitwigTransport extends AbstractBitwigState
 {
     private var _positionString:String;
     private var _numerator:int;
@@ -53,7 +53,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_positionString, value))
             return;
         _positionString = value;
-        dispatchValue(TransportModelEventType.POSITION_STRING_CHANGE, _positionString);
+        dispatchValue(BitwigTransportEventType.POSITION_STRING_CHANGE, _positionString);
     }
 
     public function get numerator():int
@@ -66,7 +66,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_numerator, value))
             return;
         _numerator = value;
-        dispatchValue(TransportModelEventType.NUMERATOR_CHANGE, _numerator);
+        dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _numerator);
     }
 
     public function get denominator():int
@@ -79,7 +79,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_denominator, value))
             return;
         _denominator = value;
-        dispatchValue(TransportModelEventType.DENOMINATOR_CHANGE, _denominator);
+        dispatchValue(BitwigTransportEventType.DENOMINATOR_CHANGE, _denominator);
     }
 
     public function get isAutomationOverride():Boolean
@@ -92,7 +92,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isAutomationOverride, value))
             return;
         _isAutomationOverride = value;
-        dispatchValue(TransportModelEventType.IS_AUTOMATION_OVERRIDE_CHANGE, _isAutomationOverride);
+        dispatchValue(BitwigTransportEventType.IS_AUTOMATION_OVERRIDE_CHANGE, _isAutomationOverride);
     }
 
     public function get tempoRaw():String
@@ -105,7 +105,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_tempoRaw, value))
             return;
         _tempoRaw = value;
-        dispatchValue(TransportModelEventType.TEMPO_RAW_CHANGE, _tempoRaw);
+        dispatchValue(BitwigTransportEventType.TEMPO_RAW_CHANGE, _tempoRaw);
     }
 
     public function get isClick():Boolean
@@ -118,7 +118,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isClick, value))
             return;
         _isClick = value;
-        dispatchValue(TransportModelEventType.IS_CLICK_CHANGE, _isClick);
+        dispatchValue(BitwigTransportEventType.IS_CLICK_CHANGE, _isClick);
     }
 
     public function get isPlaying():Boolean
@@ -131,7 +131,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isPlaying, value))
             return;
         _isPlaying = value;
-        dispatchValue(TransportModelEventType.IS_PLAYING_CHANGE, _isPlaying);
+        dispatchValue(BitwigTransportEventType.IS_PLAYING_CHANGE, _isPlaying);
     }
 
     public function get isRecording():Boolean
@@ -144,7 +144,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isRecording, value))
             return;
         _isRecording = value;
-        dispatchValue(TransportModelEventType.IS_RECORDING_CHANGE, _isRecording);
+        dispatchValue(BitwigTransportEventType.IS_RECORDING_CHANGE, _isRecording);
     }
 
     public function get isRepeat():Boolean
@@ -157,7 +157,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isRepeat, value))
             return;
         _isRepeat = value;
-        dispatchValue(TransportModelEventType.IS_REPEAT_CHANGE, _isRepeat);
+        dispatchValue(BitwigTransportEventType.IS_REPEAT_CHANGE, _isRepeat);
     }
 
     public function get isPreroll():Boolean
@@ -170,7 +170,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isPreroll, value))
             return;
         _isPreroll = value;
-        dispatchValue(TransportModelEventType.IS_PRE_ROLL_CHANGE, _isPreroll);
+        dispatchValue(BitwigTransportEventType.IS_PRE_ROLL_CHANGE, _isPreroll);
     }
 
     public function get isOverdubLauncher():Boolean
@@ -183,7 +183,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isOverdubLauncher, value))
             return;
         _isOverdubLauncher = value;
-        dispatchValue(TransportModelEventType.IS_OVERDUB_LAUNCHER_CHANGE, _isOverdubLauncher);
+        dispatchValue(BitwigTransportEventType.IS_OVERDUB_LAUNCHER_CHANGE, _isOverdubLauncher);
     }
 
     public function get isOverdub():Boolean
@@ -196,7 +196,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isOverdub, value))
             return;
         _isOverdub = value;
-        dispatchValue(TransportModelEventType.IS_OVERDUB_CHANGE, _isOverdub);
+        dispatchValue(BitwigTransportEventType.IS_OVERDUB_CHANGE, _isOverdub);
     }
 
     public function get isCrossfade():Boolean
@@ -209,7 +209,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isCrossfade, value))
             return;
         _isCrossfade = value;
-        dispatchValue(TransportModelEventType.IS_CROSSFADE_CHANGE, _isCrossfade);
+        dispatchValue(BitwigTransportEventType.IS_CROSSFADE_CHANGE, _isCrossfade);
     }
 
     public function get isAutowriteLauncher():Boolean
@@ -222,7 +222,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isAutowriteLauncher, value))
             return;
         _isAutowriteLauncher = value;
-        dispatchValue(TransportModelEventType.IS_AUTOWRITE_LAUNCHER_CHANGE, _isAutowriteLauncher);
+        dispatchValue(BitwigTransportEventType.IS_AUTOWRITE_LAUNCHER_CHANGE, _isAutowriteLauncher);
     }
 
     public function get isAutowrite():Boolean
@@ -235,7 +235,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_isAutowrite, value))
             return;
         _isAutowrite = value;
-        dispatchValue(TransportModelEventType.IS_AUTOWRITE_CHANGE, _isAutowrite);
+        dispatchValue(BitwigTransportEventType.IS_AUTOWRITE_CHANGE, _isAutowrite);
     }
 
     public function get automationWriteMode():String
@@ -248,7 +248,7 @@ public class Transport extends AbstractBitwigState
         if (isSame(_automationWriteMode, value))
             return;
         _automationWriteMode = value;
-        dispatchValue(TransportModelEventType.AUTOMATION_WRITE_MODE_CHANGE, _automationWriteMode);
+        dispatchValue(BitwigTransportEventType.AUTOMATION_WRITE_MODE_CHANGE, _automationWriteMode);
     }
 
     public function get automationWriteModeIndex():int
@@ -265,7 +265,7 @@ public class Transport extends AbstractBitwigState
         return -1;
     }
 
-    public function Transport(service:IOSCService)
+    public function BitwigTransport(service:IOSCService)
     {
         super(service);
     }

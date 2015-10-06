@@ -22,14 +22,14 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.state.Transport;
+import touch4bitwig.model.state.BitwigTransport;
 import touch4bitwig.service.IOSCService;
 
 public class TransportListener extends AbstractOSCListener
 {
-    private var _model:Transport;
+    private var _model:BitwigTransport;
 
-    public function TransportListener(service:IOSCService, model:Transport)
+    public function TransportListener(service:IOSCService, model:BitwigTransport)
     {
         super(service);
         _model = model;

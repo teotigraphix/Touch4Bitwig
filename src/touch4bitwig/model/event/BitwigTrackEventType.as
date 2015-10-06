@@ -17,10 +17,10 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.event
+package touch4bitwig.model.event
 {
 
-public final class TrackModelEventType
+public final class BitwigTrackEventType
 {
     public static const CAN_SCROLL_TRACKS_UP:String = "canScrollTracksUp";
     public static const CAN_SCROLL_TRACKS_DOWN:String = "canScrollTracksDown";

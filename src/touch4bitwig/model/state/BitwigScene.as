@@ -22,22 +22,40 @@ package touch4bitwig.model.state
 
 import touch4bitwig.service.IOSCService;
 
-public class DeviceBank extends AbstractBitwigState
+public class BitwigScene extends AbstractBitwigState
 {
-    private var _params:Vector.<DeviceParam> = new Vector.<DeviceParam>(8, true);
+    private var _index:int;
+    private var _name:String;
 
-    public function get params():Vector.<DeviceParam>
+    public function get index():int
     {
-        return _params;
+        return _index;
     }
 
-    public function DeviceBank(service:IOSCService)
+    public function set index(value:int):void
+    {
+        _index = value;
+    }
+
+    public function get name():String
+    {
+        return "Scene " + _index; //_name;
+    }
+
+    public function set name(value:String):void
+    {
+        _name = value;
+    }
+
+    public function BitwigScene(index:int, service:IOSCService)
     {
         super(service);
-        for (var i:int = 0; i < _params.length; i++)
-        {
-            _params[i] = new DeviceParam(service, i + 1);
-        }
+        _index = index;
+    }
+
+    public function launch():void
+    {
+        service.send("/scene/" + index + "/launch");
     }
 }
 }

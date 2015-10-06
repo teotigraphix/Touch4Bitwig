@@ -17,10 +17,10 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.event
+package touch4bitwig.model.event
 {
 
-public class DeviceModelEventType
+public class BitwigDeviceEventType
 {
     public static const CAN_SELECT_PREVIOUS:String = "canSelectPrevious";
     public static const CAN_SELECT_NEXT:String = "canSelectNext";

@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.model.event.BitwigTrackEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Track extends AbstractBitwigState
+public class BitwigTrack extends AbstractBitwigState
 {
     private var _index:int;
 
@@ -44,7 +44,7 @@ public class Track extends AbstractBitwigState
     private var _isAutoMonitor:Boolean;
     private var _vu:int;
 
-    private var _clips:Vector.<Clip> = new Vector.<Clip>(8, true);
+    private var _clips:Vector.<BitwigClip> = new Vector.<BitwigClip>(8, true);
 
     public function get index():int
     {
@@ -64,7 +64,7 @@ public class Track extends AbstractBitwigState
     public function set canHoldNotes(value:Boolean):void
     {
         _canHoldNotes = value;
-        dispatch(TrackModelEventType.CAN_HOLD_NOTES_CHANGE, {index: _index, value: _canHoldNotes});
+        dispatch(BitwigTrackEventType.CAN_HOLD_NOTES_CHANGE, {index: _index, value: _canHoldNotes});
     }
 
     public function get exists():Boolean
@@ -77,7 +77,7 @@ public class Track extends AbstractBitwigState
         //if (_exists == value)
         //    return;
         _exists = value;
-        dispatch(TrackModelEventType.EXISTS_CHANGE, {index: _index, value: _exists});
+        dispatch(BitwigTrackEventType.EXISTS_CHANGE, {index: _index, value: _exists});
     }
 
     public function get isActivate():Boolean
@@ -98,7 +98,7 @@ public class Track extends AbstractBitwigState
     public function set isSelected(value:Boolean):void
     {
         _isSelected = value;
-        dispatch(TrackModelEventType.SELECTED_CHANGE, {index: _index, value: _isSelected, track:this});
+        dispatch(BitwigTrackEventType.SELECTED_CHANGE, {index: _index, value: _isSelected, track:this});
     }
 
     public function get name():String
@@ -109,7 +109,7 @@ public class Track extends AbstractBitwigState
     public function set name(value:String):void
     {
         _name = value;
-        dispatch(TrackModelEventType.NAME_CHANGE, {index: _index, value: _name});
+        dispatch(BitwigTrackEventType.NAME_CHANGE, {index: _index, value: _name});
     }
 
     public function get volumeString():String
@@ -120,7 +120,7 @@ public class Track extends AbstractBitwigState
     public function set volumeString(value:String):void
     {
         _volumeString = value;
-        dispatch(TrackModelEventType.VOLUME_STRING_CHANGE, {index: _index, value: _volumeString});
+        dispatch(BitwigTrackEventType.VOLUME_STRING_CHANGE, {index: _index, value: _volumeString});
     }
 
     public function get volume():int
@@ -131,7 +131,7 @@ public class Track extends AbstractBitwigState
     public function set volume(value:int):void
     {
         _volume = value;
-        dispatch(TrackModelEventType.VOLUME_CHANGE, {index: _index, value: _volume});
+        dispatch(BitwigTrackEventType.VOLUME_CHANGE, {index: _index, value: _volume});
     }
 
     public function get panString():String
@@ -142,7 +142,7 @@ public class Track extends AbstractBitwigState
     public function set panString(value:String):void
     {
         _panString = value;
-        dispatch(TrackModelEventType.PAN_STRING_CHANGE, {index: _index, value: _panString});
+        dispatch(BitwigTrackEventType.PAN_STRING_CHANGE, {index: _index, value: _panString});
     }
 
     public function get pan():int
@@ -153,7 +153,7 @@ public class Track extends AbstractBitwigState
     public function set pan(value:int):void
     {
         _pan = value;
-        dispatch(TrackModelEventType.PAN_CHANGE, {index: _index, value: _pan});
+        dispatch(BitwigTrackEventType.PAN_CHANGE, {index: _index, value: _pan});
     }
 
     public function get color():int
@@ -164,7 +164,7 @@ public class Track extends AbstractBitwigState
     public function set color(value:int):void
     {
         _color = value;
-        dispatch(TrackModelEventType.COLOR_CHANGE, {index: _index, value: _color});
+        dispatch(BitwigTrackEventType.COLOR_CHANGE, {index: _index, value: _color});
     }
 
     public function get isMute():Boolean
@@ -175,7 +175,7 @@ public class Track extends AbstractBitwigState
     public function set isMute(value:Boolean):void
     {
         _isMute = value;
-        dispatch(TrackModelEventType.MUTE_CHANGE, {index: _index, value: _isMute});
+        dispatch(BitwigTrackEventType.MUTE_CHANGE, {index: _index, value: _isMute});
     }
 
     public function get isSolo():Boolean
@@ -186,7 +186,7 @@ public class Track extends AbstractBitwigState
     public function set isSolo(value:Boolean):void
     {
         _isSolo = value;
-        dispatch(TrackModelEventType.SOLO_CHANGE, {index: _index, value: _isSolo});
+        dispatch(BitwigTrackEventType.SOLO_CHANGE, {index: _index, value: _isSolo});
     }
 
     public function get isRecArm():Boolean
@@ -197,7 +197,7 @@ public class Track extends AbstractBitwigState
     public function set isRecArm(value:Boolean):void
     {
         _isRecArm = value;
-        dispatch(TrackModelEventType.RECORD_CHANGE, {index: _index, value: _isRecArm});
+        dispatch(BitwigTrackEventType.RECORD_CHANGE, {index: _index, value: _isRecArm});
     }
 
     public function get isMonitor():Boolean
@@ -220,12 +220,12 @@ public class Track extends AbstractBitwigState
         _isAutoMonitor = value;
     }
 
-    public function get clips():Vector.<Clip>
+    public function get clips():Vector.<BitwigClip>
     {
         return _clips;
     }
 
-    public function set clips(value:Vector.<Clip>):void
+    public function set clips(value:Vector.<BitwigClip>):void
     {
         _clips = value;
     }
@@ -238,16 +238,16 @@ public class Track extends AbstractBitwigState
     public function set vu(value:int):void
     {
         _vu = value;
-        dispatch(TrackModelEventType.VU_CHANGE, {index: index, value: _vu});
+        dispatch(BitwigTrackEventType.VU_CHANGE, {index: index, value: _vu});
     }
 
-    public function Track(index:int, service:IOSCService)
+    public function BitwigTrack(index:int, service:IOSCService)
     {
         super(service);
         _index = index;
         for (var i:int = 0; i < _clips.length; i++)
         {
-            _clips[i] = new Clip(i + 1, this, service);
+            _clips[i] = new BitwigClip(i + 1, this, service);
         }
     }
 }

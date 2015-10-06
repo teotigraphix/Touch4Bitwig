@@ -25,7 +25,7 @@ import com.teotigraphix.ui.component.Toast;
 
 import starling.events.Event;
 
-import touch4bitwig.event.ApplicationModelEventType;
+import touch4bitwig.model.event.BitwigApplicationEventType;
 import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
@@ -70,10 +70,10 @@ public class UIController extends AbstractController
         addContextListener(UIModelEventType.BACK, context_backHandler);
         addContextListener(ConfigurationModelEventType.START_COMPLETE, context_startCompleteHandler);
         addContextListener(ConfigurationModelEventType.IS_IN_CONFIG, context_isInConfigHandler);
-        addContextListener(ApplicationModelEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
+        addContextListener(BitwigApplicationEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
 
         // TEMP
-        addContextListener(ApplicationModelEventType.PROJECT_NAME, context_projectNameHandler);
+        addContextListener(BitwigApplicationEventType.PROJECT_NAME, context_projectNameHandler);
     }
 
     //--------------------------------------------------------------------------

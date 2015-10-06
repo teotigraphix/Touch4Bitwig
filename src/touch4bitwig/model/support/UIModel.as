@@ -28,7 +28,7 @@ import feathers.data.ListCollection;
 
 import starling.events.Event;
 
-import touch4bitwig.event.PanelModelEventType;
+import touch4bitwig.model.event.BitwigPanelEventType;
 import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
@@ -195,7 +195,7 @@ public class UIModel extends AbstractModel implements IUIModel
 
         _panelsArrangeDataProvider = new ListCollection([
             {
-                type: PanelModelEventType.ARRANGER_CLIP_LAUNCHER_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.ARRANGER_CLIP_LAUNCHER_VISIBLE_CHANGE,
                 label: "ClipLauncher",
                 defaultIcon: AssetMap.createImage("icon-clip-launcher-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-clip-launcher-selected-skin"),
@@ -205,7 +205,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.ARRANGER_TIME_LINE_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.ARRANGER_TIME_LINE_VISIBLE_CHANGE,
                 label: "Timeline",
                 defaultIcon: AssetMap.createImage("icon-timeline-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-timeline-selected-skin"),
@@ -215,7 +215,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.ARRANGER_IO_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.ARRANGER_IO_VISIBLE_CHANGE,
                 label: "IO",
                 defaultIcon: AssetMap.createImage("icon-io-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-io-selected-skin"),
@@ -225,7 +225,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.ARRANGER_EFFECTS_TRACKS_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.ARRANGER_EFFECTS_TRACKS_VISIBLE_CHANGE,
                 label: "EffectTracks",
                 defaultIcon: AssetMap.createImage("icon-effect-tracks-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-effect-tracks-selected-skin"),
@@ -235,7 +235,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.ARRANGER_TRACK_ROW_HEIGHT_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.ARRANGER_TRACK_ROW_HEIGHT_VISIBLE_CHANGE,
                 label: "TrackHeight",
                 defaultIcon: AssetMap.createImage("icon-track-height-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-track-height-selected-skin"),
@@ -259,7 +259,7 @@ public class UIModel extends AbstractModel implements IUIModel
 
         _panelsMixDataProvider = new ListCollection([
             {
-                type: PanelModelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE,
                 label: "ClipLauncher",
                 defaultIcon: AssetMap.createImage("icon-clip-launcher-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-clip-launcher-selected-skin"),
@@ -269,7 +269,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.MIXER_METER_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.MIXER_METER_VISIBLE_CHANGE,
                 label: "Meters",
                 defaultIcon: AssetMap.createImage("icon-meters-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-meters-selected-skin"),
@@ -279,7 +279,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.MIXER_DEVICE_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.MIXER_DEVICE_VISIBLE_CHANGE,
                 label: "DeviceChain",
                 defaultIcon: AssetMap.createImage("icon-device-chain-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-device-chain-selected-skin"),
@@ -289,7 +289,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.MIXER_SENDS_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.MIXER_SENDS_VISIBLE_CHANGE,
                 label: "Sends",
                 defaultIcon: AssetMap.createImage("icon-sends-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-sends-selected-skin"),
@@ -299,7 +299,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 change: view_changeHandler
             },
             {
-                type: PanelModelEventType.MIXER_IO_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.MIXER_IO_VISIBLE_CHANGE,
                 label: "IO",
                 defaultIcon: AssetMap.createImage("icon-io-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-io-selected-skin"),
@@ -331,7 +331,7 @@ public class UIModel extends AbstractModel implements IUIModel
                 isEnabled: false
             },
             {
-                type: PanelModelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE,
+                type: BitwigPanelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE,
                 label: "Crossfade",
                 defaultIcon: AssetMap.createImage("icon-crossfade-up-skin"),
                 defaultSelectedIcon: AssetMap.createImage("icon-crossfade-selected-skin"),

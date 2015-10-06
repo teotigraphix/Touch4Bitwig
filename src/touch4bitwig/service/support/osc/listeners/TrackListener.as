@@ -22,14 +22,14 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.state.TrackBank;
+import touch4bitwig.model.state.BitwigTrackBank;
 import touch4bitwig.service.IOSCService;
 
 public class TrackListener extends AbstractOSCListener
 {
-    private var _model:TrackBank;
+    private var _model:BitwigTrackBank;
 
-    public function TrackListener(service:IOSCService, model:TrackBank)
+    public function TrackListener(service:IOSCService, model:BitwigTrackBank)
     {
         super(service);
         _model = model;

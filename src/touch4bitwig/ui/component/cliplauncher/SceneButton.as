@@ -26,7 +26,7 @@ import feathers.skins.IStyleProvider;
 import starling.display.DisplayObject;
 import starling.events.Event;
 
-import touch4bitwig.model.state.Scene;
+import touch4bitwig.model.state.BitwigScene;
 
 public class SceneButton extends Button
 {
@@ -36,7 +36,7 @@ public class SceneButton extends Button
 
     public static var globalStyleProvider:IStyleProvider;
 
-    private var _scene:Scene;
+    private var _scene:BitwigScene;
     private var _idleSkin:DisplayObject;
     private var _queuedSkin:DisplayObject;
     private var _dequeuedSkin:DisplayObject;
@@ -67,12 +67,12 @@ public class SceneButton extends Button
         _playSkin = value;
     }
 
-    public function get scene():Scene
+    public function get scene():BitwigScene
     {
         return _scene;
     }
 
-    public function set scene(value:Scene):void
+    public function set scene(value:BitwigScene):void
     {
         if (value == _scene)
             return;

@@ -22,7 +22,7 @@ package touch4bitwig.ui.component.device
 
 import starling.events.Event;
 
-import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class DeviceNavigationControlMediator extends AbstractUIMediator
@@ -37,9 +37,9 @@ public class DeviceNavigationControlMediator extends AbstractUIMediator
     {
         super.preRegister();
 
-        addContextListener(DeviceModelEventType.CAN_SELECT_PREVIOUS, context_canSelectPreviousChange);
-        addContextListener(DeviceModelEventType.CAN_SELECT_NEXT, context_canSelectNextChange);
-        addContextListener(DeviceModelEventType.NAME_CHANGE, context_nameChange);
+        addContextListener(BitwigDeviceEventType.CAN_SELECT_PREVIOUS, context_canSelectPreviousChange);
+        addContextListener(BitwigDeviceEventType.CAN_SELECT_NEXT, context_canSelectNextChange);
+        addContextListener(BitwigDeviceEventType.NAME_CHANGE, context_nameChange);
 
         addViewListener(DeviceNavigationControl.EVENT_LEFT_TRIGGERED, view_leftTriggered);
         addViewListener(DeviceNavigationControl.EVENT_RIGHT_TRIGGERED, view_rightTriggered);

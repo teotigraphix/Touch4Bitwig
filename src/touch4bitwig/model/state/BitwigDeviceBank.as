@@ -17,21 +17,27 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.event
+package touch4bitwig.model.state
 {
 
-public class ApplicationModelEventType
+import touch4bitwig.service.IOSCService;
+
+public class BitwigDeviceBank extends AbstractBitwigState
 {
-    // Panel
-    /**
-     * layout/arrange, layout/mix, layout/edit
-     */
-    public static const PANEL_LAYOUT_CHANGE:String = "ApplicationEventType/layoutChange";
+    private var _params:Vector.<BitwigDeviceParam> = new Vector.<BitwigDeviceParam>(8, true);
 
-    public static const ACTIVE_CHANGE:String = "ApplicationEventType/activeChange";
+    public function get params():Vector.<BitwigDeviceParam>
+    {
+        return _params;
+    }
 
-    public static const FLUSH_COMPLETE:String = "ApplicationEventType/flushComplete";
-
-    public static const PROJECT_NAME:String = "ApplicationEventType/projectName";
+    public function BitwigDeviceBank(service:IOSCService)
+    {
+        super(service);
+        for (var i:int = 0; i < _params.length; i++)
+        {
+            _params[i] = new BitwigDeviceParam(service, i + 1);
+        }
+    }
 }
 }

@@ -32,7 +32,7 @@ import feathers.layout.VerticalLayoutData;
 
 import starling.events.Event;
 
-import touch4bitwig.model.state.Track;
+import touch4bitwig.model.state.BitwigTrack;
 import touch4bitwig.theme.StyleNames;
 import touch4bitwig.ui.component.main.TrackNameHeaderItem;
 
@@ -114,7 +114,7 @@ public class ClipLauncher extends LayoutGroup
         super.draw();
     }
 
-    public function updateTrack(track:Track):void
+    public function updateTrack(track:BitwigTrack):void
     {
         var item:TrackNameHeaderItem = _headerItems[track.index - 1];
         item.visible = track.name != "";

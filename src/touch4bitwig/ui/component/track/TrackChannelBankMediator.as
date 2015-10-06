@@ -22,8 +22,8 @@ package touch4bitwig.ui.component.track
 
 import starling.events.Event;
 
-import touch4bitwig.event.DeviceModelEventType;
-import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
+import touch4bitwig.model.event.BitwigTrackEventType;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.ui.component.track.channel.DeviceParamGroup;
 import touch4bitwig.ui.component.track.channel.TrackControlGroup;
@@ -43,20 +43,20 @@ public class TrackChannelBankMediator extends AbstractUIMediator
     {
         super.preRegister();
 
-        addContextListener(TrackModelEventType.EXISTS_CHANGE, context_trackExistsHandler);
+        addContextListener(BitwigTrackEventType.EXISTS_CHANGE, context_trackExistsHandler);
 
-        addContextListener(DeviceModelEventType.MODE_CHANGE, context_modeChangeHandler);
+        addContextListener(BitwigDeviceEventType.MODE_CHANGE, context_modeChangeHandler);
 
-        addContextListener(DeviceModelEventType.PARAM_NAME_CHANGE, context_paramNameChangeHandler);
-        addContextListener(DeviceModelEventType.PARAM_VALUE_CHANGE, context_paramValueChangeHandler);
-        addContextListener(DeviceModelEventType.PARAM_VALUE_STRING_CHANGE, context_paramValueStringChangeHandler);
+        addContextListener(BitwigDeviceEventType.PARAM_NAME_CHANGE, context_paramNameChangeHandler);
+        addContextListener(BitwigDeviceEventType.PARAM_VALUE_CHANGE, context_paramValueChangeHandler);
+        addContextListener(BitwigDeviceEventType.PARAM_VALUE_STRING_CHANGE, context_paramValueStringChangeHandler);
 
-        addContextListener(TrackModelEventType.RECORD_CHANGE, context_trackRecordHandler);
-        addContextListener(TrackModelEventType.SOLO_CHANGE, context_trackSoloHandler);
-        addContextListener(TrackModelEventType.MUTE_CHANGE, context_trackMuteHandler);
+        addContextListener(BitwigTrackEventType.RECORD_CHANGE, context_trackRecordHandler);
+        addContextListener(BitwigTrackEventType.SOLO_CHANGE, context_trackSoloHandler);
+        addContextListener(BitwigTrackEventType.MUTE_CHANGE, context_trackMuteHandler);
 
-        addContextListener(TrackModelEventType.VU_CHANGE, context_trackVUHandler);
-        addContextListener(TrackModelEventType.VOLUME_CHANGE, context_trackVolumeHandler);
+        addContextListener(BitwigTrackEventType.VU_CHANGE, context_trackVUHandler);
+        addContextListener(BitwigTrackEventType.VOLUME_CHANGE, context_trackVolumeHandler);
 
         addViewListener(DeviceParamGroup.EVENT_DEVICE_VALUE_CHANGE, view_deviceValueChangeHandler);
         addViewListener(DeviceParamGroup.EVENT_DEVICE_VALUE_RESET, view_deviceValueResetHandler);

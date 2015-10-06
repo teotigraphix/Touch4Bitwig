@@ -26,10 +26,10 @@ import starling.animation.IAnimatable;
 import starling.animation.Juggler;
 import starling.events.Event;
 
-import touch4bitwig.event.TrackModelEventType;
-import touch4bitwig.event.TransportModelEventType;
-import touch4bitwig.model.state.Clip;
-import touch4bitwig.model.state.Scene;
+import touch4bitwig.model.event.BitwigTrackEventType;
+import touch4bitwig.model.event.BitwigTransportEventType;
+import touch4bitwig.model.state.BitwigClip;
+import touch4bitwig.model.state.BitwigScene;
 import touch4bitwig.ui.AbstractUIMediator;
 import touch4bitwig.ui.component.main.TrackNameHeaderItem;
 
@@ -60,14 +60,14 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
         addViewListener(ClipLauncherFooterItem.EVENT_STOP_BUTTON_TRIGGERED, view_stopButtonTriggeredHandler);
         addViewListener(ClipLauncherFooterItem.EVENT_RETURN_BUTTON_TRIGGERED, view_returnButtonTriggeredHandler);
 
-        addContextListener(TransportModelEventType.IS_AUTOWRITE_LAUNCHER_CHANGE,
+        addContextListener(BitwigTransportEventType.IS_AUTOWRITE_LAUNCHER_CHANGE,
                            context_isAutowriteLaucherChangeHandler);
-        addContextListener(TransportModelEventType.IS_OVERDUB_LAUNCHER_CHANGE,
+        addContextListener(BitwigTransportEventType.IS_OVERDUB_LAUNCHER_CHANGE,
                            context_isOverdubLauncherChangeHandler);
 
-        addContextListener(TrackModelEventType.COLOR_CHANGE, context_updateTrack);
-        addContextListener(TrackModelEventType.NAME_CHANGE, context_updateTrack);
-        addContextListener(TrackModelEventType.SELECTED_CHANGE, context_updateTrack);
+        addContextListener(BitwigTrackEventType.COLOR_CHANGE, context_updateTrack);
+        addContextListener(BitwigTrackEventType.NAME_CHANGE, context_updateTrack);
+        addContextListener(BitwigTrackEventType.SELECTED_CHANGE, context_updateTrack);
 
         //addContextListener(TrackModelEventType.CLIP_SELECTED_CHANGE, context_clipSelectedChange;
 
@@ -157,12 +157,12 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
         }
     }
 
-    private function view_sceneTapHandler(event:Event, scene:Scene):void
+    private function view_sceneTapHandler(event:Event, scene:BitwigScene):void
     {
         scene.launch();
     }
 
-    private function view_clipTapHandler(event:Event, clip:Clip):void
+    private function view_clipTapHandler(event:Event, clip:BitwigClip):void
     {
         clip.launch();
     }

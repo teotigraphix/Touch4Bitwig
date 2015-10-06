@@ -20,13 +20,13 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Device extends AbstractBitwigState
+public class BitwigDevice extends AbstractBitwigState
 {
     private var _id:String;
-    private var _bank:DeviceBank;
+    private var _bank:BitwigDeviceBank;
 
     private var _canSelectPrevious:Boolean;
     private var _canSelectNext:Boolean;
@@ -43,7 +43,7 @@ public class Device extends AbstractBitwigState
     private var _creator:String;
     private var _preset:String;
 
-    public function get bank():DeviceBank
+    public function get bank():BitwigDeviceBank
     {
         return _bank;
     }
@@ -63,7 +63,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_canSelectPrevious, value))
             return;
         _canSelectPrevious = value;
-        dispatchValue(DeviceModelEventType.CAN_SELECT_PREVIOUS, _canSelectPrevious);
+        dispatchValue(BitwigDeviceEventType.CAN_SELECT_PREVIOUS, _canSelectPrevious);
     }
 
     public function get canSelectNext():Boolean
@@ -76,7 +76,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_canSelectNext, value))
             return;
         _canSelectNext = value;
-        dispatchValue(DeviceModelEventType.CAN_SELECT_NEXT, _canSelectNext);
+        dispatchValue(BitwigDeviceEventType.CAN_SELECT_NEXT, _canSelectNext);
     }
 
     public function get selectedPageName():String
@@ -89,7 +89,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_selectedPageName, value))
             return;
         _selectedPageName = value;
-        dispatchValue(DeviceModelEventType.SELECTED_PAGE_NAME_CHANGE, _selectedPageName);
+        dispatchValue(BitwigDeviceEventType.SELECTED_PAGE_NAME_CHANGE, _selectedPageName);
     }
 
     public function get pageNames():Array
@@ -102,7 +102,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_pageNames, value))
             return;
         _pageNames = value;
-        dispatchValue(DeviceModelEventType.PARAM_PAGE_NAMES_CHANGE, _pageNames);
+        dispatchValue(BitwigDeviceEventType.PARAM_PAGE_NAMES_CHANGE, _pageNames);
     }
 
     public function get name():String
@@ -115,7 +115,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_name, value))
             return;
         _name = value;
-        dispatchValue(DeviceModelEventType.NAME_CHANGE, _name);
+        dispatchValue(BitwigDeviceEventType.NAME_CHANGE, _name);
     }
 
     public function get bypass():Boolean
@@ -128,7 +128,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_bypass, value))
             return;
         _bypass = value;
-        dispatchValue(DeviceModelEventType.BYPASS_CHANGE, _bypass);
+        dispatchValue(BitwigDeviceEventType.BYPASS_CHANGE, _bypass);
     }
 
     public function get expanded():Boolean
@@ -141,7 +141,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_expanded, value))
             return;
         _expanded = value;
-        dispatchValue(DeviceModelEventType.EXPAND_CHANGE, _expanded);
+        dispatchValue(BitwigDeviceEventType.EXPAND_CHANGE, _expanded);
     }
 
     public function get windowVisible():Boolean
@@ -154,7 +154,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_windowVisible, value))
             return;
         _windowVisible = value;
-        dispatchValue(DeviceModelEventType.WINDOW_CHANGE, _windowVisible);
+        dispatchValue(BitwigDeviceEventType.WINDOW_CHANGE, _windowVisible);
     }
 
     public function get macroPageVisible():Boolean
@@ -167,7 +167,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_macroPageVisible, value))
             return;
         _macroPageVisible = value;
-        dispatchValue(DeviceModelEventType.MACRO_PAGE_CHANGE, _macroPageVisible);
+        dispatchValue(BitwigDeviceEventType.MACRO_PAGE_CHANGE, _macroPageVisible);
     }
 
     public function get paramPageVisible():Boolean
@@ -180,7 +180,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_paramPageVisible, value))
             return;
         _paramPageVisible = value;
-        dispatchValue(DeviceModelEventType.PARAM_PAGE_CHANGE, _paramPageVisible);
+        dispatchValue(BitwigDeviceEventType.PARAM_PAGE_CHANGE, _paramPageVisible);
     }
 
     public function get category():String
@@ -193,7 +193,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_category, value))
             return;
         _category = value;
-        dispatchValue(DeviceModelEventType.CATEGORY_CHANGE, _category);
+        dispatchValue(BitwigDeviceEventType.CATEGORY_CHANGE, _category);
     }
 
     public function get creator():String
@@ -206,7 +206,7 @@ public class Device extends AbstractBitwigState
         if (isSame(_creator, value))
             return;
         _creator = value;
-        dispatchValue(DeviceModelEventType.CREATOR_CHANGE, _creator);
+        dispatchValue(BitwigDeviceEventType.CREATOR_CHANGE, _creator);
     }
 
     public function get preset():String
@@ -219,14 +219,14 @@ public class Device extends AbstractBitwigState
         if (isSame(_preset, value))
             return;
         _preset = value;
-        dispatchValue(DeviceModelEventType.PRESET_CHANGE, _name);
+        dispatchValue(BitwigDeviceEventType.PRESET_CHANGE, _name);
     }
 
-    public function Device(service:IOSCService, id:String)
+    public function BitwigDevice(service:IOSCService, id:String)
     {
         super(service);
         _id = id;
-        _bank = new DeviceBank(service);
+        _bank = new BitwigDeviceBank(service);
     }
 
     public function previous():void

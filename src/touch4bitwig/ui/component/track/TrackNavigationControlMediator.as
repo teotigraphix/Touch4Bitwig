@@ -22,8 +22,8 @@ package touch4bitwig.ui.component.track
 
 import starling.events.Event;
 
-import touch4bitwig.event.TrackModelEventType;
-import touch4bitwig.model.state.Track;
+import touch4bitwig.model.event.BitwigTrackEventType;
+import touch4bitwig.model.state.BitwigTrack;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class TrackNavigationControlMediator extends AbstractUIMediator
@@ -39,10 +39,10 @@ public class TrackNavigationControlMediator extends AbstractUIMediator
     {
         super.onRegister();
 
-        addContextListener(TrackModelEventType.SELECTED_CHANGE, context_selectedChangeHandler);
+        addContextListener(BitwigTrackEventType.SELECTED_CHANGE, context_selectedChangeHandler);
 
-        addContextListener(TrackModelEventType.CAN_SCROLL_TRACKS_UP, context_canScrollTracksUpHandler);
-        addContextListener(TrackModelEventType.CAN_SCROLL_TRACKS_DOWN, context_canScrollTracksDownHandler);
+        addContextListener(BitwigTrackEventType.CAN_SCROLL_TRACKS_UP, context_canScrollTracksUpHandler);
+        addContextListener(BitwigTrackEventType.CAN_SCROLL_TRACKS_DOWN, context_canScrollTracksDownHandler);
 
         addViewListener(TrackNavigationControl.EVENT_UP, view_upHandler);
         addViewListener(TrackNavigationControl.EVENT_DOWN, view_downHandler);
@@ -53,7 +53,7 @@ public class TrackNavigationControlMediator extends AbstractUIMediator
         view.canScrollTracksUp = true;
         view.canScrollTracksDown = true;
 
-        var track:Track = oscModel.trackBank.selectedTrack;
+        var track:BitwigTrack = oscModel.trackBank.selectedTrack;
         if (track != null)
         {
             view.trackName = track.name;

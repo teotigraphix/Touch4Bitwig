@@ -22,7 +22,7 @@ package touch4bitwig.ui.component.transport
 
 import starling.events.Event;
 
-import touch4bitwig.event.TransportModelEventType;
+import touch4bitwig.model.event.BitwigTransportEventType;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class TransportDisplayMediator extends AbstractUIMediator
@@ -38,10 +38,10 @@ public class TransportDisplayMediator extends AbstractUIMediator
     {
         super.onRegister();
 
-        addContextListener(TransportModelEventType.TEMPO_RAW_CHANGE, context_tempoRawChangeHandler);
-        addContextListener(TransportModelEventType.NUMERATOR_CHANGE, context_numeratorChangeHandler);
-        addContextListener(TransportModelEventType.DENOMINATOR_CHANGE, context_denonminatorChangeHandler);
-        addContextListener(TransportModelEventType.POSITION_STRING_CHANGE, context_positionChangeHandler);
+        addContextListener(BitwigTransportEventType.TEMPO_RAW_CHANGE, context_tempoRawChangeHandler);
+        addContextListener(BitwigTransportEventType.NUMERATOR_CHANGE, context_numeratorChangeHandler);
+        addContextListener(BitwigTransportEventType.DENOMINATOR_CHANGE, context_denonminatorChangeHandler);
+        addContextListener(BitwigTransportEventType.POSITION_STRING_CHANGE, context_positionChangeHandler);
 
         addViewListener(TransportDisplay.EVENT_TAP, view_tapHandler);
         addViewListener(TransportDisplay.EVENT_TEMPO, view_tempoHandler);

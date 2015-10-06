@@ -24,7 +24,7 @@ import feathers.data.ListCollection;
 
 import starling.events.Event;
 
-import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class DeviceBankPagerMediator extends AbstractUIMediator
@@ -39,10 +39,10 @@ public class DeviceBankPagerMediator extends AbstractUIMediator
     {
         super.preRegister();
 
-        addContextListener(DeviceModelEventType.MODE_CHANGE, context_modeChangeHandler);
+        addContextListener(BitwigDeviceEventType.MODE_CHANGE, context_modeChangeHandler);
 
-        addContextListener(DeviceModelEventType.PARAM_PAGE_NAMES_CHANGE, context_pageNamesChangeHandler);
-        addContextListener(DeviceModelEventType.SELECTED_PAGE_NAME_CHANGE, context_paramPageChangeHandler);
+        addContextListener(BitwigDeviceEventType.PARAM_PAGE_NAMES_CHANGE, context_pageNamesChangeHandler);
+        addContextListener(BitwigDeviceEventType.SELECTED_PAGE_NAME_CHANGE, context_paramPageChangeHandler);
 
         addViewListener(DeviceBankPager.EVENT_DEVICE_BANK_PAGE, view_deviceBankPageHandler);
         addViewListener(DeviceBankPager.EVENT_DEVICE_BANK_SELECT, view_deviceBankSelectHandler);

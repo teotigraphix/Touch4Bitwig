@@ -22,14 +22,14 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.state.Device;
+import touch4bitwig.model.state.BitwigDevice;
 import touch4bitwig.service.IOSCService;
 
 public class DeviceListener extends AbstractOSCListener
 {
-    private var _model:Device;
+    private var _model:BitwigDevice;
 
-    public function DeviceListener(service:IOSCService, model:Device)
+    public function DeviceListener(service:IOSCService, model:BitwigDevice)
     {
         super(service);
         _model = model;

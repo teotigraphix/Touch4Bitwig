@@ -17,10 +17,10 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.event
+package touch4bitwig.model.event
 {
 
-public final class TransportModelEventType
+public final class BitwigTransportEventType
 {
     public static const POSITION_STRING_CHANGE:String = "positionStringChange";
     public static const NUMERATOR_CHANGE:String = "numeratorChange";

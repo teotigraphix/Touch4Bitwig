@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.PanelModelEventType;
+import touch4bitwig.model.event.BitwigPanelEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Panes extends AbstractBitwigState
+public class BitwigPanes extends AbstractBitwigState
 {
     private var _noteEditorVisible:Boolean;
     private var _automationEditorVisible:Boolean;
@@ -41,7 +41,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_noteEditorVisible, value))
             return;
         _noteEditorVisible = value;
-        dispatchValue(PanelModelEventType.PANEL_NOTE_EDITOR_VISIBLE_CHANGE, _noteEditorVisible);
+        dispatchValue(BitwigPanelEventType.PANEL_NOTE_EDITOR_VISIBLE_CHANGE, _noteEditorVisible);
     }
 
     public function get automationEditorVisible():Boolean
@@ -54,7 +54,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_automationEditorVisible, value))
             return;
         _automationEditorVisible = value;
-        dispatchValue(PanelModelEventType.PANEL_AUTOMATION_EDITOR_VISIBLE_CHANGE, _automationEditorVisible);
+        dispatchValue(BitwigPanelEventType.PANEL_AUTOMATION_EDITOR_VISIBLE_CHANGE, _automationEditorVisible);
     }
 
     public function get devicesVisible():Boolean
@@ -67,7 +67,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_devicesVisible, value))
             return;
         _devicesVisible = value;
-        dispatchValue(PanelModelEventType.PANEL_DEVICES_VISIBLE_CHANGE, _devicesVisible);
+        dispatchValue(BitwigPanelEventType.PANEL_DEVICES_VISIBLE_CHANGE, _devicesVisible);
     }
 
     public function get mixerVisible():Boolean
@@ -80,7 +80,7 @@ public class Panes extends AbstractBitwigState
         if (isSame(_mixerVisible, value))
             return;
         _mixerVisible = value;
-        dispatchValue(PanelModelEventType.PANEL_MIXER_VISIBLE_CHANGE, _mixerVisible);
+        dispatchValue(BitwigPanelEventType.PANEL_MIXER_VISIBLE_CHANGE, _mixerVisible);
     }
 
     public function get fullscreenVisible():Boolean
@@ -93,10 +93,10 @@ public class Panes extends AbstractBitwigState
         if (isSame(_fullscreenVisible, value))
             return;
         _fullscreenVisible = value;
-        dispatchValue(PanelModelEventType.PANEL_FULL_SCREEN_VISIBLE_CHANGE, _fullscreenVisible);
+        dispatchValue(BitwigPanelEventType.PANEL_FULL_SCREEN_VISIBLE_CHANGE, _fullscreenVisible);
     }
 
-    public function Panes(service:IOSCService)
+    public function BitwigPanes(service:IOSCService)
     {
         super(service);
     }

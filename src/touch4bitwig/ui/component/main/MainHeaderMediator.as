@@ -22,7 +22,7 @@ package touch4bitwig.ui.component.main
 
 import starling.events.Event;
 
-import touch4bitwig.event.ApplicationModelEventType;
+import touch4bitwig.model.event.BitwigApplicationEventType;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class MainHeaderMediator extends AbstractUIMediator
@@ -38,7 +38,7 @@ public class MainHeaderMediator extends AbstractUIMediator
     {
         super.onRegister();
 
-        addContextListener(ApplicationModelEventType.ACTIVE_CHANGE, context_activeEngineChange);
+        addContextListener(BitwigApplicationEventType.ACTIVE_CHANGE, context_activeEngineChange);
 
         addViewListener(MainHeader.EVENT_ACTIVE_ENGINE_CHANGE, view_activeEngineChange);
         addViewListener(MainHeader.EVENT_SCREEN_CHANGE, view_screenChange);

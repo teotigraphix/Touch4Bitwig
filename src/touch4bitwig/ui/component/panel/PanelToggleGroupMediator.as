@@ -27,8 +27,8 @@ import feathers.data.ListCollection;
 
 import starling.events.Event;
 
-import touch4bitwig.event.ApplicationModelEventType;
-import touch4bitwig.model.state.Application;
+import touch4bitwig.model.event.BitwigApplicationEventType;
+import touch4bitwig.model.state.BitwigApplication;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class PanelToggleGroupMediator extends AbstractUIMediator
@@ -46,7 +46,7 @@ public class PanelToggleGroupMediator extends AbstractUIMediator
     override public function preRegister():void
     {
         super.preRegister();
-        addContextListener(ApplicationModelEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
+        addContextListener(BitwigApplicationEventType.PANEL_LAYOUT_CHANGE, context_panelLayoutChange);
         addViewListener(Event.TRIGGERED, view_triggeredHandler);
     }
 
@@ -184,15 +184,15 @@ public class PanelToggleGroupMediator extends AbstractUIMediator
     {
         switch (data.value)
         {
-            case Application.LAYOUT_ARRANGE :
+            case BitwigApplication.LAYOUT_ARRANGE :
                 view.dataProvider = _arrangeDataProvider;
                 break;
 
-            case Application.LAYOUT_MIX :
+            case BitwigApplication.LAYOUT_MIX :
                 view.dataProvider = _mixDataProvider;
                 break;
 
-            case Application.LAYOUT_EDIT :
+            case BitwigApplication.LAYOUT_EDIT :
                 view.dataProvider = _editDataProvider;
                 break;
         }

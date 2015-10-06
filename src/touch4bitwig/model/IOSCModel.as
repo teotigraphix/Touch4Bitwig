@@ -20,37 +20,37 @@
 package touch4bitwig.model
 {
 
-import touch4bitwig.model.state.Application;
-import touch4bitwig.model.state.Arranger;
-import touch4bitwig.model.state.Device;
-import touch4bitwig.model.state.Mixer;
-import touch4bitwig.model.state.Panes;
-import touch4bitwig.model.state.TrackBank;
-import touch4bitwig.model.state.Transport;
+import touch4bitwig.model.state.BitwigApplication;
+import touch4bitwig.model.state.BitwigArranger;
+import touch4bitwig.model.state.BitwigDevice;
+import touch4bitwig.model.state.BitwigMixer;
+import touch4bitwig.model.state.BitwigPanes;
+import touch4bitwig.model.state.BitwigTrackBank;
+import touch4bitwig.model.state.BitwigTransport;
 
 public interface IOSCModel
 {
-    function get application():Application;
+    function get application():BitwigApplication;
 
-    function get trackBank():TrackBank;
+    function get trackBank():BitwigTrackBank;
 
-    function get transport():Transport;
+    function get transport():BitwigTransport;
 
-    function get device():Device;
+    function get device():BitwigDevice;
 
-    function get cursorDevice():Device;
+    function get cursorDevice():BitwigDevice;
 
-    function get primaryDevice():Device;
+    function get primaryDevice():BitwigDevice;
 
     function get deviceMode():String;
 
     function set deviceMode(value:String):void;
 
-    function get panes():Panes;
+    function get panes():BitwigPanes;
 
-    function get arranger():Arranger;
+    function get arranger():BitwigArranger;
 
-    function get mixer():Mixer;
+    function get mixer():BitwigMixer;
 
     //
     function getAutomationWriteModeValue(index:int):String;

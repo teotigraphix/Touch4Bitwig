@@ -23,8 +23,8 @@ package touch4bitwig.ui.component.mixer
 import starling.animation.Juggler;
 import starling.events.Event;
 
-import touch4bitwig.event.TrackModelEventType;
-import touch4bitwig.model.state.Track;
+import touch4bitwig.model.event.BitwigTrackEventType;
+import touch4bitwig.model.state.BitwigTrack;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class MixerBankMediator extends AbstractUIMediator
@@ -43,23 +43,23 @@ public class MixerBankMediator extends AbstractUIMediator
     {
         super.onRegister();
 
-        addContextListener(TrackModelEventType.EXISTS_CHANGE, context_trackExistsHandler);
-        addContextListener(TrackModelEventType.CAN_HOLD_NOTES_CHANGE, context_canHoldNotesHandler);
-        addContextListener(TrackModelEventType.SELECTED_CHANGE, context_trackSelectedHandler);
-        addContextListener(TrackModelEventType.NAME_CHANGE, context_trackNameHandler);
-        addContextListener(TrackModelEventType.COLOR_CHANGE, context_trackColorHandler);
-        addContextListener(TrackModelEventType.VOLUME_CHANGE, context_trackVolumeHandler);
-        addContextListener(TrackModelEventType.VOLUME_STRING_CHANGE, context_trackVolumeStringHandler);
-        addContextListener(TrackModelEventType.PAN_CHANGE, context_trackPanHandler);
-        addContextListener(TrackModelEventType.PAN_STRING_CHANGE, context_trackPanStringHandler);
-        addContextListener(TrackModelEventType.RECORD_CHANGE, context_trackRecordHandler);
-        addContextListener(TrackModelEventType.SOLO_CHANGE, context_trackSoloHandler);
-        addContextListener(TrackModelEventType.MUTE_CHANGE, context_trackMuteHandler);
-        addContextListener(TrackModelEventType.VU_CHANGE, context_trackVUHandler);
+        addContextListener(BitwigTrackEventType.EXISTS_CHANGE, context_trackExistsHandler);
+        addContextListener(BitwigTrackEventType.CAN_HOLD_NOTES_CHANGE, context_canHoldNotesHandler);
+        addContextListener(BitwigTrackEventType.SELECTED_CHANGE, context_trackSelectedHandler);
+        addContextListener(BitwigTrackEventType.NAME_CHANGE, context_trackNameHandler);
+        addContextListener(BitwigTrackEventType.COLOR_CHANGE, context_trackColorHandler);
+        addContextListener(BitwigTrackEventType.VOLUME_CHANGE, context_trackVolumeHandler);
+        addContextListener(BitwigTrackEventType.VOLUME_STRING_CHANGE, context_trackVolumeStringHandler);
+        addContextListener(BitwigTrackEventType.PAN_CHANGE, context_trackPanHandler);
+        addContextListener(BitwigTrackEventType.PAN_STRING_CHANGE, context_trackPanStringHandler);
+        addContextListener(BitwigTrackEventType.RECORD_CHANGE, context_trackRecordHandler);
+        addContextListener(BitwigTrackEventType.SOLO_CHANGE, context_trackSoloHandler);
+        addContextListener(BitwigTrackEventType.MUTE_CHANGE, context_trackMuteHandler);
+        addContextListener(BitwigTrackEventType.VU_CHANGE, context_trackVUHandler);
 
         for (var i:int = 0; i < 8; i++)
         {
-            var track:Track = oscModel.trackBank.tracks[i];
+            var track:BitwigTrack = oscModel.trackBank.tracks[i];
             var item:IMixerItem = view.getMixerItem(track.index);
 
             item.canHoldNotes = track.canHoldNotes;

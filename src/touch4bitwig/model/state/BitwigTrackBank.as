@@ -20,14 +20,14 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.model.event.BitwigTrackEventType;
 import touch4bitwig.service.IOSCService;
 
-public class TrackBank extends AbstractBitwigState
+public class BitwigTrackBank extends AbstractBitwigState
 {
-    private var _tracks:Vector.<Track> = new Vector.<Track>(8, true);
+    private var _tracks:Vector.<BitwigTrack> = new Vector.<BitwigTrack>(8, true);
 
-    private var _scenes:Vector.<Scene> = new Vector.<Scene>(8, true);
+    private var _scenes:Vector.<BitwigScene> = new Vector.<BitwigScene>(8, true);
 
     private var _canScrollTracksUp:Boolean;
     private var _canScrollTracksDown:Boolean;
@@ -42,7 +42,7 @@ public class TrackBank extends AbstractBitwigState
         if (isSame(_canScrollTracksUp, value))
             return;
         _canScrollTracksUp = value;
-        dispatchValue(TrackModelEventType.CAN_SCROLL_TRACKS_UP, _canScrollTracksUp);
+        dispatchValue(BitwigTrackEventType.CAN_SCROLL_TRACKS_UP, _canScrollTracksUp);
     }
 
     public function get canScrollTracksDown():Boolean
@@ -55,12 +55,12 @@ public class TrackBank extends AbstractBitwigState
         if (isSame(_canScrollTracksDown, value))
             return;
         _canScrollTracksDown = value;
-        dispatchValue(TrackModelEventType.CAN_SCROLL_TRACKS_DOWN, _canScrollTracksDown);
+        dispatchValue(BitwigTrackEventType.CAN_SCROLL_TRACKS_DOWN, _canScrollTracksDown);
     }
 
-    public function get selectedTrack():Track
+    public function get selectedTrack():BitwigTrack
     {
-        for each (var track:Track in tracks)
+        for each (var track:BitwigTrack in tracks)
         {
             if (track.isSelected)
                 return track;
@@ -68,33 +68,33 @@ public class TrackBank extends AbstractBitwigState
         return null;
     }
 
-    public function get tracks():Vector.<Track>
+    public function get tracks():Vector.<BitwigTrack>
     {
         return _tracks;
     }
 
-    public function set tracks(value:Vector.<Track>):void
+    public function set tracks(value:Vector.<BitwigTrack>):void
     {
         _tracks = value;
     }
 
-    public function get scenes():Vector.<Scene>
+    public function get scenes():Vector.<BitwigScene>
     {
         return _scenes;
     }
 
-    public function set scenes(value:Vector.<Scene>):void
+    public function set scenes(value:Vector.<BitwigScene>):void
     {
         _scenes = value;
     }
 
-    public function TrackBank(service:IOSCService)
+    public function BitwigTrackBank(service:IOSCService)
     {
         super(service);
         for (var i:int = 0; i < _tracks.length; i++)
         {
-            _tracks[i] = new Track(i + 1, service);
-            _scenes[i] = new Scene(i + 1, service);
+            _tracks[i] = new BitwigTrack(i + 1, service);
+            _scenes[i] = new BitwigScene(i + 1, service);
         }
     }
 

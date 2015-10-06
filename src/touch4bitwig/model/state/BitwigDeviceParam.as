@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.DeviceModelEventType;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.service.IOSCService;
 
-public class DeviceParam extends AbstractBitwigState
+public class BitwigDeviceParam extends AbstractBitwigState
 {
     private var _index:int;
 
@@ -38,7 +38,7 @@ public class DeviceParam extends AbstractBitwigState
         return _index;
     }
 
-    public function DeviceParam(service:IOSCService, index:int)
+    public function BitwigDeviceParam(service:IOSCService, index:int)
     {
         super(service);
         _index = index;
@@ -68,19 +68,19 @@ public class DeviceParam extends AbstractBitwigState
     public function setName(mode:String, value:String):void
     {
         _map[mode]["name"] = value;
-        dispatch(DeviceModelEventType.PARAM_NAME_CHANGE, {index: _index, mode: mode, value: value});
+        dispatch(BitwigDeviceEventType.PARAM_NAME_CHANGE, {index: _index, mode: mode, value: value});
     }
 
     public function setValue(mode:String, value:int):void
     {
         _map[mode]["value"] = value;
-        dispatch(DeviceModelEventType.PARAM_VALUE_CHANGE, {index: _index, mode: mode, value: value});
+        dispatch(BitwigDeviceEventType.PARAM_VALUE_CHANGE, {index: _index, mode: mode, value: value});
     }
 
     public function setValueString(mode:String, value:String):void
     {
         _map[mode]["valueString"] = value;
-        dispatch(DeviceModelEventType.PARAM_VALUE_STRING_CHANGE, {index: _index, mode: mode, value: value});
+        dispatch(BitwigDeviceEventType.PARAM_VALUE_STRING_CHANGE, {index: _index, mode: mode, value: value});
     }
 }
 }

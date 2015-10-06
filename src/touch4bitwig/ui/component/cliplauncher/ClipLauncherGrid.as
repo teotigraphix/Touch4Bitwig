@@ -28,7 +28,7 @@ import flash.utils.Dictionary;
 
 import starling.events.Event;
 
-import touch4bitwig.model.state.Clip;
+import touch4bitwig.model.state.BitwigClip;
 
 public class ClipLauncherGrid extends LayoutGroup
 {
@@ -122,7 +122,7 @@ public class ClipLauncherGrid extends LayoutGroup
         {
             for (var track:int = 0; track < 8; track++)
             {
-                _map[scene][track].clip = _dataProvider.getItemAt(index) as Clip;
+                _map[scene][track].clip = _dataProvider.getItemAt(index) as BitwigClip;
                 index++;
             }
         }

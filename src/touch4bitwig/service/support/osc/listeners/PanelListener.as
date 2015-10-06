@@ -22,16 +22,16 @@ package touch4bitwig.service.support.osc.listeners
 
 import com.teotigraphix.frameworks.osc.OSCMessage;
 
-import touch4bitwig.model.state.Arranger;
-import touch4bitwig.model.state.Mixer;
+import touch4bitwig.model.state.BitwigArranger;
+import touch4bitwig.model.state.BitwigMixer;
 import touch4bitwig.service.IOSCService;
 
 public class PanelListener extends AbstractOSCListener
 {
-    private var _arranger:Arranger;
-    private var _mixer:Mixer;
+    private var _arranger:BitwigArranger;
+    private var _mixer:BitwigMixer;
 
-    public function PanelListener(service:IOSCService, arranger:Arranger, mixer:Mixer)
+    public function PanelListener(service:IOSCService, arranger:BitwigArranger, mixer:BitwigMixer)
     {
         super(service);
         _arranger = arranger;

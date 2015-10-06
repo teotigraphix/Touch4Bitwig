@@ -20,13 +20,13 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.TrackModelEventType;
+import touch4bitwig.model.event.BitwigTrackEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Clip extends AbstractBitwigState
+public class BitwigClip extends AbstractBitwigState
 {
     private var _index:int;
-    private var _track:Track;
+    private var _track:BitwigTrack;
 
     private var _name:String;
     private var _isSelected:Boolean;
@@ -41,7 +41,7 @@ public class Clip extends AbstractBitwigState
         return _index;
     }
 
-    public function get track():Track
+    public function get track():BitwigTrack
     {
         return _track;
     }
@@ -64,7 +64,7 @@ public class Clip extends AbstractBitwigState
     public function set isSelected(value:Boolean):void
     {
         _isSelected = value;
-        dispatch(TrackModelEventType.CLIP_SELECTED_CHANGE,
+        dispatch(BitwigTrackEventType.CLIP_SELECTED_CHANGE,
                 {trackIndex: track.index, index: _index, value: _isSelected});
     }
 
@@ -120,7 +120,7 @@ public class Clip extends AbstractBitwigState
         _isQueued = value;
     }
 
-    public function Clip(index:int, track:Track, service:IOSCService)
+    public function BitwigClip(index:int, track:BitwigTrack, service:IOSCService)
     {
         super(service);
         _index = index;

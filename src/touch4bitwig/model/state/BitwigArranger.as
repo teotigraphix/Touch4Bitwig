@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.PanelModelEventType;
+import touch4bitwig.model.event.BitwigPanelEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Arranger extends AbstractBitwigState
+public class BitwigArranger extends AbstractBitwigState
 {
     private var _cueMarkerVisible:Boolean;
     private var _playbackFollowVisible:Boolean;
@@ -43,7 +43,7 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_cueMarkerVisible, value))
             return;
         _cueMarkerVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_CUE_MARKER_VISIBLE_CHANGE, _cueMarkerVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_CUE_MARKER_VISIBLE_CHANGE, _cueMarkerVisible);
     }
 
     public function get playbackFollowVisible():Boolean
@@ -56,7 +56,7 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_playbackFollowVisible, value))
             return;
         _playbackFollowVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_PLAYBACK_FOLLOW_VISIBLE_CHANGE, _playbackFollowVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_PLAYBACK_FOLLOW_VISIBLE_CHANGE, _playbackFollowVisible);
     }
 
     public function get trackRowHeightVisible():Boolean
@@ -69,7 +69,7 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_trackRowHeightVisible, value))
             return;
         _trackRowHeightVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_TRACK_ROW_HEIGHT_VISIBLE_CHANGE, _trackRowHeightVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_TRACK_ROW_HEIGHT_VISIBLE_CHANGE, _trackRowHeightVisible);
     }
 
     public function get clipLauncherVisible():Boolean
@@ -82,7 +82,7 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_clipLauncherVisible, value))
             return;
         _clipLauncherVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_CLIP_LAUNCHER_VISIBLE_CHANGE, _clipLauncherVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_CLIP_LAUNCHER_VISIBLE_CHANGE, _clipLauncherVisible);
     }
 
     public function get timelineVisible():Boolean
@@ -95,7 +95,7 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_timelineVisible, value))
             return;
         _timelineVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_TIME_LINE_VISIBLE_CHANGE, _timelineVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_TIME_LINE_VISIBLE_CHANGE, _timelineVisible);
     }
 
     public function get ioVisible():Boolean
@@ -108,7 +108,7 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_ioVisible, value))
             return;
         _ioVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_IO_VISIBLE_CHANGE, _ioVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_IO_VISIBLE_CHANGE, _ioVisible);
     }
 
     public function get effectTracksVisible():Boolean
@@ -121,10 +121,10 @@ public class Arranger extends AbstractBitwigState
         if (isSame(_effectTracksVisible, value))
             return;
         _effectTracksVisible = value;
-        dispatchValue(PanelModelEventType.ARRANGER_EFFECTS_TRACKS_VISIBLE_CHANGE, _effectTracksVisible);
+        dispatchValue(BitwigPanelEventType.ARRANGER_EFFECTS_TRACKS_VISIBLE_CHANGE, _effectTracksVisible);
     }
 
-    public function Arranger(service:IOSCService)
+    public function BitwigArranger(service:IOSCService)
     {
         super(service);
     }

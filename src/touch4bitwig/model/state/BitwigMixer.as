@@ -20,10 +20,10 @@
 package touch4bitwig.model.state
 {
 
-import touch4bitwig.event.PanelModelEventType;
+import touch4bitwig.model.event.BitwigPanelEventType;
 import touch4bitwig.service.IOSCService;
 
-public class Mixer extends AbstractBitwigState
+public class BitwigMixer extends AbstractBitwigState
 {
     private var _clipLauncherVisible:Boolean;
     private var _crossFadeVisible:Boolean;
@@ -42,7 +42,7 @@ public class Mixer extends AbstractBitwigState
         if (isSame(_clipLauncherVisible, value))
             return;
         _clipLauncherVisible = value;
-        dispatchValue(PanelModelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE, _clipLauncherVisible);
+        dispatchValue(BitwigPanelEventType.MIXER_CLIP_LAUNCHER_VISIBLE_CHANGE, _clipLauncherVisible);
     }
 
     public function get crossFadeVisible():Boolean
@@ -55,7 +55,7 @@ public class Mixer extends AbstractBitwigState
         if (isSame(_crossFadeVisible, value))
             return;
         _crossFadeVisible = value;
-        dispatchValue(PanelModelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE, _crossFadeVisible);
+        dispatchValue(BitwigPanelEventType.MIXER_CROSS_FADE_VISIBLE_CHANGE, _crossFadeVisible);
     }
 
     public function get deviceVisible():Boolean
@@ -68,7 +68,7 @@ public class Mixer extends AbstractBitwigState
         if (isSame(_deviceVisible, value))
             return;
         _deviceVisible = value;
-        dispatchValue(PanelModelEventType.MIXER_DEVICE_VISIBLE_CHANGE, _deviceVisible);
+        dispatchValue(BitwigPanelEventType.MIXER_DEVICE_VISIBLE_CHANGE, _deviceVisible);
     }
 
     public function get sendsVisible():Boolean
@@ -81,7 +81,7 @@ public class Mixer extends AbstractBitwigState
         if (isSame(_sendsVisible, value))
             return;
         _sendsVisible = value;
-        dispatchValue(PanelModelEventType.MIXER_SENDS_VISIBLE_CHANGE, _sendsVisible);
+        dispatchValue(BitwigPanelEventType.MIXER_SENDS_VISIBLE_CHANGE, _sendsVisible);
     }
 
     public function get ioVisible():Boolean
@@ -94,7 +94,7 @@ public class Mixer extends AbstractBitwigState
         if (isSame(_ioVisible, value))
             return;
         _ioVisible = value;
-        dispatchValue(PanelModelEventType.MIXER_IO_VISIBLE_CHANGE, _ioVisible);
+        dispatchValue(BitwigPanelEventType.MIXER_IO_VISIBLE_CHANGE, _ioVisible);
     }
 
     public function get meterVisible():Boolean
@@ -107,10 +107,10 @@ public class Mixer extends AbstractBitwigState
         if (isSame(_meterVisible, value))
             return;
         _meterVisible = value;
-        dispatchValue(PanelModelEventType.MIXER_METER_VISIBLE_CHANGE, _meterVisible);
+        dispatchValue(BitwigPanelEventType.MIXER_METER_VISIBLE_CHANGE, _meterVisible);
     }
 
-    public function Mixer(service:IOSCService)
+    public function BitwigMixer(service:IOSCService)
     {
         super(service);
     }

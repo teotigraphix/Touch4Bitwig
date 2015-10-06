@@ -17,45 +17,21 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.model.state
+package touch4bitwig.model.event
 {
 
-import touch4bitwig.service.IOSCService;
-
-public class Scene extends AbstractBitwigState
+public class BitwigApplicationEventType
 {
-    private var _index:int;
-    private var _name:String;
+    // Panel
+    /**
+     * layout/arrange, layout/mix, layout/edit
+     */
+    public static const PANEL_LAYOUT_CHANGE:String = "ApplicationEventType/layoutChange";
 
-    public function get index():int
-    {
-        return _index;
-    }
+    public static const ACTIVE_CHANGE:String = "ApplicationEventType/activeChange";
 
-    public function set index(value:int):void
-    {
-        _index = value;
-    }
+    public static const FLUSH_COMPLETE:String = "ApplicationEventType/flushComplete";
 
-    public function get name():String
-    {
-        return "Scene " + _index; //_name;
-    }
-
-    public function set name(value:String):void
-    {
-        _name = value;
-    }
-
-    public function Scene(index:int, service:IOSCService)
-    {
-        super(service);
-        _index = index;
-    }
-
-    public function launch():void
-    {
-        service.send("/scene/" + index + "/launch");
-    }
+    public static const PROJECT_NAME:String = "ApplicationEventType/projectName";
 }
 }

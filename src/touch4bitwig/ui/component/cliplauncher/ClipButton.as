@@ -27,7 +27,7 @@ import feathers.skins.IStyleProvider;
 
 import starling.display.DisplayObject;
 
-import touch4bitwig.model.state.Clip;
+import touch4bitwig.model.state.BitwigClip;
 
 public class ClipButton extends Button
 {
@@ -46,7 +46,7 @@ public class ClipButton extends Button
     public var recordQueuedIconSkin:DisplayObject;
     public var recordPlayIconSkin:DisplayObject;
 
-    private var _clip:Clip;
+    private var _clip:BitwigClip;
     //private var _idleSkin:DisplayObject;
     //private var _queuedSkin:DisplayObject;
     //private var _dequeuedSkin:DisplayObject;
@@ -90,12 +90,12 @@ public class ClipButton extends Button
     //    invalidate(INVALIDATION_FLAG_SKIN);
     //}
 
-    public function get clip():Clip
+    public function get clip():BitwigClip
     {
         return _clip;
     }
 
-    public function set clip(value:Clip):void
+    public function set clip(value:BitwigClip):void
     {
         if (value == _clip)
             return;
