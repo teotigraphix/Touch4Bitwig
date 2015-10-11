@@ -69,7 +69,7 @@ public class UIController extends AbstractController
 
         addContextListener(UIModelEventType.BACK, context_backHandler);
         addContextListener(ConfigurationModelEventType.START_COMPLETE, context_startCompleteHandler);
-        addContextListener(ConfigurationModelEventType.IS_IN_CONFIG, context_isInConfigHandler);
+        addContextListener(ConfigurationModelEventType.IS_IN_CONFIG_CHANGE, context_isInConfigHandler);
         addContextListener(BitwigApplicationEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
 
         // TEMP

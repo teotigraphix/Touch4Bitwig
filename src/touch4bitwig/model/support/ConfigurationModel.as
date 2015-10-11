@@ -32,61 +32,113 @@ import touch4bitwig.service.IConfigurationService;
 
 public class ConfigurationModel extends AbstractModel implements IConfigurationModel
 {
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
+
     [Inject]
     public var configurationService:IConfigurationService;
+
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
 
     private var _isInConfig:Boolean = false;
     private var _debugConfiguration:ApplicationDebugConfiguration;
     private var _ipDataProvider:HierarchicalCollection;
     private var _applicationPreferences:ApplicationPreferences;
 
+    //--------------------------------------------------------------------------
+    // API :: Properties
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isInConfig():Boolean
     {
         return _isInConfig;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function set isInConfig(value:Boolean):void
     {
         if (_isInConfig == value)
             return;
         _isInConfig = value;
-        dispatchWith(ConfigurationModelEventType.IS_IN_CONFIG, false, _isInConfig);
+        dispatchWith(ConfigurationModelEventType.IS_IN_CONFIG_CHANGE, false, _isInConfig);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function get debugConfiguration():ApplicationDebugConfiguration
     {
         return _debugConfiguration;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function set debugConfiguration(value:ApplicationDebugConfiguration):void
     {
+        if (_debugConfiguration == value)
+            return;
         _debugConfiguration = value;
+        dispatchWith(ConfigurationModelEventType.DEBUG_CONFIGURATION_CHANGE, false, _debugConfiguration);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function get ipDataProvider():HierarchicalCollection
     {
         return _ipDataProvider;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function set ipDataProvider(value:HierarchicalCollection):void
     {
+        if (_ipDataProvider == value)
+            return;
         _ipDataProvider = value;
+        dispatchWith(ConfigurationModelEventType.IP_DATA_PROVIDER_CHANGE, false, _ipDataProvider);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function get applicationPreferences():ApplicationPreferences
     {
         return _applicationPreferences;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function set applicationPreferences(value:ApplicationPreferences):void
     {
+        if (_applicationPreferences == value)
+            return;
         _applicationPreferences = value;
+        dispatchWith(ConfigurationModelEventType.APPLICATION_PREFERENCES_CHANGE, false, _applicationPreferences);
     }
+
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
 
     public function ConfigurationModel()
     {
     }
 
+    /**
+     * @inheritDoc
+     */
     override protected function onRegister():void
     {
         super.onRegister();

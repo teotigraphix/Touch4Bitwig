@@ -20,9 +20,17 @@
 package touch4bitwig.model.event
 {
 
+/**
+ * @see IConfigurationService
+ */
 public final class ConfigurationModelEventType
 {
-   public static const START_COMPLETE:String = "ConfigurationModelEventType/applyAndStartComplete";
-   public static const IS_IN_CONFIG:String = "ConfigurationModelEventType/isInConfig";
+    public static const START_COMPLETE:String = "ConfigurationModelEventType/applyAndStartComplete";
+
+    public static const IS_IN_CONFIG_CHANGE:String = "ConfigurationModelEventType/isInConfigChange";
+    public static const DEBUG_CONFIGURATION_CHANGE:String = "ConfigurationModelEventType/DebugConfigurationChange";
+    public static const IP_DATA_PROVIDER_CHANGE:String = "ConfigurationModelEventType/ipDataProviderChange";
+    public static const APPLICATION_PREFERENCES_CHANGE:String = "ConfigurationModelEventType/applicationPreferencesChange";
+
 }
 }

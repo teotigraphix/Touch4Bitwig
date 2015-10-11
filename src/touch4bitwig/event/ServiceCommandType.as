@@ -33,6 +33,10 @@ public class ServiceCommandType
      * @see CloseOSCConnectionCommand
      */
     public static const CLOSE_OSC_CONNECTION:String = "CloseOSCConnectionCommand";
+
+    /**
+     * @see touch4bitwig.service.IOSCService#close()
+     */
     public static const CLOSE_OSC_CONNECTION_COMPLETE:String = "CloseOSCConnectionCommandComplete";
 }
 }

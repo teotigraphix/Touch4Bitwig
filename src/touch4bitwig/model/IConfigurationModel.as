@@ -25,25 +25,75 @@ import feathers.data.HierarchicalCollection;
 import touch4bitwig.app.config.ApplicationDebugConfiguration;
 import touch4bitwig.app.config.ApplicationPreferences;
 
+/**
+ * The IConfigurationModel API gives access to the IP/Port data provider, debug configuration
+ * and application preferences.
+ */
 public interface IConfigurationModel
 {
+    //--------------------------------------------------------------------------
+    // Properties
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+    // isInConfig
+    //----------------------------------
+
     /**
      * Whether the app is in explicit configuration form.
      *
-     * @event ConfigurationModelEventType IS_IN_CONFIG
+     * @see touch4bitwig.model.event.ConfigurationModelEventType.IS_IN_CONFIG_CHANGE
      */
     function get isInConfig():Boolean;
 
     function set isInConfig(value:Boolean):void;
 
+    //----------------------------------
+    // ipDataProvider
+    //----------------------------------
+
+    /**
+     * The IP/Port data provider with a structure of;
+     *
+     * <pre>
+     * [{
+     *     header: {text: displayName},
+     *     children: [
+     *          {text: address},
+     *          ...
+     *     ],
+     * ...
+     * }]
+     * </pre>
+     *
+     * @see touch4bitwig.model.event.ConfigurationModelEventType.IP_DATA_PROVIDER_CHANGE
+     */
     function get ipDataProvider():HierarchicalCollection;
 
     function set ipDataProvider(value:HierarchicalCollection):void;
 
+    //----------------------------------
+    // debugConfiguration
+    //----------------------------------
+
+    /**
+     * The application's debug configuration created from a loaded XML file.
+     *
+     * @see touch4bitwig.model.event.ConfigurationModelEventType.DEBUG_CONFIGURATION_CHANGE
+     */
     function get debugConfiguration():ApplicationDebugConfiguration;
 
     function set debugConfiguration(configuration:ApplicationDebugConfiguration):void;
 
+    //----------------------------------
+    // applicationPreferences
+    //----------------------------------
+
+    /**
+     * The application's serialized preferences.
+     *
+     * @see touch4bitwig.model.event.ConfigurationModelEventType.APPLICATION_PREFERENCES_CHANGE
+     */
     function get applicationPreferences():ApplicationPreferences;
 
     function set applicationPreferences(value:ApplicationPreferences):void;
