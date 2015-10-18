@@ -81,7 +81,7 @@ public class TransportBarMediator extends AbstractUIMediator
 
         view.isPlaying = oscModel.transport.isPlaying;
         view.isRecording = oscModel.transport.isRecording;
-        view.isAutowrite = oscModel.transport.isAutowrite;
+        view.isAutowrite = oscModel.transport.isAutoWrite;
     }
 
     override public function onRemove():void
@@ -126,22 +126,22 @@ public class TransportBarMediator extends AbstractUIMediator
 
     private function view_playChangeHandler(event:Event, selected:Boolean):void
     {
-        oscService.send("/play");
+        oscModel.transport.togglePlay();
     }
 
     private function view_recordChangeHandler(event:Event, selected:Boolean):void
     {
-        oscService.send("/record");
+        oscModel.transport.toggleRecord();
     }
 
     private function view_automationChangeHandler(event:Event, selected:Boolean):void
     {
-        oscService.send("/autowrite");
+        oscModel.transport.toggleAutoWrite();
     }
 
     private function view_stopTriggeredHandler(event:Event):void
     {
-        oscService.sendInt("/stop", 1);
+        oscModel.transport.stop();
     }
 
     private function view_popupTriggeredHandler(event:Event):void

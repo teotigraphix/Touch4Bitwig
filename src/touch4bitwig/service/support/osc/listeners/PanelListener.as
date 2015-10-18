@@ -36,14 +36,10 @@ public class PanelListener extends AbstractOSCListener
         super(service);
         _arranger = arranger;
         _mixer = mixer;
-
-        config();
     }
 
-    override protected function config():void
+    override public function configure():void
     {
-        super.config();
-
         _methods["/arranger/cueMarkerVisibility"] = handleArranger;
         _methods["/arranger/playbackFollow"] = handleArranger;
         _methods["/arranger/trackRowHeight"] = handleArranger;

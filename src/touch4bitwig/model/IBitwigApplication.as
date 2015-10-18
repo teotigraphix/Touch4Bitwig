@@ -16,55 +16,49 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
-
 package touch4bitwig.model
 {
 
-import touch4bitwig.model.state.BitwigArranger;
-import touch4bitwig.model.state.BitwigDevice;
-import touch4bitwig.model.state.BitwigMixer;
-import touch4bitwig.model.state.BitwigPanes;
-import touch4bitwig.model.state.BitwigTrackBank;
-
-public interface IOSCModel
+public interface IBitwigApplication extends IBitwigState
 {
     //--------------------------------------------------------------------------
     // Properties
     //--------------------------------------------------------------------------
 
     /**
-     * Global proxy of Application state.
+     * The active layout of the Application (ARRANGE, MIX, EDIT).
      */
-    function get application():IBitwigApplication;
-
-    function get trackBank():BitwigTrackBank;
+    function get layout():String;
 
     /**
-     * A proxy for the native Transport class of the controller API.
+     * Whether the current project's audio engine is active.
      */
-    function get transport():IBitwigTransport;
+    function get active():Boolean;
 
-    function get device():BitwigDevice;
-
-    function get cursorDevice():BitwigDevice;
-
-    function get primaryDevice():BitwigDevice;
-
-    function get deviceMode():String;
-
-    function set deviceMode(value:String):void;
-
-    function get panes():BitwigPanes;
-
-    function get arranger():BitwigArranger;
-
-    function get mixer():BitwigMixer;
+    /**
+     * The current project name.
+     */
+    function get projectName():String;
 
     //--------------------------------------------------------------------------
     // Methods
     //--------------------------------------------------------------------------
 
-    function getAutomationWriteModeValue(index:int):String;
+    /**
+     * Sets the active layout of Bitwig.
+     *
+     * @param activeLayout The active layout (arrange, mix, edit).
+     */
+    function setActiveLayout(activeLayout:String):void;
 
+    /**
+     * Toggles the side browser visibility.
+     */
+    function toggleBrowser():void;
+
+    /**
+     * Toggles the side inspector visibility.
+     */
+    function toggleInspector():void;
 }
 }

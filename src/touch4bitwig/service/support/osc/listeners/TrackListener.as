@@ -33,11 +33,9 @@ public class TrackListener extends AbstractOSCListener
     {
         super(service);
         _model = model;
-
-        config();
     }
 
-    override protected function config():void
+    override public function configure():void
     {
         _methods["/track/canScrollTracksUp"] = canScrollTracksUp;
         _methods["/track/canScrollTracksDown"] = canScrollTracksDown;

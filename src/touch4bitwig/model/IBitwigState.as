@@ -16,43 +16,16 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
-
-package touch4bitwig.service.support.osc.listeners
+package touch4bitwig.model
 {
-
-import com.teotigraphix.frameworks.osc.OSCMessage;
 
 import touch4bitwig.service.IBitwigStateListener;
-import touch4bitwig.service.IOSCService;
 
-// TODO once all subclasses are moved into the state classes, remove this class
-public class AbstractOSCListener implements IBitwigStateListener
+/**
+ * Marker interface for all native Bitwig API calls and current state.
+ */
+public interface IBitwigState extends IBitwigStateListener
 {
-    protected var _methods:Array = [];
 
-    private var _service:IOSCService;
-
-    public function AbstractOSCListener(service:IOSCService)
-    {
-        _service = service;
-    }
-
-    public function isHandled(osc:OSCMessage):Boolean
-    {
-        return _methods[osc.address] != null;
-    }
-
-    public function handle(osc:OSCMessage):void
-    {
-        _methods[osc.address](osc);
-    }
-
-    public function configure():void
-    {
-    }
-
-    public function dispose():void
-    {
-    }
 }
 }

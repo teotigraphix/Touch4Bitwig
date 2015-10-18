@@ -26,12 +26,11 @@ import com.teotigraphix.frameworks.osc.OSCMessage;
 
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
+import touch4bitwig.service.IBitwigStateListener;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.service.support.osc.listeners.ApplicationListener;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
 import touch4bitwig.service.support.osc.listeners.PanelListener;
 import touch4bitwig.service.support.osc.listeners.TrackListener;
-import touch4bitwig.service.support.osc.listeners.TransportListener;
 
 public class OSCMessageController extends AbstractController implements IOSCListener
 {
@@ -52,11 +51,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
     // Private :: Variables
     //--------------------------------------------------------------------------
 
-    private var _trackListener:TrackListener;
-    private var _transportListener:TransportListener;
-    private var _deviceListener:DeviceListener;
-    private var _panelListener:PanelListener;
-    private var _applicationListener:ApplicationListener;
+    private var _listeners:Vector.<IBitwigStateListener> = new <IBitwigStateListener>[];
 
     //--------------------------------------------------------------------------
     // Constructor
@@ -74,12 +69,15 @@ public class OSCMessageController extends AbstractController implements IOSCList
     {
         super.onRegister();
 
-        _trackListener = new TrackListener(oscService, oscModel.trackBank);
-        _transportListener = new TransportListener(oscService, oscModel.transport);
-        _deviceListener = new DeviceListener(oscService, oscModel.cursorDevice); // XXX cursorDevice This needs
-                                                                                 // attention
-        _panelListener = new PanelListener(oscService, oscModel.arranger, oscModel.mixer);
-        _applicationListener = new ApplicationListener(oscService, oscModel.application);
+        // TODO move these into higher abstraction
+
+        addStateListener(new TrackListener(oscService, oscModel.trackBank));
+        addStateListener(oscModel.transport);
+        // XXX cursorDevice This needs attention
+        addStateListener(new DeviceListener(oscService, oscModel.cursorDevice));
+
+        addStateListener(new PanelListener(oscService, oscModel.arranger, oscModel.mixer));
+        addStateListener(oscModel.application);
 
         oscService.addOSCListener(this);
         // eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);
@@ -88,6 +86,28 @@ public class OSCMessageController extends AbstractController implements IOSCList
     //--------------------------------------------------------------------------
     // Public :: Methods
     //--------------------------------------------------------------------------
+
+    /**
+     * Adds a Bitwig state listener for OSCMessage notification.
+     *
+     * @param listener The state listener to be added.
+     */
+    public function addStateListener(listener:IBitwigStateListener):void
+    {
+        _listeners.push(listener);
+        listener.configure();
+    }
+
+    /**
+     * Removes a Bitwig state listener from OSCMessage notification.
+     *
+     * @param listener The state listener to be removed.
+     */
+    public function removeStateListener(listener:IBitwigStateListener):void
+    {
+        _listeners.splice(_listeners.indexOf(listener), 1);
+        listener.dispose();
+    }
 
     /**
      * Reconnects the DAW to Device OSC connection.
@@ -117,32 +137,30 @@ public class OSCMessageController extends AbstractController implements IOSCList
     /**
      * @inheritDoc
      */
-    public function acceptOSCMessage(osc:OSCMessage):void
+    public function acceptOSCMessage(message:OSCMessage):void
     {
         //trace(osc.address);
 
-        if (osc.address.indexOf("/vu") == -1)
+        if (message.address.indexOf("/vu") == -1)
         {
-            if (osc.arguments != null && osc.arguments.length > 0)
+            if (message.arguments != null && message.arguments.length > 0)
             {
-                trace(osc.address + ",  " + osc.argumentsToString());
+                trace(message.address + ",  " + message.argumentsToString());
             }
             else
             {
-                trace(osc.address);
+                trace(message.address);
             }
         }
 
-        if (_deviceListener.isHandled(osc))
-            _deviceListener.handle(osc);
-        else if (_trackListener.isHandled(osc))
-            _trackListener.handle(osc);
-        else if (_transportListener.isHandled(osc))
-            _transportListener.handle(osc);
-        else if (_panelListener.isHandled(osc))
-            _panelListener.handle(osc);
-        else if (_applicationListener.isHandled(osc))
-            _applicationListener.handle(osc);
+        for each (var listener:IBitwigStateListener in _listeners)
+        {
+            if (listener.isHandled(message))
+            {
+                listener.handle(message);
+                break;
+            }
+        }
     }
 }
 }

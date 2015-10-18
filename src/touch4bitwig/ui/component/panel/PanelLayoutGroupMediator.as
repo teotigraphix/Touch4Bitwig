@@ -67,7 +67,7 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
 
     private function view_layoutChangeHandler(event:Event, layout:String):void
     {
-        oscService.send("/layout/" + layout);
+       oscModel.application.setActiveLayout(layout);
     }
 
     // TODO either make this util or some type of getter with map on model
@@ -89,12 +89,12 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
 
     private function view_inspectorTriggeredHandler(event:Event):void
     {
-        oscService.send("/panel/inspector");
+        oscModel.application.toggleInspector();
     }
 
     private function view_browserTriggeredHandler(event:Event):void
     {
-        oscService.send("/panel/browser");
+        oscModel.application.toggleBrowser();
     }
 }
 }

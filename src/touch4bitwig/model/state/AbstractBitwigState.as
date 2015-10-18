@@ -20,22 +20,79 @@
 package touch4bitwig.model.state
 {
 
+import com.teotigraphix.frameworks.osc.OSCMessage;
+
+import org.as3commons.lang.IllegalStateError;
+
+import touch4bitwig.model.IBitwigState;
 import touch4bitwig.service.IOSCService;
 
-public class AbstractBitwigState
+public class AbstractBitwigState implements IBitwigState
 {
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
+    protected var _methods:Array = [];
     private var _service:IOSCService;
     private var _flush:Boolean = false;
 
-    public function get service():IOSCService
+    //--------------------------------------------------------------------------
+    // Protected:: Properties
+    //--------------------------------------------------------------------------
+
+    protected function get service():IOSCService
     {
         return _service;
     }
+
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
 
     public function AbstractBitwigState(service:IOSCService)
     {
         _service = service;
     }
+
+    //--------------------------------------------------------------------------
+    // API :: Methods
+    //--------------------------------------------------------------------------
+    /**
+     * @inheritDoc
+     */
+    public function isHandled(osc:OSCMessage):Boolean
+    {
+        return _methods[osc.address] != null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function handle(osc:OSCMessage):void
+    {
+        _methods[osc.address](osc);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function configure():void
+    {
+        throw new IllegalStateError("Abstract method configure()");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function dispose():void
+    {
+        throw new IllegalStateError("Abstract method dispose()");
+    }
+
+    //--------------------------------------------------------------------------
+    // Protected :: Methods
+    //--------------------------------------------------------------------------
 
     protected final function dispatch(type:String, value:Object):void
     {
@@ -51,6 +108,5 @@ public class AbstractBitwigState
     {
         return (current == value || _flush);
     }
-
 }
 }

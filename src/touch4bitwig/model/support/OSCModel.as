@@ -22,8 +22,10 @@ package touch4bitwig.model.support
 
 import com.teotigraphix.model.AbstractModel;
 
-import touch4bitwig.model.event.BitwigDeviceEventType;
+import touch4bitwig.model.IBitwigApplication;
+import touch4bitwig.model.IBitwigTransport;
 import touch4bitwig.model.IOSCModel;
+import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.model.state.BitwigApplication;
 import touch4bitwig.model.state.BitwigArranger;
 import touch4bitwig.model.state.BitwigDevice;
@@ -36,11 +38,19 @@ import touch4bitwig.service.IOSCService;
 
 public class OSCModel extends AbstractModel implements IOSCModel
 {
+    //--------------------------------------------------------------------------
+    // Constants
+    //--------------------------------------------------------------------------
+
     public static const DEVICE_MODE_PARAM:String = "param";
     public static const DEVICE_MODE_COMMON:String = "common";
     public static const DEVICE_MODE_ENVELOPE:String = "envelope";
     public static const DEVICE_MODE_MACRO:String = "macro";
     public static const DEVICE_MODE_MODULATION:String = "modulation";
+
+    //--------------------------------------------------------------------------
+    // Inject
+    //--------------------------------------------------------------------------
 
     [Inject]
     public var oscService:IOSCService;
@@ -48,7 +58,10 @@ public class OSCModel extends AbstractModel implements IOSCModel
     [Inject]
     public var configurationService:IConfigurationService;
 
-    //
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
     private var _automationWriteModeMap:Object;
     private var _application:BitwigApplication;
     private var _trackBank:BitwigTrackBank;
@@ -61,36 +74,89 @@ public class OSCModel extends AbstractModel implements IOSCModel
     private var _arranger:BitwigArranger;
     private var _mixer:BitwigMixer;
 
-    public function get transport():BitwigTransport
+    //--------------------------------------------------------------------------
+    // API :: Properties
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+    // transport
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get transport():IBitwigTransport
     {
         return _transport;
     }
 
+    //----------------------------------
+    // trackBank
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get trackBank():BitwigTrackBank
     {
         return _trackBank;
     }
 
-    public function get application():BitwigApplication
+    //----------------------------------
+    // application
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get application():IBitwigApplication
     {
         return _application;
     }
 
+    //----------------------------------
+    // device
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get device():BitwigDevice
     {
         return _device;
     }
 
+    //----------------------------------
+    // cursorDevice
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get cursorDevice():BitwigDevice
     {
         return _cursorDevice;
     }
 
+    //----------------------------------
+    // primaryDevice
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get primaryDevice():BitwigDevice
     {
         return _primaryDevice;
     }
 
+    //----------------------------------
+    // deviceMode
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get deviceMode():String
     {
         return _deviceMode;
@@ -104,24 +170,53 @@ public class OSCModel extends AbstractModel implements IOSCModel
         dispatchWith(BitwigDeviceEventType.MODE_CHANGE, false, _deviceMode);
     }
 
+    //----------------------------------
+    // panes
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get panes():BitwigPanes
     {
         return _panes;
     }
 
+    //----------------------------------
+    // arranger
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get arranger():BitwigArranger
     {
         return _arranger;
     }
 
+    //----------------------------------
+    // mixer
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get mixer():BitwigMixer
     {
         return _mixer;
     }
 
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
+
     public function OSCModel()
     {
     }
+
+    //--------------------------------------------------------------------------
+    // Overridden :: Methods
+    //--------------------------------------------------------------------------
 
     override protected function onRegister():void
     {
@@ -145,6 +240,13 @@ public class OSCModel extends AbstractModel implements IOSCModel
         _mixer = new BitwigMixer(oscService);
     }
 
+    //--------------------------------------------------------------------------
+    // API :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function getAutomationWriteModeValue(index:int):String
     {
         return _automationWriteModeMap[index];

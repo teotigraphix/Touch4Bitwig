@@ -33,11 +33,9 @@ public class DeviceListener extends AbstractOSCListener
     {
         super(service);
         _model = model;
-
-        config();
     }
 
-    override protected function config():void
+    override public function configure():void
     {
         _methods["/device/canSelectPrevious"] = canSelectPreviousHandler;
         _methods["/device/canSelectNext"] = canSelectNextHandler;

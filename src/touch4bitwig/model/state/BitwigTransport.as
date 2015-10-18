@@ -20,11 +20,18 @@
 package touch4bitwig.model.state
 {
 
+import com.teotigraphix.frameworks.osc.OSCMessage;
+
+import touch4bitwig.model.IBitwigTransport;
 import touch4bitwig.model.event.BitwigTransportEventType;
 import touch4bitwig.service.IOSCService;
 
-public class BitwigTransport extends AbstractBitwigState
+public class BitwigTransport extends AbstractBitwigState implements IBitwigTransport
 {
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
     private var _positionString:String;
     private var _numerator:int;
     private var _denominator:int;
@@ -35,14 +42,25 @@ public class BitwigTransport extends AbstractBitwigState
     private var _isPlaying:Boolean;
     private var _isRecording:Boolean;
     private var _isRepeat:Boolean;
-    private var _isPreroll:Boolean;
+    private var _isPreRoll:Boolean;
     private var _isOverdubLauncher:Boolean;
     private var _isOverdub:Boolean;
-    private var _isCrossfade:Boolean;
-    private var _isAutowriteLauncher:Boolean;
-    private var _isAutowrite:Boolean;
+    private var _isCrossFade:Boolean;
+    private var _isAutoWriteLauncher:Boolean;
+    private var _isAutoWrite:Boolean;
     private var _automationWriteMode:String;
 
+    //--------------------------------------------------------------------------
+    // API :: Properties
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+    // positionString
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get positionString():String
     {
         return _positionString;
@@ -56,6 +74,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.POSITION_STRING_CHANGE, _positionString);
     }
 
+    //----------------------------------
+    // numerator
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get numerator():int
     {
         return _numerator;
@@ -69,6 +94,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _numerator);
     }
 
+    //----------------------------------
+    // denominator
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get denominator():int
     {
         return _denominator;
@@ -82,6 +114,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.DENOMINATOR_CHANGE, _denominator);
     }
 
+    //----------------------------------
+    // isAutomationOverride
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isAutomationOverride():Boolean
     {
         return _isAutomationOverride;
@@ -95,6 +134,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_AUTOMATION_OVERRIDE_CHANGE, _isAutomationOverride);
     }
 
+    //----------------------------------
+    // tempoRaw
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get tempoRaw():String
     {
         return _tempoRaw;
@@ -108,6 +154,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.TEMPO_RAW_CHANGE, _tempoRaw);
     }
 
+    //----------------------------------
+    // isClick
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isClick():Boolean
     {
         return _isClick;
@@ -121,6 +174,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_CLICK_CHANGE, _isClick);
     }
 
+    //----------------------------------
+    // isPlaying
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isPlaying():Boolean
     {
         return _isPlaying;
@@ -134,6 +194,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_PLAYING_CHANGE, _isPlaying);
     }
 
+    //----------------------------------
+    // isRecording
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isRecording():Boolean
     {
         return _isRecording;
@@ -147,6 +214,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_RECORDING_CHANGE, _isRecording);
     }
 
+    //----------------------------------
+    // isRepeat
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isRepeat():Boolean
     {
         return _isRepeat;
@@ -160,19 +234,33 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_REPEAT_CHANGE, _isRepeat);
     }
 
-    public function get isPreroll():Boolean
+    //----------------------------------
+    // isPreRoll
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get isPreRoll():Boolean
     {
-        return _isPreroll;
+        return _isPreRoll;
     }
 
-    public function set isPreroll(value:Boolean):void
+    public function set isPreRoll(value:Boolean):void
     {
-        if (isSame(_isPreroll, value))
+        if (isSame(_isPreRoll, value))
             return;
-        _isPreroll = value;
-        dispatchValue(BitwigTransportEventType.IS_PRE_ROLL_CHANGE, _isPreroll);
+        _isPreRoll = value;
+        dispatchValue(BitwigTransportEventType.IS_PRE_ROLL_CHANGE, _isPreRoll);
     }
 
+    //----------------------------------
+    // isOverdubLauncher
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isOverdubLauncher():Boolean
     {
         return _isOverdubLauncher;
@@ -186,6 +274,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_OVERDUB_LAUNCHER_CHANGE, _isOverdubLauncher);
     }
 
+    //----------------------------------
+    // isOverdub
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isOverdub():Boolean
     {
         return _isOverdub;
@@ -199,45 +294,73 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.IS_OVERDUB_CHANGE, _isOverdub);
     }
 
-    public function get isCrossfade():Boolean
+    //----------------------------------
+    // isCrossFade
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get isCrossFade():Boolean
     {
-        return _isCrossfade;
+        return _isCrossFade;
     }
 
-    public function set isCrossfade(value:Boolean):void
+    public function set isCrossFade(value:Boolean):void
     {
-        if (isSame(_isCrossfade, value))
+        if (isSame(_isCrossFade, value))
             return;
-        _isCrossfade = value;
-        dispatchValue(BitwigTransportEventType.IS_CROSSFADE_CHANGE, _isCrossfade);
+        _isCrossFade = value;
+        dispatchValue(BitwigTransportEventType.IS_CROSSFADE_CHANGE, _isCrossFade);
     }
 
-    public function get isAutowriteLauncher():Boolean
+    //----------------------------------
+    // isAutoWriteLauncher
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get isAutoWriteLauncher():Boolean
     {
-        return _isAutowriteLauncher;
+        return _isAutoWriteLauncher;
     }
 
-    public function set isAutowriteLauncher(value:Boolean):void
+    public function set isAutoWriteLauncher(value:Boolean):void
     {
-        if (isSame(_isAutowriteLauncher, value))
+        if (isSame(_isAutoWriteLauncher, value))
             return;
-        _isAutowriteLauncher = value;
-        dispatchValue(BitwigTransportEventType.IS_AUTOWRITE_LAUNCHER_CHANGE, _isAutowriteLauncher);
+        _isAutoWriteLauncher = value;
+        dispatchValue(BitwigTransportEventType.IS_AUTOWRITE_LAUNCHER_CHANGE, _isAutoWriteLauncher);
     }
 
-    public function get isAutowrite():Boolean
+    //----------------------------------
+    // isAutoWrite
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get isAutoWrite():Boolean
     {
-        return _isAutowrite;
+        return _isAutoWrite;
     }
 
-    public function set isAutowrite(value:Boolean):void
+    public function set isAutoWrite(value:Boolean):void
     {
-        if (isSame(_isAutowrite, value))
+        if (isSame(_isAutoWrite, value))
             return;
-        _isAutowrite = value;
-        dispatchValue(BitwigTransportEventType.IS_AUTOWRITE_CHANGE, _isAutowrite);
+        _isAutoWrite = value;
+        dispatchValue(BitwigTransportEventType.IS_AUTOWRITE_CHANGE, _isAutoWrite);
     }
 
+    //----------------------------------
+    // automationWriteMode
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get automationWriteMode():String
     {
         return _automationWriteMode;
@@ -251,6 +374,13 @@ public class BitwigTransport extends AbstractBitwigState
         dispatchValue(BitwigTransportEventType.AUTOMATION_WRITE_MODE_CHANGE, _automationWriteMode);
     }
 
+    //----------------------------------
+    // automationWriteModeIndex
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get automationWriteModeIndex():int
     {
         switch (_automationWriteMode)
@@ -265,20 +395,198 @@ public class BitwigTransport extends AbstractBitwigState
         return -1;
     }
 
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
+
     public function BitwigTransport(service:IOSCService)
     {
         super(service);
     }
 
+    //--------------------------------------------------------------------------
+    // API :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    override public function configure():void
+    {
+        _methods["/position"] = positionHandler;
+        _methods["/numerator"] = numeratorHandler;
+        _methods["/denominator"] = denominatorHandler;
+        _methods["/automationOverride"] = automationOverrideHandler;
+
+        _methods["/tempo/raw"] = tempoRawHandler;
+        _methods["/click"] = clickHandler;
+        _methods["/play"] = playHandler;
+        _methods["/record"] = recordHandler;
+        _methods["/repeat"] = repeatHandler;
+        _methods["/preroll"] = prerollHandler;
+        _methods["/overdub/launcher"] = overdubLauncherHandler;
+        _methods["/overdub"] = overdubHandler;
+        _methods["/crossfade"] = corssfadeHandler;
+        _methods["/autowrite"] = autoWriteHandler;
+        _methods["/autowrite/launcher"] = autowriteLauncherHandler;
+        _methods["/automationWriteMode"] = automationWriteModeHandler; // {latch,touch,write}
+    }
+
+    /**
+     * @inheritDoc
+     */
+    override public function dispose():void
+    {
+        _methods = [];
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function tapTempo():void
     {
         service.send("/tempo/tap");
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setTempoRaw(tempo:Number):void
     {
         service.sendFloat("/tempo/raw", tempo);
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function togglePlay():void
+    {
+        service.send("/play");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toggleAutoWrite():void
+    {
+        service.send("/autowrite");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toggleRecord():void
+    {
+        service.send("/record");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function stop():void
+    {
+        service.sendInt("/stop", 1);
+    }
+
+    //--------------------------------------------------------------------------
+    // Private :: Handlers
+    //--------------------------------------------------------------------------
+
+    private function positionHandler(osc:OSCMessage):void
+    {
+        positionString = osc.arguments[0];
+    }
+
+    private function numeratorHandler(osc:OSCMessage):void
+    {
+        numerator = osc.arguments[0];
+    }
+
+    private function denominatorHandler(osc:OSCMessage):void
+    {
+        denominator = osc.arguments[0];
+    }
+
+    private function automationOverrideHandler(osc:OSCMessage):void
+    {
+        isAutomationOverride = osc.arguments[0];
+    }
+
+    private function tempoRawHandler(osc:OSCMessage):void
+    {
+        tempoRaw = osc.arguments[0];
+    }
+
+    private function clickHandler(osc:OSCMessage):void
+    {
+        isClick = osc.arguments[0];
+    }
+
+    private function playHandler(osc:OSCMessage):void
+    {
+        isPlaying = osc.arguments[0];
+    }
+
+    private function recordHandler(osc:OSCMessage):void
+    {
+        isRecording = osc.arguments[0];
+    }
+
+    private function repeatHandler(osc:OSCMessage):void
+    {
+        isRepeat = osc.arguments[0];
+    }
+
+    private function prerollHandler(osc:OSCMessage):void
+    {
+        isPreRoll = osc.arguments[0];
+    }
+
+    private function overdubLauncherHandler(osc:OSCMessage):void
+    {
+        isOverdubLauncher = osc.arguments[0];
+    }
+
+    private function overdubHandler(osc:OSCMessage):void
+    {
+        isOverdub = osc.arguments[0];
+    }
+
+    private function corssfadeHandler(osc:OSCMessage):void
+    {
+        isCrossFade = osc.arguments[0];
+    }
+
+    private function autoWriteHandler(osc:OSCMessage):void
+    {
+        isAutoWrite = osc.arguments[0];
+    }
+
+    private function autowriteLauncherHandler(osc:OSCMessage):void
+    {
+        isAutoWriteLauncher = osc.arguments[0];
+    }
+
+    private function automationWriteModeHandler(osc:OSCMessage):void
+    {
+        automationWriteMode = osc.arguments[0];
+    }
 }
 }
+/*
+
+/click {1,0}
+/play {1,0}
+/record {1,0}
+/repeat {1,0}
+/preroll
+/overdub/launcher {1,0}
+/overdub {1,0}
+/crossfade {0-127}
+/autowrite {0,1}
+/autowrite/launcher
+/automationWriteMode/{latch,touch,write}
+
+
+
+*/
