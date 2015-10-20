@@ -97,7 +97,8 @@ public class DeviceSelectBarMediator extends AbstractUIMediator
 
     private function view_browserChange(event:Event, selected:Boolean):void
     {
-        oscModel.device.toggleBrowser();
+        //oscModel.device.toggleBrowser();
+        oscModel.browser.browseForPresets();
     }
 
     private function context_bypassChange(event:Event, data:Object):void

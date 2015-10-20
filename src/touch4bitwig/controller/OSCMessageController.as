@@ -78,6 +78,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
 
         addStateListener(new PanelListener(oscService, oscModel.arranger, oscModel.mixer));
         addStateListener(oscModel.application);
+        addStateListener(oscModel.browser);
 
         oscService.addOSCListener(this);
         // eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);

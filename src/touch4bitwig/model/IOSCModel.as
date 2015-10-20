@@ -60,6 +60,8 @@ public interface IOSCModel
 
     function get mixer():BitwigMixer;
 
+    function get browser():IBitwigBrowser;
+
     //--------------------------------------------------------------------------
     // Methods
     //--------------------------------------------------------------------------

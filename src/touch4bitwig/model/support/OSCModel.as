@@ -23,11 +23,13 @@ package touch4bitwig.model.support
 import com.teotigraphix.model.AbstractModel;
 
 import touch4bitwig.model.IBitwigApplication;
+import touch4bitwig.model.IBitwigBrowser;
 import touch4bitwig.model.IBitwigTransport;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.model.state.BitwigApplication;
 import touch4bitwig.model.state.BitwigArranger;
+import touch4bitwig.model.state.BitwigBrowser;
 import touch4bitwig.model.state.BitwigDevice;
 import touch4bitwig.model.state.BitwigMixer;
 import touch4bitwig.model.state.BitwigPanes;
@@ -73,6 +75,7 @@ public class OSCModel extends AbstractModel implements IOSCModel
     private var _panes:BitwigPanes;
     private var _arranger:BitwigArranger;
     private var _mixer:BitwigMixer;
+    private var _browser:IBitwigBrowser;
 
     //--------------------------------------------------------------------------
     // API :: Properties
@@ -206,6 +209,18 @@ public class OSCModel extends AbstractModel implements IOSCModel
         return _mixer;
     }
 
+    //----------------------------------
+    // browser
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get browser():IBitwigBrowser
+    {
+        return _browser;
+    }
+
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -238,6 +253,7 @@ public class OSCModel extends AbstractModel implements IOSCModel
         _panes = new BitwigPanes(oscService);
         _arranger = new BitwigArranger(oscService);
         _mixer = new BitwigMixer(oscService);
+        _browser = new BitwigBrowser(oscService);
     }
 
     //--------------------------------------------------------------------------
