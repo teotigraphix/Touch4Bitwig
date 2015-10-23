@@ -96,12 +96,12 @@ public class TrackChannelBankMediator extends AbstractUIMediator
     {
         for (var i:int = 1; i < 9; i++)
         {
-            var track:IBitwigTrack = oscModel.trackBank.getTrack(i - 1);
+            var track:IBitwigTrack = oscModel.trackBank.getTrack(i);
             view.setExists(i, track.exists);
 
-            view.setParamName(i, oscModel.cursorDevice.bank.params[i - 1].getName(oscModel.deviceMode));
-            view.setParamValue(i, oscModel.cursorDevice.bank.params[i - 1].getValue(oscModel.deviceMode));
-            view.setParamValueString(i, oscModel.cursorDevice.bank.params[i - 1].getValueString(oscModel.deviceMode));
+            view.setParamName(i, oscModel.cursorDevice.bank.params[i].getName(oscModel.deviceMode));
+            view.setParamValue(i, oscModel.cursorDevice.bank.params[i].getValue(oscModel.deviceMode));
+            view.setParamValueString(i, oscModel.cursorDevice.bank.params[i].getValueString(oscModel.deviceMode));
 
             view.setIsRecarm(i, track.recarm);
             view.setIsSolo(i, track.solo);

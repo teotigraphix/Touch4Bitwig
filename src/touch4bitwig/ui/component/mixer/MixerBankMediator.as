@@ -57,7 +57,7 @@ public class MixerBankMediator extends AbstractUIMediator
         addContextListener(BitwigTrackEventType.MUTE_CHANGE, context_trackMuteHandler);
         addContextListener(BitwigTrackEventType.VU_CHANGE, context_trackVUHandler);
 
-        for (var i:int = 0; i < 8; i++)
+        for (var i:int = 1; i < 9; i++)
         {
             var track:IBitwigTrack = oscModel.trackBank.getTrack(i);
             var item:IMixerItem = view.getMixerItem(track.index);
@@ -166,7 +166,10 @@ public class MixerBankMediator extends AbstractUIMediator
 
     private function view_selectHandler(event:Event, index:int):void
     {
-        oscModel.trackBank.getTrack(index);
+        // XXX BUG
+        if (index == 0)
+            return;
+        oscModel.trackBank.getTrack(index).selected = true;
     }
 
     private function view_doubleTapHandler(event:Event, index:int):void

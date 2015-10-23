@@ -20,11 +20,16 @@
 package touch4bitwig.model.state
 {
 
+import touch4bitwig.model.IBitwigClip;
 import touch4bitwig.model.event.BitwigTrackEventType;
 import touch4bitwig.service.IOSCService;
 
-public class BitwigClip extends AbstractBitwigState
+public class BitwigClip extends AbstractBitwigState implements IBitwigClip
 {
+    //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
     private var _index:int;
     private var _track:BitwigTrack;
 
@@ -36,16 +41,41 @@ public class BitwigClip extends AbstractBitwigState
     private var _isRecording:Boolean;
     private var _isQueued:Boolean;
 
+    //--------------------------------------------------------------------------
+    // API :: Properties
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+    // index
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get index():int
     {
         return _index;
     }
 
+    //----------------------------------
+    // track
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get track():BitwigTrack
     {
         return _track;
     }
 
+    //----------------------------------
+    // name
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get name():String
     {
         return _name;
@@ -56,6 +86,13 @@ public class BitwigClip extends AbstractBitwigState
         _name = value;
     }
 
+    //----------------------------------
+    // isSelected
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isSelected():Boolean
     {
         return _isSelected;
@@ -68,6 +105,13 @@ public class BitwigClip extends AbstractBitwigState
                 {trackIndex: track.index, index: _index, value: _isSelected});
     }
 
+    //----------------------------------
+    // hasContent
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get hasContent():Boolean
     {
         return _hasContent;
@@ -78,6 +122,13 @@ public class BitwigClip extends AbstractBitwigState
         _hasContent = value;
     }
 
+    //----------------------------------
+    // color
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get color():uint
     {
         if (_color == 0)
@@ -90,6 +141,13 @@ public class BitwigClip extends AbstractBitwigState
         _color = value;
     }
 
+    //----------------------------------
+    // isPlaying
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isPlaying():Boolean
     {
         return _isPlaying;
@@ -100,6 +158,13 @@ public class BitwigClip extends AbstractBitwigState
         _isPlaying = value;
     }
 
+    //----------------------------------
+    // isRecording
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isRecording():Boolean
     {
         return _isRecording;
@@ -110,6 +175,13 @@ public class BitwigClip extends AbstractBitwigState
         _isRecording = value;
     }
 
+    //----------------------------------
+    // isQueued
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function get isQueued():Boolean
     {
         return _isQueued;
@@ -120,6 +192,16 @@ public class BitwigClip extends AbstractBitwigState
         _isQueued = value;
     }
 
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
+
+    /**
+     *
+     * @param index 1..clipBankLength
+     * @param track The parent IBitwigTrack.
+     * @param service The osc service.
+     */
     public function BitwigClip(index:int, track:BitwigTrack, service:IOSCService)
     {
         super(service);
@@ -127,9 +209,48 @@ public class BitwigClip extends AbstractBitwigState
         _track = track;
     }
 
+    //--------------------------------------------------------------------------
+    // API :: Methods
+    //--------------------------------------------------------------------------
+
+    /**
+     * @inheritDoc
+     */
     public function launch():void
     {
         service.send("/track/" + _track.index + "/clip/" + _index + "/launch");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function record():void
+    {
+        service.send("/track/" + _track.index + "/clip/" + _index + "/record");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function select():void
+    {
+        service.send("/track/" + _track.index + "/clip/" + _index + "/select");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function stop():void
+    {
+        service.send("/track/" + _track.index + "/clip/stop");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function returnToArrangement():void
+    {
+        service.send("/track/" + _track.index + "/clip/returntoarrangement");
     }
 }
 }

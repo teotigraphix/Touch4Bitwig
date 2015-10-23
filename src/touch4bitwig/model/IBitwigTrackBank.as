@@ -48,7 +48,7 @@ public interface IBitwigTrackBank extends IBitwigState
     /**
      * Returns the track within the track bank.
      *
-     * @param index The track bank index.
+     * @param index The track bank index (1..trackBank.length).
      */
     function getTrack(index:int):IBitwigTrack;
 

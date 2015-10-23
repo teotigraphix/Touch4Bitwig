@@ -102,29 +102,12 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
      */
     public function get selectedTrack():BitwigTrack
     {
-        for each (var track:BitwigTrack in tracks)
+        for each (var track:BitwigTrack in _tracks)
         {
             if (track.selected)
                 return track;
         }
         return null;
-    }
-
-    //----------------------------------
-    // tracks
-    //----------------------------------
-
-    /**
-     * @inheritDoc
-     */
-    public function get tracks():Vector.<BitwigTrack>
-    {
-        return _tracks;
-    }
-
-    public function set tracks(value:Vector.<BitwigTrack>):void
-    {
-        _tracks = value;
     }
 
     //----------------------------------
@@ -137,11 +120,6 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
     public function get scenes():Vector.<BitwigScene>
     {
         return _scenes;
-    }
-
-    public function set scenes(value:Vector.<BitwigScene>):void
-    {
-        _scenes = value;
     }
 
     //--------------------------------------------------------------------------
@@ -164,6 +142,8 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
 
     override public function configure():void
     {
+        // manages Track, Scene and Clip handlers
+
         _methods["/track/canScrollTracksUp"] = canScrollTracksUpHandler;
         _methods["/track/canScrollTracksDown"] = canScrollTracksDownHandler;
 
@@ -210,7 +190,7 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
      */
     public function getTrack(index:int):IBitwigTrack
     {
-        return _tracks[index];
+        return _tracks[index - 1];
     }
 
     /**
@@ -334,67 +314,67 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
 
     private function trackCanHoldNotesHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.CAN_HOLD_NOTES, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.CAN_HOLD_NOTES, osc.arguments[0]);
     }
 
     private function trackExistsHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.EXISTS, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.EXISTS, osc.arguments[0]);
     }
 
     private function trackSelectedHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.SELECTED, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.SELECTED, osc.arguments[0]);
     }
 
     private function trackNameHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.NAME, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.NAME, osc.arguments[0]);
     }
 
     private function trackColorHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.COLOR, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.COLOR, toColor(osc));
     }
 
     private function trackRecArmHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.RECARM, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.RECARM, osc.arguments[0]);
     }
 
     private function trackSoloHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.SOLO, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.SOLO, osc.arguments[0]);
     }
 
     private function trackMuteHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.MUTE, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.MUTE, osc.arguments[0]);
     }
 
     private function trackVolumeHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.VOLUME, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.VOLUME, osc.arguments[0]);
     }
 
     private function trackVolumeStrHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.VOLUME_STRING, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.VOLUME_STRING, osc.arguments[0]);
     }
 
     private function trackPanHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.PAN, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.PAN, osc.arguments[0]);
     }
 
     private function trackPanStrHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.PAN_STRING, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.PAN_STRING, osc.arguments[0]);
     }
 
     private function trackVUHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].propertyChanged(BitwigTrack.VU, osc.arguments[0]);
+        _tracks[toIndex(osc)].propertyChanged(BitwigTrack.VU, osc.arguments[0]);
     }
 
     //----------------------------------
@@ -403,41 +383,42 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
 
     private function clipNameHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].name = osc.arguments[0];
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].name = osc.arguments[0];
     }
 
     private function clipIsSelectedHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].isSelected = osc.arguments[0];
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].isSelected = osc.arguments[0];
     }
 
     private function clipHasContentHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].hasContent = osc.arguments[0];
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].hasContent = osc.arguments[0];
     }
 
     private function clipColorHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].color = toColor(osc);
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].color = toColor(osc);
     }
 
     private function clipIsPlayingHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].isPlaying = osc.arguments[0];
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].isPlaying = osc.arguments[0];
     }
 
     private function clipIsRecordingHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].isRecording = osc.arguments[0];
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].isRecording = osc.arguments[0];
     }
 
     private function clipIsQueuedHandler(osc:OSCMessage):void
     {
-        tracks[toIndex(osc)].clips[toClipIndex(osc)].isQueued = osc.arguments[0];
+        _tracks[toIndex(osc)].clips[toClipIndex(osc)].isQueued = osc.arguments[0];
     }
 
     public static function toColor(osc:OSCMessage):uint
     {
+        // RGB(1,0.34117648005485535,0.0235294122248888)"
         var value:String = osc.arguments[0];
         value = value.substring(4, value.length - 1);
         var colors:Array = value.split(",");

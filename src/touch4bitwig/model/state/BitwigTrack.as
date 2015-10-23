@@ -39,7 +39,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
     public static const PAN_STRING:String = "panString";
     public static const MUTE:String = "mute";
     public static const SOLO:String = "solo";
-    public static const RECARM:String = "reacarm";
+    public static const RECARM:String = "recarm";
     public static const MONITOR:String = "monitor";
     public static const AUTO_MONITOR:String = "autoMonitor";
     public static const CROSS_FADE_MODE:String = "crossfadeMode";
@@ -82,11 +82,6 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         return _index;
     }
 
-    public function set index(value:int):void
-    {
-        _index = value;
-    }
-
     //----------------------------------
     // name
     //----------------------------------
@@ -104,7 +99,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         if (!setProperty(NAME, value))
             return;
 
-        service.sendString("/track/" + index + "/name", value);
+        service.sendString("/track/" + _index + 1 + "/name", value);
     }
 
     //----------------------------------
@@ -399,14 +394,6 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         return _properties[VU];
     }
 
-    //public function set vu(value:int):void
-    //{
-    //    if (!setProperty(VU, value))
-    //        return;
-    //
-    //    service.sendInt("/track/" + index + "/vu", value);
-    //}
-
     //----------------------------------
     // color
     //----------------------------------
@@ -428,20 +415,15 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
     }
 
     //----------------------------------
-    // clips
+    // color
     //----------------------------------
 
     /**
-     * @inheritDoc
+     * Used by the BitwigTrackBank handlers.
      */
-    public function get clips():Vector.<BitwigClip>
+    internal function get clips():Vector.<BitwigClip>
     {
         return _clips;
-    }
-
-    public function set clips(value:Vector.<BitwigClip>):void
-    {
-        _clips = value;
     }
 
     //--------------------------------------------------------------------------
