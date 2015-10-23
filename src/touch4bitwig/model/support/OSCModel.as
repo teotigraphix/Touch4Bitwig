@@ -24,6 +24,7 @@ import com.teotigraphix.model.AbstractModel;
 
 import touch4bitwig.model.IBitwigApplication;
 import touch4bitwig.model.IBitwigBrowser;
+import touch4bitwig.model.IBitwigTrackBank;
 import touch4bitwig.model.IBitwigTransport;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.event.BitwigDeviceEventType;
@@ -100,7 +101,7 @@ public class OSCModel extends AbstractModel implements IOSCModel
     /**
      * @inheritDoc
      */
-    public function get trackBank():BitwigTrackBank
+    public function get trackBank():IBitwigTrackBank
     {
         return _trackBank;
     }

@@ -23,8 +23,8 @@ package touch4bitwig.ui.component.mixer
 import starling.animation.Juggler;
 import starling.events.Event;
 
+import touch4bitwig.model.IBitwigTrack;
 import touch4bitwig.model.event.BitwigTrackEventType;
-import touch4bitwig.model.state.BitwigTrack;
 import touch4bitwig.ui.AbstractUIMediator;
 
 public class MixerBankMediator extends AbstractUIMediator
@@ -59,24 +59,25 @@ public class MixerBankMediator extends AbstractUIMediator
 
         for (var i:int = 0; i < 8; i++)
         {
-            var track:BitwigTrack = oscModel.trackBank.tracks[i];
+            var track:IBitwigTrack = oscModel.trackBank.getTrack(i);
             var item:IMixerItem = view.getMixerItem(track.index);
 
             item.canHoldNotes = track.canHoldNotes;
             item.exists = track.exists;
-            item.selected = track.isSelected;
+            item.selected = track.selected;
             item.trackName = track.name;
             item.trackColor = track.color;
             item.volume = track.volume;
             item.volumeString = track.volumeString;
             item.pan = track.pan;
             item.panString = track.panString;
-            item.isRecArm = track.isRecArm;
-            item.isSolo = track.isSolo;
-            item.isMute = track.isMute;
+            item.isRecArm = track.recarm;
+            item.isSolo = track.solo;
+            item.isMute = track.mute;
             item.vu = track.vu;
         }
 
+        addViewListener(MixerItem.EVENT_SELECT, view_selectHandler);
         addViewListener(MixerItem.EVENT_DOUBLE_TAP, view_doubleTapHandler);
         addViewListener(MixerItem.EVENT_VOLUME_CHANGE, view_volumeChangeHandler);
         addViewListener(MixerItem.EVENT_PAN_CHANGE, view_panChangeHandler);
@@ -89,6 +90,10 @@ public class MixerBankMediator extends AbstractUIMediator
     {
         super.onRemove();
     }
+
+    //--------------------------------------------------------------------------
+    // Context :: Handlers
+    //--------------------------------------------------------------------------
 
     private function context_trackExistsHandler(event:Event, data:Object):void
     {
@@ -155,34 +160,43 @@ public class MixerBankMediator extends AbstractUIMediator
         view.getMixerItem(data.index).vu = data.value;
     }
 
+    //--------------------------------------------------------------------------
+    // View :: Handlers
+    //--------------------------------------------------------------------------
+
+    private function view_selectHandler(event:Event, index:int):void
+    {
+        oscModel.trackBank.getTrack(index);
+    }
+
     private function view_doubleTapHandler(event:Event, index:int):void
     {
-        oscService.send("/track/" + (index ) + "/select");
+        oscModel.trackBank.selectChildren(index);
     }
 
     private function view_volumeChangeHandler(event:Event, index:int):void
     {
-        oscService.sendInt("/track/" + (index ) + "/volume", view.getMixerItem(index).volume);
+        oscModel.trackBank.getTrack(index).volume = view.getMixerItem(index).volume;
     }
 
     private function view_panChangeHandler(event:Event, index:int):void
     {
-        oscService.sendInt("/track/" + (index ) + "/pan", view.getMixerItem(index).pan);
+        oscModel.trackBank.getTrack(index).pan = view.getMixerItem(index).pan;
     }
 
     private function view_recordChangeHandler(event:Event, index:int):void
     {
-        oscService.sendBoolean("/track/" + (index ) + "/recarm", view.getMixerItem(index).isRecArm);
+        oscModel.trackBank.getTrack(index).recarm = view.getMixerItem(index).isRecArm;
     }
 
     private function view_soloChangeHandler(event:Event, index:int):void
     {
-        oscService.sendBoolean("/track/" + (index ) + "/solo", view.getMixerItem(index).isSolo);
+        oscModel.trackBank.getTrack(index).solo = view.getMixerItem(index).isSolo;
     }
 
     private function view_muteChangeHandler(event:Event, index:int):void
     {
-        oscService.sendBoolean("/track/" + (index ) + "/mute", view.getMixerItem(index).isMute);
+        oscModel.trackBank.getTrack(index).mute = view.getMixerItem(index).isMute;
     }
 }
 }

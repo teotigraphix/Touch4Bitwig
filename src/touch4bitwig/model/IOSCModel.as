@@ -37,7 +37,7 @@ public interface IOSCModel
      */
     function get application():IBitwigApplication;
 
-    function get trackBank():BitwigTrackBank;
+    function get trackBank():IBitwigTrackBank;
 
     /**
      * A proxy for the native Transport class of the controller API.

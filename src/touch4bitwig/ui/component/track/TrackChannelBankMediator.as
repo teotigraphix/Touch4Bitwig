@@ -22,6 +22,8 @@ package touch4bitwig.ui.component.track
 
 import starling.events.Event;
 
+import touch4bitwig.model.IBitwigTrack;
+
 import touch4bitwig.model.event.BitwigDeviceEventType;
 import touch4bitwig.model.event.BitwigTrackEventType;
 import touch4bitwig.service.IOSCService;
@@ -94,18 +96,19 @@ public class TrackChannelBankMediator extends AbstractUIMediator
     {
         for (var i:int = 1; i < 9; i++)
         {
-            view.setExists(i, oscModel.trackBank.tracks[i - 1].exists);
+            var track:IBitwigTrack = oscModel.trackBank.getTrack(i - 1);
+            view.setExists(i, track.exists);
 
             view.setParamName(i, oscModel.cursorDevice.bank.params[i - 1].getName(oscModel.deviceMode));
             view.setParamValue(i, oscModel.cursorDevice.bank.params[i - 1].getValue(oscModel.deviceMode));
             view.setParamValueString(i, oscModel.cursorDevice.bank.params[i - 1].getValueString(oscModel.deviceMode));
 
-            view.setIsRecarm(i, oscModel.trackBank.tracks[i - 1].isRecArm);
-            view.setIsSolo(i, oscModel.trackBank.tracks[i - 1].isSolo);
-            view.setIsMute(i, oscModel.trackBank.tracks[i - 1].isMute);
+            view.setIsRecarm(i, track.recarm);
+            view.setIsSolo(i, track.solo);
+            view.setIsMute(i, track.mute);
 
-            view.setVU(i, oscModel.trackBank.tracks[i - 1].vu);
-            view.setVolume(i, oscModel.trackBank.tracks[i - 1].volume);
+            view.setVU(i, track.vu);
+            view.setVolume(i, track.volume);
         }
     }
 

@@ -30,7 +30,6 @@ import touch4bitwig.service.IBitwigStateListener;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
 import touch4bitwig.service.support.osc.listeners.PanelListener;
-import touch4bitwig.service.support.osc.listeners.TrackListener;
 
 public class OSCMessageController extends AbstractController implements IOSCListener
 {
@@ -71,7 +70,7 @@ public class OSCMessageController extends AbstractController implements IOSCList
 
         // TODO move these into higher abstraction
 
-        addStateListener(new TrackListener(oscService, oscModel.trackBank));
+        addStateListener(oscModel.trackBank);
         addStateListener(oscModel.transport);
         // XXX cursorDevice This needs attention
         addStateListener(new DeviceListener(oscService, oscModel.cursorDevice));

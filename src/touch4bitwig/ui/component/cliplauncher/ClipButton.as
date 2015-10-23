@@ -198,7 +198,7 @@ public class ClipButton extends Button
 
         if (_clip != null)
         {
-            var isArmed:Boolean = _clip.track.isRecArm;
+            var isArmed:Boolean = _clip.track.recarm;
 
             selectedOverlaySkin.visible = _clip.isSelected;
             label = clip.name;

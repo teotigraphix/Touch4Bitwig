@@ -389,7 +389,7 @@ public class MixerItem extends LayoutGroup implements IMixerItem
 
     private function view_selectHandler(event:Event):void
     {
-        dispatchEventWith(EVENT_DOUBLE_TAP, true, _index);
+        dispatchEventWith(EVENT_SELECT, true, _index);
     }
 
     private function touchHandler(event:TouchEvent):void

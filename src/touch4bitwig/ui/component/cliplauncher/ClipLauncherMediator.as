@@ -80,13 +80,13 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
 
             for (var track:int = 0; track < 8; track++)
             {
-                clipCollection.addItem(oscModel.trackBank.tracks[track].clips[scene]);
+                clipCollection.addItem(oscModel.trackBank.getTrack(track).getClip(scene));
             }
         }
 
         for (var i:int = 0; i < 8; i++)
         {
-            view.updateTrack(oscModel.trackBank.tracks[i]);
+            view.updateTrack(oscModel.trackBank.getTrack(i));
         }
 
         view.clipLauncherGrid.dataProvider = clipCollection;
@@ -110,7 +110,7 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
 
     private function context_updateTrack(event:Event, data:Object):void
     {
-        view.updateTrack(oscModel.trackBank.tracks[data.index - 1]);
+        view.updateTrack(oscModel.trackBank.getTrack(data.index - 1));
     }
 
     private function context_clipSelectedChange(event:Event, data:Object):void
