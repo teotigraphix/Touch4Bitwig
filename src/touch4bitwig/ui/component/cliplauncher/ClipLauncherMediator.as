@@ -130,18 +130,18 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
 
     private function view_headerTapHandler(event:Event, index:int):void
     {
-        oscService.send("/track/" + (index + 1) + "/select");
+        oscModel.trackBank.select(index + 1);
     }
 
     private function view_stopButtonTriggeredHandler(event:Event, index:int):void
     {
         if (index < 8)
         {
-            oscService.send("/track/" + index + "/clip/stop");
+            oscModel.trackBank.getTrack(index).stop();
         }
         else
         {
-            oscService.send("/track/stop");
+            oscModel.trackBank.stop();
         }
     }
 
@@ -149,11 +149,11 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
     {
         if (index < 8)
         {
-            oscService.send("/track/" + index + "/clip/returntoarrangement");
+            oscModel.trackBank.getTrack(index).returnToArrangement();
         }
         else
         {
-            oscService.send("/track/returntoarrangement");
+
         }
     }
 

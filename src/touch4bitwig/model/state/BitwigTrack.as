@@ -57,12 +57,25 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
     // Private :: Variables
     //--------------------------------------------------------------------------
 
-    /**
-     * The key value pairs of the OSC message results
-     */
-    private var _properties:Object = {};
-
     private var _index:int;
+
+    private var _canHoldNotes:Boolean;
+    private var _exists:Boolean;
+    private var _activated:Boolean;
+    private var _selected:Boolean;
+    private var _name:String;
+    private var _volumeString:String;
+    private var _volume:int;
+    private var _panString:String;
+    private var _pan:int;
+    private var _color:int;
+    private var _mute:Boolean;
+    private var _solo:Boolean;
+    private var _recarm:Boolean;
+    private var _monitor:Boolean;
+    private var _autoMonitor:Boolean;
+    private var _vu:int;
+    private var _crossFadeMode:String;
 
     private var _clips:Vector.<BitwigClip> = new Vector.<BitwigClip>(8, true);
 
@@ -91,14 +104,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get name():String
     {
-        return _properties[NAME];
+        return _name;
     }
 
     public function set name(value:String):void
     {
         if (!setProperty(NAME, value))
             return;
-
+        _name = value;
         service.sendString("/track/" + _index + 1 + "/name", value);
     }
 
@@ -111,14 +124,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get exists():Boolean
     {
-        return _properties[EXISTS];
+        return _exists;
     }
 
     public function set exists(value:Boolean):void
     {
         if (!setProperty(EXISTS, value))
             return;
-
+        _exists = value;
         service.sendBoolean("/track/" + index + "/exists", value);
     }
 
@@ -131,14 +144,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get canHoldNotes():Boolean
     {
-        return _properties[CAN_HOLD_NOTES];
+        return _canHoldNotes;
     }
 
     public function set canHoldNotes(value:Boolean):void
     {
         if (!setProperty(CAN_HOLD_NOTES, value))
             return;
-
+        _canHoldNotes = value;
         service.sendBoolean("/track/" + index + "/canHoldNotes", value);
     }
 
@@ -151,14 +164,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get activated():Boolean
     {
-        return _properties[ACTIVATED];
+        return _activated;
     }
 
     public function set activated(value:Boolean):void
     {
         if (!setProperty(ACTIVATED, value))
             return;
-
+        _activated = value;
         service.sendBoolean("/track/" + index + "/activated", value);
     }
 
@@ -171,14 +184,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get selected():Boolean
     {
-        return _properties[SELECTED];
+        return _selected;
     }
 
     public function set selected(value:Boolean):void
     {
         if (!setProperty(SELECTED, value))
             return;
-
+        _selected = value;
         service.sendBoolean("/track/" + index + "/selected", value);
     }
 
@@ -191,14 +204,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get volume():int
     {
-        return _properties[VOLUME];
+        return _volume;
     }
 
     public function set volume(value:int):void
     {
         if (!setProperty(VOLUME, value))
             return;
-
+        _volume = value;
         service.sendInt("/track/" + index + "/volume", value);
     }
 
@@ -211,14 +224,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get volumeString():String
     {
-        return _properties[VOLUME_STRING];
+        return _volumeString;
     }
 
     public function set volumeString(value:String):void
     {
         if (!setProperty(VOLUME_STRING, value))
             return;
-
+        _volumeString = value;
         service.sendString("/track/" + index + "/volumeStr", value);
     }
 
@@ -231,14 +244,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get pan():int
     {
-        return _properties[PAN];
+        return _pan;
     }
 
     public function set pan(value:int):void
     {
         if (!setProperty(PAN, value))
             return;
-
+        _pan = value;
         service.sendInt("/track/" + index + "/pan", value);
     }
 
@@ -251,14 +264,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get panString():String
     {
-        return _properties[PAN_STRING];
+        return _panString;
     }
 
     public function set panString(value:String):void
     {
         if (!setProperty(PAN_STRING, value))
             return;
-
+        _panString = value;
         service.sendString("/track/" + index + "/panStr", value);
     }
 
@@ -271,14 +284,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get mute():Boolean
     {
-        return _properties[MUTE];
+        return _mute;
     }
 
     public function set mute(value:Boolean):void
     {
         if (!setProperty(MUTE, value))
             return;
-
+        _mute = value;
         service.sendBoolean("/track/" + index + "/mute", value);
     }
 
@@ -291,14 +304,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get solo():Boolean
     {
-        return _properties[SOLO];
+        return _solo;
     }
 
     public function set solo(value:Boolean):void
     {
         if (!setProperty(SOLO, value))
             return;
-
+        _solo = value;
         service.sendBoolean("/track/" + index + "/solo", value);
     }
 
@@ -311,14 +324,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get recarm():Boolean
     {
-        return _properties[RECARM];
+        return _recarm;
     }
 
     public function set recarm(value:Boolean):void
     {
         if (!setProperty(RECARM, value))
             return;
-
+        _recarm = value;
         service.sendBoolean("/track/" + index + "/recarm", value);
     }
 
@@ -331,14 +344,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get monitor():Boolean
     {
-        return _properties[MONITOR];
+        return _monitor;
     }
 
     public function set monitor(value:Boolean):void
     {
         if (!setProperty(MONITOR, value))
             return;
-
+        _monitor = value;
         service.sendBoolean("/track/" + index + "/monitor", value);
     }
 
@@ -351,14 +364,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get autoMonitor():Boolean
     {
-        return _properties[AUTO_MONITOR];
+        return _autoMonitor;
     }
 
     public function set autoMonitor(value:Boolean):void
     {
         if (!setProperty(AUTO_MONITOR, value))
             return;
-
+        _autoMonitor = value;
         service.sendBoolean("/track/" + index + "/autoMonitor", value);
     }
 
@@ -371,14 +384,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get crossfadeMode():String
     {
-        return _properties[CROSS_FADE_MODE];
+        return _crossFadeMode;
     }
 
     public function set crossfadeMode(value:String):void
     {
         if (!setProperty(CROSS_FADE_MODE, value))
             return;
-
+        _crossFadeMode = value;
         service.sendString("/track/" + index + "/crossfadeMode", value);
     }
 
@@ -391,7 +404,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get vu():int
     {
-        return _properties[VU];
+        return _vu;
     }
 
     //----------------------------------
@@ -403,14 +416,14 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
      */
     public function get color():int
     {
-        return _properties[COLOR];
+        return _color;
     }
 
     public function set color(value:int):void
     {
         if (!setProperty(COLOR, value))
             return;
-
+        _color = value;
         service.sendInt("/track/" + index + "/color", value);
     }
 
@@ -452,6 +465,22 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         return _clips[index];
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function stop():void
+    {
+        service.send("/track/" + _index + "/clip/stop");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function returnToArrangement():void
+    {
+        service.send("/track/" + _index + "/clip/returntoarrangement");
+    }
+
     internal function propertyChanged(name:String, value:*):Boolean
     {
         return setProperty(name, value, true);
@@ -459,10 +488,10 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
 
     internal function setProperty(name:String, value:*, sendChangeEvent:Boolean = true):Boolean
     {
-        if (_properties[name] == value)
+        if (this["_" + name] == value)
             return false;
 
-        _properties[name] = value;
+        this["_" + name] = value;
 
         if (sendChangeEvent)
         {

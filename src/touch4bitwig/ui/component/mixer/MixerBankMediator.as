@@ -166,10 +166,12 @@ public class MixerBankMediator extends AbstractUIMediator
 
     private function view_selectHandler(event:Event, index:int):void
     {
+        logger.log("MixerBankMediator", "view_selectHandler({0})", index);
         // XXX BUG
         if (index == 0)
             return;
-        oscModel.trackBank.getTrack(index).selected = true;
+        //oscModel.trackBank.getTrack(index).selected = true;
+        oscService.send("/track/" + index  + "/select");
     }
 
     private function view_doubleTapHandler(event:Event, index:int):void

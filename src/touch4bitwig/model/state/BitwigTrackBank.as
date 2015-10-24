@@ -295,6 +295,22 @@ public class BitwigTrackBank extends AbstractBitwigState implements IBitwigTrack
     {
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function stop():void
+    {
+        service.send("/track/stop");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function returnToArrangement():void
+    {
+        service.send("/track/returntoarrangement");
+    }
+
     //--------------------------------------------------------------------------
     // Private :: Handlers
     //--------------------------------------------------------------------------

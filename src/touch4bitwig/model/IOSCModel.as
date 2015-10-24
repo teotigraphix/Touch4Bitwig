@@ -24,7 +24,6 @@ import touch4bitwig.model.state.BitwigArranger;
 import touch4bitwig.model.state.BitwigDevice;
 import touch4bitwig.model.state.BitwigMixer;
 import touch4bitwig.model.state.BitwigPanes;
-import touch4bitwig.model.state.BitwigTrackBank;
 
 public interface IOSCModel
 {

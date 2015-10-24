@@ -29,8 +29,9 @@
         <f:VerticalLayout gap="10" paddingTop="6" horizontalAlign="center"/>
     </mixer:layout>
 
+    <!-- touch="child_touchHandler(event)" -->
     <ui:UIBorder color="{trackColor}" minHeight="20"
-                 touch="child_touchHandler(event)">
+            >
         <ui:layoutData>
             <f:VerticalLayoutData percentWidth="100"/>
         </ui:layoutData>
@@ -42,22 +43,20 @@
 
     <component:HGroup percentWidth="100" gap="5" paddingLeft="5" paddingRight="5">
 
-        <!-- Can hold notes stack -->
+        <!-- Can hold notes stack   touch="child_touchHandler(event)" -->
         <f:LayoutGroup>
             <f:ImageLoader id="noteIcon" visible="false"
                            source="{AssetMap.getTexture('hold-notes-icon-skin')}"
-                           touch="child_touchHandler(event)"
                            width="18" height="18"/>
             <f:ImageLoader id="audioIcon"
                            source="{AssetMap.getTexture('hold-audio-icon-skin')}"
-                           touch="child_touchHandler(event)"
                            width="18" height="18"/>
         </f:LayoutGroup>
 
+        <!-- touch="child_touchHandler(event)" -->
         <f:Label id="nameLabel"
                  text="{trackName}"
-                 styleName="{StyleNames.MIXER_ITEM_NAME_LABEL}"
-                 touch="child_touchHandler(event)">
+                 styleName="{StyleNames.MIXER_ITEM_NAME_LABEL}">
             <f:layoutData>
                 <f:HorizontalLayoutData percentWidth="100"/>
             </f:layoutData>
@@ -142,7 +141,6 @@
     <fx:Script><![CDATA[
         import com.teotigraphix.ui.theme.AssetMap;
 
-        import starling.events.Event;
         import starling.events.Touch;
         import starling.events.TouchPhase;
 

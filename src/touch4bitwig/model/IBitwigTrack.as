@@ -23,14 +23,11 @@ import touch4bitwig.model.state.BitwigClip;
 
 public interface IBitwigTrack extends IBitwigState
 {
+    //--------------------------------------------------------------------------
+    // Properties
+    //--------------------------------------------------------------------------
 
     function get index():int;
-
-    //--------------------------------------------------------------------------
-    // Methods
-    //--------------------------------------------------------------------------
-
-    function getClip(index:int):BitwigClip;
 
     /**
      * @inheritDoc
@@ -148,5 +145,21 @@ public interface IBitwigTrack extends IBitwigState
     function get color():int;
 
     function set color(value:int):void;
+
+    //--------------------------------------------------------------------------
+    // Methods
+    //--------------------------------------------------------------------------
+
+    function getClip(index:int):BitwigClip;
+
+    /**
+     * Queues the clip for stop.
+     */
+    function stop():void;
+
+    /**
+     * Returns the track back to arrangement sequencing.
+     */
+    function returnToArrangement():void;
 }
 }

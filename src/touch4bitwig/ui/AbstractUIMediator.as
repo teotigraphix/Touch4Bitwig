@@ -20,6 +20,8 @@
 package touch4bitwig.ui
 {
 
+import com.teotigraphix.service.ILogger;
+
 import org.robotlegs.starling.mvcs.Mediator;
 
 import touch4bitwig.model.IOSCModel;
@@ -28,6 +30,9 @@ import touch4bitwig.service.IOSCService;
 
 public class AbstractUIMediator extends Mediator
 {
+    [Inject]
+    public var logger:ILogger;
+
     [Inject]
     public var uiModel:IUIModel;
 

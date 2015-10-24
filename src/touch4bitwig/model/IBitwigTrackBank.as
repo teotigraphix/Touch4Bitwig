@@ -146,15 +146,15 @@ public interface IBitwigTrackBank extends IBitwigState
     // * @param activated Whether the track is activated.
     // */
     //function activate(index:int, activated:Boolean):void;
-    //
-    ///**
-    // * Selects a child track of the bank.
-    // *
-    // * <p>Message: <code>/track/{1-8}/select</code></p>
-    // *
-    // * @param index The track bank index (1..length).
-    // */
-    //function select(index:int):void;
+
+    /**
+     * Selects a child track of the bank.
+     *
+     * <p>Message: <code>/track/{1-8}/select</code></p>
+     *
+     * @param index The track bank index (1..length).
+     */
+    function select(index:int):void;
     //
     ///**
     // * Sets the volume of the track.
@@ -191,9 +191,16 @@ public interface IBitwigTrackBank extends IBitwigState
     function scrollScenesDown():void;
 
     //
+    /**
+     * Queues all clips in the track bank to stop.
+     */
+    function stop():void;
 
 
-
+    /**
+     * Returns the entire track bank back to arrangement sequencing.
+     */
+    function returnToArrangement():void;
 
 
 }
