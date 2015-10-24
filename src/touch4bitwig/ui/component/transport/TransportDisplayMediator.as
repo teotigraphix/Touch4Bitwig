@@ -49,7 +49,7 @@ public class TransportDisplayMediator extends AbstractUIMediator
         view.wholeDataProvider = uiModel.transportTempoWholeDataProvider;
         view.fractionDataProvider = uiModel.transportTempoFractionDataProvider;
 
-        view.setTempo(oscModel.transport.tempoRaw);
+        view.setTempo(oscModel.transport.tempoRaw.toString());
         view.setTimeSignature(getTimeSignatureString());
         view.setPosition(oscModel.transport.positionString);
     }
@@ -86,7 +86,7 @@ public class TransportDisplayMediator extends AbstractUIMediator
 
     private function view_tempoHandler(event:Event, tempoRaw:Number):void
     {
-        oscModel.transport.setTempoRaw(tempoRaw);
+        oscModel.transport.tempoRaw = tempoRaw;
     }
 
     private function view_tapHandler(event:Event):void

@@ -66,7 +66,7 @@ public class TransportBarMediator extends AbstractUIMediator
 
         addContextListener(BitwigTransportEventType.IS_PLAYING_CHANGE, context_transportPlayChangeHandler);
         addContextListener(BitwigTransportEventType.IS_RECORDING_CHANGE, context_transportRecordChangeHandler);
-        addContextListener(BitwigTransportEventType.IS_AUTOWRITE_CHANGE, context_transportAutomationChangeHandler);
+        addContextListener(BitwigTransportEventType.IS_AUTO_WRITE_CHANGE, context_transportAutomationChangeHandler);
     }
 
     override public function onRegister():void

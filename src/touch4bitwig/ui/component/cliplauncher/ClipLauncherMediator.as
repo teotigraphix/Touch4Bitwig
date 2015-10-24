@@ -60,7 +60,7 @@ public class ClipLauncherMediator extends AbstractUIMediator implements IAnimata
         addViewListener(ClipLauncherFooterItem.EVENT_STOP_BUTTON_TRIGGERED, view_stopButtonTriggeredHandler);
         addViewListener(ClipLauncherFooterItem.EVENT_RETURN_BUTTON_TRIGGERED, view_returnButtonTriggeredHandler);
 
-        addContextListener(BitwigTransportEventType.IS_AUTOWRITE_LAUNCHER_CHANGE,
+        addContextListener(BitwigTransportEventType.IS_AUTO_WRITE_LAUNCHER_CHANGE,
                            context_isAutowriteLaucherChangeHandler);
         addContextListener(BitwigTransportEventType.IS_OVERDUB_LAUNCHER_CHANGE,
                            context_isOverdubLauncherChangeHandler);

@@ -20,25 +20,29 @@
 package touch4bitwig.model.event
 {
 
+import touch4bitwig.model.state.BitwigTransport;
+
 public final class BitwigTransportEventType
 {
-    public static const POSITION_STRING_CHANGE:String = "positionStringChange";
-    public static const NUMERATOR_CHANGE:String = "numeratorChange";
-    public static const DENOMINATOR_CHANGE:String = "denominatorChange";
-    public static const IS_AUTOMATION_OVERRIDE_CHANGE:String = "automationOverrideChange";
+    public static const POSITION_STRING_CHANGE:String = BitwigTransport.POSITION_STRING + "Change";
+    public static const NUMERATOR_CHANGE:String = BitwigTransport.NUMERATOR + "Change";
+    public static const DENOMINATOR_CHANGE:String = BitwigTransport.DENOMINATOR + "Change";
+    public static const IS_AUTOMATION_OVERRIDE_CHANGE:String = BitwigTransport.IS_AUTOMATION_OVERRIDE + "Change";
 
-    public static const TEMPO_RAW_CHANGE:String = "tempoRawChange";
-    public static const IS_CLICK_CHANGE:String = "isClickChange";
-    public static const IS_PLAYING_CHANGE:String = "isPlayingChange";
-    public static const IS_RECORDING_CHANGE:String = "isRecordingChange";
-    public static const IS_REPEAT_CHANGE:String = "isRepeatChange";
-    public static const IS_PRE_ROLL_CHANGE:String = "isPreRollChange";
-    public static const IS_OVERDUB_LAUNCHER_CHANGE:String = "isOverdubLauncherChange";
-    public static const IS_OVERDUB_CHANGE:String = "isOverdubChange";
-    public static const IS_CROSSFADE_CHANGE:String = "isCrossFadeChange";
-    public static const IS_AUTOWRITE_LAUNCHER_CHANGE:String = "isAutowriteLauncherChange";
-    public static const IS_AUTOWRITE_CHANGE:String = "isAutowriteChange";
-    public static const AUTOMATION_WRITE_MODE_CHANGE:String = "automationWriteModeChange";
+    public static const TEMPO_RAW_CHANGE:String = BitwigTransport.TEMPO_RAW + "Change";
+    public static const IS_CLICK_CHANGE:String = BitwigTransport.IS_CLICK + "Change";
+    public static const IS_PLAYING_CHANGE:String = BitwigTransport.IS_PLAYING + "Change";
+    public static const IS_RECORDING_CHANGE:String = BitwigTransport.IS_RECORDING + "Change";
+    public static const IS_REPEAT_CHANGE:String = BitwigTransport.IS_REPEAT + "Change";
+    public static const IS_PRE_ROLL_CHANGE:String = BitwigTransport.IS_PRE_ROLL + "Change";
+    public static const IS_OVERDUB_LAUNCHER_CHANGE:String = BitwigTransport.IS_OVER_DUB_LAUNCHER + "Change";
+    public static const IS_OVERDUB_CHANGE:String = BitwigTransport.IS_OVER_DUB + "Change";
+    public static const CROSSFADE_CHANGE:String = BitwigTransport.CROSS_FADE + "Change";
+    public static const IS_AUTO_WRITE_LAUNCHER_CHANGE:String = BitwigTransport.IS_AUTO_WRITE_LAUNCHER + "Change";
+    public static const IS_AUTO_WRITE_CHANGE:String = BitwigTransport.IS_AUTO_WRITE + "Change";
+    public static const AUTOMATION_WRITE_MODE_CHANGE:String = BitwigTransport.AUTOMATION_WRITE_MODE + "Change";
 
+    public static const IS_PUNCH_IN_CHANGE:String = BitwigTransport.IS_PUNCH_IN + "Change";
+    public static const IS_PUNCH_OUT_CHANGE:String = BitwigTransport.IS_PUNCH_OUT + "Change";
 }
 }
