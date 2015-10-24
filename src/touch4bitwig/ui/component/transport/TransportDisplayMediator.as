@@ -50,7 +50,7 @@ public class TransportDisplayMediator extends AbstractUIMediator
         view.fractionDataProvider = uiModel.transportTempoFractionDataProvider;
 
         view.setTempo(oscModel.transport.tempoRaw.toString());
-        view.setTimeSignature(getTimeSignatureString());
+        view.setTimeSignature(oscModel.transport.timeSignature);
         view.setPosition(oscModel.transport.positionString);
     }
 
@@ -66,22 +66,17 @@ public class TransportDisplayMediator extends AbstractUIMediator
 
     private function context_numeratorChangeHandler(event:Event, data:Object):void
     {
-        view.setTimeSignature(getTimeSignatureString());
+        view.setTimeSignature(oscModel.transport.timeSignature);
     }
 
     private function context_denonminatorChangeHandler(event:Event, data:Object):void
     {
-        view.setTimeSignature(getTimeSignatureString());
+        view.setTimeSignature(oscModel.transport.timeSignature);
     }
 
     private function context_positionChangeHandler(event:Event, data:Object):void
     {
         view.setPosition(data.value);
-    }
-
-    private function getTimeSignatureString():String
-    {
-        return oscModel.transport.numerator + "/" + oscModel.transport.denominator;
     }
 
     private function view_tempoHandler(event:Event, tempoRaw:Number):void

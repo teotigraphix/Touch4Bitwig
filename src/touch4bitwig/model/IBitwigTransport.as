@@ -293,6 +293,20 @@ public interface IBitwigTransport extends IBitwigState
     function get isAutomationOverride():Boolean;
 
     //----------------------------------
+    // timeSignature
+    //----------------------------------
+
+    /**
+     * Updates the time signature according to the given string.
+     *
+     * <p>A textual representation of the new time signature value, formatted as
+     * 'numerator/denominator[, ticks]'</p>
+     */
+    function get timeSignature():String;
+
+    function set timeSignature(value:String):void;
+
+    //----------------------------------
     // Non Bitwig API
     //----------------------------------
 

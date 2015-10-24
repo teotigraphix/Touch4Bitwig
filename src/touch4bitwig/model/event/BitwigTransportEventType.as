@@ -27,6 +27,8 @@ public final class BitwigTransportEventType
     public static const POSITION_STRING_CHANGE:String = BitwigTransport.POSITION_STRING + "Change";
     public static const NUMERATOR_CHANGE:String = BitwigTransport.NUMERATOR + "Change";
     public static const DENOMINATOR_CHANGE:String = BitwigTransport.DENOMINATOR + "Change";
+    public static const TIME_SIGNATURE_CHANGE:String = BitwigTransport.TIME_SIGNATURE + "Change";
+
     public static const IS_AUTOMATION_OVERRIDE_CHANGE:String = BitwigTransport.IS_AUTOMATION_OVERRIDE + "Change";
 
     public static const TEMPO_RAW_CHANGE:String = BitwigTransport.TEMPO_RAW + "Change";

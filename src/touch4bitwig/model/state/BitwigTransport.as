@@ -31,8 +31,11 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
     public static const IS_PUNCH_IN:String = "isPunchIn";
     public static const IS_PUNCH_OUT:String = "isPunchOut";
     public static const POSITION_STRING:String = "positionString";
+
     public static const NUMERATOR:String = "numerator";
     public static const DENOMINATOR:String = "denominator";
+    public static const TIME_SIGNATURE:String = "timeSignature";
+
     public static const IS_AUTOMATION_OVERRIDE:String = "isAutomationOverride";
     public static const TEMPO_RAW:String = "tempoRaw";
     public static const IS_CLICK:String = "isClick";
@@ -334,6 +337,7 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
             return;
         _numerator = value;
         dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _numerator);
+        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
 
     //----------------------------------
@@ -355,6 +359,7 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
             return;
         _denominator = value;
         dispatchValue(BitwigTransportEventType.DENOMINATOR_CHANGE, _denominator);
+        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
 
     //----------------------------------
@@ -368,6 +373,26 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
     {
         return _isAutomationOverride;
     }
+
+    //----------------------------------
+    // timeSignature
+    //----------------------------------
+
+    /**
+     * @inheritDoc
+     */
+    public function get timeSignature():String
+    {
+        return _numerator + "/" + _denominator;
+    }
+
+    public function set timeSignature(value:String):void
+    {
+        service.sendString("timeSignature", value);
+        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
+    }
+
+    //------
 
     //----------------------------------
     // automationWriteModeIndex
@@ -646,11 +671,13 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
     private function numeratorHandler(osc:OSCMessage):void
     {
         propertyChanged(NUMERATOR, osc.arguments[0]);
+        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
 
     private function denominatorHandler(osc:OSCMessage):void
     {
         propertyChanged(DENOMINATOR, osc.arguments[0]);
+        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
 
     private function automationOverrideHandler(osc:OSCMessage):void
