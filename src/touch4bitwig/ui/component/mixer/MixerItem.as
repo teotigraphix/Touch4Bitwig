@@ -299,8 +299,8 @@ public class MixerItem extends LayoutGroup implements IMixerItem
 
         if (isInvalid(INVALIDATE_FLAG_EXISTS))
         {
-            //for (var i:int = 0; i < numChildren; i++)
-            //    visible = _exists;
+            for (var i:int = 0; i < numChildren; i++)
+                visible = _exists;
         }
 
         if (isInvalid(INVALIDATE_FLAG_CAN_HOLD_NOTES))
