@@ -17,10 +17,12 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.app.config {
+package touch4bitwig.app.config
+{
 
 import com.teotigraphix.app.config.ApplicationDescriptor;
 import com.teotigraphix.app.config.FrameworkContext;
+import com.teotigraphix.controller.ICommandLauncher;
 import com.teotigraphix.model.IDeviceModel;
 import com.teotigraphix.model.impl.DeviceModelImpl;
 
@@ -30,6 +32,7 @@ import org.robotlegs.starling.base.ContextEventType;
 
 import touch4bitwig.controller.ApplicationCommands;
 import touch4bitwig.controller.ApplicationController;
+import touch4bitwig.controller.CommandLauncher;
 import touch4bitwig.controller.OSCMessageController;
 import touch4bitwig.controller.UIController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
@@ -95,30 +98,35 @@ import touch4bitwig.view.screen.PanelsScreenMediator;
 /**
  * The main application model context for the IOC container.
  */
-public class ApplicationContext extends FrameworkContext {
+public class ApplicationContext extends FrameworkContext
+{
     //--------------------------------------------------------------------------
     // Public :: Variables
     //--------------------------------------------------------------------------
 
-    public function ApplicationContext() {
+    public var application:DrawersApplication;
+
+    //--------------------------------------------------------------------------
+    // Constructor
+    //--------------------------------------------------------------------------
+
+    public function ApplicationContext()
+    {
         super(null, true);
         trace("new ApplicationContext()");
     }
 
     //--------------------------------------------------------------------------
-    // Constructor
-    //--------------------------------------------------------------------------
-    public var application:DrawersApplication;
-
-    //--------------------------------------------------------------------------
     // Overridden : Methods
     //--------------------------------------------------------------------------
 
-    override protected function configureDescriptor():void {
+    override protected function configureDescriptor():void
+    {
         injector.mapSingletonOf(ApplicationDescriptor, ApplicationDescriptorImpl);
     }
 
-    override protected function configureApplication():void {
+    override protected function configureApplication():void
+    {
         injector.mapValue(DrawersApplication, application);
         injector.mapValue(MainNavigator, contextView);
 
@@ -136,12 +144,14 @@ public class ApplicationContext extends FrameworkContext {
     // Private : Methods
     //--------------------------------------------------------------------------
 
-    private function configureService():void {
+    private function configureService():void
+    {
         injector.mapSingletonOf(IOSCService, OSCService);
         injector.mapSingletonOf(IConfigurationService, ConfigurationService);
     }
 
-    private function configureModel():void {
+    private function configureModel():void
+    {
         // Framework, TODO move this
         injector.mapSingletonOf(IDeviceModel, DeviceModelImpl);
 
@@ -150,10 +160,13 @@ public class ApplicationContext extends FrameworkContext {
         injector.mapSingletonOf(IUIModel, UIModel);
     }
 
-    private function configureController():void {
+    private function configureController():void
+    {
         injector.mapSingleton(ApplicationController);
         injector.mapSingleton(UIController);
         injector.mapSingleton(OSCMessageController);
+
+        injector.mapSingletonOf(ICommandLauncher, CommandLauncher);
 
         commandMap.mapEvent(ContextEventType.STARTUP, ApplicationStartupCommand);
 
@@ -162,7 +175,8 @@ public class ApplicationContext extends FrameworkContext {
         commandMap.mapEvent(ServiceCommandType.CLOSE_OSC_CONNECTION, CloseOSCConnectionCommand);
     }
 
-    private function configureView():void {
+    private function configureView():void
+    {
         mediatorMap.mapView(MainNavigator, ApplicationMediator);
         mediatorMap.mapView(MainHeader, MainHeaderMediator);
 

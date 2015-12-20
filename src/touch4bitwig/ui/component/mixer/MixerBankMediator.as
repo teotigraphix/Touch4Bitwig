@@ -64,8 +64,8 @@ public class MixerBankMediator extends AbstractUIMediator
             var item:IMixerItem = view.getMixerItem(track.index);
 
             item.canHoldNotes = track.canHoldNotes;
-            item.exists = track.exists;
-            item.selected = track.selected;
+            //item.exists = track.exists;
+            //item.selected = track.selected;
             item.trackName = track.name;
             item.trackColor = track.color;
             item.volume = track.volume;
@@ -167,8 +167,6 @@ public class MixerBankMediator extends AbstractUIMediator
 
     private function view_selectHandler(event:Event, index:int):void
     {
-        logger.log("MixerBankMediator", "view_selectHandler({0})", index);
-
         oscModel.trackBank.select(index);
     }
 

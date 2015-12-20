@@ -20,16 +20,14 @@
 package touch4bitwig.controller.command
 {
 
+import com.teotigraphix.controller.command.AbstractCommand;
 import com.teotigraphix.service.async.IStepCommand;
 import com.teotigraphix.service.async.IStepSequence;
-import com.teotigraphix.service.async.StepSequence;
 import com.teotigraphix.ui.component.Toast;
 
 import org.as3commons.async.operation.event.OperationEvent;
-import org.robotlegs.starling.mvcs.Command;
 
 import starling.core.Starling;
-import starling.events.Event;
 
 import touch4bitwig.app.config.ApplicationDebugConfiguration;
 import touch4bitwig.app.config.ApplicationPreferences;
@@ -42,7 +40,7 @@ import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.view.ApplicationScreens;
 
-public class ApplicationStartupCommand extends Command
+public class ApplicationStartupCommand extends AbstractCommand
 {
     //--------------------------------------------------------------------------
     // Inject
@@ -53,9 +51,6 @@ public class ApplicationStartupCommand extends Command
 
     [Inject]
     public var oscMessageController:OSCMessageController;
-
-    [Inject]
-    public var event:Event;
 
     [Inject]
     public var configurationModel:IConfigurationModel;
@@ -95,7 +90,7 @@ public class ApplicationStartupCommand extends Command
 
         // 7. send connected event
 
-        var sequence:IStepSequence = new StepSequence();
+        var main:IStepSequence = sequence(new Result());
 
         var command1:IStepCommand = configurationService.loadIPsAsync();
         var command2:IStepCommand = configurationService.loadLastConfigurationFileAsync();
@@ -110,13 +105,15 @@ public class ApplicationStartupCommand extends Command
         command3.addCompleteListener(appPrefs_completeHandler);
         command3.addErrorListener(appPrefs_errorHandler);
 
-        sequence.addCommand(command1);
-        sequence.addCommand(command2);
-        sequence.addCommand(command3);
+        main.addStep(SetupDebugStep);
 
-        sequence.addCompleteListener(this_completeHandler);
+        main.addCommand(command1);
+        main.addCommand(command2);
+        main.addCommand(command3);
 
-        sequence.execute();
+        main.addCompleteListener(this_completeHandler);
+
+        main.execute();
     }
 
     //--------------------------------------------------------------------------
@@ -230,4 +227,30 @@ public class ApplicationStartupCommand extends Command
     }
 
 }
+}
+
+import com.teotigraphix.app.config.ApplicationDescriptor;
+import com.teotigraphix.service.async.StepCommand;
+
+import starling.core.Starling;
+
+final class Result
+{
+
+}
+
+final class SetupDebugStep extends StepCommand
+{
+    [Inject]
+    public var descriptor:ApplicationDescriptor;
+
+    override public function execute():*
+    {
+        if (descriptor.isDebug)
+        {
+            Starling.current.showStatsAt("bottom", "left", 2);
+        }
+        finished();
+        return super.execute();
+    }
 }

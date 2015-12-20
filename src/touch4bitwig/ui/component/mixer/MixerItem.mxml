@@ -31,7 +31,8 @@
     </f:layout>
 
     <!--  -->
-    <ui:UIBorder color="{trackColor}" minHeight="20"
+    <ui:UIBorder id="border"
+                 minHeight="20"
                  touch="child_touchHandler(event)">
         <ui:layoutData>
             <f:VerticalLayoutData percentWidth="100"/>
@@ -56,7 +57,6 @@
 
         <!--  -->
         <f:Label id="nameLabel"
-                 text="{trackName}"
                  styleName="{StyleNames.MIXER_ITEM_NAME_LABEL}">
             <f:layoutData>
                 <f:HorizontalLayoutData percentWidth="100"/>
@@ -71,7 +71,7 @@
 
     <component:VGroup percentWidth="100" padding="5" gap="5" horizontalAlign="center">
 
-        <f:Label text="{panString}"/>
+        <f:Label id="panLabel"/>
 
         <ui:UISlider id="panSlider"
                      styleName="{StyleNames.MIXER_ITEM_PAN_SLIDER}"
@@ -91,7 +91,7 @@
 
     <component:HGroup percentWidth="100" horizontalAlign="center">
 
-        <f:Label text="{volumeString}" styleName="{StyleNames.MIXER_ITEM_VOLUME_LABEL}"/>
+        <f:Label id="volumeLabel" styleName="{StyleNames.MIXER_ITEM_VOLUME_LABEL}"/>
 
     </component:HGroup>
 
@@ -119,7 +119,7 @@
         <component:HGroup backgroundSkin="{AssetMap.create9ScaleImage('background-skin', 5, 5, 22, 22)}"
                           percentWidth="100" percentHeight="100" padding="5" gap="4">
 
-            <f:ProgressBar value="{vu}"
+            <f:ProgressBar id="vuBar"
                            styleName="{StyleNames.MIXER_ITEM_VU_BAR}">
                 <f:layoutData>
                     <f:HorizontalLayoutData percentHeight="100"/>
@@ -159,14 +159,14 @@
             return MixerItem.globalStyleProvider;
         }
 
-        public static const EVENT_SELECT:String = "select";
+        public static const EVENT_SELECT:String = "MixerItem/select";
 
-        public static const EVENT_DOUBLE_TAP:String = "doubleTap";
-        public static const EVENT_VOLUME_CHANGE:String = "volumeChange";
-        public static const EVENT_PAN_CHANGE:String = "panChange";
-        public static const EVENT_RECORD_CHANGE:String = "recordChange";
-        public static const EVENT_SOLO_CHANGE:String = "soloChange";
-        public static const EVENT_MUTE_CHANGE:String = "muteChange";
+        public static const EVENT_DOUBLE_TAP:String = "MixerItem/doubleTap";
+        public static const EVENT_VOLUME_CHANGE:String = "MixerItem/volumeChange";
+        public static const EVENT_PAN_CHANGE:String = "MixerItem/panChange";
+        public static const EVENT_RECORD_CHANGE:String = "MixerItem/recordChange";
+        public static const EVENT_SOLO_CHANGE:String = "MixerItem/soloChange";
+        public static const EVENT_MUTE_CHANGE:String = "MixerItem/muteChange";
 
         private static const INVALIDATE_FLAG_EXISTS:String = "exists";
         private static const INVALIDATE_FLAG_CAN_HOLD_NOTES:String = "canHoldNotes";
@@ -217,6 +217,7 @@
         public function set exists(value:Boolean):void
         {
             _exists = value;
+            visible = value;
         }
 
         public function get canHoldNotes():Boolean
@@ -239,6 +240,7 @@
         public function set trackName(value:String):void
         {
             _trackName = value;
+            nameLabel.text = value;
         }
 
         public function get trackColor():uint
@@ -249,6 +251,7 @@
         public function set trackColor(value:uint):void
         {
             _trackColor = value;
+            border.color = value;
         }
 
         public function get volume():Number
@@ -270,6 +273,7 @@
         public function set volumeString(value:String):void
         {
             _volumeString = value;
+            volumeLabel.text = value;
         }
 
         public function get vu():Number
@@ -280,6 +284,7 @@
         public function set vu(value:Number):void
         {
             _vuValue = value;
+            vuBar.value = value;
         }
 
         public function get pan():Number
@@ -301,6 +306,7 @@
         public function set panString(value:String):void
         {
             _panString = value;
+            panLabel.text = value;
         }
 
         public function get isRecArm():Boolean
@@ -351,14 +357,6 @@
             invalidate(INVALIDATION_FLAG_SELECTED);
         }
 
-        //--------------------------------------------------------------------------
-        // Constructor
-        //--------------------------------------------------------------------------
-
-        public function MixerItemSkinBase()
-        {
-        }
-
         override protected function initialize():void
         {
             super.initialize();
@@ -389,27 +387,32 @@
 
         protected function pan_changeHandler(value:Number):void
         {
-            dispatchEventWith(EVENT_PAN_CHANGE, false, value);
+            _panValue = value;
+            dispatchEventWith(EVENT_PAN_CHANGE, true, _index);
         }
 
         protected function volume_changeHandler(value:Number):void
         {
-            dispatchEventWith(EVENT_VOLUME_CHANGE, false, value);
+            _volumeValue = value;
+            dispatchEventWith(EVENT_VOLUME_CHANGE, true, _index);
         }
 
         protected function recarm_changeHandler(selected:Boolean):void
         {
-            dispatchEventWith(EVENT_RECORD_CHANGE, false, selected);
+            _isRecArm = selected;
+            dispatchEventWith(EVENT_RECORD_CHANGE, true, _index);
         }
 
         protected function solo_changeHandler(selected:Boolean):void
         {
-            dispatchEventWith(EVENT_SOLO_CHANGE, false, selected);
+            _isSolo = selected;
+            dispatchEventWith(EVENT_SOLO_CHANGE, true, _index);
         }
 
         protected function mute_changeHandler(selected:Boolean):void
         {
-            dispatchEventWith(EVENT_MUTE_CHANGE, false, selected);
+            _isMute = selected;
+            dispatchEventWith(EVENT_MUTE_CHANGE, true, _index);
         }
 
         private function child_touchHandler(event:starling.events.TouchEvent):void

@@ -17,7 +17,8 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.controller {
+package touch4bitwig.controller
+{
 
 import com.teotigraphix.controller.impl.AbstractController;
 import com.teotigraphix.frameworks.osc.IOSCListener;
@@ -30,34 +31,41 @@ import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.osc.listeners.DeviceListener;
 import touch4bitwig.service.support.osc.listeners.PanelListener;
 
-public class OSCMessageController extends AbstractController implements IOSCListener {
+public class OSCMessageController extends AbstractController implements IOSCListener
+{
     //--------------------------------------------------------------------------
     // Inject
     //--------------------------------------------------------------------------
 
-    public function OSCMessageController() {
-    }
     [Inject]
     public var oscModel:IOSCModel;
+
     [Inject]
     public var oscService:IOSCService;
 
-    //--------------------------------------------------------------------------
-    // Private :: Variables
-    //--------------------------------------------------------------------------
     [Inject]
     public var configurationModel:IConfigurationModel;
 
     //--------------------------------------------------------------------------
+    // Private :: Variables
+    //--------------------------------------------------------------------------
+
+    private var _listeners:Vector.<IBitwigStateListener> = new <IBitwigStateListener>[];
+
+    //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
-    private var _listeners:Vector.<IBitwigStateListener> = new <IBitwigStateListener>[];
+
+    public function OSCMessageController()
+    {
+    }
 
     //--------------------------------------------------------------------------
     // Overridden :: Methods
     //--------------------------------------------------------------------------
 
-    override protected function onRegister():void {
+    override protected function onRegister():void
+    {
         super.onRegister();
 
         // TODO move these into higher abstraction
@@ -84,7 +92,8 @@ public class OSCMessageController extends AbstractController implements IOSCList
      *
      * @param listener The state listener to be added.
      */
-    public function addStateListener(listener:IBitwigStateListener):void {
+    public function addStateListener(listener:IBitwigStateListener):void
+    {
         _listeners.push(listener);
         listener.configure();
     }
@@ -94,7 +103,8 @@ public class OSCMessageController extends AbstractController implements IOSCList
      *
      * @param listener The state listener to be removed.
      */
-    public function removeStateListener(listener:IBitwigStateListener):void {
+    public function removeStateListener(listener:IBitwigStateListener):void
+    {
         _listeners.splice(_listeners.indexOf(listener), 1);
         listener.dispose();
     }
@@ -108,7 +118,8 @@ public class OSCMessageController extends AbstractController implements IOSCList
      * @param devicePort Device port.
      * @return Returns if the OSC connection was able to bind to the IP and port of Bitwig and the device.
      */
-    public function reconnectAndStartup(dawIP:String, dawPort:int, deviceIP:String, devicePort:int):Boolean {
+    public function reconnectAndStartup(dawIP:String, dawPort:int, deviceIP:String, devicePort:int):Boolean
+    {
         var bound:Boolean = oscService.connect(deviceIP, devicePort, dawIP, dawPort);
         if (!bound)
             return false;
@@ -126,20 +137,26 @@ public class OSCMessageController extends AbstractController implements IOSCList
     /**
      * @inheritDoc
      */
-    public function acceptOSCMessage(message:OSCMessage):void {
+    public function acceptOSCMessage(message:OSCMessage):void
+    {
         //trace(osc.address);
 
-        if (message.address.indexOf("/vu") == -1) {
-            if (message.arguments != null && message.arguments.length > 0) {
+        if (message.address.indexOf("/vu") == -1)
+        {
+            if (message.arguments != null && message.arguments.length > 0)
+            {
                 trace(message.address + ",  " + message.argumentsToString());
             }
-            else {
+            else
+            {
                 trace(message.address);
             }
         }
 
-        for each (var listener:IBitwigStateListener in _listeners) {
-            if (listener.isHandled(message)) {
+        for each (var listener:IBitwigStateListener in _listeners)
+        {
+            if (listener.isHandled(message))
+            {
                 listener.handle(message);
                 break;
             }
