@@ -26,7 +26,8 @@
                               xmlns:config="com.teotigraphix.app.config.*"
                               appID="touch4bitwig"
                               name="Touch4Bitwig"
-                              extension="t4b">
+                              extension="t4b"
+                              isDebug="true">
 
     <config:version>
         <config:Version vid="0.0.1"/>

@@ -19,11 +19,13 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<component:HGroup xmlns:f="library://ns.feathersui.com/mxml"
-                  xmlns:fx="http://ns.adobe.com/mxml/2009"
-                  xmlns:component="com.teotigraphix.ui.component.*"
-                  xmlns:mixer="touch4bitwig.ui.component.mixer.*"
-                  gap="8" padding="10">
+<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:mixer="touch4bitwig.ui.component.mixer.*">
+
+    <f:layout>
+        <f:HorizontalLayout gap="{AssetMap.size(8)}" padding="{AssetMap.size(6)}"/>
+    </f:layout>
 
     <mixer:MixerItem index="1">
         <mixer:layoutData>
@@ -73,4 +75,19 @@
         </mixer:layoutData>
     </mixer:MixerItem>
 
-</component:HGroup>
+    <fx:Script><![CDATA[
+        import com.teotigraphix.ui.theme.AssetMap;
+
+        /**
+         * Returns the MixerItem at the specified index - 1.
+         * All track indexes start at 1 not 0.
+         * @param index The TrackBank index 1-8.
+         */
+        public function getMixerItem(index:int):IMixerItem
+        {
+            return IMixerItem(getChildAt(index - 1));
+        }
+        ]]></fx:Script>
+
+
+</f:LayoutGroup>

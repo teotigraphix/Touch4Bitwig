@@ -188,7 +188,7 @@
             var touch:Touch = event.getTouch(this, TouchPhase.BEGAN);
             if (touch != null)
             {
-                dispatchEventWith(MixerItem.EVENT_SELECT, true);
+                dispatchEventWith(MixerItem.EVENT_TOUCH, true);
             }
         }
         ]]></fx:Script>

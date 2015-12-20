@@ -29,6 +29,7 @@ import touch4bitwig.ui.AbstractUIMediator;
 
 public class MixerBankMediator extends AbstractUIMediator
 {
+
     [Inject]
     public var juggler:Juggler;
 
@@ -167,9 +168,7 @@ public class MixerBankMediator extends AbstractUIMediator
     private function view_selectHandler(event:Event, index:int):void
     {
         logger.log("MixerBankMediator", "view_selectHandler({0})", index);
-        // XXX BUG
-        if (index == 0)
-            return;
+
         oscModel.trackBank.getTrack(index).selected = true;
     }
 
