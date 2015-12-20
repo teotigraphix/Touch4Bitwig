@@ -129,7 +129,7 @@
     <fx:Script><![CDATA[
         import feathers.data.ListCollection;
 
-        import touch4bitwig.model.support.OSCModel;
+        import touch4bitwig.model.impl.OSCModelImpl;
 
         public static const EVENT_DEVICE_BANK_SELECTOR_CHANGE:String = "deviceBankSelectorChange";
 
@@ -137,10 +137,10 @@
         {
             deviceBankSelector.dataProvider = new ListCollection(
                     [
-                        {label: "Param", mode: OSCModel.DEVICE_MODE_PARAM},
-                        {label: "Common", mode: OSCModel.DEVICE_MODE_COMMON},
-                        {label: "Envelope", mode: OSCModel.DEVICE_MODE_ENVELOPE},
-                        {label: "Macro", mode: OSCModel.DEVICE_MODE_MACRO}
+                        {label: "Param", mode: OSCModelImpl.DEVICE_MODE_PARAM},
+                        {label: "Common", mode: OSCModelImpl.DEVICE_MODE_COMMON},
+                        {label: "Envelope", mode: OSCModelImpl.DEVICE_MODE_ENVELOPE},
+                        {label: "Macro", mode: OSCModelImpl.DEVICE_MODE_MACRO}
                     ]);
         }
 

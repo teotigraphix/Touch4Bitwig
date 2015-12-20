@@ -28,7 +28,6 @@ import starling.core.Starling;
 import starling.events.Event;
 
 import touch4bitwig.event.ApplicationEventType;
-import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.view.drawer.TopDrawer;
 
@@ -92,7 +91,6 @@ public class ApplicationMediator extends AbstractMediator
         // Comes from the ApplicationStartupCommand when all loading is finished
         // and the first screen is ready to be shown
         addContextListener(ApplicationEventType.APPLICATION_COMPLETE, context_applicationCompleteHandler);
-        addContextListener(UIModelEventType.SCREEN_ID, context_screenIDHandler);
 
         logger.log(TAG, "onRegister()");
 
@@ -116,17 +114,11 @@ public class ApplicationMediator extends AbstractMediator
         logger.log(TAG, "onRemove()");
     }
 
-    private function context_screenIDHandler(event:starling.events.Event, id:String):void
-    {
-        navigator.pushScreen(id);
-    }
-
     private function context_applicationCompleteHandler(event:starling.events.Event):void
     {
         logger.log(TAG, "context_applicationCompleteHandler()");
         logger.log(TAG, "Show initial screen");
 
-        //uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
     }
 
     private function nativeWindow_closingHandler(event:flash.events.Event):void

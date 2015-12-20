@@ -32,7 +32,7 @@
         // Mix;     ClipLauncher, Meters, DeviceChain, Sends, IO, EffectTracks, ActivateTracks, Crossfade
         // Edit;    N/A
 -->
-<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+<f:Screen xmlns:f="library://ns.feathersui.com/mxml"
                xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:frame="touch4bitwig.ui.component.panel.*"
                xmlns:main="touch4bitwig.ui.component.main.*">
@@ -71,4 +71,4 @@
         </f:layoutData>
     </f:LayoutGroup>
 
-</f:LayoutGroup>
+</f:Screen>

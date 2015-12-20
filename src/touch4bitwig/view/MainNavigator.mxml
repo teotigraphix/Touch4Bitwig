@@ -20,49 +20,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 -->
 <ui:BootstrapNavigator xmlns:fx="http://ns.adobe.com/mxml/2009"
-                       xmlns:f="library://ns.feathersui.com/mxml"
                        xmlns:ui="com.teotigraphix.app.ui.*">
 
-    <f:StackScreenNavigatorItem id="ConfigurationScreen"
-                                screen="{configurationScreen}">
-    </f:StackScreenNavigatorItem>
-
-    <f:StackScreenNavigatorItem id="MixerScreen"
-                                screen="{mixerScreen}">
-    </f:StackScreenNavigatorItem>
-
-    <f:StackScreenNavigatorItem id="TransportScreen"
-                                screen="{transportScreen}">
-    </f:StackScreenNavigatorItem>
-
-    <f:StackScreenNavigatorItem id="PanelsScreen"
-                                screen="{panelsScreen}">
-    </f:StackScreenNavigatorItem>
-
-    <f:StackScreenNavigatorItem id="ClipsScreen"
-                                screen="{clipsScreen}">
-    </f:StackScreenNavigatorItem>
-
-    <f:StackScreenNavigatorItem id="DeviceScreen"
-                                screen="{deviceScreen}">
-    </f:StackScreenNavigatorItem>
 
     <fx:Script><![CDATA[
-        import touch4bitwig.view.screen.ClipsScreen;
-        import touch4bitwig.view.screen.ConfigurationScreen;
-        import touch4bitwig.view.screen.DeviceScreen;
-        import touch4bitwig.view.screen.MixerScreen;
-        import touch4bitwig.view.screen.PanelsScreen;
-        import touch4bitwig.view.screen.TransportScreen;
-
         private const a:ApplicationScreens;
-
-        public static const configurationScreen:Class = ConfigurationScreen;
-        public static const mixerScreen:Class = MixerScreen;
-        public static const transportScreen:Class = TransportScreen;
-        public static const panelsScreen:Class = PanelsScreen;
-        public static const clipsScreen:Class = ClipsScreen;
-        public static const deviceScreen:Class = DeviceScreen;
         ]]></fx:Script>
 
 </ui:BootstrapNavigator>

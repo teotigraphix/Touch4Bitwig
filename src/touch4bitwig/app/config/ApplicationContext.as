@@ -25,27 +25,30 @@ import com.teotigraphix.app.config.FrameworkContext;
 import com.teotigraphix.controller.ICommandLauncher;
 import com.teotigraphix.model.IDeviceModel;
 import com.teotigraphix.model.impl.DeviceModelImpl;
+import com.teotigraphix.ui.screen.IScreenLauncher;
+import com.teotigraphix.ui.screen.IScreenNavigator;
 
 import feathers.core.DrawersApplication;
 
 import org.robotlegs.starling.base.ContextEventType;
 
-import touch4bitwig.controller.ApplicationCommands;
 import touch4bitwig.controller.ApplicationController;
 import touch4bitwig.controller.CommandLauncher;
 import touch4bitwig.controller.OSCMessageController;
+import touch4bitwig.controller.ScreenLauncher;
 import touch4bitwig.controller.UIController;
 import touch4bitwig.controller.command.ApplicationStartupCommand;
-import touch4bitwig.controller.command.screen.ShowConfigureScreenCommand;
 import touch4bitwig.controller.command.service.CloseOSCConnectionCommand;
 import touch4bitwig.controller.command.service.ConnectAndStartOSCService;
 import touch4bitwig.event.ServiceCommandType;
+import touch4bitwig.model.IApplicationModel;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
-import touch4bitwig.model.support.ConfigurationModel;
-import touch4bitwig.model.support.OSCModel;
-import touch4bitwig.model.support.UIModel;
+import touch4bitwig.model.impl.ApplicationModelImpl;
+import touch4bitwig.model.impl.ConfigurationModelImpl;
+import touch4bitwig.model.impl.OSCModelImpl;
+import touch4bitwig.model.impl.UIModelImpl;
 import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.service.support.ConfigurationService;
@@ -84,16 +87,6 @@ import touch4bitwig.view.ApplicationMediator;
 import touch4bitwig.view.MainNavigator;
 import touch4bitwig.view.drawer.TopDrawer;
 import touch4bitwig.view.drawer.TopDrawerMediator;
-import touch4bitwig.view.screen.ClipsScreen;
-import touch4bitwig.view.screen.ClipsScreenMediator;
-import touch4bitwig.view.screen.ConfigurationScreen;
-import touch4bitwig.view.screen.ConfigurationScreenMediator;
-import touch4bitwig.view.screen.DeviceScreen;
-import touch4bitwig.view.screen.DeviceScreenMediator;
-import touch4bitwig.view.screen.MixerScreen;
-import touch4bitwig.view.screen.MixerScreenMediator;
-import touch4bitwig.view.screen.PanelsScreen;
-import touch4bitwig.view.screen.PanelsScreenMediator;
 
 /**
  * The main application model context for the IOC container.
@@ -152,12 +145,16 @@ public class ApplicationContext extends FrameworkContext
 
     private function configureModel():void
     {
+        injector.mapSingletonOf(IApplicationModel, ApplicationModelImpl);
+
         // Framework, TODO move this
         injector.mapSingletonOf(IDeviceModel, DeviceModelImpl);
 
-        injector.mapSingletonOf(IConfigurationModel, ConfigurationModel);
-        injector.mapSingletonOf(IOSCModel, OSCModel);
-        injector.mapSingletonOf(IUIModel, UIModel);
+        injector.mapSingletonOf(IConfigurationModel, ConfigurationModelImpl);
+        injector.mapSingletonOf(IOSCModel, OSCModelImpl);
+        injector.mapSingletonOf(IUIModel, UIModelImpl);
+
+        injector.mapValue(IScreenNavigator, contextView);
     }
 
     private function configureController():void
@@ -167,10 +164,10 @@ public class ApplicationContext extends FrameworkContext
         injector.mapSingleton(OSCMessageController);
 
         injector.mapSingletonOf(ICommandLauncher, CommandLauncher);
+        injector.mapSingletonOf(IScreenLauncher, ScreenLauncher);
 
         commandMap.mapEvent(ContextEventType.STARTUP, ApplicationStartupCommand);
-
-        commandMap.mapEvent(ApplicationCommands.SHOW_CONFIGURATION_SCREEN, ShowConfigureScreenCommand);
+        ;
         commandMap.mapEvent(ServiceCommandType.CONNECT_AND_START, ConnectAndStartOSCService);
         commandMap.mapEvent(ServiceCommandType.CLOSE_OSC_CONNECTION, CloseOSCConnectionCommand);
     }
@@ -186,11 +183,10 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(TopDrawer, TopDrawerMediator);
 
         // ConfigurationScreen
-        mediatorMap.mapView(ConfigurationScreen, ConfigurationScreenMediator);
         mediatorMap.mapView(ConfigurationForm, ConfigurationFormMediator);
 
         // MixerScreen
-        mediatorMap.mapView(MixerScreen, MixerScreenMediator);
+
         mediatorMap.mapView(MixerBank, MixerBankMediator);
 
         // TransportScreen
@@ -199,17 +195,14 @@ public class ApplicationContext extends FrameworkContext
         mediatorMap.mapView(TransportDisplay, TransportDisplayMediator);
 
         // PanelsScreen
-        mediatorMap.mapView(PanelsScreen, PanelsScreenMediator);
         mediatorMap.mapView(PanelLayoutGroup, PanelLayoutGroupMediator);
         mediatorMap.mapView(PanelSubToggleGroup, PanelSubToggleGroupMediator);
         mediatorMap.mapView(PanelToggleGroup, PanelToggleGroupMediator);
 
         // ClipsScreen
-        mediatorMap.mapView(ClipsScreen, ClipsScreenMediator);
         mediatorMap.mapView(ClipLauncher, ClipLauncherMediator);
 
         // DeviceScreen
-        mediatorMap.mapView(DeviceScreen, DeviceScreenMediator);
         mediatorMap.mapView(DeviceBankPager, DeviceBankPagerMediator);
         mediatorMap.mapView(DeviceNavigationControl, DeviceNavigationControlMediator);
         mediatorMap.mapView(DeviceSelectBar, DeviceSelectBarMediator);

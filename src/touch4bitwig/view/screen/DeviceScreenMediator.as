@@ -68,7 +68,7 @@ public class DeviceScreenMediator extends AbstractMediator
 
     private function ssdsd(event:Event, mode:String):void
     {
-        oscModel.deviceMode = mode;
+        model.osc.deviceMode = mode;
     }
 
     private function context_modeChangeHandler(event:Event, mode:String):void

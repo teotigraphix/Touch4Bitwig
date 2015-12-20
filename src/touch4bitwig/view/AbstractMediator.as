@@ -24,7 +24,7 @@ import com.teotigraphix.service.ILogger;
 
 import org.robotlegs.starling.mvcs.Mediator;
 
-import touch4bitwig.model.IOSCModel;
+import touch4bitwig.model.IApplicationModel;
 import touch4bitwig.service.IOSCService;
 
 public class AbstractMediator extends Mediator
@@ -33,10 +33,10 @@ public class AbstractMediator extends Mediator
     public var logger:ILogger;
 
     [Inject]
-    public var oscService:IOSCService;
+    public var oscService:IOSCService; // TODO REMOVE
 
     [Inject]
-    public var oscModel:IOSCModel;
+    public var model:IApplicationModel;
 
     public function AbstractMediator()
     {

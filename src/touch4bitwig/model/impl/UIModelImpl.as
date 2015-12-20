@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.model.support
+package touch4bitwig.model.impl
 {
 
 import com.teotigraphix.model.AbstractModel;
@@ -28,14 +28,14 @@ import feathers.data.ListCollection;
 
 import starling.events.Event;
 
-import touch4bitwig.model.event.BitwigPanelEventType;
-import touch4bitwig.model.event.UIModelEventType;
+import touch4bitwig.model.IApplicationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.model.event.BitwigPanelEventType;
 import touch4bitwig.service.IOSCService;
 import touch4bitwig.view.ApplicationScreens;
 
-public class UIModel extends AbstractModel implements IUIModel
+public class UIModelImpl extends AbstractModel implements IUIModel
 {
     [Inject]
     public var oscModel:IOSCModel;
@@ -43,8 +43,9 @@ public class UIModel extends AbstractModel implements IUIModel
     [Inject]
     public var oscService:IOSCService;
 
-    private var _screenID:String;
-   // private var _pendingScreenID:String;
+    [Inject]
+    public var model:IApplicationModel;
+
     private var _screenDataProvider:ListCollection;
 
     private var _transportTempoWholeDataProvider:ListCollection;
@@ -54,32 +55,6 @@ public class UIModel extends AbstractModel implements IUIModel
     private var _panelsArrangeDataProvider:ListCollection;
     private var _panelsMixDataProvider:ListCollection;
     private var _panelsEditDataProvider:ListCollection;
-
-    public function get screenID():String
-    {
-        return _screenID;
-    }
-
-    public function set screenID(value:String):void
-    {
-        if (_screenID == value)
-            return;
-        _screenID = value;
-        dispatchWith(UIModelEventType.SCREEN_ID, false, _screenID);
-    }
-
-    //public function get pendingScreenID():String
-    //{
-    //    return _pendingScreenID;
-    //}
-    //
-    //public function set pendingScreenID(value:String):void
-    //{
-    //    if (_pendingScreenID == value)
-    //        return;
-    //    _pendingScreenID = value;
-    //    dispatchWith(UIModelEventType.PENDING_SCREEN_ID, false, _pendingScreenID);
-    //}
 
     public function get screenDataProvider():ListCollection
     {
@@ -128,13 +103,13 @@ public class UIModel extends AbstractModel implements IUIModel
     {
         for each (var object:Object in screenDataProvider.data)
         {
-            if (object.screen == _screenID)
+            if (object.id == model.screens.applicationScreenID)
                 return object.index;
         }
         return -1;
     }
 
-    public function UIModel()
+    public function UIModelImpl()
     {
     }
 
@@ -142,13 +117,38 @@ public class UIModel extends AbstractModel implements IUIModel
     {
         super.onRegister();
 
-        _screenDataProvider = new ListCollection([
-            {index: 0, label: "Mixer", screen: ApplicationScreens.SCREEN_MIXER},
-            {index: 1, label: "Clips", screen: ApplicationScreens.SCREEN_CLIPS},
-            {index: 2, label: "Transport", screen: ApplicationScreens.SCREEN_TRANSPORT},
-            {index: 3, label: "Device", screen: ApplicationScreens.SCREEN_DEVICE},
-            {index: 4, label: "Panels", screen: ApplicationScreens.SCREEN_PANEL}
-        ]);
+        _screenDataProvider = new ListCollection();
+
+        _screenDataProvider.addItem({
+            index: 0, id: ApplicationScreens.SCREEN_MIXER, label: "Mixer", action: function ():void
+            {
+                model.screens.goToMixer();
+            }
+        });
+        _screenDataProvider.addItem({
+            index: 1, id: ApplicationScreens.SCREEN_CLIPS, label: "Clips", action: function ():void
+            {
+                model.screens.goToClips();
+            }
+        });
+        _screenDataProvider.addItem({
+            index: 2, id: ApplicationScreens.SCREEN_TRANSPORT, label: "Transport", action: function ():void
+            {
+                model.screens.goToTransport();
+            }
+        });
+        _screenDataProvider.addItem({
+            index: 3, id: ApplicationScreens.SCREEN_DEVICE, label: "Device", action: function ():void
+            {
+                model.screens.goToDevice();
+            }
+        });
+        _screenDataProvider.addItem({
+            index: 4, id: ApplicationScreens.SCREEN_PANEL, label: "Panels", action: function ():void
+            {
+                model.screens.goToPanels();
+            }
+        });
 
         setupPanels();
 
@@ -173,11 +173,6 @@ public class UIModel extends AbstractModel implements IUIModel
             value++;
         }
 
-    }
-
-    public function back():void
-    {
-        dispatchWith(UIModelEventType.BACK);
     }
 
     public function refresh():void

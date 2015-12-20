@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.model.support
+package touch4bitwig.model.impl
 {
 
 import com.teotigraphix.model.AbstractModel;
@@ -30,7 +30,7 @@ import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.event.ConfigurationModelEventType;
 import touch4bitwig.service.IConfigurationService;
 
-public class ConfigurationModel extends AbstractModel implements IConfigurationModel
+public class ConfigurationModelImpl extends AbstractModel implements IConfigurationModel
 {
     //--------------------------------------------------------------------------
     // Inject
@@ -132,7 +132,7 @@ public class ConfigurationModel extends AbstractModel implements IConfigurationM
     // Constructor
     //--------------------------------------------------------------------------
 
-    public function ConfigurationModel()
+    public function ConfigurationModelImpl()
     {
     }
 

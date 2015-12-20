@@ -33,12 +33,12 @@ import touch4bitwig.app.config.ApplicationDebugConfiguration;
 import touch4bitwig.app.config.ApplicationPreferences;
 import touch4bitwig.controller.*;
 import touch4bitwig.event.ApplicationEventType;
+import touch4bitwig.model.IApplicationModel;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IOSCModel;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
-import touch4bitwig.view.ApplicationScreens;
 
 public class ApplicationStartupCommand extends AbstractCommand
 {
@@ -66,6 +66,9 @@ public class ApplicationStartupCommand extends AbstractCommand
 
     [Inject]
     public var uiModel:IUIModel;
+
+    [Inject]
+    public var model:IApplicationModel;
 
     //--------------------------------------------------------------------------
     // Overridden :: Methods
@@ -177,7 +180,7 @@ public class ApplicationStartupCommand extends AbstractCommand
         }
         else
         {
-            uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
+            model.screens.goToMixer();
         }
 
         Starling.juggler.delayCall(function ():void

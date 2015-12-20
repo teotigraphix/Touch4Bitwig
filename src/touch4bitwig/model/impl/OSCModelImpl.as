@@ -17,7 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.model.support
+package touch4bitwig.model.impl
 {
 
 import com.teotigraphix.model.AbstractModel;
@@ -39,7 +39,7 @@ import touch4bitwig.model.state.BitwigTransport;
 import touch4bitwig.service.IConfigurationService;
 import touch4bitwig.service.IOSCService;
 
-public class OSCModel extends AbstractModel implements IOSCModel
+public class OSCModelImpl extends AbstractModel implements IOSCModel
 {
     //--------------------------------------------------------------------------
     // Constants
@@ -226,7 +226,7 @@ public class OSCModel extends AbstractModel implements IOSCModel
     // Constructor
     //--------------------------------------------------------------------------
 
-    public function OSCModel()
+    public function OSCModelImpl()
     {
     }
 

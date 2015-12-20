@@ -58,9 +58,9 @@ public class MainHeaderMediator extends AbstractUIMediator
         view.setActiveEngine(data.value);
     }
 
-    private function view_screenChange(event:Event, id:String):void
+    private function view_screenChange(event:Event, item:Object):void
     {
-        uiModel.screenID = id;
+        item.action();
     }
 
     private function view_activeEngineChange(event:Event):void

@@ -72,7 +72,7 @@
                   direction="horizontal" distributeTabSizes="true"
                   change="tabBar_changeHandler()">
             <f:layoutData>
-                <f:HorizontalLayoutData percentHeight="100" />
+                <f:HorizontalLayoutData percentHeight="100"/>
             </f:layoutData>
         </f:TabBar>
 
@@ -125,7 +125,7 @@
         private function tabBar_changeHandler():void
         {
             if (!noChange)
-                dispatchEventWith(MainHeader.EVENT_SCREEN_CHANGE, false, tabBar.selectedItem.screen);
+                dispatchEventWith(MainHeader.EVENT_SCREEN_CHANGE, false, tabBar.selectedItem);
         }
         ]]></fx:Script>
 </f:LayoutGroup>

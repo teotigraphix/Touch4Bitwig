@@ -25,11 +25,11 @@ import com.teotigraphix.ui.component.Toast;
 
 import starling.events.Event;
 
+import touch4bitwig.model.IApplicationModel;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
 import touch4bitwig.model.event.BitwigApplicationEventType;
 import touch4bitwig.model.event.ConfigurationModelEventType;
-import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.view.ApplicationScreens;
 import touch4bitwig.view.MainNavigator;
 
@@ -51,6 +51,9 @@ public class UIController extends AbstractController
     [Inject]
     public var configurationModel:IConfigurationModel;
 
+    [Inject]
+    public var model:IApplicationModel;
+
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -67,7 +70,6 @@ public class UIController extends AbstractController
     {
         super.onRegister();
 
-        addContextListener(UIModelEventType.BACK, context_backHandler);
         addContextListener(ConfigurationModelEventType.START_COMPLETE, context_startCompleteHandler);
         addContextListener(ConfigurationModelEventType.IS_IN_CONFIG_CHANGE, context_isInConfigHandler);
         addContextListener(BitwigApplicationEventType.FLUSH_COMPLETE, context_flushCompleteHandler);
@@ -84,20 +86,12 @@ public class UIController extends AbstractController
     {
         if (isConfig)
         {
-
             // Config button TopDrawer trigger
-            dispatchWith(ApplicationCommands.SHOW_CONFIGURATION_SCREEN);
+            model.screens.goToConfiguration();
         }
         else
         {
-            if (uiModel.screenID == null)
-            {
-                uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
-            }
-            else
-            {
-                navigator.popScreen();
-            }
+            model.screens.goToMixer();
         }
     }
 
@@ -108,7 +102,7 @@ public class UIController extends AbstractController
 
     private function context_startCompleteHandler(event:Event):void
     {
-        //configurationModel.isInConfig = false;
+        configurationModel.isInConfig = false;
     }
 
     private function context_flushCompleteHandler(event:Event):void
@@ -119,13 +113,6 @@ public class UIController extends AbstractController
         {
             configurationModel.isInConfig = false;
         }
-
     }
-
-    private function context_backHandler(event:Event):void
-    {
-        navigator.popScreen();
-    }
-
 }
 }

@@ -25,9 +25,6 @@ package touch4bitwig.controller
  */
 public final class ApplicationCommands
 {
-    /**
-     * Shows the configuration screen.
-     */
-    public static const SHOW_CONFIGURATION_SCREEN:String = "showConfigurationScreen";
+
 }
 }

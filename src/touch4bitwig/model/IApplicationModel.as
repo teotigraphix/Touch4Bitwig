@@ -16,35 +16,22 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
-
 package touch4bitwig.model
 {
 
-import feathers.data.ListCollection;
+import com.teotigraphix.app.config.ApplicationDescriptor;
 
-public interface IUIModel
+import touch4bitwig.controller.CommandLauncher;
+import touch4bitwig.controller.ScreenLauncher;
+
+public interface IApplicationModel
 {
-    function get screenIndex():int;
+    function get descriptor():ApplicationDescriptor;
 
-    function get screenDataProvider():ListCollection;
+    function get commands():CommandLauncher;
 
-    // Panels
-    function get panelsLayoutDataProvider():ListCollection;
+    function get screens():ScreenLauncher;
 
-    function get panelsArrangeDataProvider():ListCollection;
-
-    function get panelsMixDataProvider():ListCollection;
-
-    function get panelsEditDataProvider():ListCollection;
-
-    // Transport
-    function get transportTempoWholeDataProvider():ListCollection;
-
-    function get transportTempoFractionDataProvider():ListCollection;
-
-    /**
-     * Refreshes the dataProviders when a refresh osc message arrives.
-     */
-    function refresh():void;
+    function get osc():IOSCModel;
 }
 }
