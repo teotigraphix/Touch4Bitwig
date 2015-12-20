@@ -43,7 +43,7 @@ public final class BitwigTrackEventType
     public static const MUTE_CHANGE:String = NAME + BitwigTrack.MUTE + "Change";
     public static const VU_CHANGE:String = NAME + BitwigTrack.VU + "Change";
 
-    public static const CLIP_SELECTED_CHANGE:String = BitwigTrack.EXISTS + "Change";
+    public static const CLIP_SELECTED_CHANGE:String = BitwigTrack.SELECTED + "Change";
 
 }
 }

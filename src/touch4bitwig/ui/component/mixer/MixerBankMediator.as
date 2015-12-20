@@ -169,7 +169,7 @@ public class MixerBankMediator extends AbstractUIMediator
     {
         logger.log("MixerBankMediator", "view_selectHandler({0})", index);
 
-        oscModel.trackBank.getTrack(index).selected = true;
+        oscModel.trackBank.select(index);
     }
 
     private function view_doubleTapHandler(event:Event, index:int):void

@@ -191,7 +191,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         if (!setProperty(SELECTED, value))
             return;
         _selected = value;
-        service.sendBoolean("/track/" + index + "/selected", value);
+        service.sendBoolean("/track/" + index + "/select", value);
     }
 
     //----------------------------------
