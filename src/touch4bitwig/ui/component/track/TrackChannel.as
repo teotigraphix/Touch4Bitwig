@@ -70,8 +70,8 @@ public class TrackChannel extends LayoutGroup
     override protected function initialize():void
     {
         var l:VerticalLayout = new VerticalLayout();
-        l.padding = AssetMap.getSize(8);
-        l.gap = AssetMap.getSize(4);
+        l.padding = AssetMap.size(8);
+        l.gap = AssetMap.size(4);
         layout = l;
         super.initialize();
 

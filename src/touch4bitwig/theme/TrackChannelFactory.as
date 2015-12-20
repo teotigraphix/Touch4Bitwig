@@ -84,8 +84,8 @@ public class TrackChannelFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.label = "O";
         button.isQuickHitAreaEnabled = true;
-        button.maxHeight = AssetMap.getSize(40);
-        button.minTouchHeight = AssetMap.getSize(40);
+        button.maxHeight = AssetMap.size(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("recarm-button-selected-up-skin", 5, 5, 50, 50);
@@ -97,8 +97,8 @@ public class TrackChannelFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.label = "S";
         button.isQuickHitAreaEnabled = true;
-        button.maxHeight = AssetMap.getSize(40);
-        button.minTouchHeight = AssetMap.getSize(40);
+        button.maxHeight = AssetMap.size(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("solo-button-selected-up-skin", 5, 5, 50, 50);
@@ -110,8 +110,8 @@ public class TrackChannelFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.label = "M";
         button.isQuickHitAreaEnabled = true;
-        button.maxHeight = AssetMap.getSize(40);
-        button.minTouchHeight = AssetMap.getSize(40);
+        button.maxHeight = AssetMap.size(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.defaultSelectedSkin = AssetMap.create9ScaleImage("mute-button-selected-up-skin", 5, 5, 50, 50);
@@ -128,7 +128,7 @@ public class TrackChannelFactory extends AbstractThemeFactory
         bar.fillSkin = AssetMap.createImage("vu-slider-min-skin");
         bar.fillSkin.height = 0;
         bar.direction = ProgressBar.DIRECTION_VERTICAL;
-        bar.width = AssetMap.getSize(5);
+        bar.width = AssetMap.size(5);
         bar.minimum = 0;
         bar.maximum = 127;
         bar.value = 0;

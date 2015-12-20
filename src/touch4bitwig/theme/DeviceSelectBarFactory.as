@@ -71,15 +71,15 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
     private function setDeviceSelectBarStyles(bar:DeviceSelectBar):void
     {
         var l:VerticalLayout = bar.layout as VerticalLayout;
-        l.gap = AssetMap.getSize(4);
-        l.padding = AssetMap.getSize(6);
+        l.gap = AssetMap.size(4);
+        l.padding = AssetMap.size(6);
     }
 
     private function setRightButtonStyles(button:Button):void
     {
         theme.button.setButtonStyles(button);
         button.layoutData = new HorizontalLayoutData(NaN, 100);
-        button.minWidth = AssetMap.getSize(75);
+        button.minWidth = AssetMap.size(75);
         button.defaultIcon = AssetMap.createImage("device-select-bar-right-button-icon-skin");
     }
 
@@ -87,7 +87,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
     {
         theme.button.setButtonStyles(button);
         button.layoutData = new HorizontalLayoutData(NaN, 100);
-        button.minWidth = AssetMap.getSize(75);
+        button.minWidth = AssetMap.size(75);
         button.defaultIcon = AssetMap.createImage("device-select-bar-left-button-icon-skin");
     }
 
@@ -104,7 +104,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
 
-        button.minTouchHeight = AssetMap.getSize(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.disabledSkin = AssetMap.create9ScaleImage("button-disabled-skin", 5, 5, 50, 50);
@@ -118,7 +118,7 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
-        button.minTouchHeight = AssetMap.getSize(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.disabledSkin = AssetMap.create9ScaleImage("button-disabled-skin", 5, 5, 50, 50);
@@ -132,8 +132,8 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
-        //button.maxHeight = AssetMap.getSize(40);
-        button.minTouchHeight = AssetMap.getSize(40);
+        //button.maxHeight = AssetMap.size(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.disabledSkin = AssetMap.create9ScaleImage("button-disabled-skin", 5, 5, 50, 50);
@@ -147,8 +147,8 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
-        //button.maxHeight = AssetMap.getSize(40);
-        button.minTouchHeight = AssetMap.getSize(40);
+        //button.maxHeight = AssetMap.size(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.disabledSkin = AssetMap.create9ScaleImage("button-disabled-skin", 5, 5, 50, 50);
@@ -162,8 +162,8 @@ public class DeviceSelectBarFactory extends AbstractThemeFactory
         theme.button.setButtonStyles(button);
         button.isQuickHitAreaEnabled = true;
         button.hasLabelTextRenderer = false;
-        //button.maxHeight = AssetMap.getSize(40);
-        button.minTouchHeight = AssetMap.getSize(40);
+        //button.maxHeight = AssetMap.size(40);
+        button.minTouchHeight = AssetMap.size(40);
         button.stateToSkinFunction = null;
         button.defaultSkin = AssetMap.create9ScaleImage("button-up-skin", 5, 5, 50, 50);
         button.disabledSkin = AssetMap.create9ScaleImage("button-disabled-skin", 5, 5, 50, 50);

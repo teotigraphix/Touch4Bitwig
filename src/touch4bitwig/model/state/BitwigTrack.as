@@ -25,8 +25,7 @@ import touch4bitwig.service.IOSCService;
 
 public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
 {
-    //public static const CAN_SCROLL_TRACKS_UP:String = "canScrollTracksUp";
-    //public static const CAN_SCROLL_TRACKS_DOWN:String = "canScrollTracksDown";
+    public static const TAG:String = "BitwigTrack/";
 
     public static const NAME:String = "name";
     public static const EXISTS:String = "exists";
@@ -486,7 +485,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         return setProperty(name, value, true);
     }
 
-    internal function setProperty(name:String, value:*, sendChangeEvent:Boolean = true):Boolean
+    internal function setProperty(name:String, value:*, sendChangeEvent:Boolean = false):Boolean
     {
         if (this["_" + name] == value)
             return false;
@@ -496,7 +495,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
         if (sendChangeEvent)
         {
             // updates UI mediators
-            dispatch(name + "Change", {index: _index, value: value});
+            dispatch(TAG + name + "Change", {index: _index, value: value});
         }
 
         return true;

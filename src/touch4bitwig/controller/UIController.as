@@ -17,54 +17,47 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.controller
-{
+package touch4bitwig.controller {
 
-import com.teotigraphix.controller.AbstractController;
+import com.teotigraphix.controller.impl.AbstractController;
 import com.teotigraphix.ui.component.Toast;
 
 import starling.events.Event;
 
-import touch4bitwig.model.event.BitwigApplicationEventType;
-import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.model.IConfigurationModel;
 import touch4bitwig.model.IUIModel;
+import touch4bitwig.model.event.BitwigApplicationEventType;
 import touch4bitwig.model.event.ConfigurationModelEventType;
+import touch4bitwig.model.event.UIModelEventType;
 import touch4bitwig.view.ApplicationScreens;
 import touch4bitwig.view.MainNavigator;
 
 /**
  * Mediates application level context events for the user interface.
  */
-public class UIController extends AbstractController
-{
+public class UIController extends AbstractController {
     //--------------------------------------------------------------------------
     // Inject
     //--------------------------------------------------------------------------
 
+    public function UIController() {
+    }
     [Inject]
     public var navigator:MainNavigator;
-
     [Inject]
     public var uiModel:IUIModel;
-
-    [Inject]
-    public var configurationModel:IConfigurationModel;
 
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
-
-    public function UIController()
-    {
-    }
+    [Inject]
+    public var configurationModel:IConfigurationModel;
 
     //--------------------------------------------------------------------------
     // Overridden :: Methods
     //--------------------------------------------------------------------------
 
-    override protected function onRegister():void
-    {
+    override protected function onRegister():void {
         super.onRegister();
 
         addContextListener(UIModelEventType.BACK, context_backHandler);
@@ -80,50 +73,40 @@ public class UIController extends AbstractController
     // Private :: Handlers
     //--------------------------------------------------------------------------
 
-    private function context_isInConfigHandler(event:Event, isConfig:Boolean):void
-    {
-        if (isConfig)
-        {
+    private function context_isInConfigHandler(event:Event, isConfig:Boolean):void {
+        if (isConfig) {
 
             // Config button TopDrawer trigger
             dispatchWith(ApplicationCommands.SHOW_CONFIGURATION_SCREEN);
         }
-        else
-        {
-            if (uiModel.screenID == null)
-            {
+        else {
+            if (uiModel.screenID == null) {
                 uiModel.screenID = ApplicationScreens.SCREEN_MIXER;
             }
-            else
-            {
+            else {
                 navigator.popScreen();
             }
         }
     }
 
-    private function context_projectNameHandler(event:Event, data:Object):void
-    {
+    private function context_projectNameHandler(event:Event, data:Object):void {
         Toast.show("Project change to " + data.value, 2000);
     }
 
-    private function context_startCompleteHandler(event:Event):void
-    {
+    private function context_startCompleteHandler(event:Event):void {
         //configurationModel.isInConfig = false;
     }
 
-    private function context_flushCompleteHandler(event:Event):void
-    {
+    private function context_flushCompleteHandler(event:Event):void {
         uiModel.refresh();
 
-        if (navigator.activeScreenID == ApplicationScreens.SCREEN_CONFIGURATION)
-        {
+        if (navigator.activeScreenID == ApplicationScreens.SCREEN_CONFIGURATION) {
             configurationModel.isInConfig = false;
         }
 
     }
 
-    private function context_backHandler(event:Event):void
-    {
+    private function context_backHandler(event:Event):void {
         navigator.popScreen();
     }
 

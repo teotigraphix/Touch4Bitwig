@@ -145,8 +145,8 @@ public class ClipLauncherFactory extends AbstractThemeFactory
         button.recordPlayIconSkin.width = 15;
         button.recordPlayIconSkin.height = 15;
 
-        button.labelOffsetY = AssetMap.getSize(10);
-        button.paddingTop = AssetMap.getSize(5);//this.smallGutterSize;
+        button.labelOffsetY = AssetMap.size(10);
+        button.paddingTop = AssetMap.size(5);//this.smallGutterSize;
         button.paddingBottom = 0;//this.smallGutterSize;
         button.paddingLeft = 0;//this.gutterSize;
         button.paddingRight = 0;//this.gutterSize;

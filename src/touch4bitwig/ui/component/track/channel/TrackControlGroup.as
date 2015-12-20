@@ -17,8 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.track.channel
-{
+package touch4bitwig.ui.component.track.channel {
 
 import com.teotigraphix.ui.component.UIToggleButton;
 import com.teotigraphix.ui.theme.AssetMap;
@@ -29,8 +28,7 @@ import feathers.layout.VerticalLayoutData;
 
 import starling.events.Event;
 
-public class TrackControlGroup extends LayoutGroup
-{
+public class TrackControlGroup extends LayoutGroup {
     public static const EVENT_RECARM_CHANGE:String = "recarmChange";
     public static const EVENT_SOLO_CHANGE:String = "soloChange";
     public static const EVENT_MUTE_CHANGE:String = "muteChange";
@@ -39,69 +37,65 @@ public class TrackControlGroup extends LayoutGroup
     private const INVALIDATE_FLAG_SOLO:String = "solo";
     private const INVALIDATE_FLAG_MUTE:String = "volume";
 
+    public function TrackControlGroup() {
+    }
     private var _recarmButton:UIToggleButton;
     private var _soloButton:UIToggleButton;
     private var _muteButton:UIToggleButton;
 
     private var _index:int = -1;
-    private var _isRecarm:Boolean;
-    private var _isSolo:Boolean;
-    private var _isMute:Boolean;
 
-    public function get index():int
-    {
+    public function get index():int {
         return _index;
     }
 
-    public function set index(value:int):void
-    {
+    public function set index(value:int):void {
         _index = value;
     }
 
-    public function get isRecarm():Boolean
-    {
+    private var _isRecarm:Boolean;
+
+    public function get isRecarm():Boolean {
         return _isRecarm;
     }
 
-    public function set isRecarm(value:Boolean):void
-    {
+    public function set isRecarm(value:Boolean):void {
         if (_isRecarm == value)
             return;
         _isRecarm = value;
         invalidate(INVALIDATE_FLAG_RECARM);
     }
 
-    public function get isSolo():Boolean
-    {
+    private var _isSolo:Boolean;
+
+    public function get isSolo():Boolean {
         return _isSolo;
     }
 
-    public function set isSolo(value:Boolean):void
-    {
+    public function set isSolo(value:Boolean):void {
         if (_isSolo == value)
             return;
         _isSolo = value;
         invalidate(INVALIDATE_FLAG_SOLO);
     }
 
-    public function get isMute():Boolean
-    {
+    private var _isMute:Boolean;
+
+    public function get isMute():Boolean {
         return _isMute;
     }
 
-    public function set isMute(value:Boolean):void
-    {
+    public function set isMute(value:Boolean):void {
         if (_isMute == value)
             return;
         _isMute = value;
         invalidate(INVALIDATE_FLAG_MUTE);
     }
 
-    override protected function initialize():void
-    {
+    override protected function initialize():void {
         var l:VerticalLayout = new VerticalLayout();
-        l.padding = AssetMap.getSize(4);
-        l.gap = AssetMap.getSize(4);
+        l.padding = AssetMap.size(4);
+        l.gap = AssetMap.size(4);
         layout = l;
         super.initialize();
 
@@ -125,44 +119,33 @@ public class TrackControlGroup extends LayoutGroup
         addChild(_muteButton);
     }
 
-    override protected function draw():void
-    {
+    override protected function draw():void {
         super.draw();
 
-        if (isInvalid(INVALIDATE_FLAG_RECARM))
-        {
+        if (isInvalid(INVALIDATE_FLAG_RECARM)) {
             _recarmButton.setIsSelected(_isRecarm);
         }
 
-        if (isInvalid(INVALIDATE_FLAG_SOLO))
-        {
+        if (isInvalid(INVALIDATE_FLAG_SOLO)) {
             _soloButton.setIsSelected(_isSolo);
         }
 
-        if (isInvalid(INVALIDATE_FLAG_MUTE))
-        {
+        if (isInvalid(INVALIDATE_FLAG_MUTE)) {
             _muteButton.setIsSelected(_isMute);
         }
     }
 
-    public function TrackControlGroup()
-    {
-    }
-
-    private function recordButton_changeHandler(event:Event):void
-    {
+    private function recordButton_changeHandler(event:Event):void {
         _isRecarm = _recarmButton.isSelected;
         dispatchEventWith(EVENT_RECARM_CHANGE, true, _index);
     }
 
-    private function soloButton_changeHandler(event:Event):void
-    {
+    private function soloButton_changeHandler(event:Event):void {
         _isSolo = _soloButton.isSelected;
         dispatchEventWith(EVENT_SOLO_CHANGE, true, _index);
     }
 
-    private function muteButton_changeHandler(event:Event):void
-    {
+    private function muteButton_changeHandler(event:Event):void {
         _isMute = _muteButton.isSelected;
         dispatchEventWith(EVENT_MUTE_CHANGE, true, _index);
     }

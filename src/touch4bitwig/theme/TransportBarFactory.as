@@ -111,7 +111,7 @@ public class TransportBarFactory extends AbstractThemeFactory
     {
         theme.button.setButtonStyles(button);
         button.defaultIcon = AssetMap.createImage("transport-bar-popup-button-icon-skin");
-        button.width = AssetMap.getSize(50);
+        button.width = AssetMap.size(50);
         button.hasLabelTextRenderer = false;
         button.minWidth = 75;
     }

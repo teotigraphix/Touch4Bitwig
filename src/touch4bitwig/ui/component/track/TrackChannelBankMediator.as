@@ -94,22 +94,22 @@ public class TrackChannelBankMediator extends AbstractUIMediator
 
     private function redrawView():void
     {
-        for (var i:int = 1; i < 9; i++)
-        {
-            var track:IBitwigTrack = oscModel.trackBank.getTrack(i);
-            view.setExists(i, track.exists);
-
-            view.setParamName(i, oscModel.cursorDevice.bank.params[i].getName(oscModel.deviceMode));
-            view.setParamValue(i, oscModel.cursorDevice.bank.params[i].getValue(oscModel.deviceMode));
-            view.setParamValueString(i, oscModel.cursorDevice.bank.params[i].getValueString(oscModel.deviceMode));
-
-            view.setIsRecarm(i, track.recarm);
-            view.setIsSolo(i, track.solo);
-            view.setIsMute(i, track.mute);
-
-            view.setVU(i, track.vu);
-            view.setVolume(i, track.volume);
-        }
+//        for (var i:int = 1; i < 9; i++)
+//        {
+//            var track:IBitwigTrack = oscModel.trackBank.getTrack(i);
+//            view.setExists(i, track.exists);
+//
+//            view.setParamName(i, oscModel.cursorDevice.bank.params[i].getName(oscModel.deviceMode));
+//            view.setParamValue(i, oscModel.cursorDevice.bank.params[i].getValue(oscModel.deviceMode));
+//            view.setParamValueString(i, oscModel.cursorDevice.bank.params[i].getValueString(oscModel.deviceMode));
+//
+//            view.setIsRecarm(i, track.recarm);
+//            view.setIsSolo(i, track.solo);
+//            view.setIsMute(i, track.mute);
+//
+//            view.setVU(i, track.vu);
+//            view.setVolume(i, track.volume);
+//        }
     }
 
     private function context_modeChangeHandler(event:Event, mode:String):void

@@ -17,10 +17,9 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.controller
-{
+package touch4bitwig.controller {
 
-import com.teotigraphix.controller.AbstractController;
+import com.teotigraphix.controller.impl.AbstractController;
 
 import starling.events.Event;
 
@@ -31,8 +30,7 @@ import touch4bitwig.service.IOSCService;
 /**
  * Mediates application level context events.
  */
-public class ApplicationController extends AbstractController
-{
+public class ApplicationController extends AbstractController {
     //--------------------------------------------------------------------------
     // Constants
     //--------------------------------------------------------------------------
@@ -43,29 +41,24 @@ public class ApplicationController extends AbstractController
     // Inject
     //--------------------------------------------------------------------------
 
+    public function ApplicationController() {
+    }
     [Inject]
     public var configurationModel:IConfigurationModel;
-
     [Inject]
     public var oscService:IOSCService;
-
-    [Inject]
-    public var uiController:UIController;
 
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
-
-    public function ApplicationController()
-    {
-    }
+    [Inject]
+    public var uiController:UIController;
 
     //--------------------------------------------------------------------------
     // Overridden :: Methods
     //--------------------------------------------------------------------------
 
-    override protected function onRegister():void
-    {
+    override protected function onRegister():void {
         eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_COMPLETE, applicationCompleteHandler);
         eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_ACTIVATE, applicationActivateHandler);
         eventDispatcher.addEventListener(ApplicationEventType.APPLICATION_DEACTIVATE, applicationDeactivateHandler);
@@ -76,23 +69,19 @@ public class ApplicationController extends AbstractController
     // Private :: Handlers
     //--------------------------------------------------------------------------
 
-    private function applicationCompleteHandler(event:Event):void
-    {
+    private function applicationCompleteHandler(event:Event):void {
         logger.log(TAG, "applicationCompleteHandler()");
     }
 
-    private function applicationActivateHandler(event:Event):void
-    {
+    private function applicationActivateHandler(event:Event):void {
 
     }
 
-    private function applicationDeactivateHandler(event:Event):void
-    {
+    private function applicationDeactivateHandler(event:Event):void {
 
     }
 
-    private function applicationExitHandler(event:Event):void
-    {
+    private function applicationExitHandler(event:Event):void {
         oscService.close();
     }
 }

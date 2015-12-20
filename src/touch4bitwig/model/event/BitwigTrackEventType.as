@@ -24,22 +24,24 @@ import touch4bitwig.model.state.BitwigTrack;
 
 public final class BitwigTrackEventType
 {
+    public static const NAME:String = BitwigTrack.TAG;
+
     public static const CAN_SCROLL_TRACKS_UP:String = "canScrollTracksUp";
     public static const CAN_SCROLL_TRACKS_DOWN:String = "canScrollTracksDown";
 
-    public static const EXISTS_CHANGE:String = BitwigTrack.EXISTS + "Change";
-    public static const CAN_HOLD_NOTES_CHANGE:String = BitwigTrack.CAN_HOLD_NOTES + "Change";
-    public static const SELECTED_CHANGE:String = BitwigTrack.SELECTED + "Change";
-    public static const NAME_CHANGE:String = BitwigTrack.NAME + "Change";
-    public static const COLOR_CHANGE:String = BitwigTrack.COLOR + "Change";
-    public static const VOLUME_CHANGE:String = BitwigTrack.VOLUME + "Change";
-    public static const VOLUME_STRING_CHANGE:String = BitwigTrack.VOLUME_STRING + "Change";
-    public static const PAN_CHANGE:String = BitwigTrack.PAN + "Change";
-    public static const PAN_STRING_CHANGE:String = BitwigTrack.PAN_STRING + "Change";
-    public static const RECORD_CHANGE:String = BitwigTrack.RECARM + "Change";
-    public static const SOLO_CHANGE:String = BitwigTrack.SOLO + "Change";
-    public static const MUTE_CHANGE:String = BitwigTrack.MUTE + "Change";
-    public static const VU_CHANGE:String = BitwigTrack.VU + "Change";
+    public static const EXISTS_CHANGE:String = NAME + BitwigTrack.EXISTS + "Change";
+    public static const CAN_HOLD_NOTES_CHANGE:String = NAME + BitwigTrack.CAN_HOLD_NOTES + "Change";
+    public static const SELECTED_CHANGE:String = NAME + BitwigTrack.SELECTED + "Change";
+    public static const NAME_CHANGE:String = NAME + BitwigTrack.NAME + "Change";
+    public static const COLOR_CHANGE:String = NAME + BitwigTrack.COLOR + "Change";
+    public static const VOLUME_CHANGE:String = NAME + BitwigTrack.VOLUME + "Change";
+    public static const VOLUME_STRING_CHANGE:String = NAME + BitwigTrack.VOLUME_STRING + "Change";
+    public static const PAN_CHANGE:String = NAME + BitwigTrack.PAN + "Change";
+    public static const PAN_STRING_CHANGE:String = NAME + BitwigTrack.PAN_STRING + "Change";
+    public static const RECORD_CHANGE:String = NAME + BitwigTrack.RECARM + "Change";
+    public static const SOLO_CHANGE:String = NAME + BitwigTrack.SOLO + "Change";
+    public static const MUTE_CHANGE:String = NAME + BitwigTrack.MUTE + "Change";
+    public static const VU_CHANGE:String = NAME + BitwigTrack.VU + "Change";
 
     public static const CLIP_SELECTED_CHANGE:String = BitwigTrack.EXISTS + "Change";
 

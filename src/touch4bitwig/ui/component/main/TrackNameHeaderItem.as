@@ -121,7 +121,7 @@ public class TrackNameHeaderItem extends LayoutGroup
         super.initialize();
 
         _trackColorBorder = new UIBorder();
-        _trackColorBorder.minHeight = AssetMap.getSize(20);
+        _trackColorBorder.minHeight = AssetMap.size(20);
         _trackColorBorder.layoutData = new VerticalLayoutData(100);
         _trackColorBorder.color = _trackColor;
         addChild(_trackColorBorder);

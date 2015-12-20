@@ -17,8 +17,7 @@
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
 
-package touch4bitwig.ui.component.transport
-{
+package touch4bitwig.ui.component.transport {
 
 import com.teotigraphix.ui.theme.AssetMap;
 
@@ -30,35 +29,29 @@ import feathers.layout.VerticalLayout;
 
 import starling.events.Event;
 
-public class TransportPopUp extends LayoutGroup
-{
+public class TransportPopUp extends LayoutGroup {
     public static const EVENT_AUTOMATION_WRITE_MODE_CHANGE:String = "autowriteChange";
 
+    public function TransportPopUp() {
+    }
     private var _tabBar:TabBar;
     private var _automationWriteLabel:Label;
 
     private var _autowriteIndex:int = -1;
 
-    public function get autowriteIndex():int
-    {
+    public function get autowriteIndex():int {
         return _autowriteIndex;
     }
 
-    public function set autowriteIndex(value:int):void
-    {
+    public function set autowriteIndex(value:int):void {
         _autowriteIndex = value;
         invalidate(INVALIDATION_FLAG_DATA);
     }
 
-    public function TransportPopUp()
-    {
-    }
-
-    override protected function initialize():void
-    {
+    override protected function initialize():void {
         var l:VerticalLayout = new VerticalLayout();
-        l.padding = AssetMap.getSize(15);
-        l.gap = AssetMap.getSize(8);
+        l.padding = AssetMap.size(15);
+        l.gap = AssetMap.size(8);
         layout = l;
         super.initialize();
 
@@ -77,18 +70,15 @@ public class TransportPopUp extends LayoutGroup
         addChild(_tabBar);
     }
 
-    override protected function draw():void
-    {
+    override protected function draw():void {
         super.draw();
 
-        if (isInvalid(INVALIDATION_FLAG_DATA))
-        {
+        if (isInvalid(INVALIDATION_FLAG_DATA)) {
             _tabBar.selectedIndex = _autowriteIndex;
         }
     }
 
-    private function tabBar_changeHandler(event:Event):void
-    {
+    private function tabBar_changeHandler(event:Event):void {
         dispatchEventWith(EVENT_AUTOMATION_WRITE_MODE_CHANGE, false, _tabBar.selectedIndex);
     }
 }

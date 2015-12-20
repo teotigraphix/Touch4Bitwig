@@ -333,11 +333,12 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
     // TODO
     public function set numerator(value:int):void
     {
-        if (isSame(_numerator, value))
-            return;
-        _numerator = value;
-        dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _numerator);
-        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
+        //if (!setProperty(NUMERATOR, value))
+        //    return;
+        //_numerator = value;
+        //service.sendString("/numerator", value);
+        //dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _numerator);
+        //dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
 
     //----------------------------------
@@ -355,11 +356,12 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
     // TODO
     public function set denominator(value:int):void
     {
-        if (isSame(_denominator, value))
-            return;
-        _denominator = value;
-        dispatchValue(BitwigTransportEventType.DENOMINATOR_CHANGE, _denominator);
-        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
+        //if (!setProperty(DENOMINATOR, value))
+        //    return;
+        //_denominator = value;
+        //service.sendString("/denominator", value);
+        //dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _denominator);
+        //dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
 
     //----------------------------------
@@ -429,7 +431,6 @@ public class BitwigTransport extends AbstractBitwigState implements IBitwigTrans
      */
     override public function configure():void
     {
-
         _methods["/play"] = playHandler;
         _methods["/record"] = recordHandler;
         _methods["/overdub"] = isOverdubHandler;

@@ -44,7 +44,7 @@ public class PanelLayoutGroupMediator extends AbstractUIMediator
         view.dataProvider = uiModel.panelsLayoutDataProvider;
 
         // TODO put in theme
-        view.minHeight = AssetMap.getSize(150);
+        view.minHeight = AssetMap.size(150);
 
         view.selectedIndex = getIndex(oscModel.application.layout);
 

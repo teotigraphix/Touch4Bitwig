@@ -170,8 +170,7 @@ public class MixerBankMediator extends AbstractUIMediator
         // XXX BUG
         if (index == 0)
             return;
-        //oscModel.trackBank.getTrack(index).selected = true;
-        oscService.send("/track/" + index  + "/select");
+        oscModel.trackBank.getTrack(index).selected = true;
     }
 
     private function view_doubleTapHandler(event:Event, index:int):void

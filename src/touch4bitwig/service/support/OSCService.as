@@ -24,17 +24,22 @@ import com.teotigraphix.frameworks.osc.IOSCListener;
 import com.teotigraphix.frameworks.osc.OSCManager;
 import com.teotigraphix.frameworks.osc.OSCMessage;
 import com.teotigraphix.frameworks.osc.connectors.UDPConnector;
+import com.teotigraphix.service.ILogger;
 
 import org.robotlegs.starling.mvcs.Actor;
 
 import starling.events.Event;
 
 import touch4bitwig.event.ServiceCommandType;
-
 import touch4bitwig.service.IOSCService;
 
 public class OSCService extends Actor implements IOSCService
 {
+    public static const TAG:String = "OSCService";
+
+    [Inject]
+    public var logger:ILogger;
+
     private var _oscManager:OSCManager;
 
     private var _inputIp:String;
@@ -118,6 +123,7 @@ public class OSCService extends Actor implements IOSCService
 
     public function send(message:String):void
     {
+        logger.log(TAG, "send() {0}", message.toString());
         var osc:OSCMessage = new OSCMessage();
         osc.address = message;
         _oscManager.sendOSCPacket(osc);
@@ -127,6 +133,7 @@ public class OSCService extends Actor implements IOSCService
 
     public function sendString(message:String, value:String):void
     {
+        logger.log(TAG, "sendString() {0}", message.toString());
         var osc:OSCMessage = new OSCMessage();
         osc.address = message;
         osc.addArgument("s", value);
@@ -136,6 +143,7 @@ public class OSCService extends Actor implements IOSCService
 
     public function sendInt(message:String, value:int):void
     {
+        logger.log(TAG, "sendInt() {0}", message.toString());
         var osc:OSCMessage = new OSCMessage();
         osc.address = message;
         osc.addArgument("i", value);
@@ -145,6 +153,7 @@ public class OSCService extends Actor implements IOSCService
 
     public function sendFloat(message:String, value:Number):void
     {
+        logger.log(TAG, "sendFloat() {0}", message.toString());
         var osc:OSCMessage = new OSCMessage();
         osc.address = message;
         osc.addArgument("f", value);
@@ -154,6 +163,7 @@ public class OSCService extends Actor implements IOSCService
 
     public function sendBoolean(message:String, value:Boolean):void
     {
+        logger.log(TAG, "sendBoolean() {0}", message.toString());
         var osc:OSCMessage = new OSCMessage();
         osc.address = message;
         osc.addArgument("i", value ? 1 : 0);
@@ -162,6 +172,8 @@ public class OSCService extends Actor implements IOSCService
 
     public function refresh():void
     {
+        logger.log(TAG, "refresh()");
+
         var osc:OSCMessage = new OSCMessage();
         osc.address = "/refresh";
 
@@ -175,6 +187,8 @@ public class OSCService extends Actor implements IOSCService
 
     private function createConnections():void
     {
+        logger.log(TAG, "createConnections()");
+
         _udpConnectorIn = new UDPConnector(_inputIp, _inputPort, true);
         _udpConnectorOut = new UDPConnector(_outputIp, _outputPort, false);
 

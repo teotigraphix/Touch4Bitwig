@@ -105,7 +105,7 @@ public class MixerItemFactory extends AbstractThemeFactory
         bar.fillSkin = AssetMap.createImage("vu-slider-min-skin");
         bar.fillSkin.height = 0;
         bar.direction = ProgressBar.DIRECTION_VERTICAL;
-        bar.width = AssetMap.getSize(5);
+        bar.width = AssetMap.size(5);
         bar.minimum = 0;
         bar.maximum = 127;
         bar.value = 0;
