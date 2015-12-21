@@ -64,8 +64,8 @@ public class MixerBankMediator extends AbstractUIMediator
             var item:IMixerItem = view.getMixerItem(track.index);
 
             item.canHoldNotes = track.canHoldNotes;
-            //item.exists = track.exists;
-            //item.selected = track.selected;
+            item.exists = track.exists;
+            item.selected = track.selected;
             item.trackName = track.name;
             item.trackColor = track.color;
             item.volume = track.volume;

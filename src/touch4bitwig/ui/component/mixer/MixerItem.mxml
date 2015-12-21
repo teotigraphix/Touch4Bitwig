@@ -360,6 +360,8 @@
         override protected function initialize():void
         {
             super.initialize();
+
+            exists = false;
         }
 
         override protected function draw():void

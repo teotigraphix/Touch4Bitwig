@@ -59,7 +59,7 @@ public class BitwigTrack extends AbstractBitwigState implements IBitwigTrack
     private var _index:int;
 
     private var _canHoldNotes:Boolean;
-    private var _exists:Boolean;
+    private var _exists:Boolean = undefined;
     private var _activated:Boolean;
     private var _selected:Boolean;
     private var _name:String;
