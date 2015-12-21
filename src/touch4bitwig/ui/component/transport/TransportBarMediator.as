@@ -20,20 +20,11 @@
 package touch4bitwig.ui.component.transport
 {
 
-import com.teotigraphix.ui.component.PopUpManagerTransitioner;
-
-import feathers.core.PopUpManager;
-
-import flash.geom.Point;
-
-import org.robotlegs.starling.core.IInjector;
+import feathers.controls.Callout;
 
 import starling.animation.Juggler;
-import starling.display.DisplayObject;
-import starling.display.Quad;
 import starling.events.Event;
 
-import touch4bitwig.app.config.ApplicationContext;
 import touch4bitwig.model.event.BitwigTransportEventType;
 import touch4bitwig.ui.AbstractUIMediator;
 
@@ -43,13 +34,11 @@ public class TransportBarMediator extends AbstractUIMediator
     public var juggler:Juggler;
 
     [Inject]
-    public var injector:IInjector;
-
-    [Inject]
     public var view:TransportBar;
 
     private var _popUp:TransportPopUp;
     private var _instance:*;
+    private var _callout:Callout;
 
     public function TransportBarMediator()
     {
@@ -146,31 +135,44 @@ public class TransportBarMediator extends AbstractUIMediator
 
     private function view_popupTriggeredHandler(event:Event):void
     {
-        if (_popUp != null)
-        {
-            PopUpManagerTransitioner.removePopUp(_popUp, 1);
-            ApplicationContext(eventDispatcher).getMediatorMap().removeMediator(_instance);
-            _instance = null;
-            _popUp = null;
-            return;
-        }
-        var p:Point = new Point(view.x, view.y);
-        p = view.parent.localToGlobal(p);
+        //if (_popUp != null)
+        //{
+        //    PopUpManagerTransitioner.removePopUp(_popUp, 1);
+        //    ApplicationContext(eventDispatcher).getMediatorMap().removeMediator(_instance);
+        //    _instance = null;
+        //    _popUp = null;
+        //    return;
+        //}
+        //var p:Point = new Point(view.x, view.y);
+        //p = view.parent.localToGlobal(p);
+        //_popUp = new TransportPopUp();
+        //
+        //PopUpManager.addPopUp(_popUp, false, false, function ():DisplayObject
+        //{
+        //    var quad:Quad = new Quad(100, 100, 0x000000);
+        //    quad.alpha = 0.1;
+        //    return quad;
+        //});
+        //
+        //_popUp.validate();
+        //
+        //_popUp.x = p.x;
+        //_popUp.y = p.y + view.height + 1;
+
         _popUp = new TransportPopUp();
+        _callout = Callout.show(_popUp, view.skin.popupButton);
+        _callout.addEventListener(Event.CLOSE, callout_closeHandler);
 
-        PopUpManager.addPopUp(_popUp, false, false, function ():DisplayObject
-        {
-            var quad:Quad = new Quad(100, 100, 0x000000);
-            quad.alpha = 0.1;
-            return quad;
-        });
+        _instance = mediatorMap.createMediator(_popUp);
+    }
 
-        _popUp.validate();
-
-        _popUp.x = p.x;
-        _popUp.y = p.y + view.height + 1;
-
-        _instance = ApplicationContext(eventDispatcher).getMediatorMap().createMediator(_popUp);
+    private function callout_closeHandler(event:Event):void
+    {
+        view.skin.popupButton.setIsSelected(false);
+        _callout.removeEventListener(Event.CLOSE, callout_closeHandler);
+        _callout = null;
+        mediatorMap.removeMediator(_instance);
+        _instance = null;
     }
 }
 }

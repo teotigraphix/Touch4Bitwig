@@ -40,6 +40,11 @@ public class TransportBar extends LayoutGroup implements ITransportBar
 
     private var _skin:TransportBarSkinBase;
 
+    public function get skin():TransportBarSkin
+    {
+        return TransportBarSkin(_skin);
+    }
+
     private var _isPlaying:Boolean;
     private var _isRecording:Boolean;
     private var _isAutowrite:Boolean;
