@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog:Dialog xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:dialog="com.teotigraphix.ui.dialog.*" 
+               xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:dialog1="t4b.view.ui.dialog.*"
+               xmlns:component="com.teotigraphix.ui.component.*" 
+               autoSizeMode="stage"
+               content="{form}">
+    
+    <fx:Declarations>
+
+        <component:HGroup id="form" percentWidth="100" percentHeight="100" gap="8">
+            
+            <f:GroupedList id="ipList" headerField="header">
+                <f:layoutData>
+                    <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+                </f:layoutData>
+                <f:headerRendererProperties>
+                    <fx:Object contentLabelField="text"/>
+                </f:headerRendererProperties>
+                <f:itemRendererProperties>
+                    <fx:Object labelField="text"/>
+                </f:itemRendererProperties>
+            </f:GroupedList>
+            
+            <dialog1:ConfigurationForm configurationState="{configurationState}" 
+                                       percentWidth="100" percentHeight="100">
+                
+            </dialog1:ConfigurationForm>
+            
+        </component:HGroup>
+        
+    </fx:Declarations>
+    
+    <fx:Script>
+        <![CDATA[
+            import com.teotigraphix.ui.dialog.Dialog;
+            
+            import feathers.core.PopUpManager;
+            import feathers.data.HierarchicalCollection;
+            import feathers.skins.IStyleProvider;
+            
+            import t4b.model.state.ConfigurationState;
+            
+            
+            public static var globalStyleProvider:IStyleProvider;
+            
+            override protected function get defaultStyleProvider():IStyleProvider
+            {
+                return ConfigurationDialog.globalStyleProvider;
+            }
+            
+            private var _dataProvider:HierarchicalCollection;
+            private var _configurationState:ConfigurationState;
+            
+            //--------------------------------------------------------------------------
+            // API :: Properties
+            //--------------------------------------------------------------------------
+
+            //----------------------------------
+            // dataProvider
+            //----------------------------------
+            
+
+            public function get dataProvider():HierarchicalCollection 
+            {
+                return _dataProvider;
+            }
+            
+            public function set dataProvider(value:HierarchicalCollection):void
+            {
+                if (_dataProvider == value)
+                    return;
+                
+                _dataProvider = value;
+                invalidate(INVALIDATION_FLAG_DATA);
+            }
+            
+            //----------------------------------
+            // configurationState
+            //----------------------------------
+            
+            [Bindable]
+            public function get configurationState():ConfigurationState
+            {
+                return _configurationState;
+            }
+            
+            public function set configurationState(value:ConfigurationState):void
+            {
+                if (_configurationState == value)
+                    return;
+                _configurationState = value;
+                invalidate(INVALIDATION_FLAG_DATA);
+            }
+            
+            //--------------------------------------------------------------------------
+            // API :: Methods
+            //--------------------------------------------------------------------------
+           
+            public static function show(title:String, 
+                                        state:ConfigurationState, 
+                                        ipDataProvider:HierarchicalCollection):ConfigurationDialog
+            {
+                const dialog:ConfigurationDialog = Dialog.show(title, ConfigurationDialog) as ConfigurationDialog;
+                dialog.dataProvider = ipDataProvider;
+                dialog.configurationState = state;
+                return dialog;
+            }
+            
+            public static function hide(dialog:Dialog):void
+            {
+                PopUpManager.removePopUp(dialog, true);
+            }
+            
+            //--------------------------------------------------------------------------
+            // Hanlders
+            //--------------------------------------------------------------------------
+
+            override protected function draw():void
+            {
+                super.draw();
+                
+                if (_dataProvider != null && isInvalid(INVALIDATION_FLAG_DATA))
+                {
+                    ipList.dataProvider = _dataProvider;
+                }
+            }
+
+        ]]>
+    </fx:Script>
+    
+</dialog:Dialog>

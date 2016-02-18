@@ -33,14 +33,92 @@ public class ApplicationStartupCommand extends AbstractStartupCommand
     override protected function addSteps(main:IStepSequence):void
     {
         super.addSteps(main);
+        main.add(FindIPsStep);
+        main.add(ConfigureIPAndPortStep);
         main.add(StartupCompleteStep);
     }
 }
 }
 
+import com.teotigraphix.service.async.IStepCommand;
 import com.teotigraphix.service.async.StepCommand;
 
+import feathers.data.HierarchicalCollection;
+
+import org.as3commons.async.operation.event.OperationEvent;
+
+import starling.events.Event;
+
+import t4b.controller.ApplicationController;
 import t4b.model.IApplicationModel;
+import t4b.model.state.ConfigurationState;
+import t4b.service.ConfigurationService;
+
+final class FindIPsStep extends StepCommand
+{
+    [Inject]
+    public var model:IApplicationModel;
+    
+    [Inject]
+    public var configurationService:ConfigurationService;
+    
+    override public function execute():*
+    {
+        logger.log("ApplicationStartupCommand.FindIPsStep", "execute()");
+        
+        var command:IStepCommand = configurationService.loadIPsAsync();
+        command.addCompleteListener(this_completeHandler);
+        command.addErrorListener(this_errorHandler);
+        command.execute();
+        
+        return super.execute();
+    }
+    
+    private function this_completeHandler(event:OperationEvent):void
+    {
+        var collection:HierarchicalCollection = event.result as HierarchicalCollection;
+        model.configuration.ipDataProvider = collection;
+        complete();
+    }
+    
+    private function this_errorHandler(event:OperationEvent):void
+    {
+        complete();
+    }
+}
+
+final class ConfigureIPAndPortStep extends StepCommand
+{
+    [Inject]
+    public var model:IApplicationModel;
+    
+    override public function execute():*
+    {
+        logger.log("ApplicationStartupCommand.ConfigureIPAndPortStep", "execute()");
+        
+        eventDispatcher.addEventListener(ApplicationController.EVENT_CONNECTED, controller_connectedEvent);
+        
+        var state:ConfigurationState = model.applicationSettings.configurationState;
+        if (state == null)
+        {
+            state = new ConfigurationState();
+            model.commands.editConfiguration(state);
+        }
+        else
+        {
+            model.configuration.state = state;
+        }
+        
+        return super.execute();
+    }
+    
+    private function controller_connectedEvent(event:Event):void
+    {
+        logger.log("ApplicationStartupCommand.ConfigureIPAndPortStep", "Connection complete");
+        eventDispatcher.removeEventListener(ApplicationController.EVENT_CONNECTED, controller_connectedEvent);
+        complete();
+    }
+}
 
 final class StartupCompleteStep extends StepCommand
 {

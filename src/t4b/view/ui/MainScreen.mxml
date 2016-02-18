@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<f:Screen xmlns:f="library://ns.feathersui.com/mxml"
+          xmlns:fx="http://ns.adobe.com/mxml/2009" 
+          xmlns:common="caustic.remix.view.common.*" 
+          xmlns:component="com.teotigraphix.ui.component.*" 
+          xmlns:clip="caustic.remix.view.ui.content.clip.*" xmlns:main="caustic.remix.view.ui.main.*">
+    <fx:Script>
+        <![CDATA[
+            
+        ]]>
+    </fx:Script>
+
+    <f:layout>
+        <f:VerticalLayout/>
+    </f:layout>
+
+<!--    <main:ApplicationActionBar id="actionBar">
+        <main:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </main:layoutData>
+    </main:ApplicationActionBar>
+
+    <component:HGroup percentWidth="100" percentHeight="100">
+
+        <main:ApplicationToolBar id="toolBar">
+            <main:layoutData>
+                <f:HorizontalLayoutData percentHeight="100"/>
+            </main:layoutData>
+        </main:ApplicationToolBar>
+        
+        <f:StackScreenNavigator id="contentNavigator">
+            <f:layoutData>
+                <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+            </f:layoutData>
+            
+        </f:StackScreenNavigator>
+        
+    </component:HGroup>
+    
+    <main:ApplicationStatusBar id="statusBar">
+        <main:layoutData>
+            <f:VerticalLayoutData percentWidth="100"/>
+        </main:layoutData>
+    </main:ApplicationStatusBar>-->
+    
+</f:Screen>

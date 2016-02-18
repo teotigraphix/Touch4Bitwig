@@ -25,15 +25,22 @@ import com.teotigraphix.ui.IUIController;
 import starling.events.Event;
 
 import t4b.model.IApplicationModel;
+import t4b.model.event.ConfigurationModelEventType;
+import t4b.service.OSCService;
 
 public class ApplicationController extends AbstractApplicationController
 {
+    public static const EVENT_CONNECTED:String = "ApplicationController/connected";
+    
     [Inject]
-    public var applicationModel:IApplicationModel;
+    public var model:IApplicationModel;
     
     [Inject]
     public var uiController:IUIController;
-
+    
+    [Inject]
+    public var oscService:OSCService;
+    
     public function ApplicationController()
     {
     }
@@ -43,15 +50,30 @@ public class ApplicationController extends AbstractApplicationController
         super.onRegister();
 
         addContextListener("showLoadingScreen", context_showLoadingScreenHandler);
+        addContextListener(ConfigurationModelEventType.CONFIGURATION_STATE_CHANGED, 
+            context_configurationStateChangedHandler);
         
-        addListener(applicationModel);
+        addListener(model);
         addListener(uiController);
+    }
+    
+    private function context_configurationStateChangedHandler(event:Event):void
+    {
+        var connected:Boolean = oscService.connect(model.configuration.state);
+        if (!connected)
+        {
+            model.commands.editConfiguration(model.configuration.state);
+        }
+        else
+        {
+            dispatchWith(EVENT_CONNECTED);
+        }
     }
     
     private function context_showLoadingScreenHandler(event:Event):void
     {
         trace("ApplicationController.context_showLoadingScreenHandler()");
-        applicationModel.screens.goToLoad();
+        model.screens.goToLoad();
     }
 }
 }

@@ -42,6 +42,7 @@ import com.teotigraphix.ui.component.IScreenNavigator;
 
 import flash.display.LoaderInfo;
 import flash.events.UncaughtErrorEvent;
+import flash.net.registerClassAlias;
 
 import org.robotlegs.starling.base.ContextEventType;
 import org.robotlegs.starling.mvcs.Context;
@@ -52,9 +53,15 @@ import starling.core.Starling;
 import t4b.controller.ApplicationController;
 import t4b.controller.UIFactory;
 import t4b.controller.UIState;
+import t4b.model.ConfigurationModel;
+import t4b.model.state.ConfigurationState;
+import t4b.service.ConfigurationService;
+import t4b.service.OSCService;
 
 public class ApplicationContext extends Context
 {
+    registerClassAlias("$s.1", ConfigurationState);
+    
     //----------------------------------
     // Minimal Impl
     //----------------------------------
@@ -223,6 +230,8 @@ public class ApplicationContext extends Context
      */
     protected function configureService():void
     {
+        injector.mapSingleton(ConfigurationService);
+        injector.mapSingleton(OSCService);
     }
     
     /**
@@ -239,6 +248,8 @@ public class ApplicationContext extends Context
     {
         injector.mapSingletonOf(IUIState, UIState);
         injector.mapSingletonOf(IUIFactory, UIFactory);
+        
+        injector.mapSingleton(ConfigurationModel);
     }
     
     /**

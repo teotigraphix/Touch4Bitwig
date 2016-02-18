@@ -10,8 +10,8 @@ bin/
 bin-debug/
 bin-release/
 
-**/assets
-**/assets-theme
+assets/
+assets-theme/
 
 # Other files and folders
 .settings/

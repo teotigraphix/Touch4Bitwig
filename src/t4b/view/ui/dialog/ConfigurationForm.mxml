@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+<component:VGroup xmlns:f="library://ns.feathersui.com/mxml"
+                  xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:component="com.teotigraphix.ui.component.*"
+                  gap="15"
+                  verticalAlign="middle" horizontalAlign="center">
+
+
+    <component:VGroup gap="15">
+
+        <f:Label text="Bitwig to Device Port/IP configuration"/>
+
+        <component:HGroup verticalAlign="middle">
+
+            <f:Label text="DAW IP" width="{columnWidth}"/>
+            <f:TextInput id="dawIpInput" restrict="0-9."
+                         change="input_changeHandler()"/>
+
+        </component:HGroup>
+
+        <component:HGroup verticalAlign="middle">
+
+            <f:Label text="DAW Port" width="{columnWidth}"/>
+            <f:TextInput id="dawPortInput" restrict="0-9"
+                         change="input_changeHandler()"/>
+
+        </component:HGroup>
+
+        <component:HGroup verticalAlign="middle">
+
+            <f:Label text="Device IP" width="{columnWidth}"/>
+            <f:TextInput id="deviceIpInput" restrict="0-9."
+                         change="input_changeHandler()"/>
+
+        </component:HGroup>
+
+        <component:HGroup verticalAlign="middle">
+
+            <f:Label text="Device Port" width="{columnWidth}"/>
+            <f:TextInput id="devicePortInput" restrict="0-9"
+                         change="input_changeHandler()"/>
+
+        </component:HGroup>
+
+<!--        <component:HGroup verticalAlign="middle" percentWidth="100" gap="10">
+
+            <f:Button id="connectButton" label="Connect"
+                      isEnabled="false"
+                      width="{buttonWidth}"
+                      triggered="connectButton_triggeredHandler()">
+            </f:Button>
+
+            <f:Button id="resetButton" label="Reset"
+                      isEnabled="true"
+                      width="{buttonWidth}"
+                      triggered="resetButton_triggeredHandler()">
+            </f:Button>
+
+            <f:LayoutGroup>
+                <f:layoutData>
+                    <f:HorizontalLayoutData percentWidth="100"/>
+                </f:layoutData>
+            </f:LayoutGroup>
+
+            <f:Button id="closeButton" label="Close"
+                      width="{buttonWidth}"
+                      triggered="closeButton_triggeredHandler()"/>
+
+        </component:HGroup>-->
+
+    </component:VGroup>
+
+    <fx:Script><![CDATA[
+        import t4b.model.state.ConfigurationState;
+        
+        public static const EVENT_IS_VALID:String = "isValid";
+        public static const EVENT_CONNECT:String = "apply";
+        public static const EVENT_RESET:String = "reset";
+        public static const EVENT_CLOSE:String = "close";
+        // XXX for some reason Bindable is only working at startup
+
+        [Bindable]
+        public var columnWidth:Number = 150;
+
+        public var buttonWidth:Number = 100;
+
+        public function set isBound(value:Boolean):void
+        {
+            //closeButton.isEnabled = value;
+            //connectButton.isEnabled = !value;
+        }
+
+        //----------------------------------
+        // configurationState
+        //----------------------------------
+        
+        private var _configurationState:ConfigurationState;
+        
+        public function get configurationState():ConfigurationState 
+        {
+            return _configurationState;
+        }
+        
+        public function set configurationState(value:ConfigurationState):void
+        {
+            _configurationState = value;
+            invalidate(INVALIDATION_FLAG_DATA);
+        }
+        
+        override protected function draw():void
+        {
+            if (_configurationState != null && isInvalid(INVALIDATION_FLAG_DATA))
+            {
+                deviceIpInput.text = _configurationState.deviceIP;
+                devicePortInput.text = _configurationState.devicePort.toString();
+                dawIpInput.text  = _configurationState.dawIP;
+                dawPortInput.text = _configurationState.dawPort.toString();
+            }
+            
+            super.draw();
+        }
+        
+        private function connectButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_CONNECT);
+        }
+
+        private function resetButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_RESET);
+        }
+
+        private function input_changeHandler():void
+        {
+            var dawip:Boolean = dawIpInput.text.length > 0;
+            var dawport:Boolean = dawPortInput.text.length > 0;
+            var devip:Boolean = deviceIpInput.text.length > 0;
+            var devport:Boolean = devicePortInput.text.length > 0;
+            
+            _configurationState.setup(parseInt(dawPortInput.text), dawIpInput.text, 
+                parseInt(devicePortInput.text), deviceIpInput.text)
+            
+            var enabled:Boolean = dawip && dawport && devip  && devport;
+            if (enabled)
+            {
+                dispatchEventWith(EVENT_IS_VALID, true);
+            }
+        }
+
+        private function closeButton_triggeredHandler():void
+        {
+            dispatchEventWith(EVENT_CLOSE);
+        }
+        ]]></fx:Script>
+
+</component:VGroup>

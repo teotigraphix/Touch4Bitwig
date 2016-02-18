@@ -21,6 +21,9 @@ package t4b.controller
 
 import com.teotigraphix.controller.core.AbstractCommandLauncher;
 
+import t4b.controller.command.ui.$_EditConfigurationCommand;
+import t4b.model.state.ConfigurationState;
+
 public class CommandLauncher extends AbstractCommandLauncher
 {
     public function CommandLauncher()
@@ -30,6 +33,13 @@ public class CommandLauncher extends AbstractCommandLauncher
     override protected function onRegister():void
     {
         super.onRegister();
+        
+        map($_EditConfigurationCommand);
+    }
+    
+    public function editConfiguration(state:ConfigurationState):void
+    {
+        fire($_EditConfigurationCommand, {state:state});
     }
 }
 }

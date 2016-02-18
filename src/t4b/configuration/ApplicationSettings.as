@@ -21,8 +21,26 @@ package t4b.configuration
 
 import com.teotigraphix.model.impl.AbstractApplicationSettings;
 
+import t4b.model.state.ConfigurationState;
+
 public class ApplicationSettings extends AbstractApplicationSettings
 {
+    public static const CONFIGURATION_STATE:String = "configurationState";
+    
+    //----------------------------------
+    // configurationState
+    //----------------------------------
+    
+    public function get configurationState():ConfigurationState
+    {
+        return getObject(CONFIGURATION_STATE, null);
+    }
+    
+    public function set configurationState(value:ConfigurationState):void
+    {
+        put(CONFIGURATION_STATE, value);
+    }
+    
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------

@@ -25,10 +25,14 @@ import t4b.configuration.ApplicationSettings;
 import t4b.controller.CommandLauncher;
 import t4b.controller.ScreenLauncher;
 import t4b.controller.UIController;
+import t4b.model.ConfigurationModel;
 import t4b.model.IApplicationModel;
 
 public class ApplicationModelImpl extends AbstractApplicationModel implements IApplicationModel
 {
+    [Inject]
+    public var _configuration:ConfigurationModel;
+    
     /**
      * @inheritDoc
      */
@@ -60,7 +64,15 @@ public class ApplicationModelImpl extends AbstractApplicationModel implements IA
     {
         return _ui as UIController;
     }
-
+    
+    /**
+     * @inheritDoc
+     */
+    public function get configuration():ConfigurationModel
+    {
+        return _configuration;
+    }
+    
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------

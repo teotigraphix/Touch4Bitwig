@@ -25,6 +25,11 @@ import com.teotigraphix.ui.core.AbstractScreenLauncher;
 
 import org.robotlegs.starling.core.IMediatorMap;
 
+import t4b.view.ui.LoadingScreen;
+import t4b.view.ui.MainScreen;
+import t4b.view.ui._mediators.LoadingScreenMediator;
+import t4b.view.ui._mediators.MainScreenMediator;
+
 use namespace sdk_internal;
 
 public class ScreenLauncher extends AbstractScreenLauncher
@@ -50,6 +55,9 @@ public class ScreenLauncher extends AbstractScreenLauncher
     override protected function configure(navigator:IScreenNavigator):void
     {
         super.configure(navigator);
+        
+        navigator.addScreen(LOAD, create(LoadingScreen, LoadingScreenMediator));
+        navigator.addScreen(MAIN, create(MainScreen, MainScreenMediator));
     }
 
     override protected function configureControls(mediatorMap:IMediatorMap):void

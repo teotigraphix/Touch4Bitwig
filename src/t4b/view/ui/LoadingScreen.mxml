@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<f:Screen xmlns:f="library://ns.feathersui.com/mxml"
+          xmlns:fx="http://ns.adobe.com/mxml/2009">
+    <fx:Script>
+        <![CDATA[
+            import com.teotigraphix.ui.theme.AssetMap;
+            import com.teotigraphix.ui.theme.framework.FrameworkStyleNames;
+        ]]>
+    </fx:Script>
+
+    <f:layout>
+        <f:AnchorLayout/>
+    </f:layout>
+
+    <f:ImageLoader id="imageLoader" scaleContent="true" scaleMode="showAll">
+        <f:layoutData>
+            <f:AnchorLayoutData verticalCenter="0" horizontalCenter="0"
+                                top="{AssetMap.dp(10)}" left="{AssetMap.dp(10)}" 
+                                bottom="{AssetMap.dp(10)}" right="{AssetMap.dp(10)}" />
+        </f:layoutData>
+    </f:ImageLoader>
+    
+    <f:Label id="loadingLabel" text="Loading..." 
+             wordWrap="true"
+             styleName="{FrameworkStyleNames.LABEL_UI_DARK}">
+        <f:layoutData>
+            <f:AnchorLayoutData bottom="{AssetMap.dp(10)}" right="{AssetMap.dp(10)}" />
+        </f:layoutData>
+    </f:Label>
+
+    <f:Button/>
+
+</f:Screen>

@@ -40,5 +40,7 @@ public interface IApplicationModel
     function get commands():CommandLauncher;
 
     function get ui():UIController;
+    
+    function get configuration():ConfigurationModel;
 }
 }

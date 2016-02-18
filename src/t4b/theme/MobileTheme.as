@@ -48,7 +48,7 @@ public class MobileTheme extends AbstractTheme
     public function MobileTheme(scaleToDPI:Boolean = true)
     {
         super(scaleToDPI);
-        SharedFactory.PRIMARY_BACKGROUND_COLOR = 0x171717;
+        SharedFactory.PRIMARY_BACKGROUND_COLOR = 0xFFFFFF; //0x171717;
         FontFactory.FONT_NAME = "Sansation";
         AssetMap.theme = this;
         this.initialize();
