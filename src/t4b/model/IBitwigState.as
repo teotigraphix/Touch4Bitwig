@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Copyright 2016 Michael Schmalle - Teoti Graphix, LLC
+// Copyright 2015 Michael Schmalle - Teoti Graphix, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,33 +16,16 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
-package t4b.model
+package touch4bitwig.model
 {
 
-import com.teotigraphix.app.configuration.ApplicationDescriptor;
-import com.teotigraphix.app.configuration.IApplicationPermissions;
+import touch4bitwig.service.IBitwigStateListener;
 
-import t4b.configuration.ApplicationSettings;
-import t4b.controller.CommandLauncher;
-import t4b.controller.ScreenLauncher;
-import t4b.controller.UIController;
-
-public interface IApplicationModel
+/**
+ * Marker interface for all native Bitwig API calls and current state.
+ */
+public interface IBitwigState extends IBitwigStateListener
 {
-    function get applicationSettings():ApplicationSettings;
-    
-    function get descriptor():ApplicationDescriptor;
-    
-    function get permissions():IApplicationPermissions;
-    
-    function get screens():ScreenLauncher;
 
-    function get commands():CommandLauncher;
-
-    function get ui():UIController;
-    
-    function get configuration():ConfigurationModel;
-    
-    function get osc():OSCModel;
 }
 }

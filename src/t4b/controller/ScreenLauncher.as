@@ -27,8 +27,12 @@ import org.robotlegs.starling.core.IMediatorMap;
 
 import t4b.view.ui.LoadingScreen;
 import t4b.view.ui.MainScreen;
+import t4b.view.ui.TransportScreen;
 import t4b.view.ui._mediators.LoadingScreenMediator;
 import t4b.view.ui._mediators.MainScreenMediator;
+import t4b.view.ui._mediators.TransportScreenMediator;
+import t4b.view.ui.transport.TransportDisplay;
+import t4b.view.ui.transport._mediators.TransportDisplayMediator;
 
 use namespace sdk_internal;
 
@@ -36,6 +40,8 @@ public class ScreenLauncher extends AbstractScreenLauncher
 {
     public static const LOAD:String = "load";
     public static const MAIN:String = "main";
+    
+    public static const TRANSPORT:String = "transport";
     
     //--------------------------------------------------------------------------
     // Constructor
@@ -58,11 +64,15 @@ public class ScreenLauncher extends AbstractScreenLauncher
         
         navigator.addScreen(LOAD, create(LoadingScreen, LoadingScreenMediator));
         navigator.addScreen(MAIN, create(MainScreen, MainScreenMediator));
+        
+        navigator.addScreen(TRANSPORT, create(TransportScreen, TransportScreenMediator));
     }
 
     override protected function configureControls(mediatorMap:IMediatorMap):void
     {
         super.configureControls(mediatorMap);
+        
+        mediatorMap.mapView(TransportDisplay, TransportDisplayMediator);        
     }
 
     override protected function configurePopUpControls(mediatorMap:IMediatorMap):void
@@ -82,6 +92,11 @@ public class ScreenLauncher extends AbstractScreenLauncher
     public function goToMain():void
     {
         setApplicationScreen(MAIN);
+    }
+    
+    public function goToTransport():void
+    {
+        setApplicationScreen(TRANSPORT);
     }
 }
 }

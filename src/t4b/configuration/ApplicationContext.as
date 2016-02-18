@@ -54,6 +54,7 @@ import t4b.controller.ApplicationController;
 import t4b.controller.UIFactory;
 import t4b.controller.UIState;
 import t4b.model.ConfigurationModel;
+import t4b.model.OSCModel;
 import t4b.model.state.ConfigurationState;
 import t4b.service.ConfigurationService;
 import t4b.service.OSCService;
@@ -250,6 +251,7 @@ public class ApplicationContext extends Context
         injector.mapSingletonOf(IUIFactory, UIFactory);
         
         injector.mapSingleton(ConfigurationModel);
+        injector.mapSingleton(OSCModel);
     }
     
     /**

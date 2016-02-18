@@ -27,11 +27,15 @@ import t4b.controller.ScreenLauncher;
 import t4b.controller.UIController;
 import t4b.model.ConfigurationModel;
 import t4b.model.IApplicationModel;
+import t4b.model.OSCModel;
 
 public class ApplicationModelImpl extends AbstractApplicationModel implements IApplicationModel
 {
     [Inject]
     public var _configuration:ConfigurationModel;
+    
+    [Inject]
+    public var _osc:OSCModel;    
     
     /**
      * @inheritDoc
@@ -71,6 +75,14 @@ public class ApplicationModelImpl extends AbstractApplicationModel implements IA
     public function get configuration():ConfigurationModel
     {
         return _configuration;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function get osc():OSCModel
+    {
+        return _osc;
     }
     
     //--------------------------------------------------------------------------

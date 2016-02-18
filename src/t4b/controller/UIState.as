@@ -24,6 +24,8 @@ import com.teotigraphix.core.sdk_internal;
 import com.teotigraphix.ui.IScreenLauncher;
 import com.teotigraphix.ui.core.AbstractUIState;
 
+import feathers.data.ListCollection;
+
 use namespace sdk_internal;
 
 public class UIState extends AbstractUIState
@@ -37,6 +39,9 @@ public class UIState extends AbstractUIState
     [Inject]
     public var _permissions:IApplicationPermissions;
     
+    private var _transportTempoWholeDataProvider:ListCollection;
+    private var _transportTempoFractionDataProvider:ListCollection;
+    
     private function get commands():CommandLauncher
     {
         return CommandLauncher(_commands);
@@ -47,6 +52,20 @@ public class UIState extends AbstractUIState
         return ScreenLauncher(_screens);
     }
     
+    //----------------------------------
+    // Transport
+    //----------------------------------
+    
+    public function get transportTempoWholeDataProvider():ListCollection
+    {
+        return _transportTempoWholeDataProvider;
+    }
+    
+    public function get transportTempoFractionDataProvider():ListCollection
+    {
+        return _transportTempoFractionDataProvider;
+    }
+
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -54,6 +73,32 @@ public class UIState extends AbstractUIState
     public function UIState()
     {
         super();
+    }
+    
+    override protected function onRegister():void
+    {
+        super.onRegister();
+        
+        // Transport
+        
+        _transportTempoWholeDataProvider = new ListCollection();
+        _transportTempoFractionDataProvider = new ListCollection();
+        
+        var i:int;
+        var value:int = 20;
+        for (i = 0; i < 667 - 20; i++)
+        {
+            _transportTempoWholeDataProvider.addItem({label: value, index: i, bpm: value});
+            value++;
+        }
+        
+        value = 0;
+        
+        for (i = 0; i < 100; i++)
+        {
+            _transportTempoFractionDataProvider.addItem({label: i, index: i, bpm: value});
+            value++;
+        }
     }
 }
 }
