@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2016 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+<!---
+Main entrance point of the application.
+-->
+<ui:BootstrapApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                         xmlns:ui="com.teotigraphix.app.ui.*"
+                         xmlns:o="t4b.configuration.*">
+    
+    <fx:Metadata>
+        [Frame(factoryClass="t4b.configuration.ApplicationBootstrap")]
+    </fx:Metadata>
+    <fx:Script>
+        <![CDATA[
+            import t4b.configuration.ApplicationDescriptorImpl;
+            import t4b.configuration.ApplicationSettings;
+            import t4b.configuration.ApplicationStartupCommand;
+            import t4b.controller.CommandLauncher;
+            import t4b.controller.ScreenLauncher;
+            import t4b.controller.UIController;
+            import t4b.model.IApplicationModel;
+            import t4b.model.impl.ApplicationModelImpl;
+            import t4b.view.core.ApplicationMediator;
+        ]]>
+    </fx:Script>
+    
+    <ui:context>
+        <o:ApplicationContext navigator="{navigator}"
+                              applicationClass="{Main}"
+                              
+                              applicationDescriptorClass="{ApplicationDescriptorImpl}"
+                              applicationSettingsClass="{ApplicationSettings}"
+                              
+                              applicationModelAPI="{IApplicationModel}"
+                              applicationModelClass="{ApplicationModelImpl}"
+                              
+                              startupCommand="{ApplicationStartupCommand}"
+                              
+                              applicationMediatorClass="{ApplicationMediator}"
+                              
+                              screenLauncherClass="{ScreenLauncher}"
+                              commandLauncherClass="{CommandLauncher}"
+                              uiControllerClass="{UIController}"/>
+    </ui:context>
+    
+    <!-- The main application Drawer container. -->
+    <ui:BootstrapNavigator id="navigator"/>
+    
+</ui:BootstrapApplication>

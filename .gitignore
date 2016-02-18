@@ -1,0 +1,54 @@
+
+out/
+**/build/windows/
+**/build/android/
+
+ext/
+
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+
+**/assets
+**/assets-theme
+
+# Other files and folders
+.settings/
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+
+# Intellij
+#.idea/
+#*.iml
+*.iws
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+.settings/
+.metadata/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project
+
+libs/
