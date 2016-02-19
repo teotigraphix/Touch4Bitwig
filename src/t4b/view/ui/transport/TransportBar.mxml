@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2016 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
+<f:LayoutGroup xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:component="com.teotigraphix.ui.component.*">
+    
+    <f:layout>
+        <f:HorizontalLayout gap="2"/>
+    </f:layout>
+    
+    <f:Button id="stopButton"
+              styleName="{StyleNames.TRANSPORT_BAR_STOP_BUTTON}"
+              triggered="dispatchEventWith(EVENT_STOP_TRIGGERED)">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:Button>
+    
+    <f:ToggleButton id="playButton" 
+                    isToggle="false"
+                    styleName="{StyleNames.TRANSPORT_BAR_PLAY_BUTTON}"
+                    triggered="dispatchEventWith(EVENT_PLAY_TRIGGERED, false, playButton.isSelected)">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:ToggleButton>
+    
+    <f:ToggleButton id="recordButton" 
+                    isToggle="false"
+                    styleName="{StyleNames.TRANSPORT_BAR_RECORD_BUTTON}"
+                    triggered="dispatchEventWith(EVENT_RECORD_TRIGGERED, false, recordButton.isSelected)">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:ToggleButton>
+    
+    <f:ToggleButton id="autowriteButton"  
+                    isToggle="false"
+                    styleName="{StyleNames.TRANSPORT_BAR_AUTOMATION_BUTTON}"
+                    triggered="dispatchEventWith(EVENT_AUTOWRITE_TRIGGERED, false, autowriteButton.isSelected)">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:ToggleButton>
+    
+    <f:ToggleButton id="popupButton" 
+                     isToggle="false"
+                    styleName="{StyleNames.TRANSPORT_BAR_POPUP_BUTTON}"
+                    change="dispatchEventWith(EVENT_POPUP_TRIGGERED, false, popupButton.isSelected)">
+        <f:layoutData>
+            <f:HorizontalLayoutData percentWidth="100" percentHeight="100"/>
+        </f:layoutData>
+    </f:ToggleButton>
+    
+    
+    <fx:Script><![CDATA[
+        import t4b.theme.StyleNames;
+
+        public static const EVENT_STOP_TRIGGERED:String = "stopTriggered";
+        public static const EVENT_PLAY_TRIGGERED:String = "playTriggered";
+        public static const EVENT_RECORD_TRIGGERED:String = "recordTriggered";
+        public static const EVENT_AUTOWRITE_TRIGGERED:String = "automationTriggered";
+        public static const EVENT_POPUP_TRIGGERED:String = "popupTriggered";
+        
+    ]]></fx:Script>
+    
+</f:LayoutGroup>

@@ -32,7 +32,7 @@ public class AbstractBitwigState implements IBitwigState
     //--------------------------------------------------------------------------
 
     protected var _methods:Array = [];
-    private var _service:OSCService;
+    protected var _service:OSCService;
     private var _flush:Boolean = false;
 
     //--------------------------------------------------------------------------
@@ -92,19 +92,19 @@ public class AbstractBitwigState implements IBitwigState
     // Protected :: Methods
     //--------------------------------------------------------------------------
 
-    protected final function dispatch(type:String, value:Object):void
-    {
-        _service.dispatchEventWith(type, false, value);
-    }
+//    protected final function dispatch(type:String, value:Object):void
+//    {
+//        _service.dispatchEventWith(type, false, value);
+//    }
+//
+//    protected final function dispatchValue(type:String, value:Object):void
+//    {
+//        _service.dispatchEventWith(type, false, {value: value});
+//    }
 
-    protected final function dispatchValue(type:String, value:Object):void
+    protected function propertyChange(name:String, value:Object):void
     {
-        _service.dispatchEventWith(type, false, {value: value});
-    }
-
-    protected final function isSame(current:Object, value:Object):Boolean
-    {
-        return (current == value || _flush);
+        _service.dispatchEventWith(name, false, value);
     }
 }
 }

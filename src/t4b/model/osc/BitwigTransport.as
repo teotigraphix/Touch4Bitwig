@@ -27,33 +27,10 @@ import t4b.service.OSCService;
 
 public class BitwigTransport extends AbstractBitwigState
 {
-    public static const IS_PUNCH_IN:String = "isPunchIn";
-    public static const IS_PUNCH_OUT:String = "isPunchOut";
-    public static const POSITION_STRING:String = "positionString";
-
-    public static const NUMERATOR:String = "numerator";
-    public static const DENOMINATOR:String = "denominator";
-    public static const TIME_SIGNATURE:String = "timeSignature";
-
-    public static const IS_AUTOMATION_OVERRIDE:String = "isAutomationOverride";
-    public static const TEMPO_RAW:String = "tempoRaw";
-    public static const IS_CLICK:String = "isClick";
-    public static const IS_PLAYING:String = "isPlaying";
-    public static const IS_RECORDING:String = "isRecording";
-
-    public static const IS_REPEAT:String = "isRepeat";
-    public static const IS_PRE_ROLL:String = "isPreRoll";
-    public static const IS_OVER_DUB_LAUNCHER:String = "isOverdubLauncher";
-    public static const IS_OVER_DUB:String = "isOverdub";
-    public static const CROSS_FADE:String = "crossFade";
-    public static const IS_AUTO_WRITE:String = "isAutoWrite";
-    public static const IS_AUTO_WRITE_LAUNCHER:String = "isAutoWriteLauncher";
-    public static const AUTOMATION_WRITE_MODE:String = "automationWriteMode";
-
     //--------------------------------------------------------------------------
     // Private :: Variables
     //--------------------------------------------------------------------------
-
+    
     private var _tempoRaw:Number;
     private var _isClick:Boolean;
     private var _isPlaying:Boolean;
@@ -68,20 +45,20 @@ public class BitwigTransport extends AbstractBitwigState
     private var _automationWriteMode:String;
     private var _isPunchIn:Boolean;
     private var _isPunchOut:Boolean;
-
+    
     private var _positionString:String;
     private var _numerator:int;
     private var _denominator:int;
     private var _isAutomationOverride:Boolean;
-
+    
     //--------------------------------------------------------------------------
     // API :: Properties
     //--------------------------------------------------------------------------
-
+    
     //----------------------------------
     // isPlaying
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -89,11 +66,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isPlaying;
     }
-
+    
     //----------------------------------
     // isRecording
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -101,11 +78,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isRecording;
     }
-
+    
     //----------------------------------
     // isOverdub
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -113,19 +90,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isOverdub;
     }
-
+    
     public function set isOverdub(value:Boolean):void
     {
-        if (!setProperty(IS_OVER_DUB, value))
+        if (_isOverdub == value)
             return;
         _isOverdub = value;
         service.sendBoolean("/overdub", value);
     }
-
+    
     //----------------------------------
     // isOverdubLauncher
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -133,19 +110,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isOverdubLauncher;
     }
-
+    
     public function set isOverdubLauncher(value:Boolean):void
     {
-        if (!setProperty(IS_OVER_DUB_LAUNCHER, value))
+        if (_isOverdubLauncher == value)
             return;
         _isOverdubLauncher = value;
         service.sendBoolean("/overdub/launcher", value);
     }
-
+    
     //----------------------------------
     // isRepeat
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -153,19 +130,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isRepeat;
     }
-
+    
     public function set isRepeat(value:Boolean):void
     {
-        if (!setProperty(IS_REPEAT, value))
+        if (_isRepeat == value)
             return;
         _isRepeat = value;
         service.sendBoolean("/repeat", value);
     }
-
+    
     //----------------------------------
     // isPunchIn
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -173,11 +150,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isPunchIn;
     }
-
+    
     //----------------------------------
     // isPunchOut
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -185,11 +162,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isPunchOut;
     }
-
+    
     //----------------------------------
     // isClick
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -197,19 +174,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isClick;
     }
-
+    
     public function set isClick(value:Boolean):void
     {
-        if (!setProperty(IS_CLICK, value))
+        if (_isClick == value)
             return;
         _isClick = value;
-        service.sendBoolean("/click", value);
+        service.sendBoolean("/click", _isClick);
     }
-
+    
     //----------------------------------
     // tempoRaw
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -217,19 +194,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _tempoRaw;
     }
-
+    
     public function set tempoRaw(value:Number):void
     {
-        if (!setProperty(TEMPO_RAW, value))
+        if (_tempoRaw == value)
             return;
         _tempoRaw = value;
-        service.sendFloat("/tempo/raw", value);
+        service.sendFloat("/tempo/raw", _tempoRaw);
     }
-
+    
     //----------------------------------
     // crossFade
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -237,19 +214,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _crossFade;
     }
-
+    
     public function set crossFade(value:int):void
     {
-        if (!setProperty(CROSS_FADE, value))
+        if (_crossFade == value)
             return;
         _crossFade = value;
-        service.sendBoolean("/crossfade", value);
+        service.sendBoolean("/crossfade", _crossFade);
     }
-
+    
     //----------------------------------
     // isAutoWrite
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -257,11 +234,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isAutoWrite;
     }
-
+    
     //----------------------------------
     // isAutoWriteLauncher
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -269,13 +246,13 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isAutoWriteLauncher;
     }
-
+    
     //-----------
-
+    
     //----------------------------------
     // isPreRoll
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -284,11 +261,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isPreRoll;
     }
-
+    
     //----------------------------------
     // automationWriteMode
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -296,19 +273,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _automationWriteMode;
     }
-
+    
     public function set automationWriteMode(value:String):void
     {
-        if (!setProperty(AUTOMATION_WRITE_MODE, value))
+        if (_automationWriteMode == value)
             return;
         _automationWriteMode = value;
-        service.sendString("/automationWriteMode", value);
+        service.sendString("/automationWriteMode", _automationWriteMode);
     }
-
+    
     //----------------------------------
     // positionString
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -316,11 +293,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _positionString;
     }
-
+    
     //----------------------------------
     // numerator
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -328,7 +305,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _numerator;
     }
-
+    
     // TODO
     public function set numerator(value:int):void
     {
@@ -339,11 +316,11 @@ public class BitwigTransport extends AbstractBitwigState
         //dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _numerator);
         //dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
-
+    
     //----------------------------------
     // denominator
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -351,7 +328,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _denominator;
     }
-
+    
     // TODO
     public function set denominator(value:int):void
     {
@@ -362,11 +339,11 @@ public class BitwigTransport extends AbstractBitwigState
         //dispatchValue(BitwigTransportEventType.NUMERATOR_CHANGE, _denominator);
         //dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
     }
-
+    
     //----------------------------------
     // isAutomationOverride
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -374,11 +351,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _isAutomationOverride;
     }
-
+    
     //----------------------------------
     // timeSignature
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -386,19 +363,19 @@ public class BitwigTransport extends AbstractBitwigState
     {
         return _numerator + "/" + _denominator;
     }
-
+    
     public function set timeSignature(value:String):void
     {
         service.sendString("timeSignature", value);
-        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
+        propertyChange(BitwigTransportEventType.TIME_SIGNATURE, timeSignature);
     }
-
+    
     //------
-
+    
     //----------------------------------
     // automationWriteModeIndex
     //----------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -415,16 +392,16 @@ public class BitwigTransport extends AbstractBitwigState
         }
         return -1;
     }
-
+    
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
-
+    
     public function BitwigTransport(service:OSCService)
     {
         super(service);
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -445,12 +422,12 @@ public class BitwigTransport extends AbstractBitwigState
         _methods["/autowrite/launcher"] = autoWriteLauncherHandler;
         _methods["/automationWriteMode"] = automationWriteModeHandler; // {latch,touch,write}
         _methods["/position"] = positionHandler;
-
+        
         _methods["/numerator"] = numeratorHandler;
         _methods["/denominator"] = denominatorHandler;
         _methods["/automationOverride"] = automationOverrideHandler;
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -458,11 +435,11 @@ public class BitwigTransport extends AbstractBitwigState
     {
         _methods = [];
     }
-
+    
     //--------------------------------------------------------------------------
     // API :: Methods
     //--------------------------------------------------------------------------
-
+    
     /**
      * @inheritDoc
      */
@@ -470,7 +447,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/play");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -485,7 +462,7 @@ public class BitwigTransport extends AbstractBitwigState
             service.send("/stop");
         }
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -493,7 +470,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/restart");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -501,7 +478,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/record");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -509,7 +486,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/punchIn");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -517,7 +494,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/punchOut");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -525,7 +502,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/click");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -533,7 +510,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/tempo/tap");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -541,7 +518,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.sendFloat("/tempo/+", value);
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -549,7 +526,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.sendFloat("/tempo/-", value);
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -557,7 +534,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/position/-");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -572,7 +549,7 @@ public class BitwigTransport extends AbstractBitwigState
             service.send("/position/+");
         }
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -587,7 +564,7 @@ public class BitwigTransport extends AbstractBitwigState
             service.send("/position/-");
         }
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -595,7 +572,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/autowrite");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -603,7 +580,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/autowrite/launcher");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -611,7 +588,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/automationOverride");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -619,7 +596,7 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/position/" + isLarge ? "++" : "+");
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -627,124 +604,160 @@ public class BitwigTransport extends AbstractBitwigState
     {
         service.send("/position/" + isLarge ? "--" : "-");
     }
-
+    
     //--------------------------------------------------------------------------
     // Private :: Handlers
     //--------------------------------------------------------------------------
 
-    internal function propertyChanged(name:String, value:*):Boolean
-    {
-        return setProperty(name, value, true);
-    }
-
-    internal function setProperty(name:String, value:*, sendChangeEvent:Boolean = true):Boolean
-    {
-        if (this["_" + name] == value)
-            return false;
-
-        this["_" + name] = value;
-
-        if (sendChangeEvent)
-        {
-            // updates UI mediators
-            dispatchValue(name + "Change", value);
-        }
-
-        return true;
-    }
-
     private function punchInHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_PUNCH_IN, osc.arguments[0]);
+        if (_isPunchIn == osc.arguments[0])
+            return;
+        _isPunchIn = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_PUNCH_IN, _isPunchIn);
     }
-
+    
     private function punchOutHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_PUNCH_OUT, osc.arguments[0]);
+        if (_isPunchOut == osc.arguments[0])
+            return;
+        _isPunchOut = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_PUNCH_OUT, _isPunchOut);
     }
-
+    
     private function positionHandler(osc:OSCMessage):void
     {
-        propertyChanged(POSITION_STRING, osc.arguments[0]);
+        if (_positionString == osc.arguments[0])
+            return;
+        _positionString = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.POSITION_STRING, _positionString);
     }
-
+    
     private function numeratorHandler(osc:OSCMessage):void
     {
-        propertyChanged(NUMERATOR, osc.arguments[0]);
-        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
+        if (_numerator == osc.arguments[0])
+            return;
+        _numerator = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.TIME_SIGNATURE, timeSignature);
     }
-
+    
     private function denominatorHandler(osc:OSCMessage):void
     {
-        propertyChanged(DENOMINATOR, osc.arguments[0]);
-        dispatchValue(BitwigTransportEventType.TIME_SIGNATURE_CHANGE, timeSignature);
+        if (_denominator == osc.arguments[0])
+            return;
+        _denominator = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.TIME_SIGNATURE, timeSignature);
     }
-
+    
     private function automationOverrideHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_AUTOMATION_OVERRIDE, osc.arguments[0]);
+        if (_isAutomationOverride == osc.arguments[0])
+            return;
+        _isAutomationOverride = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_AUTOMATION_OVERRIDE, _isAutomationOverride);
     }
-
+    
     private function tempoRawHandler(osc:OSCMessage):void
     {
-        propertyChanged(TEMPO_RAW, osc.arguments[0]);
+        if (_tempoRaw == osc.arguments[0])
+            return;
+        _tempoRaw = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.TEMPO_RAW, _tempoRaw);
     }
-
+    
     private function clickHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_CLICK, osc.arguments[0]);
+        if (_isClick == osc.arguments[0])
+            return;
+        _isClick = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_CLICK, _isClick);
     }
-
+    
     private function playHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_PLAYING, osc.arguments[0]);
+        if (_isPlaying == osc.arguments[0])
+            return;
+        _isPlaying = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_PLAYING, _isPlaying);
     }
-
+    
     private function recordHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_RECORDING, osc.arguments[0]);
+        if (_isRecording == osc.arguments[0])
+            return;
+        _isRecording = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_RECORDING, _isRecording);
     }
-
+    
     private function repeatHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_REPEAT, osc.arguments[0]);
+        if (_isRepeat == osc.arguments[0])
+            return;
+        _isRepeat = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_REPEAT, _isRepeat);
     }
-
+    
     private function isPreRollHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_PRE_ROLL, osc.arguments[0]);
+        if (_isPreRoll == osc.arguments[0])
+            return;
+        _isPreRoll = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_PRE_ROLL, _isPreRoll);
     }
-
+    
     private function isOverdubLauncherHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_OVER_DUB_LAUNCHER, osc.arguments[0]);
+        if (_isOverdubLauncher == osc.arguments[0])
+            return;
+        _isOverdubLauncher = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_OVER_DUB_LAUNCHER, _isOverdubLauncher);
     }
-
+    
     private function isOverdubHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_OVER_DUB, osc.arguments[0]);
+        if (_isOverdub == osc.arguments[0])
+            return;
+        _isOverdub = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_OVER_DUB, _isOverdub);
     }
-
+    
     private function crossFadeHandler(osc:OSCMessage):void
     {
-        propertyChanged(CROSS_FADE, osc.arguments[0]);
+        if (_crossFade == osc.arguments[0])
+            return;
+        _crossFade = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.CROSS_FADE, _crossFade);
     }
-
+    
     private function autoWriteHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_AUTO_WRITE, osc.arguments[0]);
+        if (_isAutoWrite == osc.arguments[0])
+            return;
+        _isAutoWrite = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_AUTO_WRITE, _isAutoWrite);
     }
-
+    
     //
-
+    
     private function autoWriteLauncherHandler(osc:OSCMessage):void
     {
-        propertyChanged(IS_AUTO_WRITE_LAUNCHER, osc.arguments[0]);
+        if (_isAutoWriteLauncher == osc.arguments[0])
+            return;
+        _isAutoWriteLauncher = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.IS_AUTO_WRITE_LAUNCHER, _isAutoWriteLauncher);
     }
-
+    
     private function automationWriteModeHandler(osc:OSCMessage):void
     {
-        propertyChanged(AUTOMATION_WRITE_MODE, osc.arguments[0]);
+        if (_automationWriteMode == osc.arguments[0])
+            return;
+        _automationWriteMode = osc.arguments[0];
+        propertyChange(BitwigTransportEventType.AUTOMATION_WRITE_MODE, _automationWriteMode);
+    }
+    
+    override protected function propertyChange(name:String, value:Object):void
+    {
+        _service.dispatchEventWith(name, false, {value:value});
     }
 }
 }

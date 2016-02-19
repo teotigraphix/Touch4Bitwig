@@ -16,40 +16,49 @@
 // Author: Michael Schmalle, Principal Architect
 // mschmalle at teotigraphix dot com
 ////////////////////////////////////////////////////////////////////////////////
-package t4b.view.ui._mediators
+package t4b.view.ui.main._mediators
 {
+import starling.events.Event;
 
 import t4b.view.core.AbstractMediator;
-import t4b.view.ui.TransportScreen;
+import t4b.view.ui.main.ApplicationToolBar;
 
-public class TransportScreenMediator extends AbstractMediator
+public class ApplicationToolBarMediator extends AbstractMediator
 {
     [Inject]
-    public var view:TransportScreen;
+    public var view:ApplicationToolBar;
     
-    //--------------------------------------------------------------------------
-    // Methods
-    //--------------------------------------------------------------------------
+    public function ApplicationToolBarMediator()
+    {
+        super();
+    }
     
     override protected function initializeView():void
     {
+        view.tabBar.dataProvider = model.ui.state.applicationToolBarDataProvider;
+        view.tabBar.selectedIndex = model.ui.state.selectedContentIndex;
+        view.tabBar.validate();
     }
     
     override protected function setupViewListeners():void
     {
+        addViewListener(ApplicationToolBar.EVENT_TAB_CHANGE, view_tabChangedHandler);
     }
     
     override protected function setupContextListeners():void
     {
+        //addContextListener(ProjectPreferencesUI.EVENT_SELECTED_CONTENT_INDEX_CHANGE, 
+       //     context_selectedContentIndexChangedHandler);
     }
     
-    //--------------------------------------------------------------------------
-    // View
-    //--------------------------------------------------------------------------
+    private function context_selectedContentIndexChangedHandler(event:Event, index:int):void
+    {
+        view.tabBar.selectedIndex = index;
+    }
     
-    //--------------------------------------------------------------------------
-    // Context
-    //--------------------------------------------------------------------------
-    
+    private function view_tabChangedHandler(event:Event, selectedIndex:int):void
+    {
+        model.ui.state.selectedContentIndex = selectedIndex;
+    }
 }
 }

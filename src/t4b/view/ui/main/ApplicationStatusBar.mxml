@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<f:LayoutGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                xmlns:s="library://ns.adobe.com/flex/spark" 
+                xmlns:f="library://ns.feathersui.com/mxml" 
+                xmlns:component="com.teotigraphix.ui.component.*" 
+                xmlns:main="t4b.view.ui.main.*">
+    
+    <f:layout>
+        <f:HorizontalLayout/>
+    </f:layout>
+    
+    <main:TransportToolBar>
+        
+    </main:TransportToolBar>
+    
+    <component:Spacer percentWidth="100"/>
+    
+    <main:StatusToolBar>
+        
+    </main:StatusToolBar>
+    
+    <fx:Script>
+        <![CDATA[
+            
+            import feathers.skins.IStyleProvider;
+            
+            public static var globalStyleProvider:IStyleProvider;
+            
+            override protected function get defaultStyleProvider():IStyleProvider
+            {
+                return ApplicationStatusBar.globalStyleProvider;
+            }
+            
+        ]]>
+    </fx:Script>
+    
+</f:LayoutGroup>

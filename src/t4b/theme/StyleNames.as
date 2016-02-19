@@ -21,6 +21,10 @@ package t4b.theme
 
 public final class StyleNames
 {
+    public static const ACTIONS_BUTTON:String = "actions-button";
+    public static const LOGO_BUTTON:String = "logo-button";
+    //
+    
     public static const FONT_COLOR_BITWIG_BLUE:uint = 0x3BABCC;
     // Main
     public static const MAIN_HEADER:String = "main-header";

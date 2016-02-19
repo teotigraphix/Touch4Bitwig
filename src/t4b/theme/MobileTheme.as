@@ -31,6 +31,11 @@ import starling.events.Event;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 
+import t4b.theme.factories.ApplicationActionBarFactory;
+import t4b.theme.factories.ApplicationStatusBarFactory;
+import t4b.theme.factories.ApplicationToolBarFactory;
+import t4b.theme.factories.TransportBarFactory;
+
 public class MobileTheme extends AbstractTheme
 {
     [Embed(source="/fonts/Sansation_Regular.ttf", fontFamily="Sansation", fontWeight="normal", mimeType="application/x-font", embedAsCFF="true")]
@@ -70,6 +75,12 @@ public class MobileTheme extends AbstractTheme
     override protected function addFactories():void
     {
         super.addFactories();
+        
+        factories.push(new ApplicationActionBarFactory(this));
+        factories.push(new ApplicationToolBarFactory(this));
+        factories.push(new ApplicationStatusBarFactory(this));
+        factories.push(new TransportBarFactory(this));
+        
 //        factories.push(new MainFactory(this));
 //        factories.push(new TransportBarFactory(this));
 //        factories.push(new MixerItemFactory(this));

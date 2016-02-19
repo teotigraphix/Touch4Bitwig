@@ -63,8 +63,7 @@ public class ApplicationMediator extends AbstractMediator
 
     private function context_applicationCompleteHandler(event:Event):void
     {
-        //model.screens.goToMain();
-        model.screens.goToTransport();
+        model.screens.goToMain();
     }
 }
 }

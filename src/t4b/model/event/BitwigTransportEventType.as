@@ -19,31 +19,33 @@
 package t4b.model.event
 {
 
-import t4b.model.osc.BitwigTransport;
+
 
 public final class BitwigTransportEventType
 {
-    public static const POSITION_STRING_CHANGE:String = BitwigTransport.POSITION_STRING + "Change";
-    public static const NUMERATOR_CHANGE:String = BitwigTransport.NUMERATOR + "Change";
-    public static const DENOMINATOR_CHANGE:String = BitwigTransport.DENOMINATOR + "Change";
-    public static const TIME_SIGNATURE_CHANGE:String = BitwigTransport.TIME_SIGNATURE + "Change";
-
-    public static const IS_AUTOMATION_OVERRIDE_CHANGE:String = BitwigTransport.IS_AUTOMATION_OVERRIDE + "Change";
-
-    public static const TEMPO_RAW_CHANGE:String = BitwigTransport.TEMPO_RAW + "Change";
-    public static const IS_CLICK_CHANGE:String = BitwigTransport.IS_CLICK + "Change";
-    public static const IS_PLAYING_CHANGE:String = BitwigTransport.IS_PLAYING + "Change";
-    public static const IS_RECORDING_CHANGE:String = BitwigTransport.IS_RECORDING + "Change";
-    public static const IS_REPEAT_CHANGE:String = BitwigTransport.IS_REPEAT + "Change";
-    public static const IS_PRE_ROLL_CHANGE:String = BitwigTransport.IS_PRE_ROLL + "Change";
-    public static const IS_OVERDUB_LAUNCHER_CHANGE:String = BitwigTransport.IS_OVER_DUB_LAUNCHER + "Change";
-    public static const IS_OVERDUB_CHANGE:String = BitwigTransport.IS_OVER_DUB + "Change";
-    public static const CROSSFADE_CHANGE:String = BitwigTransport.CROSS_FADE + "Change";
-    public static const IS_AUTO_WRITE_LAUNCHER_CHANGE:String = BitwigTransport.IS_AUTO_WRITE_LAUNCHER + "Change";
-    public static const IS_AUTO_WRITE_CHANGE:String = BitwigTransport.IS_AUTO_WRITE + "Change";
-    public static const AUTOMATION_WRITE_MODE_CHANGE:String = BitwigTransport.AUTOMATION_WRITE_MODE + "Change";
-
-    public static const IS_PUNCH_IN_CHANGE:String = BitwigTransport.IS_PUNCH_IN + "Change";
-    public static const IS_PUNCH_OUT_CHANGE:String = BitwigTransport.IS_PUNCH_OUT + "Change";
+    public static const VALUE_CHANGED:String = "BitwigTransportEventType/valueChanged";
+    
+    public static const IS_PUNCH_IN:String = "isPunchIn";
+    public static const IS_PUNCH_OUT:String = "isPunchOut";
+    public static const POSITION_STRING:String = "positionString";
+    
+    public static const NUMERATOR:String = "numerator";
+    public static const DENOMINATOR:String = "denominator";
+    public static const TIME_SIGNATURE:String = "timeSignature";
+    
+    public static const IS_AUTOMATION_OVERRIDE:String = "isAutomationOverride";
+    public static const TEMPO_RAW:String = "tempoRaw";
+    public static const IS_CLICK:String = "isClick";
+    public static const IS_PLAYING:String = "isPlaying";
+    public static const IS_RECORDING:String = "isRecording";
+    
+    public static const IS_REPEAT:String = "isRepeat";
+    public static const IS_PRE_ROLL:String = "isPreRoll";
+    public static const IS_OVER_DUB_LAUNCHER:String = "isOverdubLauncher";
+    public static const IS_OVER_DUB:String = "isOverdub";
+    public static const CROSS_FADE:String = "crossFade";
+    public static const IS_AUTO_WRITE:String = "isAutoWrite";
+    public static const IS_AUTO_WRITE_LAUNCHER:String = "isAutoWriteLauncher";
+    public static const AUTOMATION_WRITE_MODE:String = "automationWriteMode";
 }
 }

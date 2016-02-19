@@ -26,6 +26,9 @@ import com.teotigraphix.ui.core.AbstractUIState;
 
 import feathers.data.ListCollection;
 
+import t4b.view.ui.main.TransportToolBar;
+import t4b.view.ui.transport.TransportBar;
+
 use namespace sdk_internal;
 
 public class UIState extends AbstractUIState
@@ -39,8 +42,11 @@ public class UIState extends AbstractUIState
     [Inject]
     public var _permissions:IApplicationPermissions;
     
+    private var _applicationToolBarDataProvider:ListCollection = new ListCollection();
     private var _transportTempoWholeDataProvider:ListCollection;
     private var _transportTempoFractionDataProvider:ListCollection;
+    
+    private var _selectedContentIndex:int = 0;
     
     private function get commands():CommandLauncher
     {
@@ -50,6 +56,31 @@ public class UIState extends AbstractUIState
     private function get screens():ScreenLauncher
     {
         return ScreenLauncher(_screens);
+    }
+    
+    //----------------------------------
+    // selectedContentIndex
+    //----------------------------------
+    
+    public function get selectedContentIndex():int
+    {
+        return _selectedContentIndex;
+    }
+    
+    public function set selectedContentIndex(value:int):void
+    {
+        if (_selectedContentIndex == value)
+            return;
+        _selectedContentIndex = value;
+    }
+    
+    //----------------------------------
+    // applicationToolBarDataProvider
+    //----------------------------------
+    
+    public function get applicationToolBarDataProvider():ListCollection
+    {
+        return _applicationToolBarDataProvider;
     }
     
     //----------------------------------
@@ -75,9 +106,39 @@ public class UIState extends AbstractUIState
         super();
     }
     
+    
+    //----------------------------------
+    // transportToolsDataProvider
+    //----------------------------------
+    
+    // {control:DisplayObject} with Mediator
+    public function createTransportToolsDataProvider(screenID:String):ListCollection
+    {
+        var dataProvider:ListCollection = new ListCollection([]);
+        
+        switch(screenID)
+        {
+            case ScreenLauncher.CONTENT_TRANSPORT:
+            {
+                dataProvider.addItem({control:new TransportBar()});
+                break;
+            }
+        }
+        return dataProvider;
+    }
+    
+    
     override protected function onRegister():void
     {
         super.onRegister();
+        
+        _applicationToolBarDataProvider.data = [];
+        
+        _applicationToolBarDataProvider.addItem({label:"T", screenID:ScreenLauncher.CONTENT_TRANSPORT});
+        _applicationToolBarDataProvider.addItem({label:"D", screenID:ScreenLauncher.CONTENT_TRANSPORT});
+        _applicationToolBarDataProvider.addItem({label:"W", screenID:ScreenLauncher.CONTENT_TRANSPORT});
+        _applicationToolBarDataProvider.addItem({label:"K", screenID:ScreenLauncher.CONTENT_TRANSPORT});
+        _applicationToolBarDataProvider.addItem({label:"F", screenID:ScreenLauncher.CONTENT_TRANSPORT});
         
         // Transport
         

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<f:LayoutGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:f="library://ns.feathersui.com/mxml"
+               xmlns:component="com.teotigraphix.ui.component.*" 
+               xmlns:main="t4b.view.ui.main.*">
+    
+    <f:layout>
+        <f:HorizontalLayout verticalAlign="middle"/>
+    </f:layout>
+    
+<!--    
+
+    <component:Spacer percentWidth="100"/>
+    
+    <main:ScreenToolBar>
+        
+    </main:ScreenToolBar>
+    
+    <component:Spacer percentWidth="100"/>
+
+    <main:ProjectNameControl minWidth="200">
+        
+    </main:ProjectNameControl>
+    
+-->
+
+    <main:ApplicationActions>
+        
+    </main:ApplicationActions>
+    
+    <component:Spacer percentWidth="100"/>
+    
+    <main:ScreenToolBar>
+        
+    </main:ScreenToolBar>
+    
+    <component:Spacer percentWidth="100"/>
+    
+    <main:ApplicationLogoControl>
+        
+    </main:ApplicationLogoControl>
+    
+    <fx:Script><![CDATA[
+        import feathers.skins.IStyleProvider;
+        
+        public static var globalStyleProvider:IStyleProvider;
+        
+        override protected function get defaultStyleProvider():IStyleProvider
+        {
+            return ApplicationActionBar.globalStyleProvider;
+        }
+
+    ]]></fx:Script>
+</f:LayoutGroup>

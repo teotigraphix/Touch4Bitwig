@@ -51,6 +51,7 @@ import starling.animation.Juggler;
 import starling.core.Starling;
 
 import t4b.controller.ApplicationController;
+import t4b.controller.OSCMessageController;
 import t4b.controller.UIFactory;
 import t4b.controller.UIState;
 import t4b.model.ConfigurationModel;
@@ -266,6 +267,7 @@ public class ApplicationContext extends Context
     protected function configureController():void
     {
         injector.mapSingleton(ApplicationController);
+        injector.mapSingleton(OSCMessageController);
     }
     
     /**

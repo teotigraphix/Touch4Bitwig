@@ -58,20 +58,16 @@ public class MainScreenMediator extends AbstractMediator
     
     override public function onRegister():void
     {
-//        model.screens.contentNavigator = view.contentNavigator;
-//        
-//        super.onRegister();
-//        
-//        switch(model.preferences.ui.selectedContentIndex)
-//        {
-//            case 0:
-//                model.screens.goToContentClip();
-//                break;
-//            
-//            case 1:
-//                model.screens.gotToContentRecordTake();
-//                break;
-//        }
+        model.screens.contentNavigator = view.contentNavigator;
+        
+        super.onRegister();
+        
+        switch(model.ui.state.selectedContentIndex)
+        {
+            case 0:
+                model.screens.goToTransport();
+                break;
+        }
     }
     
     override public function onRemove():void

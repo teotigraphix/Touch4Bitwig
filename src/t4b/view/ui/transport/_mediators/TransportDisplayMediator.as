@@ -52,10 +52,10 @@ public class TransportDisplayMediator extends AbstractMediator
     
     override protected function setupContextListeners():void
     {
-        addContextListener(BitwigTransportEventType.TEMPO_RAW_CHANGE, context_tempoRawChangeHandler);
-        addContextListener(BitwigTransportEventType.NUMERATOR_CHANGE, context_numeratorChangeHandler);
-        addContextListener(BitwigTransportEventType.DENOMINATOR_CHANGE, context_denonminatorChangeHandler);
-        addContextListener(BitwigTransportEventType.POSITION_STRING_CHANGE, context_positionChangeHandler);
+        addContextListener(BitwigTransportEventType.TEMPO_RAW, context_tempoRawChangeHandler);
+        addContextListener(BitwigTransportEventType.NUMERATOR, context_numeratorChangeHandler);
+        addContextListener(BitwigTransportEventType.DENOMINATOR, context_denonminatorChangeHandler);
+        addContextListener(BitwigTransportEventType.POSITION_STRING, context_positionChangeHandler);
     }
 
     private function context_tempoRawChangeHandler(event:Event, data:Object):void

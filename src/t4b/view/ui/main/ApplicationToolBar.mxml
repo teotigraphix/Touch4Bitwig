@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<f:LayoutGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                xmlns:s="library://ns.adobe.com/flex/spark" 
+                xmlns:f="library://ns.feathersui.com/mxml">
+    <fx:Script>
+        <![CDATA[
+            import com.teotigraphix.ui.theme.AssetMap;
+        ]]>
+    </fx:Script>
+    
+    <f:layout>
+        <f:VerticalLayout verticalAlign="middle" horizontalAlign="center"
+                          gap="{AssetMap.size(16)}"/>
+    </f:layout>
+    
+    <f:TabBar id="tabBar"
+              direction="vertical"
+              change="dispatchEventWith(EVENT_TAB_CHANGE, false, tabBar.selectedIndex)">
+        
+    </f:TabBar>
+    
+    <fx:Script>
+        <![CDATA[
+            
+            public static const EVENT_CLIP_CHANGE:String = "clipChange";
+            public static const EVENT_TAKE_CHANGE:String = "takeChange";
+            public static const EVENT_TAB_CHANGE:String = "tabChange";
+            
+            import feathers.skins.IStyleProvider;
+            
+            public static var globalStyleProvider:IStyleProvider;
+            
+            override protected function get defaultStyleProvider():IStyleProvider
+            {
+                return ApplicationToolBar.globalStyleProvider;
+            }
+        ]]>
+    </fx:Script>
+    
+</f:LayoutGroup>

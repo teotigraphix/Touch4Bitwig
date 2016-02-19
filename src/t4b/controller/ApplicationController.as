@@ -36,6 +36,9 @@ public class ApplicationController extends AbstractApplicationController
     public var model:IApplicationModel;
     
     [Inject]
+    public var oscMessageController:OSCMessageController;
+    
+    [Inject]
     public var uiController:IUIController;
     
     [Inject]

@@ -1,9 +1,29 @@
 <?xml version="1.0"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+// Copyright 2016 Michael Schmalle - Teoti Graphix, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License
+//
+// Author: Michael Schmalle, Principal Architect
+// mschmalle at teotigraphix dot com
+////////////////////////////////////////////////////////////////////////////////
+-->
 <f:Screen xmlns:f="library://ns.feathersui.com/mxml"
           xmlns:fx="http://ns.adobe.com/mxml/2009" 
           xmlns:common="caustic.remix.view.common.*" 
           xmlns:component="com.teotigraphix.ui.component.*" 
-          xmlns:clip="caustic.remix.view.ui.content.clip.*" xmlns:main="caustic.remix.view.ui.main.*">
+          xmlns:main="t4b.view.ui.main.*">
     <fx:Script>
         <![CDATA[
             
@@ -14,14 +34,14 @@
         <f:VerticalLayout/>
     </f:layout>
 
-<!--    <main:ApplicationActionBar id="actionBar">
+    <main:ApplicationActionBar id="actionBar">
         <main:layoutData>
             <f:VerticalLayoutData percentWidth="100"/>
         </main:layoutData>
     </main:ApplicationActionBar>
-
+    
     <component:HGroup percentWidth="100" percentHeight="100">
-
+        
         <main:ApplicationToolBar id="toolBar">
             <main:layoutData>
                 <f:HorizontalLayoutData percentHeight="100"/>
@@ -41,6 +61,6 @@
         <main:layoutData>
             <f:VerticalLayoutData percentWidth="100"/>
         </main:layoutData>
-    </main:ApplicationStatusBar>-->
+    </main:ApplicationStatusBar>
     
 </f:Screen>
